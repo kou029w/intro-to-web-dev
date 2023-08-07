@@ -1,0 +1,3 @@
+node_modules/
+/Brewfile.lock.json
+/book/
