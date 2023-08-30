@@ -3,7 +3,7 @@ marp: true
 paginate: true
 ---
 
-# Web開発
+# Web概論
 
 WebDINO Japan シニアエンジニア
 [渡邉浩平](https://github.com/kou029w)
@@ -11,11 +11,99 @@ WebDINO Japan シニアエンジニア
 
 ---
 
-_TODO_
+# Web
 
-- Webブラウザーとは
-- Webブラウザーで何ができるか
-- Webブラウザーの仕組み
+Webとは何か
+
+![bg right:66%](assets/world-wide-web.png)
+
+<!-- 当たり前のように使われているが、そもそもWebとは何だろう -->
+
+<!-- _footer: 画像: https://worldwideweb.cern.ch/browser/ -->
+
+<!-- 最初のWebブラウザーとされているソフトウェアの画像 -->
+
+---
+
+# World Wide Web
+
+1989-1990年: 欧州原子核研究機構（CERN）Tim Berners-Leeらによって開発
+https://worldwideweb.cern.ch/timeline/
+
+「分散型ハイパーテキストシステム」として提案したアイデア
+[The original proposal of the WWW, HTMLized](https://www.w3.org/History/1989/proposal.html)
+
+インターネットを介して相互にメディアが結び付く分散型の情報処理システム
+
+---
+
+# Webブラウザー
+
+<!-- TODO: 最近のウェブブラウザーのアイコンが並んでいる図 -->
+
+Webページの取得・描画、Webアプリケーションの実行を行うソフトウェア
+
+---
+
+# プラットフォームとしてのWeb
+
+![](assets/web-apps.dio.png)
+
+Webアプリケーションのプラットフォームとして多目的化・多機能化が進展
+
+---
+
+# Webの標準化
+
+主に3つの標準化団体が関わっている
+
+- [IETF (Internet Engineering Task Force)](https://www.ietf.org/)
+- [W3C (The World Wide Web Consortium)](https://www.w3.org/)
+- [WHATWG (Web Hypertext Application Technology Working Group)](https://whatwg.org/)
+
+いずれも、Web上で公開されている
+
+無償で閲覧可能、誰でも参加可能、自由に実装可能
+
+---
+
+# Webの基本構成要素
+
+- [HTML](https://developer.mozilla.org/ja/docs/Glossary/HTML) … Webページの構造を指定する記述言語
+- [HTTP](https://developer.mozilla.org/ja/docs/Glossary/HTTP) … Webの基盤となるネットワークプロトコル
+- [URL](https://developer.mozilla.org/ja/docs/Glossary/URL) … インターネット上のリソースの位置を特定するための文字列
+
+<!-- [ハイパーリンクとは？ - ウェブ開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/Common_questions/Web_mechanics/What_are_hyperlinks) -->
+<!-- [ウェブのしくみ - ウェブ開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/How_the_Web_works) -->
+<!-- [Dev.Opera — HTTP — an Application-Level Protocol](https://dev.opera.com/articles/http-basic-introduction/) -->
+
+---
+
+# ここまでのまとめ
+
+- Web … 分散型情報処理システム
+- Webブラウザー … Webページの取得・描画、Webアプリケーションの実行
+- Webの標準化 … 無償で閲覧可能、誰でも参加可能、自由に実装可能
+- Webの基本構成要素 … URL/HTTP/HTML
+
+---
+
+# Webの仕組み
+
+URL/HTTP/HTML
+
+<!-- どうやってWebページは表示されているんだろう -->
+
+---
+
+# Webブラウザーの仕組み
+
+> 1. ブラウザーは DNS サーバーにアクセスし、ウェブサイトのあるサーバーの実際のアドレスを探します（お店の住所を見つけます）。
+> 2. ブラウザーはサーバーに HTTP リクエストメッセージを送信して、ウェブサイトのコピーをクライアントに送るよう求めます（お店に行ってものを注文します）。このメッセージ、およびクライアントとサーバーの間でやりとりされるその他すべてのデータは、TCP/IP を使用してインターネット経由で送信されます
+> 3. サーバーがクライアントのリクエストを承認すると、サーバーはクライアントに "200 OK" というメッセージを送ります。これは「もちろんそのウェブサイトを見ることができます。どうぞ！」という意味です。そしてウェブサイトのファイルを、データパケットと呼ばれる一連の小さな塊 (chunk) としてブラウザーに送信し始めます（お店は商品を渡し、あなたは自宅に持って帰ります）。
+> 4. ブラウザーは小さな塊を完全なウェブページに組み立て、表示します（玄関にものが到着しました — 新しいピカピカのものです、すばらしい！）
+
+[ウェブのしくみ - ウェブ開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/How_the_Web_works) より引用
 
 ---
 

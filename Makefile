@@ -20,3 +20,4 @@ preview-presentation:
 book: $(shell find presentation src -type f)
 	mdbook build
 	pnpm marp
+	cp -a presentation/assets book/presentation/

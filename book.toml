@@ -1,7 +1,7 @@
 [book]
 authors = ["Kohei Watanabe"]
 language = "ja"
-title = "Web開発"
+title = "Web開発入門"
 
 [output.html]
 edit-url-template = "https://github.com/kou029w/intro-to-web-dev/edit/main/{path}"
