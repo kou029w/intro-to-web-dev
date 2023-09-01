@@ -1,9 +1,7 @@
-# はじめに
-
-この文書はWeb開発の入門ガイドです。
-Web開発を進めていくための助けになれば幸いです。
-
-## 目次
-
-- [はじめに](SUMMARY.md)
+- [はじめに](index.md)
 - [Web概論](intro-to-web.md)
+- [Webの仕組み](how-it-works.md)
+- [Web API](web-api.md)
+- [JavaScript](javascript.md)
+- [ハンズオン](hands-on.md)
+  - [Node.js](nodejs.md)
