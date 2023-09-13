@@ -1,4 +1,4 @@
-# Web概論
+# Web
 
 <iframe
   src="../presentation/intro-to-web.html"
