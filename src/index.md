@@ -41,10 +41,10 @@ Web開発を進めていくための助けになれば幸いです。
 [web-1]: web/index.md
 [web-2]: web/web-api.md
 [js-1]: js/index.md
-[js-2]: js/index.md
-[js-3]: js/index.md
-[js-4]: js/index.md
-[js-5]: js/index.md
+[js-2]: js/data-type.md
+[js-3]: js/function-declaration.md
+[js-4]: js/condition.md
+[js-5]: js/async.md
 [hands-on-1]: hands-on/index.md
 [hands-on-2]: hands-on/index.md
 [hands-on-3]: hands-on/index.md

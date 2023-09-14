@@ -2,6 +2,22 @@
 
 <a href="https://jsprimer.net/basic/object/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > オブジェクト</a>
 
+オブジェクトはプロパティの集合です。プロパティとは名前（キー）と値（バリュー）が対になったものです。
+プロパティのキーには文字列または`Symbol`が利用でき、値には任意のデータを指定できます。
+また、1つのオブジェクトは複数のプロパティを持てるため、1つのオブジェクトで多種多様な値を表現できます。
+
+今までも登場してきた、配列や関数などもオブジェクトの一種です。
+JavaScriptには、あらゆるオブジェクトの元となる`Object`というビルトインオブジェクトがあります。
+ビルトインオブジェクトは、実行環境にあらかじめ定義されているオブジェクトのことです。
+`Object`というビルトインオブジェクトはECMAScriptの仕様で定義されているため、あらゆるJavaScriptの実行環境で利用できます。
+
+この章では、オブジェクトの作成や扱い方、`Object`というビルトインオブジェクトについて見ていきます。
+
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
 続きは <a href="https://jsprimer.net/basic/object/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > オブジェクト</a> を参照しましょう。
+
+## ポイント
+
+- オブジェクトはプロパティの集合
+- `{}`（オブジェクトリテラル）でのオブジェクトの作成や更新方法
