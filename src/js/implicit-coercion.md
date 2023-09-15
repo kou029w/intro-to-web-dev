@@ -1,6 +1,6 @@
 # 暗黙的な型変換
 
-<a href="https://jsprimer.net/basic/implicit-coercion/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 暗黙的な型変換</a>
+[JavaScript Primer > 基本文法 > 暗黙的な型変換](https://jsprimer.net/basic/implicit-coercion/)
 
 この章では、明示的な型変換と暗黙的な型変換について学んでいきます。
 
@@ -52,11 +52,11 @@ JavaScriptでは、エラーが発生するのではなく、暗黙的な型変�
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/implicit-coercion/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 暗黙的な型変換</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > 暗黙的な型変換](https://jsprimer.net/basic/implicit-coercion/) を参照しましょう。
 
 ## ポイント
 
 - 暗黙的な型変換がある
 - できるだけ `===` での比較や明示的な型変換をしたほうが読みやすい
 
-<a href="https://dorey.github.io/JavaScript-Equality-Table/" target="_blank" rel="noreferrer">![](assets/equality-table.png)</a>
+[![](assets/equality-table.png)](https://dorey.github.io/JavaScript-Equality-Table/)

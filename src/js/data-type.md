@@ -1,6 +1,6 @@
 # データ型とリテラル
 
-<a href="https://jsprimer.net/basic/data-type/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > データ型とリテラル</a>
+[JavaScript Primer > 基本文法 > データ型とリテラル](https://jsprimer.net/basic/data-type/)
 
 JavaScriptは動的型付け言語に分類される言語であるため、静的型付け言語のような**変数の型**はありません。
 しかし、文字列、数値、真偽値といった**値の型**は存在します。
@@ -62,7 +62,7 @@ console.log(typeof function () {}); // => "function"
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/data-type/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > データ型とリテラル</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > データ型とリテラル](https://jsprimer.net/basic/data-type/) を参照しましょう。
 
 ## ポイント
 

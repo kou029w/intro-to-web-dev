@@ -1,6 +1,6 @@
 # 変数と宣言
 
-<a href="https://jsprimer.net/basic/variables/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 変数と宣言</a>
+[JavaScript Primer > 基本文法 > 変数と宣言](https://jsprimer.net/basic/variables/)
 
 プログラミング言語には、文字列や数値などのデータに名前をつけることで、繰り返し利用できるようにする**変数**という機能があります。
 
@@ -14,7 +14,7 @@ JavaScriptには「これは変数です」という宣言をするキーワー�
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/variables/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 変数と宣言</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > 変数と宣言](https://jsprimer.net/basic/variables/) を参照しましょう。
 
 ## ポイント
 

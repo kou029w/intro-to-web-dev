@@ -1,6 +1,6 @@
 # 配列
 
-<a href="https://jsprimer.net/basic/array/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 配列</a>
+[JavaScript Primer > 基本文法 > 配列](https://jsprimer.net/basic/array/)
 
 配列はJavaScriptの中でもよく使われるオブジェクトです。
 
@@ -15,7 +15,7 @@
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/array/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 配列</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > 配列](https://jsprimer.net/basic/array/) を参照しましょう。
 
 ## ポイント
 
@@ -40,6 +40,6 @@ drawFortune();
 </div>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
-- <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank" rel="noreferrer">Math - JavaScript | MDN</a>
+- [Math - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math)
   - `Math.floor(x)`は`x`以下の最大の整数を返します。
   - `Math.random()`は`0`以上`1`未満の疑似乱数を返します。

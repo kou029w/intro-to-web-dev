@@ -1,6 +1,6 @@
 # 関数と宣言
 
-<a href="https://jsprimer.net/basic/function-declaration/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 関数と宣言</a>
+[JavaScript Primer > 基本文法 > 関数と宣言](https://jsprimer.net/basic/function-declaration/)
 
 関数とは、ある一連の手続き（文の集まり）を1つの処理としてまとめる機能です。
 関数を利用することで、同じ処理を毎回書くのではなく、一度定義した関数を呼び出すことで同じ処理を実行できます。
@@ -12,7 +12,7 @@
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/function-declaration/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 関数と宣言</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > 関数と宣言](https://jsprimer.net/basic/function-declaration/) を参照しましょう。
 
 ## ポイント
 
@@ -41,4 +41,4 @@ document.body.textContent = `
 
 `Math.PI`は円周率(およそ`3.14159`)を表す`Math`オブジェクトの静的プロパティです。
 
-- <a href="https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math" target="_blank" rel="noreferrer">Math - JavaScript | MDN</a>
+- [Math - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math)

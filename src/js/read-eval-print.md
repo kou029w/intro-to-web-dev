@@ -1,6 +1,6 @@
 # 値の評価と表示
 
-<a href="https://jsprimer.net/basic/read-eval-print/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 値の評価と表示</a>
+[JavaScript Primer > 基本文法 > 値の評価と表示](https://jsprimer.net/basic/read-eval-print/)
 
 値の評価とは、入力した値を評価してその結果を返すことを示しています。
 たとえば、次のような値の評価があります。
@@ -13,7 +13,7 @@
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/read-eval-print/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 値の評価と表示</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > 値の評価と表示](https://jsprimer.net/basic/read-eval-print/) を参照しましょう。
 
 ## ポイント
 

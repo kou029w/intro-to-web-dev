@@ -1,6 +1,6 @@
 # 演算子
 
-<a href="https://jsprimer.net/basic/operator/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 演算子</a>
+[JavaScript Primer > 基本文法 > 演算子](https://jsprimer.net/basic/operator/)
 
 演算子はよく利用する演算処理を記号などで表現したものです。
 たとえば、足し算をする `+` も演算子の一種です。これ以外にも演算子には多くの種類があります。
@@ -44,7 +44,7 @@ num++;
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/operator/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 演算子</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > 演算子](https://jsprimer.net/basic/operator/) を参照しましょう。
 
 ## ポイント
 

@@ -1,6 +1,6 @@
 # コメント
 
-<a href="https://jsprimer.net/basic/comments/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > コメント</a>
+[JavaScript Primer > 基本文法 > コメント](https://jsprimer.net/basic/comments/)
 
 コメントはプログラムとして評価されないため、ソースコードの説明を書くために利用されています。
 この書籍でも、JavaScriptのソースコードを解説するためにコメントを使っていきます。
@@ -9,7 +9,7 @@
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/comments/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > コメント</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > コメント](https://jsprimer.net/basic/comments/) を参照しましょう。
 
 ## ポイント
 

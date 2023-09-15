@@ -1,12 +1,12 @@
 # 文と式
 
-<a href="https://jsprimer.net/basic/statement-expression/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 文と式</a>
+[JavaScript Primer > 基本文法 > 文と式](https://jsprimer.net/basic/statement-expression/)
 
 本格的に基本文法について学ぶ前に、JavaScriptというプログラミング言語がどのような要素からできているかを見ていきましょう。
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/statement-expression/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > 文と式</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > 文と式](https://jsprimer.net/basic/statement-expression/) を参照しましょう。
 
 ## ポイント
 

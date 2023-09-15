@@ -1,6 +1,6 @@
 # オブジェクト
 
-<a href="https://jsprimer.net/basic/object/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > オブジェクト</a>
+[JavaScript Primer > 基本文法 > オブジェクト](https://jsprimer.net/basic/object/)
 
 オブジェクトはプロパティの集合です。プロパティとは名前（キー）と値（バリュー）が対になったものです。
 プロパティのキーには文字列または`Symbol`が利用でき、値には任意のデータを指定できます。
@@ -15,7 +15,7 @@ JavaScriptには、あらゆるオブジェクトの元となる`Object`とい�
 
 > ― この文章は © 2023 jsprimer project クリエイティブ・コモンズ [CC BY 4.0](https://github.com/asciidwango/js-primer/blob/master/LICENSE-CC-BY) ライセンスのもとに利用を許諾されています。
 
-続きは <a href="https://jsprimer.net/basic/object/" target="_blank" rel="noreferrer">JavaScript Primer > 基本文法 > オブジェクト</a> を参照しましょう。
+続きは [JavaScript Primer > 基本文法 > オブジェクト](https://jsprimer.net/basic/object/) を参照しましょう。
 
 ## ポイント
 
