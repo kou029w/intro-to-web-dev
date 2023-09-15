@@ -4,7 +4,7 @@ language = "ja"
 title = "Web開発入門"
 
 [output.html]
-additional-js = ["external-links.js"]
+additional-js = ["external-links.js", "regexp-search.js"]
 edit-url-template = "https://github.com/kou029w/intro-to-web-dev/edit/main/{path}"
 git-repository-url = "https://github.com/kou029w/intro-to-web-dev"
 site-url = "/intro-to-web-dev/"
