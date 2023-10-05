@@ -12,9 +12,9 @@ Webはこれら3つの要素に支えられています。
 > **Note**\
 > 変わり続けるルール
 >
-> [URL Living Standard (URLの仕様)](https://url.spec.whatwg.org/) や [HTML Living Standard (HTMLの仕様)](https://html.spec.whatwg.org/multipage/) は、その時点が常に最新版の標準仕様となっており、継続的に更新され続けています。
+> [URL Living Standard (URLの仕様)](https://url.spec.whatwg.org/) や [HTML Living Standard (HTMLの仕様)](https://html.spec.whatwg.org/multipage/) は、その時点が常に最新版の標準仕様となっており継続的に更新され続けています。
 > ルールは現実の問題に合わせて変わり続けていくものだからです。
-> 多くのルールを覚えることは決して重要ではなく、ルールによって何を解決しようしとしているのか理解することこそが大切です。
+> 多くのルールを覚えることは決して重要ではなく、ルールによって何を解決しようとしているのか理解を深めていくことが大切なのです。
 
 ## ポイント
 
