@@ -1,6 +1,9 @@
 # URL - Uniform Resource Locator
 
-[URLの仕様](https://url.spec.whatwg.org/#example-url-components)から具体例をいくつかピックアップします。
+URLはインターネット上のリソースの位置を特定するための文字列です。
+住所と似ています。
+
+[URLの仕様](https://url.spec.whatwg.org/#example-url-components)からいくつか具体例を挙げます。
 
 例:
 
@@ -11,30 +14,29 @@ urn:isbn:9780307476463
 file:///ada/Analytical%20Engine/README.md
 ```
 
-これらはいずれも妥当なURLです。
+これらはいずれもURLです。
 
-URLはインターネット上のリソースの位置を特定するための文字列です。
-住所と似ています。
-[リンク (ハイパーリンク)](https://developer.mozilla.org/ja/docs/Learn/Common_questions/Web_mechanics/What_are_hyperlinks) させる場合、このURLを使います。
+[リンク (ハイパーリンク)](https://developer.mozilla.org/ja/docs/Learn/Common_questions/Web_mechanics/What_are_hyperlinks) させたいときURLを使います。
 
-ユニフォーム (uniform) と名前にありますが、統一的なルールがあります、ということです。
+ユニフォーム (uniform) と名前にあるのは、統一的なルールがあります、ということです。
 Web上で「〇〇にアクセスしたい」と思ったときみんなで使える同じ表現があったほうが便利というわけですね。
 
-URLにはどういうルールがあるのか詳しく見ていきましょう。
+ではURLにはどういうルールがあるのか詳しく見ていきましょう。
 
 ## スキーム (Scheme)
 
+URLの種別や性質を意味します。
+
 `https://example.com/`
 
-この例でいうと、先頭から `:` までの文字列 `https` が「スキーム」です。URLの種別や性質を意味します。住所の例で言うと、郵便を表す記号「〒」と似ています。URLスキームごとにその書式は異なります。
+この例でいうと、先頭から `:` までの文字列 `https` が「スキーム」です。住所の例で言うと、郵便を表す記号「〒」の役割と似ています。URLはスキームごとにその書式が異なります。
 
 > **Note**\
 > インターネット上で利用可能なURLスキームの一覧
 >
 > [Uniform Resource Identifier (URI) Schemes](https://www.iana.org/assignments/uri-schemes/uri-schemes.xhtml)
 >
-> これはインターネット上で利用可能なURLスキームの一覧です。
-> この一覧はIANA (Internet Assigned Numbers Authority)によって管理されています。
+> インターネット上で利用可能なURLスキームの一覧はIANA (Internet Assigned Numbers Authority)によって管理されています。
 
 `https` スキームは Hypertext Transfer Protocol Secure ([RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html#name-https-uri-scheme)) を意味します。その後に文字列 `://` が続きます。
 
@@ -51,12 +53,13 @@ URLにはどういうルールがあるのか詳しく見ていきましょう�
 
 ## ホスト (Host)
 
+郵便番号と住所みたいなものです。「ポスト」じゃないですよ。
+
 `https://example.com/`
 
 この例でいうと、`example.com` の部分が「ホスト」です。
 ホストは[ドメイン名](https://developer.mozilla.org/ja/docs/Learn/Common_questions/Web_mechanics/What_is_a_domain_name)または[IPアドレス](https://ja.wikipedia.org/wiki/IP%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9)です。
 ドメイン名を見かけることが多いかと思います。
-郵便番号と住所みたいなものだと捉えてもらってもOKです。
 
 > **Note**\
 > ドメイン名
@@ -67,7 +70,7 @@ URLにはどういうルールがあるのか詳しく見ていきましょう�
 > [Internet Corporation for Assigned Names and Numbers (ICANN)](https://www.icann.org/) を中心とした複数のドメイン管理事業者によって管理されており、世界中で使うことができるようになっています。
 >
 > 例:
-> https://dns.google/query?rr_type=AAAA&name=example.com
+> [Google Public DNS に `example.com` を問い合わせる例](https://dns.google/query?rr_type=AAAA&name=example.com)
 >
 > ```
 > "Answer": [
@@ -85,7 +88,7 @@ URLにはどういうルールがあるのか詳しく見ていきましょう�
 ## ポート (Port)
 
 「[ポート](https://ja.wikipedia.org/wiki/%E3%83%9D%E3%83%BC%E3%83%88_%28%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF%29)」が書いてあるURLは普段あまり見かけないかもしれませんね。
-でも通信するためには必ず存在します。存在するので一応紹介しておきますね。
+でも通信するためには必ず存在します。存在するからには一応紹介しておきます。
 
 ホストの後にはポートを書くことができます。
 ホストと `:` 文字の後にポート番号を書きます。
@@ -99,12 +102,6 @@ https://example.com:443/
 ```
 
 この場合どちらも `443` ポートを意味します。
-
-```
-https://localhost:8000/search?q=text#hello
-```
-
-この場合 `8000` ポートを意味します。
 
 ## パス (Path)
 
@@ -134,7 +131,7 @@ https://localhost:8000/search?q=text#hello
 
 例えばこの例では `q=text` がクエリーです。
 
-Google検索の例: https://www.google.com/search?q=answer+to+life+the+universe+and+everything
+Google検索の例: <https://www.google.com/search?q=answer+to+life+the+universe+and+everything>
 
 この場合クエリーは `q=answer+to+life+the+universe+and+everything` です。
 
@@ -172,9 +169,12 @@ JavaScriptでは [`location.origin`](https://developer.mozilla.org/ja/docs/Web/A
 > **Note**\
 > Webブラウザーのセキリティ機構
 >
-> Webブラウザーには[同一オリジンポリシー](https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy)と呼ばれる保護機構があり、これが機能しているとき、オリジン間のアクセスは原則禁止されています。リソースを提供する人がアクセスを許可するには、[オリジン間リソース共有 (Cross-Origin Resource Sharing, CORS)](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS) の仕組みを使う必要があります。
+> Webブラウザーには[同一オリジンポリシー](https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy)と呼ばれる保護機構があり、オリジン間のアクセスは原則禁止されています。
+> 異なるオリジン間でのアクセスを許可するには、[オリジン間リソース共有 (Cross-Origin Resource Sharing, CORS)](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS) の仕組みを使います。
+> CORSはリソースを提供する人が同一オリジンポリシーを緩和しオリジン間のアクセスを許可するための仕組みです。
 
 ## ポイント
 
 - URLはインターネット上のリソースの位置を特定するための識別子
-- https:// から始まるURLは、ホスト、ポート、パス、クエリー、フラグメントによって構成されている
+- `https://` から始まるURLは `https` スキームのURL
+- `https` スキームのURLはホスト、ポート、パス、クエリー、フラグメントによって構成されている
