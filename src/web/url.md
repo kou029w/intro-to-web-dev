@@ -177,4 +177,4 @@ JavaScriptでは [`location.origin`](https://developer.mozilla.org/ja/docs/Web/A
 
 - URLはインターネット上のリソースの位置を特定するための識別子
 - `https://` から始まるURLは `https` スキームのURL
-- `https` スキームのURLはホスト、ポート、パス、クエリー、フラグメントによって構成されている
+- `https` スキームのURLの構成要素 … ホスト、ポート、パス、クエリー、フラグメント
