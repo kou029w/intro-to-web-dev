@@ -5,16 +5,17 @@ Webの誕生から現在に至るまでWeb上で出来ることやその役割�
 
 Webはこれら3つの要素に支えられています。
 
-- [URL](https://developer.mozilla.org/ja/docs/Glossary/URL) … インターネット上のリソースの位置を特定するための識別子
-- [HTTP](https://developer.mozilla.org/ja/docs/Glossary/HTTP) … Webの転送用のプロトコル
-- [HTML](https://developer.mozilla.org/ja/docs/Glossary/HTML) … Webページの構造を記述するための言語
+- [URL](url.md) … インターネット上のリソースの位置を特定するための識別子
+- [HTTP](http.md) … Webの転送用のプロトコル
+- [HTML](html.md) … Webページの構造を記述するための言語
 
 > **Note**\
 > 変わり続けるルール
 >
-> [URL Living Standard (URLの仕様)](https://url.spec.whatwg.org/) や [HTML Living Standard (HTMLの仕様)](https://html.spec.whatwg.org/multipage/) は、その時点が常に最新版の標準仕様となっており継続的に更新され続けています。
-> ルールは現実の問題に合わせて変わり続けていくものだからです。
-> 多くのルールを覚えることは決して重要ではなく、ルールによって何を解決しようとしているのか理解を深めていくことが大切なのです。
+> [URL Living Standard (URLの仕様)](https://url.spec.whatwg.org/) や [HTML Living Standard (HTMLの仕様)](https://html.spec.whatwg.org/multipage/) は、常に最新版の標準仕様となっており継続的に更新され続けています。
+> 多くのルールを覚えることは決して重要ではありません。
+> 何を解決するためのルールなのか理解を深めていくことが大切なのです。
+> なぜなら、ルールは現実の問題に合わせて変わり続けていくものだからです。
 
 ## ポイント
 
