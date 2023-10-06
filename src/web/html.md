@@ -33,7 +33,7 @@ HTMLは[マークアップ言語 (Markup Language)](https://ja.wikipedia.org/wik
 ```
 <!-- prettier-ignore-end -->
 
-「タグ (Tag)」と呼ばれる<ruby>印<rt>マーク</rt></ruby>でコンテンツのかたまりを<ruby>囲む<rt>マークアップする</rt></ruby>ことで構造化します。
+「タグ (Tag)」と呼ばれる<ruby>印<rt>マーク</rt></ruby>でコンテンツのかたまりを<ruby>囲みます<rt>マークアップする</rt></ruby>。
 このかたまりは「要素 (Element)」と呼ばれます。
 
 <!-- prettier-ignore-start -->
