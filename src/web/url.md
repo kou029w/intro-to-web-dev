@@ -47,8 +47,8 @@ URLの種別や性質を意味します。
 >
 > 前者は "Hypertext Transfer Protocol"、後者は "Hypertext Transfer Protocol Secure" を意味するスキームです。
 > "Secure" と付いているのは、必ず [TLS (Transport Layer Security)](https://datatracker.ietf.org/doc/html/rfc8446) の上でやり取りを行います、という意味です。
-> 最近 `http://...` ってURLを見かけなくなったかと思います。
-> これはHTTPのセキュリティとプライバシーの問題が広く知られ、HTTP over TLSに置き換わっていったためです。
+> 最近 `http://...` から始まるURLはあまり見かけないかと思います。
+> これはHTTPのセキュリティとプライバシーの問題が広く知られ、代わりにHTTP over TLSが使われるようになったためです。
 > TLSを使うことによってクライアント・サーバー間の通信が暗号化され、もし仮に傍受されても第三者による改ざんや解析は以前より難しくなりました。
 
 ## ホスト (Host)
