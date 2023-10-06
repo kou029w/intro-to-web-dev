@@ -27,6 +27,7 @@ HTTPはサーバー・クライアントの二者関係で行われます。
 クライアントはサーバーに対して<ruby>要求<rt>リクエスト</rt></ruby>を送り、クライアントからの<ruby>要求<rt>リクエスト</rt></ruby>を受け取るとサーバーは<ruby>応答<rt>レスポンス</rt></ruby>を返します。
 
 [HTTPの仕様](https://www.rfc-editor.org/rfc/rfc9110#name-example-message-exchange)にある具体例を挙げます。
+次のようなコードの送受信を行います。
 
 クライアントリクエスト (クライアント側からサーバー側への送信):
 
@@ -54,8 +55,6 @@ Content-Type: text/plain
 Hello World! My content includes a trailing CRLF.
 ```
 
-このようなコードの送受信を行います。
-
 構成要素は4つ。
 
 - リクエストライン (Request Line)
@@ -79,9 +78,32 @@ GET /hello.txt HTTP/1.1
 
 `GET` メソッドは取得するために使われる最も基本的なメソッドで、Webブラウザーのリンクをクリックしたときや、アドレスバーに入力すると送信されます。Webでのやり取りはこのリクエストラインで始まる文字列をWebサーバーに伝えるところから始まります。
 
+> **Note**\
+> HTTP/1.1 と HTTP/2
+>
+> [HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112.html)は1995年に公開され、2022年に最新版に改定されました。
+> HTTP/1.1は現在も使われ続けています。
+> 一方、[HTTP/2](https://www.rfc-editor.org/rfc/rfc9113.html)は2022年に公開されました。
+> HTTP/2はHTTP/1.1とは異なり複数のメッセージを同時に扱える、コンピューターにとってより効率的な形式のシンタックスが特徴の新しい仕様です。
+> HTTP/2ではリクエストラインの代わりに一貫してフィールドを使うなどHTTP/1.1と文法が大きく異なりますがその意味は全く変わりません。
+>
+> [HTTP/2 仕様のリクエストの例](https://www.rfc-editor.org/rfc/rfc9113.html#section-8.8.1):
+>
+> ```
+>   GET /resource HTTP/1.1           HEADERS
+>   Host: example.org          ==>     + END_STREAM
+>   Accept: image/jpeg                 + END_HEADERS
+>                                        :method = GET
+>                                        :scheme = https
+>                                        :authority = example.org
+>                                        :path = /resource
+>                                        host = example.org
+>                                        accept = image/jpeg
+> ```
+
 ## フィールド (Fields)
 
-`:` 文字で区切られた行が続きます。これは「フィールド (Fields)」です。レスポンスにもフィールドは登場します。リクエスト・レスポンスに関連する情報を意味します。
+`:` 文字で区切られた行が続きます。これは「フィールド (Fields)」です。リクエストとレスポンスに関連する付帯情報を意味します。
 
 ```
 Host: www.example.com
@@ -101,7 +123,8 @@ HTTP/1.1 200 OK
 ```
 
 この例ではステータスコード `200` を返しています。
-ステータスコードは100〜599までの3桁の整数で表されます。先頭の1桁で分類されます。
+ステータスコードは100〜599までの3桁の整数で表されます。
+レスポンスはステータスコードの100の位で大きく分類されます。
 
 - 1xx (情報): リクエストを受信しました。プロセスを続行します。
 - 2xx (成功): リクエストは正常に受信、理解され、受け入れられました。
@@ -113,13 +136,13 @@ HTTP/1.1 200 OK
 > 418 I'm a teapot
 >
 > 私はティーポットなのでコーヒーを入れることを拒否しました、という意味のステータスコードです。
-> [1998年のエイプリルフール](https://www.rfc-editor.org/rfc/rfc2324.html)に提案されました。
+> [1998年のエイプリルフール](https://www.rfc-editor.org/rfc/rfc2324.html)に公開されました。
 > 現在でもステータスコード `418` は [IANA HTTP Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) によって管理されています。
 
 ## コンテンツ (Content)
 
-「コンテンツ (Content)」は転送する内容のことです。
-HTML、画像、動画、あらゆるデータをコンテンツとして転送できます。
+フィールドが終わり「コンテンツ (Content)」が続きます。
+コンテンツはHTML、画像、動画、あらゆるデータです。
 
 ## ポイント
 
