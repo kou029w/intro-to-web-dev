@@ -91,10 +91,6 @@ Host: www.example.com
 
 ## ステータスコード (Status Codes)
 
-> ![](https://pbs.twimg.com/media/FDEx8qDaAAAwN_V.jpg)
->
-> _写真: [@mitomasan](https://x.com/mitomasan) <https://x.com/mitomasan/status/1454999081839824898> より引用_
-
 「ステータスコード (Status Codes)」はそのリソースの存在やアクセス可否などをサーバーが伝えるためのものです。
 サーバーはレスポンスを返すとき、最初にステータスコードを返します。
 
