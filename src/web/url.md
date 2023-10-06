@@ -16,7 +16,7 @@ file:///ada/Analytical%20Engine/README.md
 
 これらはいずれもURLです。
 
-[リンク (ハイパーリンク)](https://developer.mozilla.org/ja/docs/Learn/Common_questions/Web_mechanics/What_are_hyperlinks) させたいときURLを使います。
+URLを使って[リンク](https://developer.mozilla.org/ja/docs/Learn/Common_questions/Web_mechanics/What_are_hyperlinks)させることができます。
 
 ユニフォーム (uniform) と名前にあるのは、統一的なルールがあります、ということです。
 Web上で「〇〇にアクセスしたい」と思ったときみんなで使える同じ表現があったほうが便利というわけですね。
