@@ -28,9 +28,6 @@ World Wide Web (Web) は、1989年に[分散型ハイパーテキストシステ
 
 Webブラウザーは、Webページの取得・描画を行うソフトウェアです。
 
-Web上のやり取りはサーバー・クライアントの二者関係で行われます。
-Webブラウザーなどのクライアントはサーバーにコンテンツを要求し、それをサーバーからクライアントに提供しています。
-
 代表的なWebブラウザーとしては、[Google Chrome](https://www.google.co.jp/intl/ja/chrome/)、[Safari](https://www.apple.com/jp/safari/)、[Mozilla Firefox](https://www.mozilla.org/ja/firefox/)、[Microsoft Edge](https://www.microsoft.com/ja-jp/edge)などが挙げられます。
 
 ## Webの標準化
