@@ -1,8 +1,8 @@
 # Webとは
 
-> This is for everyone
+> _"This is for everyone"_
 >
-> _―― [@timberners_lee (2012)](https://twitter.com/timberners_lee/status/228960085672599552)_
+> _― [Tim Berners-Lee (@timberners_lee)](https://twitter.com/timberners_lee/status/228960085672599552)_
 
 Webは情報共有とコミュニケーションのためのプラットフォームです。
 Web上ではソーシャルメディア、ビデオストリーミング、オンラインショッピングなど様々な活動が行われます。(便利ですよね。)
