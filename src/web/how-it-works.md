@@ -6,7 +6,7 @@ Webの誕生から現在に至るまでWeb上で出来ることやその役割�
 Webはこれら3つの要素に支えられています。
 
 - [URL](https://developer.mozilla.org/ja/docs/Glossary/URL) … インターネット上のリソースの位置を特定するための識別子
-- [HTTP](https://developer.mozilla.org/ja/docs/Glossary/HTTP) … Webの基盤となるネットワークプロトコル
+- [HTTP](https://developer.mozilla.org/ja/docs/Glossary/HTTP) … Webの転送用のプロトコル
 - [HTML](https://developer.mozilla.org/ja/docs/Glossary/HTML) … Webページの構造を記述するための言語
 
 > **Note**\
@@ -31,6 +31,6 @@ Webはこれら3つの要素に支えられています。
   - HTTPの技術的な説明の参考にしています
   - [渋川よしき「Real World HTTP ミニ版」](https://www.oreilly.co.jp/books/9784873118789/)は無償で読めるのでお手軽です
 - [Dev.Opera — HTTP — an Application-Level Protocol](https://dev.opera.com/articles/http-basic-introduction/)
-  - HTTPの概略図を作成するために参考にしています
+  - HTTPの概要を説明するために参考にしています
 - [米内貴志「Webブラウザセキュリティ」](https://www.lambdanote.com/products/wbs)
   - Webブラウザーのセキリティ機構の説明を参考にしています。

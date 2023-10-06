@@ -70,7 +70,7 @@ Webアプリケーションのプラットフォームとして多目的化・�
 # Webの基本構成要素
 
 - [HTML](https://developer.mozilla.org/ja/docs/Glossary/HTML) … Webページの構造を指定する記述言語
-- [HTTP](https://developer.mozilla.org/ja/docs/Glossary/HTTP) … Webの基盤となるネットワークプロトコル
+- [HTTP](https://developer.mozilla.org/ja/docs/Glossary/HTTP) … Webの転送用のプロトコル
 - [URL](https://developer.mozilla.org/ja/docs/Glossary/URL) … インターネット上のリソースの位置を特定するための文字列
 
 ---
