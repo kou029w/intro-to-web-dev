@@ -64,7 +64,7 @@ URLの種別や性質を意味します。
 > **Note**\
 > ドメイン名
 >
-> インターネットに接続しているすべてのコンピューターやネットワーク機器にはIPアドレスが割り当てられています。
+> インターネットに接続しているすべてのコンピューターにはIPアドレスが割り当てられています。
 > ドメイン名はそうしたIPアドレスに人間が読めるように別の名前を付けたものです。
 > ドメイン名は [Domain Name System (DNS)](https://ja.wikipedia.org/wiki/Domain_Name_System) によって支えられています。
 > [Internet Corporation for Assigned Names and Numbers (ICANN)](https://www.icann.org/) を中心とした複数のドメイン管理事業者によって管理されており、世界中で使うことができるようになっています。
