@@ -103,6 +103,28 @@ https://example.com:443/
 
 この場合どちらも `443` ポートを意味します。
 
+## オリジン (Origin)
+
+スキーム・ホスト・ポートをまとめて扱うことがあります。
+具体的にはセキュリティ上の理由から送信元の同一性を判定するケースです。
+このとき使われるのが「オリジン」です。
+
+```
+https://localhost:8000/search?q=text#hello
+```
+
+例えばこの例では (`https`, `localhost`, `8000`) の3つの組がオリジンです。
+オリジンは `https://localhost:8000` のように表現します。
+
+JavaScriptでは [`location.origin`](https://developer.mozilla.org/ja/docs/Web/API/Location/origin) でオリジンを取得できます。
+
+> **Note**\
+> Webブラウザーのセキリティ機構
+>
+> Webブラウザーには[同一オリジンポリシー](https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy)と呼ばれる保護機構があり、オリジン間のアクセスは原則禁止されています。
+> 異なるオリジン間でのアクセスを許可するには、[オリジン間リソース共有 (Cross-Origin Resource Sharing, CORS)](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS) の仕組みを使います。
+> CORSはリソースを提供する人が同一オリジンポリシーを緩和しオリジン間のアクセスを許可するための仕組みです。
+
 ## パス (Path)
 
 `/` 文字で区切られた文字列が続きます。これが「パス」です。ホストの中のリソースの場所を意味します。
@@ -150,28 +172,6 @@ https://localhost:8000/search?q=text#hello
 例えばこの例では `hello` がフラグメントです。
 
 JavaScriptでは [`location.hash`](https://developer.mozilla.org/ja/docs/Web/API/Location/hash) でフラグメントを取得できます。
-
-## オリジン (Origin)
-
-スキーム・ホスト・ポートをまとめて扱うことがあります。
-具体的にはセキュリティ上の理由から送信元の同一性を判定するケースです。
-このとき使われるのが「オリジン」です。
-
-```
-https://localhost:8000/search?q=text#hello
-```
-
-例えばこの例では (`https`, `localhost`, `8000`) の3つの組がオリジンです。
-オリジンは `https://localhost:8000` のように表現します。
-
-JavaScriptでは [`location.origin`](https://developer.mozilla.org/ja/docs/Web/API/Location/origin) でオリジンを取得できます。
-
-> **Note**\
-> Webブラウザーのセキリティ機構
->
-> Webブラウザーには[同一オリジンポリシー](https://developer.mozilla.org/ja/docs/Web/Security/Same-origin_policy)と呼ばれる保護機構があり、オリジン間のアクセスは原則禁止されています。
-> 異なるオリジン間でのアクセスを許可するには、[オリジン間リソース共有 (Cross-Origin Resource Sharing, CORS)](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS) の仕組みを使います。
-> CORSはリソースを提供する人が同一オリジンポリシーを緩和しオリジン間のアクセスを許可するための仕組みです。
 
 ## ポイント
 
