@@ -74,7 +74,7 @@ Hello World! My content includes a trailing CRLF.
 GET /hello.txt HTTP/1.1
 ```
 
-この例はURL `http://www.example.com/hello.txt` にアクセスするためのクライアントリクエストです。`GET` メソッドでパス `/hello.txt` のリソースへのアクセスを要求しています。
+この例はURL `http://www.example.com/hello.txt` にアクセスするためのクライアントリクエストです。`GET` メソッドでパス `/hello.txt` へのアクセスを要求しています。
 
 `GET` メソッドは取得するために使われる最も基本的なメソッドで、Webブラウザーのリンクをクリックしたときや、アドレスバーに入力すると送信されます。Webでのやり取りはこのリクエストラインで始まる文字列をWebサーバーに伝えるところから始まります。
 
