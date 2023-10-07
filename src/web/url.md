@@ -128,8 +128,8 @@ JavaScriptでは [`location.origin`](https://developer.mozilla.org/ja/docs/Web/A
 ## パス (Path)
 
 `/` 文字で区切られた文字列が続きます。これが「パス」です。ホストの中のリソースの場所を意味します。
+`/` は日本語でいう「の」みたいなものです。
 階層構造を表現します。
-`/` は日本語でいう「の」みたいなものです。 
 
 ```
 https://example.com/
