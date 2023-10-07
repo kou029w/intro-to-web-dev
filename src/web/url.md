@@ -128,6 +128,8 @@ JavaScriptでは [`location.origin`](https://developer.mozilla.org/ja/docs/Web/A
 ## パス (Path)
 
 `/` 文字で区切られた文字列が続きます。これが「パス」です。ホストの中のリソースの場所を意味します。
+階層構造を表現します。
+`/` は日本語でいう「の」みたいなものです。 
 
 ```
 https://example.com/
@@ -152,17 +154,19 @@ https://localhost:8000/search?q=text#hello
 ```
 
 例えばこの例では `q=text` がクエリーです。
+`=` は日本語でいう「は」みたいなものです。
 
 Google検索の例: <https://www.google.com/search?q=answer+to+life+the+universe+and+everything>
 
 この場合クエリーは `q=answer+to+life+the+universe+and+everything` です。
+`q` は "answer to life the universe and everything" ですよ、という意味です。
 
 JavaScriptでは [`location.search`](https://developer.mozilla.org/ja/docs/Web/API/Location/search) でクエリーを取得できます。
 
 ## フラグメント (Fragment)
 
 `#` 文字で区切られた文字列が続くことがあります。これは「フラグメント」です。
-URLの末尾にフラグメントがあるとき、そのリソースの中の一部分を意味します。
+URLの末尾にフラグメントがあるとき、そのリソースの中の<ruby>一部分<rt>フラグメント</rt></ruby>を意味します。
 HTMLの場合はフラグメントと `id` 属性の名前が一致するときその箇所を指定することができます。
 
 ```
