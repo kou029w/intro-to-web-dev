@@ -6,7 +6,7 @@
   - [HTTP](web/http.md)
   - [HTML](web/html.md)
   - [開発者ツールに慣れる](web/devtools.md)
-  - [Web API](web/web-api.md)
+  - [APIとは](web/api.md)
 - [JavaScript](js/index.md)
   - [コメント](js/comments.md)
   - [変数と宣言](js/variables.md)
