@@ -1,7 +1,7 @@
 [book]
 authors = ["Kohei Watanabe"]
 language = "ja"
-title = "Web開発入門"
+title = "Web開発をはじめよう"
 
 [output.html]
 additional-js = ["external-links.js", "regexp-search.js"]
