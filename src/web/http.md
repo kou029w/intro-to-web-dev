@@ -149,3 +149,9 @@ HTTP/1.1 200 OK
 - HTTPはWebの転送用のプロトコル
 - HTTPはクライアントからのリクエストとサーバーからのレスポンスによってやり取りを行う
 - HTTPの構成要素 … リクエストライン/フィールド/ステータスコード/コンテンツ
+
+<!-- TODO:
+- HTTP/2を中心にした説明
+  - https://radar.cloudflare.com/adoption-and-usage トラフィックの過半数はHTTP/2で行われているため
+- HTTP/3の補足
+-->

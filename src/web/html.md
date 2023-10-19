@@ -4,7 +4,7 @@ HTMLはWebページの構造を記述するための言語です。
 
 「どこに」「どのように」アクセスするかというと、Webでは「URLに」「HTTPで」アクセスするわけですね。
 では一体「何を」Webブラウザーは見せているのでしょうか。
-それは「HTML」です。(この入門ガイドもそうです。)
+それは「HTML」です。(この入門ガイドもそうですよ。)
 
 もともとHTMLは主に科学文書の意味や構造を正確に記述するための言語として設計されました。
 現在では、あらゆる文書やアプリの記述に応用されています。
@@ -50,6 +50,8 @@ HTMLは[マークアップ言語 (Markup Language)](https://ja.wikipedia.org/wik
 リンクが含まれている文、その文を含む段落、という構造なわけです。
 
 ## やってみよう！
+
+基本的なルールが分かってきたところで、さっそく遊んでみましょう！
 
 <!-- prettier-ignore -->
 <div class="codepen" data-prefill data-editable data-default-tab="html,result" data-height="480">
