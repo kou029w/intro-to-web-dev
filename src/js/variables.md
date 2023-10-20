@@ -37,7 +37,7 @@ let t = 0;
 // c = 42;
 
 // 時間は変わる
-// t = 0.001;
+t = 0.001;
 
 document.body.textContent = `${t} 秒間に光の進む距離: ${c * t} m`;
 </pre>
