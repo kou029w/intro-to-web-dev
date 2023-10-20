@@ -2,7 +2,6 @@
 
 _TODO_
 
-- [ ] MDNの紹介
 - [ ] Webブラウザー組み込みのAPI
   - [ ] DOM
   - [ ] Fetch API

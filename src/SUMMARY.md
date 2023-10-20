@@ -21,6 +21,7 @@
   - [配列](js/array.md)
   - [非同期処理](js/async.md)
 - [API](api/index.md)
+  - [MDNで調べてみよう](api/mdn.md)
 - [ハンズオン](hands-on/index.md)
   - [Node.js](hands-on/nodejs.md)
 - [質問・提案・問題の報告](issues.md)
