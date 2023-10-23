@@ -6,7 +6,7 @@ Googleなどの検索エンジンで「MDN [調べたいキーワード]」ま�
 
 <form action="https://www.google.com/search" target="_blank" onsubmit="this.submit()">
   <input type="hidden" name="q" value="site:developer.mozilla.org " />
-  <input type="search" name="q" value="textContent" autocomplete="off" style="padding: 4px" />
+  <input type="search" name="q" value="テキストを設定するAPI" autocomplete="off" style="padding: 4px" />
   <input type="submit" value="MDN 検索" />
 </form>
 
