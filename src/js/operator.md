@@ -1,4 +1,4 @@
-ee# 演算子
+# 演算子
 
 [JavaScript Primer > 基本文法 > 演算子](https://jsprimer.net/basic/operator/)
 
