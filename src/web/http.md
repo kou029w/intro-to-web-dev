@@ -114,7 +114,7 @@ Host: www.example.com
 ## ステータスコード (Status Codes)
 
 > [![](https://http.cat/images/500.jpg)](https://http.cat/status/500)\
-> _画像: [HTTP Cats](https://http.cat/) より_
+> _― 画像: [HTTP Cats](https://http.cat/) より_
 
 「ステータスコード (Status Codes)」はそのリソースの存在やアクセス可否などをサーバーが伝えるためのものです。
 サーバーはレスポンスを返すとき、最初にステータスコードを返します。

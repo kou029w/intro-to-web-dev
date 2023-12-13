@@ -10,7 +10,7 @@ Web上ではソーシャルメディア、ビデオストリーミング、オ�
 ## World Wide Web
 
 ![](assets/world-wide-web.png)
-_画像: <https://worldwideweb.cern.ch/browser/> より_
+_― 画像: <https://worldwideweb.cern.ch/browser/> より_
 
 これは世界初のWebブラウザー[WorldWideWeb](https://ja.wikipedia.org/wiki/WorldWideWeb)の画像です。
 
@@ -20,7 +20,7 @@ World Wide Web (Web) は、1989年に[分散型ハイパーテキストシステ
 > 中央集権型 (centralized) と 非中央集権型 (decentralized) と 分散型 (distributed)
 >
 > > ![](assets/distributed-networks.png)\
-> > _画像: ポール・バラン (1964) [On Distributed Communications Networks](https://www.rand.org/content/dam/rand/pubs/papers/2005/P2626.pdf) より_
+> > _― 画像: ポール・バラン (1964) [On Distributed Communications Networks](https://www.rand.org/content/dam/rand/pubs/papers/2005/P2626.pdf) より_
 >
 > Webは分散型のシステムです。中央集権型のシステムではありません。Web上で何か活動するとき、中央の機関からの許諾は一切必要ありません。いつでも、どこでも、誰でも自由に使うことができます。
 
