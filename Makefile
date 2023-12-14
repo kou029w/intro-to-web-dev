@@ -5,7 +5,6 @@ help:
 .PHONY: setup
 setup:
 	brew bundle
-	pnpm install --frozen-lockfile
 
 .PHONY: preview preview-book
 preview:
