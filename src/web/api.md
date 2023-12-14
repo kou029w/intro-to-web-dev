@@ -1,18 +1,5 @@
 # API - Application Programming Interface
 
-_TODO_
-
-- [ ] Webブラウザー組み込みのAPI
-  - [ ] DOM
-  - [ ] Fetch API
-  - [ ] Video
-  - [ ] Audio
-  - [ ] WebGL
-  - [ ] Media Capture API
-  - [ ] Geolocation API
-- [ ] サードパーティAPI
-  - [ ] 機械学習・生成AI
-
 システムには情報やエネルギーなど外部とのやりとりするための境界面があり、それを「インターフェース」と呼びます。
 
 API (Application Programming Interface) とは、アプリケーションソフトウェアのインターフェースを指す概念です。
