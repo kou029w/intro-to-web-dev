@@ -7,16 +7,12 @@ setup:
 	brew bundle
 	pnpm install --frozen-lockfile
 
-.PHONY: preview preview-book preview-presentation
+.PHONY: preview preview-book
 preview:
-	$(MAKE) -j $(shell nproc) preview-book preview-presentation
+	$(MAKE) -j $(shell nproc) preview-book
 
 preview-book:
 	mdbook serve
 
-preview-presentation:
-	pnpm marp --watch
-
-book: $(shell find presentation src -type f)
+book: $(shell find src -type f)
 	mdbook build
-	pnpm marp
