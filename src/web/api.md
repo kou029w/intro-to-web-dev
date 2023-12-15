@@ -16,5 +16,5 @@ JavaScriptから簡単に外部と情報をやりとりしたり、外部のサ�
 
 ## 参考文献
 
-- [Web API の紹介 - ウェブ開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/JavaScript/Client-side_web_APIs/Introduction)
+- [Web API の紹介 - Web開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/JavaScript/Client-side_web_APIs/Introduction)
   - APIの基本的な概念の説明を参考にしています

@@ -27,7 +27,7 @@ Webはこれらの要素に支えられています。
 
 <!-- prettier-ignore-start -->
 > ![](https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/What_is_JavaScript/cake.png)\
-> _― 画像: [JavaScript とは - ウェブ開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/What_is_JavaScript) より_
+> _― 画像: [JavaScript とは - Web開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/What_is_JavaScript) より_
 <!-- prettier-ignore-end -->
 
 Webページはこれらの要素に支えられています。
@@ -43,7 +43,7 @@ Webページはこれらの要素に支えられています。
 
 ## 参考文献
 
-- [HTML 入門 - ウェブ開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/HTML/Introduction_to_HTML)
+- [HTML 入門 - Web開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/HTML/Introduction_to_HTML)
   - HTMLの基本的な概念や文法を学ぶことができます
   - この他にもMDNはWeb技術のリファレンスとして参考にしています
 - [太田 良典、中村 直樹「HTML解体新書」](https://www.borndigital.co.jp/book/25999.html)
