@@ -12,7 +12,7 @@ JavaScript は汎用性が高く、初心者にもやさしいものです。経
 
 JavaScript は比較的コンパクトですが、一方でとても柔軟性があります。開発者は JavaScript 言語のコアをベースに多種多様なツールを作成し、最小限の労力で膨大な様々な機能を利用できるようにしました。例えば以下のようなものがあります。
 
-- ブラウザーのアプリケーションプログラミングインターフェイス ({{Glossary("API")}})。Webブラウザーに組み込まれた API により、動的な HTML の作成、 CSS スタイルの設定、ユーザーのWebカメラからの動画ストリームの収集や操作、三次元グラフィックや音声サンプルの生成などの機能を提供します。
+- ブラウザーのアプリケーションプログラミングインターフェイス (API)。Webブラウザーに組み込まれた API により、動的な HTML の作成、 CSS スタイルの設定、ユーザーのWebカメラからの動画ストリームの収集や操作、三次元グラフィックや音声サンプルの生成などの機能を提供します。
 - 開発者が他のコンテンツプロバイダーのサイト（Twitter や Facebook など）から機能を組み込むことを可能にする、サードパーティの API。
 - すばやくサイトやアプリケーションを構築することができ、 HTML に組み込み可能なサードパーティのフレームワークやライブラリー。
 
@@ -35,7 +35,7 @@ JavaScript は、最も人気のある現代のWeb技術のひとつです。 Ja
    <script src="scripts/main.js"></script>
    ```
 
-3. これは CSS の {{htmlelement("link")}} 要素の時の作業と基本的に同じです。これは JavaScript をページに適用するので、（CSS の時と同じく、ページ上の何に対しても） HTML に影響を与えることができます。
+3. これは CSS の \<link\> 要素の時の作業と基本的に同じです。これは JavaScript をページに適用するので、（CSS の時と同じく、ページ上の何に対しても） HTML に影響を与えることができます。
 4. `main.js` ファイルに次のコードを追加してください。
 
    ```js
@@ -47,15 +47,15 @@ JavaScript は、最も人気のある現代のWeb技術のひとつです。 Ja
 
 !["hello world" の見出しが firefox のロゴの上にある](hello-world.png)
 
-> **Note** 上記の説明で {{htmlelement("script")}} 要素を HTML ファイルの末尾付近に置いたのは、**ブラウザーがファイルに現れる順番でコードを読み込むからです**。
+> **Note** 上記の説明で \<script\> 要素を HTML ファイルの末尾付近に置いたのは、**ブラウザーがファイルに現れる順番でコードを読み込むからです**。
 >
 > JavaScript が先に読み込まれ、まだ読み込まれていない HTML に影響を与えることになると、問題が生じる可能性があります。 JavaScript を HTML ページの下部に配置することは、この依存関係に対応する一つの方法です。その他の方法については、[スクリプトの読み込み方針](https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/What_is_JavaScript#スクリプトの読み込み方針)をご覧ください。
 
 ### 何が起きたのか
 
-JavaScript を使用して、見出しの文字列が _Hello world!_ に変更されました。最初に {{domxref("Document.querySelector", "querySelector()")}} と呼ばれる関数を使用して見出しの参照を取得し、 `myHeading` と呼ばれる変数に格納しています。これは CSS のセレクターを使用するのととてもよく似ています。要素に対して何かをしたくなったら、まずその要素を選択する必要があります。
+JavaScript を使用して、見出しの文字列が _Hello world!_ に変更されました。最初に [document.querySelector()](https://developer.mozilla.org/ja/docs/Web/API/Document/querySelector) 関数を使用して見出しを選択し、 `myHeading` と呼ばれる変数に格納しています。これは CSS のセレクターを使用するのととてもよく似ています。要素に対して何かをしたくなったら、まずその要素を選択する必要があります。
 
-その後、 `myHeading` 変数の {{domxref("Node.textContent", "textContent")}} プロパティ（見出しの内容を表す）の値を _Hello world!_ に設定します。
+その後、 `myHeading` 変数の [textContent](https://developer.mozilla.org/ja/docs/Web/API/Node/textContent) プロパティ（見出しの内容を表す）の値を _Hello world!_ に設定します。
 
 > **Note** 上の例で使用した機能はどちらも[ドキュメントオブジェクトモデル (DOM) API](https://developer.mozilla.org/ja/docs/Web/API/Document_Object_Model) の一部であり、これを使って文書を操作することができます。
 
@@ -313,7 +313,7 @@ document.querySelector("html").addEventListener("click", function () {
 });
 ```
 
-要素にイベントハンドラーを取り付ける方法はいくつもあります。ここでは {{htmlelement("html")}} 要素を選択しています。そして、[`addEventListener()`](https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener) 関数を呼び出し、待ち受けるイベントの名前 (`'click'`) とイベントが発生したときに実行する関数を渡します。
+要素にイベントハンドラーを取り付ける方法はいくつもあります。ここでは \<html\> 要素を選択しています。そして、[`addEventListener()`](https://developer.mozilla.org/ja/docs/Web/API/EventTarget/addEventListener) 関数を呼び出し、待ち受けるイベントの名前 (`'click'`) とイベントが発生したときに実行する関数を渡します。
 
 先ほど `addEventListener()` に渡した関数は、名前を持たないので**無名関数**と呼ばれます。無名関数の書き方として、**アロー関数**と呼ばれるものがあります。アロー関数は `() =>` を `function ()` の代わりに使用します。
 
@@ -353,19 +353,19 @@ document.querySelector("html").addEventListener("click", () => {
 
 5. `index.html` をブラウザーに読み込みます。画像をクリックすると、もう一方の画像に変わるでしょう。
 
-何が起こったのでしょうか。{{htmlelement("img")}} 要素への参照を変数 `myImage` に格納しました。次に、この変数の `onclick` イベントハンドラープロパティに、名前のない関数（「無名」関数）を代入しました。そうすれば、この要素がクリックされるたびに次の動きをします。
+何が起こったのでしょうか。\<img\> 要素への参照を変数 `myImage` に格納しました。次に、この変数の `onclick` イベントハンドラープロパティに、名前のない関数（「無名」関数）を代入しました。そうすれば、この要素がクリックされるたびに次の動きをします。
 
 1. 画像の `src` 属性の値を取得します。
 2. 条件文を使って、`src` の値が元の画像のパスと等しいかどうかをチェックします。
 
-   1. そうであれば、`src` の値を 2 番目の画像へのパスに変更し、もう一方の画像が強制的に {{htmlelement("img")}} 要素の中に読み込まれるようにします。
+   1. そうであれば、`src` の値を 2 番目の画像へのパスに変更し、もう一方の画像が強制的に \<img\> 要素の中に読み込まれるようにします。
    2. そうでない（すでに変更されている）場合、`src` の値を元の画像のパスに戻して、元の状態に戻ります。
 
 ### パーソナライズされた挨拶メッセージの追加
 
 次に、もう 1 つの小さなコードを追加し、ユーザーがサイトにアクセスしたときに、ページの表題をパーソナライズされた挨拶メッセージに変更してみましょう。この挨拶メッセージは、ユーザーがサイトを離れて後で戻った時にも保存されるようにします。[Web Storage API](https://developer.mozilla.org/ja/docs/Web/API/Web_Storage_API) を使用して保存しましょう。したがって、必要な時にいつでもユーザーと挨拶メッセージを変更できるオプションも用意しましょう。
 
-1. `index.html` では、 {{htmlelement("script")}} 要素の直前に次の行を追加します。
+1. `index.html` では、 \<script\> 要素の直前に次の行を追加します。
 
    ```html
    <button>ユーザーを変更</button>
