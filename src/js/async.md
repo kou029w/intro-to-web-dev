@@ -16,3 +16,9 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 ## ポイント
 
 - 非同期処理はその処理が終わるのを待つ前に次の処理を評価すること
+- Async Function … `async function f() { <この中にawait式を書ける>; }`
+  - Async Function は非同期処理を行う関数
+  - `await` 式は Async Function の中で利用できる
+- `await` 式
+  - 構文: `await f()`
+  - 意味: `await` 式は Async Function `f()` が完了するまで待つ
