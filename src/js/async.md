@@ -22,3 +22,26 @@ JavaScriptには非同期処理を扱うためのPromiseというビルトイン
 - `await` 式
   - 構文: `await f()`
   - 意味: `await` 式は Async Function `f()` が完了するまで待つ
+
+## やってみよう！
+
+<!-- prettier-ignore -->
+<div class="codepen" data-prefill data-editable data-default-tab="js,result" data-height="480">
+
+<pre data-lang="js">
+const button = document.createElement("button");
+button.textContent = "スタート";
+document.body.append(button);
+
+async function sleep(ms) {
+  await new Promise(resolve => setTimeout(resolve, ms));
+}
+
+button.addEventListener("click", async function () {
+  await sleep(10000); // ms
+
+  document.body.append("10秒!");
+});
+</pre>
+</div>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
