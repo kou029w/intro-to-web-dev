@@ -138,44 +138,21 @@ h1 {
 
 CSS の基本をいくつか勉強しましたので、`style.css` ファイルにいくつかのルールと情報を追加して、この例を見栄え良くしましょう。
 
-1. まず、以前に[Webサイトをどんな外見にするか](https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/What_will_your_website_look_like)で保存した、 [Google フォントの出力](https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/What_will_your_website_look_like#font)を探します。 \<link\> 要素を `index.html` の先頭のどこか（\<head\> タグと `</head>` タグの間）に追加します。それは次のようなものです。
+HTML 本文内にテキストを配置する要素 (\<h1\>, \<li\>, \<p\>) のフォントの大きさを設定します。また、見出しを中央揃えにします。最後に、 2 つ目のルールセット (下記) を展開して、行の高さや文字の間隔などの設定を行い、本文のコンテンツを読みやすくしましょう。
 
-   ```html
-   <link
-     href="https://fonts.googleapis.com/css?family=Open+Sans"
-     rel="stylesheet"
-   />
-   ```
+```css
+h1 {
+  font-size: 60px; /* px は「ピクセル」 (pixels) の意味。60 ピクセルの高さのフォントになります */
+  text-align: center;
+}
 
-   このコードは、Webページに Open Sans フォントファミリーを読み込むスタイルシートにページをリンクします。
-
-2. 次に `style.css` ファイルにある既存のルールを削除します。試験としては良いものでしたが、赤いテキストだらけにするのはもうやめましょう。
-3. 以下の行（下記参照）を追加し、 `font-family` の割り当てを[Webサイトをどんな外見にするか](https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/What_will_your_website_look_like)で選択した `font-family` に置き換えます。 `font-family` というプロパティは、テキストに使用するフォントを指します。このルールでは、ページ全体の基本フォントとフォントの大きさを定義します。 \<html\> はページ全体の親要素なので、その中のすべての要素は同じ `font-size` と `font-family` を継承します。
-
-   ```css
-   html {
-     font-size: 10px; /* px は「ピクセル」 (pixels) の意味。ベースフォントサイズは 10 ピクセルの高さになった */
-     font-family: "Open Sans", sans-serif; /* これが Google フォントから取得した残りの出力になるはず。 */
-   }
-   ```
-
-   > **Note** CSS の `/*` と `*/` の間にあるものは何でも **CSS コメント**になります。ブラウザーはコードをレンダリングするときにこれを無視します。 CSS コメントはコードや論理について役立つメモを書くための方法です。
-
-4. 次に、 HTML 本文内にテキストを配置する要素 (\<Heading_Elements", "h1\>, \<li\>, \<p\>) のフォントの大きさを設定します。また、見出しを中央揃えにします。最後に、 2 つ目のルールセット (下記) を展開して、行の高さや文字の間隔などの設定を行い、本文のコンテンツを読みやすくしましょう。
-
-   ```css
-   h1 {
-     font-size: 60px;
-     text-align: center;
-   }
-
-   p,
-   li {
-     font-size: 16px;
-     line-height: 2;
-     letter-spacing: 1px;
-   }
-   ```
+p,
+li {
+  font-size: 16px;
+  line-height: 2;
+  letter-spacing: 1px;
+}
+```
 
 `px` の値はお好みで調整してください。進行中の作品は、このようになるはずです。
 
