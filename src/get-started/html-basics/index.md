@@ -225,4 +225,4 @@ Webのコンテンツの多くはリストであり、 HTML にはリストの�
 
 ![Webページのスクリーンショットで、 Firefox のロゴ、「Mozilla is cool」という見出し、そして 2 段落のテキストが表示されています。](finished-test-page-small.png)
 
-もし途中で行き詰まってしまったなら、 GitHub にある[完成版のコード例](https://github.com/mdn/beginner-html-site/blob/gh-pages/index.html)と見比べてみてください。
+もし途中で行き詰まってしまったなら、 GitHub にある[完成版のコード例](https://github.com/mdn/beginner-html-site/blob/gh-pages/index.html)と見比べてみましょう。
