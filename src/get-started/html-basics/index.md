@@ -66,7 +66,7 @@ My cat is very grumpy
 コンテンツを持たない要素もあります。そのような要素を **空要素** (void element) と呼びます。すでに HTML ページにある \<img\> 要素を例に見ていきましょう。
 
 ```html
-<img src="images/firefox-icon.png" alt="My test image" />
+<img src="images/firefox-icon.png" alt="テスト画像" />
 ```
 
 この要素は 2 つの属性を持っていますが、終了タグ `</img>` がありませんし、内部にコンテンツもありません。これは画像要素は、その機能を果たすためにコンテンツを囲むものではないからです。画像要素の目的は、画像を HTML ページの表示させたいところに埋め込むことです。
