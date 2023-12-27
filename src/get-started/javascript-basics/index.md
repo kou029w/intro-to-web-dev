@@ -431,8 +431,8 @@ function setUserName() {
 
 ## まとめ
 
-最後までこの記事の手順に従った場合は、最終的に次のようなページが表示されているでしょう（[こちらで作成した版を表示する](https://mdn.github.io/beginner-html-site-scripted/)こともできます）。
+最後までこの記事の手順に従った場合は、最終的に次のようなページが表示されているでしょう。
 
-![ヘッダー、中央の大きなロゴ、内容、ボタンなどの要素を作成した後の HTML ページの最終的な外観](website-screen-scripted.png)
+[![ヘッダー、中央の大きなロゴ、内容、ボタンなどの要素を作成した後の HTML ページの最終的な外観](website-screen-scripted.png)](https://mdn.github.io/beginner-html-site-scripted/)
 
-行き詰まったら、自分の作業を [Github 上の完成したサンプルコード](https://github.com/mdn/beginner-html-site-scripted/blob/gh-pages/scripts/main.js)と比べてみましょう。
+もし途中で行き詰まってしまったら、「[サンプルコード](https://github.com/mdn/beginner-html-site-scripted/blob/gh-pages/scripts/main.js)」と見比べてみましょう。

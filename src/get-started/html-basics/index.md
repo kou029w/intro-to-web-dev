@@ -221,8 +221,8 @@ Webのコンテンツの多くはリストであり、 HTML にはリストの�
 
 ## まとめ
 
-ここまでの説明に沿ってやってきたのなら、以下のようなページができあがっているはずです（[ここ](https://mdn.github.io/beginner-html-site/)でも見られます）。
+説明に沿ってやってきたら以下のようなページが出来上がっているかと思います (もちろん画像やテキストの内容はみなさんの自由です)。
 
-![Webページのスクリーンショットで、 Firefox のロゴ、「Mozilla is cool」という見出し、そして 2 段落のテキストが表示されています。](finished-test-page-small.png)
+[![Webページのスクリーンショットで、 Firefox のロゴ、「Mozilla is cool」という見出し、そして 2 段落のテキストが表示されています。](finished-test-page-small.png)](https://mdn.github.io/beginner-html-site/)
 
-もし途中で行き詰まってしまったなら、 GitHub にある[完成版のコード例](https://github.com/mdn/beginner-html-site/blob/gh-pages/index.html)と見比べてみましょう。
+もし途中で行き詰まってしまったら、「[サンプルコード](https://github.com/mdn/beginner-html-site/blob/gh-pages/index.html)」と見比べてみましょう。

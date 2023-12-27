@@ -40,12 +40,6 @@ Webブラウザーには開発者ツールが内蔵されています。
 
 JavaScriptの実行と、エラーメッセージなど実行しているコードを解析するための情報を知ることができます。
 
-> **Note**\
-> JavaScript
->
-> JavaScriptはWebブラウザー上で実行可能な[世界中で最もよく使われているプログラミング言語](https://survey.stackoverflow.co/2023/#section-most-popular-technologies-programming-scripting-and-markup-languages)です。
-> 詳しい説明は[JavaScriptの章](../js/index.md)をご覧ください。
-
 ## ソース (Sources)
 
 ![](assets/devtools-sources.png)

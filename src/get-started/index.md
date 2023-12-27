@@ -25,7 +25,7 @@ Web開発を始める前に考えておかなければいけないことがあ�
 
 ## テキストエディター
 
-[Visual Studio Code](https://code.visualstudio.com/)などのテキストエディターを使用して忘れないようにメモしておきましょう。メモができれば何でもOKです。
+Visual Studio Codeなどのテキストエディターを使用して忘れないようにメモしておきましょう。
 
 - オンライン版 <https://vscode.dev/>
 

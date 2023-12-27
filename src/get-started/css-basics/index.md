@@ -261,8 +261,6 @@ img {
 
 完成すると次のようなページが表示されます。
 
-![Firefoxのロゴを中央に配置し、ヘッダーと段落を配置しています。これで、ページ全体の背景が青くなり、中央に配置されたメインコンテンツストリップの背景がオレンジになるなど、きれいなスタイルになりました。](website-screenshot-final.png)
+[![Firefoxのロゴを中央に配置し、ヘッダーと段落を配置しています。これで、ページ全体の背景が青くなり、中央に配置されたメインコンテンツストリップの背景がオレンジになるなど、きれいなスタイルになりました。](website-screenshot-final.png)](https://mdn.github.io/beginner-html-site-styled/)
 
-[作成した結果はこちらから見ることができます](https://mdn.github.io/beginner-html-site-styled/)。
-
-もしよく分からなくなったときは[サンプルコード](https://github.com/mdn/beginner-html-site-styled/blob/gh-pages/styles/style.css)と見比べてみましょう。
+もし途中で行き詰まってしまったら、「[サンプルコード](https://github.com/mdn/beginner-html-site-styled/blob/gh-pages/styles/style.css)」と見比べてみましょう。
