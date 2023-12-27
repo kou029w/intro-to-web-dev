@@ -10,6 +10,8 @@ Webサイトを公開する方法にはいくつもありますが、ここで�
 
 Glitch <https://glitch.com> を使うと短い時間でWebサイトを公開できます (ただし無料版では限られた時間しかアクセスできないので注意しましょう)。
 
+> <video controls autoplay loop><source type="video/webm" src="glitch-basic-website.webm" /></video>
+
 Webページを公開する流れ:
 
 1. <https://glitch.com> にアクセス
