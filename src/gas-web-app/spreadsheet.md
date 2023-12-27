@@ -1,6 +1,6 @@
 # スプレッドシートの作成
 
-Googleスプレッドシートを作成し、Google Apps Scriptを作成します。
+Googleスプレッドシートを作成し、Google Apps Scriptのプロジェクトを作成します。
 
 > <video controls autoplay loop><source type="video/webm" src="create-project.webm" /></video>
 
