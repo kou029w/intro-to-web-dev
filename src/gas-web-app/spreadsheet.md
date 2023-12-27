@@ -71,7 +71,7 @@ function doPost(e) {
 
 ![](gas-authz.png)
 
-Googleアカウントへのアクセス許可を求められるのでアカウントを選択し、[Allow] をクリックします
+Googleアカウントへのアクセス許可を求められるのでアカウントを選択し、<ruby>[Allow]<rt>許可</rt></ruby> をクリックします
 
 > ![](gas-allow-access.png)
 
