@@ -20,7 +20,7 @@ Webブラウザーに表示された画面の「index.html」のコードを編�
 
 - 例: <https://glitch-hello-website.glitch.me>
 
-公開したWebサイトには、編集画面の下の 🔍 [PREVIEW] > [Preview in a new Window] からアクセスします。
+編集画面の下の 🔍 [PREVIEW] > [Preview in a new Window] から公開したWebサイトにアクセスします。
 
 ## 方法2: GitHubを使う
 
