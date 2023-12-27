@@ -42,7 +42,7 @@ console.log(endpoint, message);
 
 ```js
 // ここはntfy.shのURLに書き換えます
-const endpoint = <ntfy.shのトピックのURL>;
+const endpoint = <ntfy.shのURL>;
 
 await fetch(endpoint, { method: "POST", body: <送信する内容> });
 ```
