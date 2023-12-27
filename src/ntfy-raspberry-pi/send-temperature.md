@@ -41,7 +41,19 @@ console.log(endpoint, message);
 ## 書式
 
 ```js
-await fetch(<ntfy.shのトピックのURL>, { method: "POST", body: <送信する内容> });
+// ここはntfy.shのURLに書き換えます
+const endpoint = <ntfy.shのトピックのURL>;
+
+await fetch(endpoint, { method: "POST", body: <送信する内容> });
 ```
 
-送信する内容の部分は自由に変えてOKです。
+ntfy.shのURLと送信する内容の部分を書き換えて使用します。
+
+スマートフォンに温度センサーのデータが送信されていることを確認してみましょう。
+
+## 制約事項
+
+**(無料枠) 1日あたりのメッセージの上限は250件です。**
+10分あたり1件程度の通知を目安にしましょう。
+
+_参考: <https://docs.ntfy.sh/publish/#limitations> より_
