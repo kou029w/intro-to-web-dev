@@ -14,6 +14,19 @@
 
 ![](pizero-sht30.png)
 
+## 書式
+
+```js
+// ここはntfy.shのURLに書き換えます
+const endpoint = <ntfy.shのURL>;
+
+await fetch(endpoint, { method: "POST", body: <送信する内容> });
+```
+
+ntfy.shのURLと送信する内容の部分を書き換えて使用します。
+
+スマートフォンに温度センサーのデータが送信されていることを確認してみましょう。
+
 ## サンプルコード
 
 次のようなNode.jsのコードを実行することでデータを送信します:
@@ -37,19 +50,6 @@ await fetch(endpoint, { method: "POST", body: message });
 
 console.log(endpoint, message);
 ```
-
-## 書式
-
-```js
-// ここはntfy.shのURLに書き換えます
-const endpoint = <ntfy.shのURL>;
-
-await fetch(endpoint, { method: "POST", body: <送信する内容> });
-```
-
-ntfy.shのURLと送信する内容の部分を書き換えて使用します。
-
-スマートフォンに温度センサーのデータが送信されていることを確認してみましょう。
 
 ## 制約事項
 
