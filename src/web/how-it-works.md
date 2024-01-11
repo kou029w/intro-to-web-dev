@@ -43,9 +43,6 @@ Webページはこれらの要素に支えられています。
 
 ## 参考文献
 
-- [HTML 入門 - Web開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/HTML/Introduction_to_HTML)
-  - HTMLの基本的な概念や文法を学ぶことができます
-  - この他にもMDNはWeb技術のリファレンスとして参考にしています
 - [太田 良典、中村 直樹「HTML解体新書」](https://www.borndigital.co.jp/book/25999.html)
   - HTMLの基本概念の説明を参考にしています
 - [渋川よしき「Real World HTTP 第2版」](https://www.oreilly.co.jp//books/9784873119038/)
