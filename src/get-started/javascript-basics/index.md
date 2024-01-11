@@ -59,7 +59,7 @@ JavaScript を使用して、見出しの文字列が _Hello world!_ に変更�
 
 どのように動作するかをよりよく理解できるように、 JavaScript 言語の基本機能のいくつかを説明しましょう。これらの機能はすべてのプログラミング言語に共通しているので、これらの基本をマスターすれば、ほとんど何でもプログラムできるようになります！
 
-> **Note** この記事では、 JavaScript コンソールにサンプルコードを入力して、何が起こるのかを確認してみます。 JavaScript コンソールの詳細については、 [ブラウザー開発ツールを探る](https://developer.mozilla.org/ja/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools)を参照してください。
+> **Note** この記事では、 JavaScript コンソールにサンプルコードを入力して、何が起こるのかを確認してみます。 JavaScript コンソールの詳細については、[開発者ツールに慣れる](/web/devtools.md) (Firefoxの場合は [ブラウザー開発ツールを探る](https://developer.mozilla.org/ja/docs/Learn/Common_questions/Tools_and_setup/What_are_browser_developer_tools))を参照しましょう。
 
 ### 変数
 
