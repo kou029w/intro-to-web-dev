@@ -35,7 +35,7 @@ const [sheet] = SpreadsheetApp.getActiveSpreadsheet().getSheets();
  * // ]
  */
 function doGet() {
-  const rows = sheet.getDataRange().getValues();
+  const rows = sheet.getDataRange().getValues().slice(1);
   return ContentService.createTextOutput(JSON.stringify(rows)).setMimeType(
     ContentService.MimeType.JSON,
   );
