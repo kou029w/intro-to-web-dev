@@ -380,7 +380,7 @@ document.querySelector("html").addEventListener("click", () => {
    function setUserName() {
      const myName = prompt("あなたの名前を入力してください。");
      localStorage.setItem("name", myName);
-     myHeading.textContent = `Mozilla はかっこいいよ、${myName} さん、Mozilla はかっこいいよ。`;
+     myHeading.textContent = `Mozilla is Cool, ${myName}`;
    }
    ```
 
@@ -393,7 +393,7 @@ document.querySelector("html").addEventListener("click", () => {
      setUserName();
    } else {
      const storedName = localStorage.getItem("name");
-     myHeading.textContent = `Mozilla はかっこいいよ、${storedName}`;
+     myHeading.textContent = `Mozilla is Cool, ${storedName}`;
    }
    ```
 
@@ -422,7 +422,7 @@ function setUserName() {
     setUserName();
   } else {
     localStorage.setItem("name", myName);
-    myHeading.textContent = `${myName} さん、Mozilla はかっこいいよ。`;
+    myHeading.textContent = `Mozilla is Cool, ${myName}`;
   }
 }
 ```
