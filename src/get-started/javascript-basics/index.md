@@ -29,10 +29,10 @@ JavaScript は、最も人気のある現代のWeb技術のひとつです。 Ja
 しかし、 JavaScript を使いこなせるようになるのは HTML や CSS よりも少し難しいです。小さなものから始め、小さく確実な手順で作業を続ける必要があるかもしれません。始めるにあたって、_"hello world!"_ を表示する例（[基本的なプログラミング例の標準](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program)）を作りながら、基本的な JavaScript をページに追加する方法を紹介しましょう。
 
 1. 最初にテストサイトに行き、 `scripts` という名前の新しいフォルダーを作成してください。それから、この scripts フォルダーの中に `main.js` という新しいファイルを作成して保存してください。
-2. `index.html` ファイルの `</head>` 終了タグの直前に新しい行で、以下の新しい要素を追加してください。
+2. `index.html` ファイルの `</body>` 終了タグの直前に新しい行で、以下の新しい要素を追加してください。
 
    ```html
-   <script type="module" src="scripts/main.js"></script>
+   <script src="scripts/main.js"></script>
    ```
 
 3. これは CSS の \<link\> 要素の時の作業と基本的に同じです。これは JavaScript をページに適用するので、（CSS の時と同じく、ページ上の何に対しても） HTML に影響を与えることができます。
@@ -46,6 +46,10 @@ JavaScript は、最も人気のある現代のWeb技術のひとつです。 Ja
 5. 最後に、 HTML と JavaScript を書いたファイルを保存したことを確認し、ブラウザーで `index.html` を読み込んでください。
 
 !["hello world" の見出しが firefox のロゴの上にある](hello-world.png)
+
+> **Note** 上記の説明で [`<script>`](https://developer.mozilla.org/ja/docs/Web/HTML/Element/script) 要素を HTML ファイルの末尾付近に置いたのは、ブラウザーがファイルに現れる順番でコードを読み込むからです。
+>
+> JavaScript が先に読み込まれ、まだ読み込まれていない HTML に影響を与えることになると、問題が生じる可能性があります。 JavaScript を HTML ページの下部に配置することは、この依存関係に対応する一つの方法です。その他の方法については、[スクリプトの読み込み方針](https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/What_is_JavaScript#%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB_javascript_%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95)をご覧ください。
 
 ### 何が起きたのか
 
