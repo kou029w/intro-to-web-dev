@@ -17,7 +17,7 @@
 ## ポイント
 
 - while文
-- for文とfor...of文
+- for文
 
 ![](assets/loop.dio.png)
 
