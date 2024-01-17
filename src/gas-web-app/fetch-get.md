@@ -38,11 +38,11 @@ L.marker([<緯度>, <経度>]).addTo(map).bindPopup(popup);
 <script type="module">
   /** 経緯度の取得 */
   async function getLatLng() {
-    const { coords } = await new Promise((resolve, reject) =>
+    const position = await new Promise((resolve, reject) =>
       navigator.geolocation.getCurrentPosition(resolve, reject),
     );
 
-    return [coords.latitude, coords.longitude];
+    return [position.coords.latitude, position.coords.longitude];
   }
 
   const map = L.map("map").setView([36, 138], 15);
