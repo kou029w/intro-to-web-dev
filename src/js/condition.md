@@ -12,7 +12,6 @@
 ## ポイント
 
 - if文
-- switch文、case節、default節
 
 ![](assets/condition.dio.png)
 
