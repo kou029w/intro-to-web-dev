@@ -91,7 +91,7 @@ WebアプリのURLが表示されればデプロイ完了です。
 // ここはWebアプリのURLに書き換えます
 const endpoint = "https://script.google.com/{SCRIPTID}/exec";
 const res = await fetch(endpoint);
-const [timestamp, ...rows] = await res.json();
+const rows = await res.json();
 ```
 
 データの送信:
