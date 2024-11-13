@@ -2,15 +2,8 @@
 help:
 	@cat README.md
 
-.PHONY: setup
-setup:
-	brew bundle
-
-.PHONY: preview preview-book
+.PHONY: preview
 preview:
-	$(MAKE) -j $(shell nproc) preview-book
-
-preview-book:
 	mdbook serve
 
 book: $(shell find src -type f)
