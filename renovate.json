@@ -4,6 +4,7 @@
     "config:best-practices",
     "schedule:monthly",
     ":automergeAll",
-    ":automergeBranch"
+    ":automergeBranch",
+    ":skipStatusChecks"
   ]
 }
