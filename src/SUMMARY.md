@@ -43,4 +43,8 @@
 - [Raspberry Piからスマートフォンにデータを送信する](ntfy-raspberry-pi/index.md)
   - [トピックの作成](ntfy-raspberry-pi/create-topic.md)
   - [温度センサーのデータの送信](ntfy-raspberry-pi/send-temperature.md)
+- [Activepiecesチュートリアル](activepieces/tutorial.md)
+  - [AIエージェントの構築](activepieces/agents.md)
+  - [フローの作成](activepieces/flows.md)
+  - [テーブルの利用](activepieces/tables.md)
 - [質問・提案・問題の報告](issues.md)
