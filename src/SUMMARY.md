@@ -43,4 +43,5 @@
 - [Raspberry Piからスマートフォンにデータを送信する](ntfy-raspberry-pi/index.md)
   - [トピックの作成](ntfy-raspberry-pi/create-topic.md)
   - [温度センサーのデータの送信](ntfy-raspberry-pi/send-temperature.md)
+- [Web 開発研修](training/index.md)
 - [質問・提案・問題の報告](issues.md)
