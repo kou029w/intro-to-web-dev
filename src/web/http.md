@@ -55,18 +55,24 @@ Content-Type: text/plain
 Hello World! My content includes a trailing CRLF.
 ```
 
-構成要素は4つ。
+リクエストの構成 (送る側):
 
-- リクエストライン (Request Line)
-- フィールド (Fields)
-- ステータスコード (Status Codes)
-- コンテンツ (Content)
+- メソッド (Method)
+- URL (Request Target)
+- ヘッダー (Header Fields)
+- ボディ (Body)
+
+レスポンスの構成 (返す側):
+
+- ステータスライン (例: `HTTP/1.1 200 OK` — ステータスコードを含む)
+- ヘッダー (Header Fields)
+- ボディ (Body / Content)
 
 詳しく見ていきましょう。
 
-## リクエストライン (Request Line)
+## メソッドとURL（Request Line）
 
-クライアントリクエストの1行目の `GET /hello.txt HTTP/1.1` の部分は、[リクエストライン (Request Line)](https://datatracker.ietf.org/doc/html/rfc9112#name-request-line) と呼ばれます。どこに、どのような<ruby>方法<rt>メソッド</rt></ruby>でアクセスしたい、とサーバーに伝えるためのものです。
+クライアントリクエストの1行目の `GET /hello.txt HTTP/1.1` の部分は、[リクエストライン (Request Line)](https://datatracker.ietf.org/doc/html/rfc9112#name-request-line) と呼ばれます。どこに（URL）、どのような<ruby>方法<rt>メソッド</rt></ruby>でアクセスしたいかをサーバーに伝えるためのものです。
 
 クライアントリクエスト:
 
@@ -76,7 +82,7 @@ GET /hello.txt HTTP/1.1
 
 この例はURL `http://www.example.com/hello.txt` にアクセスするためのクライアントリクエストです。`GET` メソッドでパス `/hello.txt` へのアクセスを要求しています。
 
-`GET` メソッドは取得するために使われる最も基本的なメソッドで、リンクをクリックしたときやWebブラウザーのアドレスバーにURLを入力したとき送信されます。Webでのやり取りはこのリクエストラインで始まる文字列をWebサーバーに伝えるところから始まります。
+`GET` メソッドは取得するために使われる最も基本的なメソッドで、リンクをクリックしたときやWebブラウザーのアドレスバーにURLを入力したとき送信されます。Webでのやり取りはこの「メソッドとURL」を含むリクエストラインをWebサーバーに伝えるところから始まります。
 
 > **Note**\
 > HTTP/1.1 と HTTP/2
@@ -101,17 +107,17 @@ GET /hello.txt HTTP/1.1
 >                                        accept = image/jpeg
 > ```
 
-## フィールド (Fields)
+## ヘッダー（Headers / Fields）
 
-`:` 文字で区切られた行が続きます。これは「フィールド (Fields)」です。リクエストとレスポンスに関連する付帯情報を意味します。
+`:` 文字で区切られた行が続きます。これは「ヘッダー（ヘッダーフィールド、Fields）」です。リクエストとレスポンスに関連する付帯情報を意味します。
 
 ```
 Host: www.example.com
 ```
 
-例えばこの場合、送信先 `Host` (ホスト) は `www.example.com` ですよ、という意味です。
+例えばこの場合、送信先 `Host` (ホスト) は `www.example.com` ですよ、という意味です。以降、本書では用語を統一して「ヘッダー」と呼びます（HTTP/1.1仕様では header field とも表記されます）。
 
-## ステータスコード (Status Codes)
+## ステータスラインとステータスコード
 
 > [![](https://http.cat/images/500.jpg)](https://http.cat/status/500)\
 > _― 画像: [HTTP Cats](https://http.cat/) より_
@@ -119,7 +125,7 @@ Host: www.example.com
 「ステータスコード (Status Codes)」はそのリソースの存在やアクセス可否などをサーバーが伝えるためのものです。
 サーバーはレスポンスを返すとき、最初にステータスコードを返します。
 
-サーバーレスポンス:
+サーバーレスポンスの先頭行（ステータスライン）:
 
 ```
 HTTP/1.1 200 OK
@@ -142,16 +148,19 @@ HTTP/1.1 200 OK
 > [1998年のエイプリルフール](https://www.rfc-editor.org/rfc/rfc2324.html)に公開されました。
 > 現在でもステータスコード `418` は [IANA HTTP Status Code Registry](https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml) によって管理されています。
 
-## コンテンツ (Content)
+## ボディ（Body / Content）
 
-フィールドが終わり「コンテンツ (Content)」が続きます。
-コンテンツはHTML、画像、動画、あらゆるデータです。
+ヘッダーの後に空行があり、その後に「ボディ (本文)」が続きます。
+ボディはHTML、画像、動画、JSONなど、あらゆるデータになり得ます。
 
 ## ポイント
 
 - HTTPはWebの転送用のプロトコル
 - HTTPはクライアントからのリクエストとサーバーからのレスポンスによってやり取りを行う
-- HTTPの構成要素 … リクエストライン/フィールド/ステータスコード/コンテンツ
+- 用語の対応: ヘッダー ≒ フィールド（header fields）
+- HTTPの構成要素
+  - リクエスト: メソッド/URL/ヘッダー/ボディ
+  - レスポンス: ステータスライン/ヘッダー/ボディ
 
 <!-- TODO:
 - HTTP/2を中心にした説明
