@@ -25,7 +25,7 @@
 <pre data-lang="js">
 let color = "white";
 
-if (Math.random() < 0.5) {
+if (Math.random() &lt; 0.5) {
   color = "green";
 }
 
