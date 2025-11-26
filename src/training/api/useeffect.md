@@ -13,7 +13,7 @@ Reactコンポーネントでデータ取得をしたい。そんなときに欠
 
 `useEffect`は「レンダーのあと」に実行される副作用（データ取得や購読など）を記述するためのフックです。
 
-```tsx
+```ts tsx
 import { useEffect, useState } from "react";
 
 function UserName({ id }: { id: number }) {
@@ -33,7 +33,7 @@ function UserName({ id }: { id: number }) {
 
 `useEffect`内でasync関数を直接渡すのではなく、中で宣言して呼び出します（細かいですが大事です）。
 
-```tsx
+```ts tsx
 import { useEffect, useState } from "react";
 
 type User = { id: number; name: string };

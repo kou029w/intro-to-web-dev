@@ -59,7 +59,7 @@ export async function requestJSON<T>(
 
 ## SWRでの戦略
 
-```tsx
+```ts tsx
 import useSWR, { SWRConfig } from "swr";
 
 const fetchJSON = <T,>(url: string) =>

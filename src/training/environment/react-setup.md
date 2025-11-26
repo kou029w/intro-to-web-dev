@@ -167,7 +167,7 @@ export interface Todo {
 
 **メインアプリケーション**
 
-```tsx
+```ts tsx
 // src/App.tsx
 import { useState } from "react";
 import type { Todo } from "@/types/todo";
@@ -231,7 +231,7 @@ Reactには「Hooks」という機能があります。最もよく使う2つを
 
 ### useState - 状態管理
 
-```tsx
+```ts tsx
 import { useState } from "react";
 
 function Counter() {
@@ -248,7 +248,7 @@ function Counter() {
 
 ### useEffect - 副作用処理
 
-```tsx
+```ts tsx
 import { useState, useEffect } from "react";
 
 function UserProfile({ userId }: { userId: number }) {
@@ -283,7 +283,7 @@ pnpm run preview    # ビルド結果の確認
 VITE_API_BASE_URL=http://localhost:3001/api
 ```
 
-```tsx
+```ts tsx
 // 使用例
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 ```

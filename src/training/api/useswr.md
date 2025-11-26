@@ -26,7 +26,7 @@ npm i swr
 
 基本の使い方：
 
-```tsx
+```ts tsx
 import useSWR from "swr";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -63,7 +63,7 @@ SWRは状態管理も内蔵しています。
 
 ## SWRConfig でグローバル設定
 
-```tsx
+```ts tsx
 import { SWRConfig } from "swr";
 
 const fetcher = (url: string) => fetch(url).then((r) => r.json());
@@ -93,7 +93,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 - `revalidateOnReconnect`: ネットワーク復帰で再取得
 - `refreshInterval`: 定期ポーリング（ms）。`0`で無効
 
-```tsx
+```ts tsx
 const { data } = useSWR("/api/notifications", { refreshInterval: 10_000 });
 ```
 
@@ -101,7 +101,7 @@ const { data } = useSWR("/api/notifications", { refreshInterval: 10_000 });
 
 キー（第1引数）に`null`を渡すとフェッチしません。必要な条件がそろうまで待てます。
 
-```tsx
+```ts tsx
 function UserDetail({ id }: { id?: number }) {
   const { data, error, isLoading } = useSWR(
     id ? `/api/users/${id}` : null, // idがないときはフェッチしない
@@ -112,7 +112,7 @@ function UserDetail({ id }: { id?: number }) {
 
 キーを配列で表現して、`fetcher`側で受け取ることもできます。
 
-```tsx
+```ts tsx
 const fetchUser = (_key: string, id: number) =>
   fetch(`/api/users/${id}`).then((r) => r.json());
 const { data } = useSWR(["user", 123], fetchUser);
@@ -122,7 +122,7 @@ const { data } = useSWR(["user", 123], fetchUser);
 
 `mutate`はキャッシュを書き換え、UIを即時反映させる関数です。サーバー反映を待たずに「先に見た目を更新」できます（便利）。
 
-```tsx
+```ts tsx
 import useSWR, { mutate } from "swr";
 
 function LikeButton({ postId }: { postId: number }) {

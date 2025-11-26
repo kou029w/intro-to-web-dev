@@ -350,7 +350,7 @@ pnpm add -D @tsconfig/vite-react
 
 **基本的なコンポーネント**
 
-```tsx
+```ts tsx
 import { ReactNode } from "react";
 
 // Props インターフェース
@@ -397,7 +397,7 @@ const App = () => {
 
 **フォームコンポーネント**
 
-```tsx
+```ts tsx
 import { useState, FormEvent, ChangeEvent } from "react";
 
 interface LoginFormData {
