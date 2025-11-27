@@ -26,7 +26,7 @@
     - [エラーハンドリング戦略](training/api/error-handling.md)
     - [プロキシ確認ガイド](training/api/proxy.md)
   - [Honoハンズオン](training/hono/index.md)
-    - [Hono概要とEdge-first思想](training/hono/hono-overview.md)
+    - [Hono概要とエッジランタイム思想](training/hono/hono-overview.md)
     - [Hello Worldとローカル実行](training/hono/hello-world.md)
     - [ルーティング基礎](training/hono/routing.md)
     - [JSONレスポンスとリクエスト処理](training/hono/json-handling.md)

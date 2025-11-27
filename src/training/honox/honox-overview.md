@@ -16,7 +16,7 @@ HonoXは、Hono、Vite、各種UIライブラリを組み合わせた軽量で�
 - **超高速SSR**：サーバーサイドレンダリングの高速実行
 - **BYOR（Bring Your Own Renderer）**：好きなUIライブラリを選択可能
 - **アイランドアーキテクチャ**：必要な部分のみクライアントサイド実行
-- **Edge-first設計**：Cloudflare Workers、Deno等で動作
+- **エッジランタイム設計**：Cloudflare Workers、Deno等で動作
 
 「現在はアルファ版のため、今後も変更の可能性があることを念頭に置いて学習していきましょう。」
 
@@ -24,13 +24,13 @@ HonoXは、Hono、Vite、各種UIライブラリを組み合わせた軽量で�
 
 ### Next.js との違い
 
-| 特徴 | HonoX | Next.js |
-|------|-------|---------|
-| **サイズ** | 軽量 | 比較的重い |
-| **レンダラー** | 自由選択（BYOR） | React固定 |
-| **Edge対応** | ネイティブサポート | 一部制限 |
-| **学習コスト** | 低〜中 | 中〜高 |
-| **生態系** | 発展途上 | 豊富 |
+| 特徴           | HonoX              | Next.js    |
+| -------------- | ------------------ | ---------- |
+| **サイズ**     | 軽量               | 比較的重い |
+| **レンダラー** | 自由選択（BYOR）   | React固定  |
+| **Edge対応**   | ネイティブサポート | 一部制限   |
+| **学習コスト** | 低〜中             | 中〜高     |
+| **生態系**     | 発展途上           | 豊富       |
 
 ### Remix、SvelteKit との違い
 
@@ -38,7 +38,7 @@ HonoXは、Hono、Vite、各種UIライブラリを組み合わせた軽量で�
 // HonoX - シンプルな構成
 // app/routes/index.tsx
 export default function HomePage() {
-  return <h1>Hello HonoX!</h1>
+  return <h1>Hello HonoX!</h1>;
 }
 
 // Next.js - より多くの設定が必要
@@ -74,7 +74,7 @@ HonoXの最大の特徴は、様々なレンダラーを選択できることで
 ```typescript
 // React使用例
 // app/routes/_renderer.tsx
-import { jsxRenderer } from 'hono/jsx-renderer'
+import { jsxRenderer } from "hono/jsx-renderer";
 
 export default jsxRenderer(({ children }) => {
   return (
@@ -82,12 +82,10 @@ export default jsxRenderer(({ children }) => {
       <head>
         <title>My HonoX App</title>
       </head>
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
-  )
-})
+  );
+});
 
 // Vue使用例も可能（設定により）
 // Solid.js、Preactなども対応
@@ -120,8 +118,8 @@ app/
 
 ```typescript
 // app/routes/product/[id].tsx
-import { Counter } from '../islands/Counter'
-import { AddToCart } from '../islands/AddToCart'
+import { Counter } from "../islands/Counter";
+import { AddToCart } from "../islands/AddToCart";
 
 export default function ProductPage({ id }: { id: string }) {
   return (
@@ -129,12 +127,12 @@ export default function ProductPage({ id }: { id: string }) {
       {/* 静的コンテンツ（サーバーサイドのみ） */}
       <h1>商品詳細</h1>
       <p>商品ID: {id}</p>
-      
+
       {/* インタラクティブな島（クライアントサイド） */}
       <Counter />
       <AddToCart productId={id} />
     </div>
-  )
+  );
 }
 ```
 
@@ -155,16 +153,16 @@ Static HTML: 50KB + Counter: 5KB + AddToCart: 8KB
 
 ```typescript
 // app/routes/posts/[id].tsx
-import { Hono } from 'hono'
+import { Hono } from "hono";
 
-const app = new Hono()
+const app = new Hono();
 
 // サーバー側でデータを取得してレンダリング
 export async function getServerSideProps({ id }: { id: string }) {
-  const post = await fetchPost(id)
+  const post = await fetchPost(id);
   return {
-    props: { post }
-  }
+    props: { post },
+  };
 }
 
 export default function PostPage({ post }: { post: Post }) {
@@ -173,7 +171,7 @@ export default function PostPage({ post }: { post: Post }) {
       <h1>{post.title}</h1>
       <div>{post.content}</div>
     </article>
-  )
+  );
 }
 ```
 
@@ -181,19 +179,19 @@ export default function PostPage({ post }: { post: Post }) {
 
 ```typescript
 // app/islands/DynamicContent.tsx
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 export function DynamicContent() {
-  const [data, setData] = useState(null)
-  
+  const [data, setData] = useState(null);
+
   useEffect(() => {
     // クライアントサイドでデータフェッチ
-    fetch('/api/dynamic-data')
-      .then(res => res.json())
-      .then(setData)
-  }, [])
-  
-  return <div>{data ? JSON.stringify(data) : 'Loading...'}</div>
+    fetch("/api/dynamic-data")
+      .then((res) => res.json())
+      .then(setData);
+  }, []);
+
+  return <div>{data ? JSON.stringify(data) : "Loading..."}</div>;
 }
 ```
 
@@ -203,22 +201,22 @@ HonoXは、Honoの豊富なミドルウェア生態系を活用できます：
 
 ```typescript
 // app/server.ts
-import { Hono } from 'hono'
-import { logger } from 'hono/logger'
-import { cors } from 'hono/cors'
-import { jwt } from 'hono/jwt'
+import { Hono } from "hono";
+import { logger } from "hono/logger";
+import { cors } from "hono/cors";
+import { jwt } from "hono/jwt";
 
-const app = new Hono()
+const app = new Hono();
 
 // Honoミドルウェアをそのまま使用
-app.use('*', logger())
-app.use('/api/*', cors())
-app.use('/api/protected/*', jwt({ secret: 'secret' }))
+app.use("*", logger());
+app.use("/api/*", cors());
+app.use("/api/protected/*", jwt({ secret: "secret" }));
 
 // HonoXルートをマウント
-app.route('/', import('./routes'))
+app.route("/", import("./routes"));
 
-export default app
+export default app;
 ```
 
 ## ビルドとデプロイメント
@@ -227,8 +225,8 @@ export default app
 
 ```typescript
 // vite.config.ts
-import { defineConfig } from 'vite'
-import honox from 'honox/vite'
+import { defineConfig } from "vite";
+import honox from "honox/vite";
 
 export default defineConfig({
   plugins: [honox()],
@@ -237,14 +235,14 @@ export default defineConfig({
       output: {
         // アイランドごとに分割
         manualChunks: (id) => {
-          if (id.includes('/islands/')) {
-            return 'islands'
+          if (id.includes("/islands/")) {
+            return "islands";
           }
-        }
-      }
-    }
-  }
-})
+        },
+      },
+    },
+  },
+});
 ```
 
 ### 多様なデプロイ先
@@ -279,7 +277,7 @@ export default function BlogLayout({ children }: { children: any }) {
       </nav>
       <main>{children}</main>
     </div>
-  )
+  );
 }
 
 // app/routes/blog/[slug].tsx
@@ -290,7 +288,7 @@ export default function BlogPost({ slug, post }: any) {
       <time>{post.publishedAt}</time>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
     </article>
-  )
+  );
 }
 ```
 
@@ -298,8 +296,8 @@ export default function BlogPost({ slug, post }: any) {
 
 ```typescript
 // app/routes/shop/product/[id].tsx
-import { ProductGallery } from '../../../islands/ProductGallery'
-import { AddToCartButton } from '../../../islands/AddToCartButton'
+import { ProductGallery } from "../../../islands/ProductGallery";
+import { AddToCartButton } from "../../../islands/AddToCartButton";
 
 export default function ProductPage({ product }: any) {
   return (
@@ -308,12 +306,12 @@ export default function ProductPage({ product }: any) {
       <h1>{product.name}</h1>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
-      
+
       {/* インタラクティブコンポーネント */}
       <ProductGallery images={product.images} />
       <AddToCartButton productId={product.id} />
     </div>
-  )
+  );
 }
 ```
 
@@ -351,8 +349,8 @@ export default jsxRenderer(({ children, title, description }) => {
       </head>
       <body>{children}</body>
     </html>
-  )
-})
+  );
+});
 ```
 
 ## 開発体験の特徴
@@ -373,16 +371,16 @@ npm run dev
 ```typescript
 // 型安全なAPI呼び出し
 export const api = new Hono()
-  .get('/posts', (c) => c.json({ posts: [] }))
-  .post('/posts', async (c) => {
-    const body = await c.req.json()
-    return c.json({ success: true })
-  })
+  .get("/posts", (c) => c.json({ posts: [] }))
+  .post("/posts", async (c) => {
+    const body = await c.req.json();
+    return c.json({ success: true });
+  });
 
-type ApiType = typeof api
+type ApiType = typeof api;
 
 // クライアント側で型安全
-import type { ApiType } from './server'
+import type { ApiType } from "./server";
 ```
 
 ## 注意すべきポイント
@@ -397,15 +395,14 @@ import type { ApiType } from './server'
 
 ```typescript
 // ✅ HonoX が適している場合
-- 高速なSSRが必要
-- Edge環境でのデプロイ
-- 軽量なフルスタックアプリ
-- レンダラーの自由度が欲しい
-
-// ❌ HonoX が適していない場合  
-- 大規模チーム開発
-- 豊富なエコシステムが必要
-- 安定性を重視するプロジェクト
+-高速なSSRが必要 -
+  Edge環境でのデプロイ -
+  軽量なフルスタックアプリ -
+  レンダラーの自由度が欲しい -
+  // ❌ HonoX が適していない場合
+  大規模チーム開発 -
+  豊富なエコシステムが必要 -
+  安定性を重視するプロジェクト;
 ```
 
 ## まとめ
@@ -419,7 +416,7 @@ HonoXは、Honoの高速性とモダンなメタフレームワークの機能�
 - **メタフレームワーク**：Hono + Vite + UIライブラリの組み合わせ
 - **BYOR**：好きなレンダラー（React、Vue等）を選択可能
 - **アイランドアーキテクチャ**：必要な部分のみクライアントサイド実行
-- **Edge-first**：Cloudflare WorkersやDenoで高速実行
+- **エッジランタイム**：Cloudflare WorkersやDenoで高速実行
 - **軽量性**：最小限の設定でフルスタック開発が可能
 
 ## 参考文献

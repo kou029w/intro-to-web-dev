@@ -1,6 +1,6 @@
 # Honoハンズオン
 
-- [Hono概要とEdge-first思想](hono-overview.md)
+- [Hono概要とエッジランタイム](hono-overview.md)
 - [Hello Worldとローカル実行](hello-world.md)
 - [ルーティング基礎](routing.md)
 - [JSONレスポンスとリクエスト処理](json-handling.md)
