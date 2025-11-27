@@ -99,8 +99,8 @@ GET https://jsonplaceholder.typicode.com/posts/1
 
 ブラウザで以下のURLにアクセスしてみてください：
 
-- https://jsonplaceholder.typicode.com/posts
-- https://jsonplaceholder.typicode.com/users
+- <https://jsonplaceholder.typicode.com/posts>
+- <https://jsonplaceholder.typicode.com/users>
 
 実際のJSON形式のデータが確認できます。これがREST APIの基本的な動作です。
 

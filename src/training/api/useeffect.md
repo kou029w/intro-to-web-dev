@@ -119,5 +119,5 @@ JSONを`Todo`にパースして使うだけで、プロパティのタイプミ�
 
 # 参考リンク
 
-- React Docs: useEffect https://react.dev/reference/react/useEffect
-- MDN: AbortController https://developer.mozilla.org/ja/docs/Web/API/AbortController
+- React Docs: useEffect <https://react.dev/reference/react/useEffect>
+- MDN: AbortController <https://developer.mozilla.org/ja/docs/Web/API/AbortController>

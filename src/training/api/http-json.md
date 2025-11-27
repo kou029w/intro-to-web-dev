@@ -146,7 +146,7 @@ JSONは「データをテキストで表す決まり」です。JavaScriptとの
 
 エンドポイント例:
 
-- GET https://jsonplaceholder.typicode.com/posts/1
+- GET <https://jsonplaceholder.typicode.com/posts/1>
 
 ブラウザでURLを開くだけでもOKです。ネットワーク通信を詳しく見たいときは、Chromeの開発者ツール > Network タブを開いてみましょう（面白いですよ）。
 

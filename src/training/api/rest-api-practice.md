@@ -17,7 +17,7 @@ Thunder Clientは、VS Code上で動作する軽量なRESTクライアントで�
 
 1. VS Codeを開き、拡張機能ビューを開く
 2. "Thunder Client" を検索してインストール
-   - マーケットプレイス: https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client
+   - マーケットプレイス: <https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client>
 
 ### Thunder Client の基本的な使い方
 
@@ -132,6 +132,6 @@ OpenWeatherの例:
 
 ## 参考リンク
 
-- GitHub REST API v3: https://docs.github.com/ja/rest
-  - 認証: https://docs.github.com/ja/rest/overview/authenticating-to-the-rest-api
-- Thunder Client: https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client
+- GitHub REST API v3: <https://docs.github.com/ja/rest>
+  - 認証: <https://docs.github.com/ja/rest/overview/authenticating-to-the-rest-api>
+- Thunder Client: <https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client>

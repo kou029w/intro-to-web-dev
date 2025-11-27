@@ -34,7 +34,7 @@ Gitには3つの重要な場所があります。最初は覚えにくいかも�
 
 > ![Working tree, staging area, and Git directory](https://git-scm.com/book/en/v2/images/areas.png)
 >
-> _画像: https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F より引用_
+> _画像: <https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F> より引用_
 
 1. Working Directory - 作業ディレクトリ。ファイルやフォルダーの実体があります。ここでファイルを編集します。
 2. Staging Area - コミットする前に変更内容を一時的にまとめておく (ステージング) するための領域です。`git add` することで変更内容が「ステージング」として扱われます。

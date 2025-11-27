@@ -113,5 +113,5 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 ## 参考リンク
 
-- MDN: fetch https://developer.mozilla.org/ja/docs/Web/API/Fetch_API
-- SWR 公式 https://swr.vercel.app/ja
+- MDN: fetch <https://developer.mozilla.org/ja/docs/Web/API/Fetch_API>
+- SWR 公式 <https://swr.vercel.app/ja>

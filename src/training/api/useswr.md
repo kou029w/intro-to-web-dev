@@ -171,5 +171,5 @@ function LikeButton({ postId }: { postId: number }) {
 
 ## 参考リンク
 
-- SWR 公式 https://swr.vercel.app/ja
-- JSONPlaceholder https://jsonplaceholder.typicode.com/
+- SWR 公式 <https://swr.vercel.app/ja>
+- JSONPlaceholder <https://jsonplaceholder.typicode.com/>
