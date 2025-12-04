@@ -16,7 +16,7 @@
 - バックエンドとの通信
 
 ```javascript
-// React.jsの例
+// Reactの例
 import React, { useState, useEffect } from "react";
 
 function UserProfile({ userId }) {
