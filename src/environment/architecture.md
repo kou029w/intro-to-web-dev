@@ -423,7 +423,7 @@ Step 3: 責任範囲の明確化
 
 ### 注目のフレームワーク: Astro
 
-```astro
+```ts astro
 ---
 // サーバーサイドで実行
 const posts = await fetch('/api/posts').then(r => r.json())
@@ -439,7 +439,7 @@ const posts = await fetch('/api/posts').then(r => r.json())
 </Layout>
 ```
 
-https://docs.astro.build/ja/getting-started/
+<https://docs.astro.build/ja/getting-started/>
 
 ## ポイント
 
