@@ -16,8 +16,6 @@ HonoはTypeScriptで書かれた、モダンで軽量なWebフレームワーク
 >
 > _引用元: <https://hono.dev/docs/#features>_
 
-筆者拙訳:
-
 ## Honoの特徴
 
 - **爆速** 🚀 - `RegExpRouter` 速い。逐次処理を用いない。まじ速い。
@@ -25,6 +23,8 @@ HonoはTypeScriptで書かれた、モダンで軽量なWebフレームワーク
 - **マルチランタイム** 🌍 - Cloudflare Workers、Fastly Compute、Deno、Bun、AWS Lambda、Node.js。どこのプラットフォームでも同じコードが動く。
 - **<ruby>バッテリー同梱<rt>Batteries Included</rt></ruby>** 🔋 - 内蔵のミドルウェア、カスタムミドルウェア、サードパーティのミドルウェア、ヘルパー。いわゆる <ruby>バッテリー同梱<rt>Batteries Included</rt></ruby>。
 - **楽しい開発体験** 😃 - 超クリーンAPI。TypeScriptが第一級対応。すぐ"型"付く。
+
+(筆者拙訳)
 
 ## エッジランタイムとは？
 
