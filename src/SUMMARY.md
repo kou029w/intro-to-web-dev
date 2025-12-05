@@ -10,7 +10,7 @@
   - [ローカル開発環境セットアップ](environment/local-setup.md)
   - [miseによるツール管理](environment/mise.md)
   - [VSCode入門](environment/vscode.md)
-  - [Git/GitHub基礎](environment/git-github.md)
+  - [Git・GitHub基礎](environment/git-github.md)
   - [React環境構築](environment/react-setup.md)
   - [TypeScript導入](environment/typescript.md)
   - [Biomeによるコード品質管理](environment/biome.md)

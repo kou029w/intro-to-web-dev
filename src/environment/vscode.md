@@ -1,5 +1,7 @@
 # VS Code環境設定
 
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/21296247-8526-4ee4-a4d7-f85974c81a2a)
+
 この章では、Web開発に欠かせないエディタ「Visual Studio Code（VS Code）」について一緒に学んでいきましょう。VS Codeは無料で使えて、しかもとても高機能なエディタです。最初は設定が少し大変かもしれませんが、一度設定してしまえばとても快適に開発できるようになります。
 
 ## 学習目標

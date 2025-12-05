@@ -1,5 +1,7 @@
 # TypeScript導入
 
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/e0b843ca-9d84-4b95-88be-3754f7168dd6)
+
 この章では、JavaScriptに型の安全性を追加してくれる「TypeScript」について一緒に学んでいきましょう。TypeScriptは最初は少し複雑に感じるかもしれませんが、慣れてくるとバグが格段に減って、より安心してコードが書けるようになりますよ。
 
 ## 学習目標

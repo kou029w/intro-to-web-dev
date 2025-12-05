@@ -1,5 +1,7 @@
 # Git・GitHub基礎
 
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/6f1d40e6-be95-4483-99a2-3e3c7bd8947b)
+
 この章では、Web開発に欠かせないGitとGitHubについて一緒に学んでいきましょう。Gitは最初は少し難しく感じるかもしれませんが、慣れてしまえばとても便利なツールです。気楽に読み進めてくださいね。
 
 ## 学習目標
