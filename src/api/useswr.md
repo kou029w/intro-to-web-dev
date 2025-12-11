@@ -49,7 +49,7 @@ export default function Profile() {
 }
 ```
 
-> Note: `fetcher`は「URLを受け取ってデータを返す関数」。SWRはこの`fetcher`にURL（キー）を渡して実行します。
+> **Note**: `fetcher`は「URLを受け取ってデータを返す関数」。SWRはこの`fetcher`にURL（キー）を渡して実行します。
 
 ## ローディング・エラー・データ
 
@@ -85,7 +85,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 }
 ```
 
-> Note: ここで指定した`fetcher`がデフォルトになります。各コンポーネントで省略可能に（楽ですね）。
+> **Note**: ここで指定した`fetcher`がデフォルトになります。各コンポーネントで省略可能に（楽ですね）。
 
 ## 再検証タイミングをコントロール
 
