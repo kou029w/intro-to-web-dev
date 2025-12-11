@@ -2,370 +2,411 @@
 
 JavaScriptでAPIリクエストを送るためのfetch APIについて学んでいきましょう。前回Thunder Clientで体験したAPIリクエストを、今度はコードで実装してみます。
 
+## この記事で学べること
+
+- fetch APIの基本構文と使い方
+- PromiseとAsync/Awaitの関係
+- GETリクエストの実装方法
+- POSTリクエストの実装方法
+- エラーハンドリングの基本パターン
+- AbortControllerによるキャンセル処理
+
 ## fetch APIとは
 
-fetch APIは、JavaScriptでHTTPリクエストを送るためのモダンな方法です。ブラウザに標準搭載されており、Promiseベースで使いやすく設計されています（昔のXMLHttpRequestより遥かに簡単です）。
+`fetch`は、ブラウザに標準で備わっているAPIリクエスト用の関数です。XMLHttpRequest（XHR）の後継として登場し、現在のWeb開発ではこちらが主流です。Node.js 18以降でもネイティブサポートされているので、サーバーサイドでも同じ書き方で使えます（便利ですね）。
 
-### fetch APIの特徴
+### 最小構成
 
-- **Promise ベース**: async/await で読みやすいコードが書ける
-- **標準搭載**: 追加ライブラリ不要
-- **柔軟**: あらゆるHTTPリクエストに対応
-- **モダン**: 現代的なJavaScriptの書き方
+```js
+fetch("https://jsonplaceholder.typicode.com/posts/1");
+```
 
-## 基本的な使い方
+たったこれだけでHTTPリクエストが送れます。ただし、このままでは結果を受け取れません。`fetch`は**Promise**を返すので、適切に処理する必要があります。
 
-### 最もシンプルなGETリクエスト
+## Promiseとasync/await
 
-```javascript
-// 基本形
-fetch('https://jsonplaceholder.typicode.com/posts/1')
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error('エラー:', error));
+`fetch`を使いこなすには、JavaScriptの非同期処理を理解しておく必要があります。
 
-// async/await版（推奨）
+### Promiseとは
+
+Promiseは「将来の結果を約束するオブジェクト」です。APIリクエストのように時間がかかる処理の結果を扱うために使います。
+
+```js
+// fetchはPromiseを返す
+const promise = fetch("https://jsonplaceholder.typicode.com/posts/1");
+console.log(promise); // Promise { <pending> }
+```
+
+### .then()で結果を受け取る
+
+```js
+fetch("https://jsonplaceholder.typicode.com/posts/1")
+  .then((response) => {
+    console.log("レスポンスを受け取りました");
+    return response.json(); // これもPromiseを返す
+  })
+  .then((data) => {
+    console.log(data.title);
+  });
+```
+
+`.then()`をチェーンでつなげて、順番に処理を書けます。ただ、ネストが深くなると読みにくくなりがちです。
+
+### async/awaitで読みやすく
+
+`async/await`を使うと、非同期コードを同期的な見た目で書けます。
+
+```js
 async function getPost() {
-  try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error('エラー:', error);
-  }
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+  const data = await response.json();
+  console.log(data.title);
 }
 
 getPost();
 ```
 
-### レスポンスの確認
+`await`は「Promiseの結果が返ってくるまで待つ」という意味です。`await`を使うには、関数に`async`キーワードを付ける必要があります。
 
-fetch APIは、サーバーからレスポンスが返ってくれば成功とみなします：
+> **Note**: この記事では主に`async/await`形式で解説します。現代のJavaScript開発ではこちらが主流です。
 
-```javascript
-async function getUser() {
-  const response = await fetch('/api/users/123');
+## GETリクエスト
 
-  // ステータスコードをチェック
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
-  }
+データを取得する基本パターンを見ていきましょう。
 
+### 基本形
+
+```js
+async function fetchUser(id) {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${id}`,
+  );
   const user = await response.json();
   return user;
 }
-```
-
-## POSTリクエストでデータを送信
-
-### ユーザー作成の例
-
-```javascript
-async function createUser(userData) {
-  const response = await fetch('/api/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userData)
-  });
-
-  if (!response.ok) {
-    throw new Error(`作成に失敗しました: ${response.status}`);
-  }
-
-  const newUser = await response.json();
-  return newUser;
-}
 
 // 使用例
-const userData = {
-  name: '田中太郎',
-  email: 'tanaka@example.com'
-};
-
-createUser(userData)
-  .then(user => console.log('作成されたユーザー:', user))
-  .catch(error => console.error('エラー:', error));
+const user = await fetchUser(1);
+console.log(user.name); // "Leanne Graham"
 ```
 
-### フォームデータの送信
+### ヘッダーを付ける
 
-```javascript
-async function updateProfile(formData) {
-  const response = await fetch('/api/profile', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      name: formData.get('name'),
-      email: formData.get('email')
-    })
-  });
+APIによっては、リクエストヘッダーの指定が必要です。
 
-  return await response.json();
-}
-```
-
-## よく使うパターン
-
-### 認証付きリクエスト
-
-```javascript
-async function authenticatedRequest(url, options = {}) {
-  const token = localStorage.getItem('authToken');
-
+```js
+async function fetchWithHeaders(url) {
   const response = await fetch(url, {
-    ...options,
+    method: "GET", // GETの場合は省略可能
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-      ...options.headers,
-    }
+      Accept: "application/json",
+      "X-Custom-Header": "value",
+    },
   });
-
-  if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
-  }
-
-  return await response.json();
-}
-
-// 使用例
-try {
-  const userProfile = await authenticatedRequest('/api/profile');
-  console.log(userProfile);
-} catch (error) {
-  console.error('認証エラーまたはリクエストエラー:', error);
+  return response.json();
 }
 ```
 
-### クエリパラメータの追加
+### クエリパラメータの扱い
 
-```javascript
-function buildURL(baseURL, params) {
-  const url = new URL(baseURL);
-  Object.keys(params).forEach(key =>
-    url.searchParams.append(key, params[key])
-  );
-  return url.toString();
-}
+URLにパラメータを付けるには`URLSearchParams`が便利です。
 
-async function searchUsers(query) {
-  const url = buildURL('/api/users', {
-    search: query,
-    page: 1,
-    limit: 10
+```js
+async function searchUsers(query, limit = 10) {
+  const params = new URLSearchParams({
+    q: query,
+    _limit: limit.toString(),
   });
 
+  const url = `https://jsonplaceholder.typicode.com/users?${params}`;
   const response = await fetch(url);
-  return await response.json();
+  return response.json();
+}
+```
+
+`URLSearchParams`はエンコードも自動でやってくれます（日本語なども安全に扱えます）。
+
+## POSTリクエスト
+
+データを送信する場合はPOSTメソッドを使います。
+
+### 基本形
+
+```js
+async function createPost(post) {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(post),
+  });
+
+  const created = await response.json();
+  return created;
 }
 
 // 使用例
-const results = await searchUsers('田中');
-// リクエスト先: /api/users?search=%E7%94%B0%E4%B8%AD&page=1&limit=10
+const newPost = await createPost({
+  title: "Hello World",
+  body: "This is my first post",
+  userId: 1,
+});
+console.log(newPost.id); // 101（サーバーが割り当てたID）
+```
+
+### 重要なポイント
+
+1. **`method: "POST"`** を指定する
+2. **`Content-Type: application/json`** ヘッダーを付ける
+3. **`JSON.stringify()`** でオブジェクトを文字列に変換する
+
+`JSON.stringify()`を忘れると、サーバーには`[object Object]`という文字列が送られてしまいます（よくあるミスです）。
+
+### PUT/PATCH/DELETEも同様
+
+```js
+// PUT: リソース全体を置き換え
+async function updatePost(id, post) {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${id}`,
+    {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(post),
+    },
+  );
+  return response.json();
+}
+
+// DELETE: リソースを削除
+async function deletePost(id) {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${id}`,
+    {
+      method: "DELETE",
+    },
+  );
+  return response.ok; // 成功ならtrue
+}
 ```
 
 ## エラーハンドリング
 
-### 包括的なエラー処理
+`fetch`のエラー処理には注意点があります。
 
-```javascript
-async function apiRequest(url, options = {}) {
-  try {
-    const response = await fetch(url, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      ...options,
-    });
+### fetchは404でも例外を投げない
 
-    // HTTPエラーをチェック
-    if (!response.ok) {
-      // サーバーからのエラーレスポンスを読み取り
-      let errorMessage = `HTTP ${response.status}`;
+```js
+const response = await fetch("https://jsonplaceholder.typicode.com/posts/9999");
+console.log(response.ok); // false
+console.log(response.status); // 404
+// でも、例外は発生していない！
+```
 
-      try {
-        const errorData = await response.json();
-        errorMessage = errorData.message || errorMessage;
-      } catch {
-        // JSON以外のエラーレスポンスの場合
-        errorMessage = await response.text();
-      }
+`fetch`が例外を投げるのは、**ネットワークエラー**（サーバーに到達できない場合）だけです。HTTP 404や500などのエラーレスポンスは、正常なレスポンスとして返ってきます。
 
-      throw new Error(errorMessage);
-    }
+### response.okを確認する
 
-    // Content-Typeをチェックして適切にパース
-    const contentType = response.headers.get('content-type');
-    if (contentType && contentType.includes('application/json')) {
-      return await response.json();
-    } else {
-      return await response.text();
-    }
+```js
+async function fetchPost(id) {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${id}`,
+  );
 
-  } catch (error) {
-    // ネットワークエラーやその他の例外
-    if (error instanceof TypeError) {
-      throw new Error('ネットワークエラー: サーバーに接続できません');
-    }
-    throw error;
+  if (!response.ok) {
+    throw new Error(`HTTP Error: ${response.status}`);
   }
+
+  return response.json();
 }
 ```
 
-### 実用的な使用例
+`response.ok`は、ステータスコードが200-299の範囲なら`true`になります。
 
-```javascript
-// ユーザー情報を取得して画面に表示
-async function displayUserInfo(userId) {
+### try-catchで包む
+
+```js
+async function safeFetch(url) {
   try {
-    const user = await apiRequest(`/api/users/${userId}`);
-
-    // 画面更新
-    document.getElementById('userName').textContent = user.name;
-    document.getElementById('userEmail').textContent = user.email;
-
-  } catch (error) {
-    // エラーメッセージを表示
-    document.getElementById('errorMessage').textContent =
-      `ユーザー情報の取得に失敗しました: ${error.message}`;
-  }
-}
-```
-
-## リクエストのキャンセル
-
-長時間のリクエストをキャンセルできるようにしましょう：
-
-```javascript
-async function fetchWithTimeout(url, options = {}, timeout = 5000) {
-  // AbortControllerでキャンセル可能にする
-  const controller = new AbortController();
-
-  // タイムアウト設定
-  const timeoutId = setTimeout(() => controller.abort(), timeout);
-
-  try {
-    const response = await fetch(url, {
-      ...options,
-      signal: controller.signal
-    });
-
-    clearTimeout(timeoutId);
-    return response;
-
-  } catch (error) {
-    clearTimeout(timeoutId);
-
-    if (error.name === 'AbortError') {
-      throw new Error('リクエストがタイムアウトしました');
-    }
-    throw error;
-  }
-}
-
-// 使用例
-try {
-  const response = await fetchWithTimeout('/api/slow-endpoint', {}, 3000);
-  const data = await response.json();
-  console.log(data);
-} catch (error) {
-  console.error(error.message); // "リクエストがタイムアウトしました" など
-}
-```
-
-## 実践的なAPI クライアントクラス
-
-再利用しやすいAPIクライアントを作ってみましょう：
-
-```javascript
-class APIClient {
-  constructor(baseURL, defaultHeaders = {}) {
-    this.baseURL = baseURL;
-    this.defaultHeaders = {
-      'Content-Type': 'application/json',
-      ...defaultHeaders
-    };
-  }
-
-  async request(endpoint, options = {}) {
-    const url = `${this.baseURL}${endpoint}`;
-
-    const response = await fetch(url, {
-      headers: {
-        ...this.defaultHeaders,
-        ...options.headers,
-      },
-      ...options,
-    });
+    const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(`Request failed: ${response.status}`);
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
     }
 
     return await response.json();
-  }
-
-  // 便利メソッド
-  async get(endpoint, params = {}) {
-    const url = new URL(`${this.baseURL}${endpoint}`);
-    Object.keys(params).forEach(key =>
-      url.searchParams.append(key, params[key])
-    );
-
-    return this.request(url.pathname + url.search);
-  }
-
-  async post(endpoint, data) {
-    return this.request(endpoint, {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
-  }
-
-  async put(endpoint, data) {
-    return this.request(endpoint, {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
-  }
-
-  async delete(endpoint) {
-    return this.request(endpoint, {
-      method: 'DELETE',
-    });
+  } catch (error) {
+    // ネットワークエラー or 上で投げたエラー
+    console.error("Fetch failed:", error.message);
+    throw error; // 再度投げるか、代替値を返す
   }
 }
-
-// 使用例
-const api = new APIClient('/api', {
-  'Authorization': 'Bearer your-token-here'
-});
-
-// GET /api/users?page=1
-const users = await api.get('/users', { page: 1 });
-
-// POST /api/users
-const newUser = await api.post('/users', {
-  name: '佐藤花子',
-  email: 'sato@example.com'
-});
 ```
 
-## まとめ
+### エラーレスポンスのボディを読む
 
-fetch APIを使うことで、JavaScriptからAPIリクエストを簡単に送れるようになりました：
+APIによっては、エラー時にJSON形式で詳細を返すものもあります。
 
-### ポイント
+```js
+async function fetchWithErrorDetail(url) {
+  const response = await fetch(url);
 
-- **fetch API**: JavaScriptでHTTPリクエストを送るモダンな方法
-- **async/await**: Promise ベースで読みやすいコード
-- **エラーハンドリング**: response.ok でステータスをチェック
-- **JSON処理**: response.json() でデータを取得
-- **柔軟性**: GET、POST、PUT、DELETE すべて対応
-- **キャンセル**: AbortController でリクエスト中断可能
+  if (!response.ok) {
+    // エラーレスポンスのボディを読む
+    let errorMessage = `HTTP ${response.status}`;
+    try {
+      const errorBody = await response.json();
+      errorMessage = errorBody.message || errorMessage;
+    } catch {
+      // JSONでない場合は無視
+    }
+    throw new Error(errorMessage);
+  }
 
-次の記事では、Reactのコンポーネント内でfetch APIを使う方法について学んでいきましょう。useEffectフックと組み合わせて、コンポーネントのライフサイクルに合わせたAPI呼び出しを実装します。
+  return response.json();
+}
+```
+
+## AbortControllerによるキャンセル
+
+リクエストを途中でキャンセルしたいケースがあります（画面遷移時など）。
+
+### 基本的な使い方
+
+```js
+const controller = new AbortController();
+const { signal } = controller;
+
+// 3秒後にキャンセル
+setTimeout(() => controller.abort(), 3000);
+
+try {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
+    signal,
+  });
+  const data = await response.json();
+  console.log(data);
+} catch (error) {
+  if (error.name === "AbortError") {
+    console.log("リクエストがキャンセルされました");
+  } else {
+    throw error;
+  }
+}
+```
+
+### タイムアウトの実装
+
+```js
+async function fetchWithTimeout(url, timeoutMs = 5000) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    return response;
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error.name === "AbortError") {
+      throw new Error(`Request timed out after ${timeoutMs}ms`);
+    }
+    throw error;
+  }
+}
+```
+
+> **Note**: Reactでは、コンポーネントのアンマウント時にリクエストをキャンセルするのがベストプラクティスです。次回の「useEffectによる非同期処理」で詳しく扱います。
+
+## TypeScriptでの型付け
+
+TypeScriptを使う場合、レスポンスの型を定義しておくと安全です。
+
+```ts
+type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+async function fetchUser(id: number): Promise<User> {
+  const response = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${id}`,
+  );
+
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+
+  const user: User = await response.json();
+  return user;
+}
+```
+
+`response.json()`の戻り値は`any`なので、型を明示的に付けることで、以降のコードで型チェックが効きます（タイプミスに気づけて助かります）。
+
+## やってみよう！
+
+1. ブラウザの開発者ツール（Console）で以下を実行してみましょう
+
+```js
+// GETリクエスト
+const res = await fetch("https://jsonplaceholder.typicode.com/users");
+const users = await res.json();
+console.log("ユーザー数:", users.length);
+```
+
+2. POSTリクエストを試してみましょう
+
+```js
+// POSTリクエスト
+const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ title: "テスト", body: "本文", userId: 1 }),
+});
+const created = await res.json();
+console.log("作成されたID:", created.id);
+```
+
+3. エラーハンドリングを確認
+
+```js
+// 存在しないエンドポイント
+const res = await fetch("https://jsonplaceholder.typicode.com/invalid");
+console.log("ok:", res.ok); // false
+console.log("status:", res.status); // 404
+```
+
+4. タイムアウトを体験
+
+```js
+const controller = new AbortController();
+setTimeout(() => controller.abort(), 100); // 100msでキャンセル
+
+try {
+  await fetch("https://jsonplaceholder.typicode.com/posts", {
+    signal: controller.signal,
+  });
+} catch (e) {
+  console.log("エラー種別:", e.name); // "AbortError"
+}
+```
+
+## ポイント（まとめ）
+
+- **fetch**: ブラウザ標準のHTTPリクエスト関数。Promiseを返す
+- **async/await**: 非同期処理を同期的な見た目で書ける構文
+- **response.json()**: レスポンスボディをJSONとしてパース
+- **response.ok**: ステータスコードが200-299ならtrue
+- **JSON.stringify()**: POSTで送るデータをJSON文字列に変換
+- **AbortController**: リクエストのキャンセルに使う
+- **fetchは404で例外を投げない**: 必ず`response.ok`をチェックする
+
+## 参考リンク
+
+- MDN: fetch API <https://developer.mozilla.org/ja/docs/Web/API/Fetch_API>
+- MDN: async/await <https://developer.mozilla.org/ja/docs/Learn_web_development/Extensions/Async_JS/Promises>
+- MDN: AbortController <https://developer.mozilla.org/ja/docs/Web/API/AbortController>
+- JSONPlaceholder <https://jsonplaceholder.typicode.com/>
