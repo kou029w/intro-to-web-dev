@@ -69,11 +69,7 @@
 - [デプロイとキャッシュ戦略](honox/deployment-cache.md)
 - [CRUD アプリケーション構築](honox/crud-app.md)
 
-## Web開発演習
+## 開発実践
 
 - [プロジェクト企画と要件定義](practice/project-planning.md)
-- [サンプルアプリケーション分析](practice/sample-apps.md)
-- [画面設計とDB設計](practice/design.md)
-- [開発環境セットアップ](practice/dev-setup.md)
-- [開発実践とチーム作業](practice/development.md)
-- [成果発表準備](practice/presentation.md)
+- [成果発表](practice/presentation.md)
