@@ -204,16 +204,17 @@ cd test-environment
 
 # mise.toml 作成
 mise use node@24
+mise use pnpm@latest
 
 # 動作確認
 node -v
 node -e 'console.log(process.version)'
 
 # package.json 作成
-npm init -y
+pnpm init -y
 
 # 依存関係インストール
-npm i -D react react-dom typescript @types/react @types/react-dom
+pnpm add -D react react-dom typescript @types/react @types/react-dom
 ```
 
 <!-- ## トラブルシューティング -->

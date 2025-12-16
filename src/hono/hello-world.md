@@ -12,13 +12,13 @@ mkdir hono-tutorial
 cd hono-tutorial
 
 # package.jsonを初期化
-npm init -y
+pnpm init -y
 
 # Honoをインストール
-npm install hono
+pnpm add hono
 
 # 開発用の依存関係をインストール
-npm install -D typescript @types/node tsx
+pnpm add -D typescript @types/node tsx
 ```
 
 「tsxは、TypeScriptファイルを直接実行できる便利なツールです。」
@@ -63,7 +63,7 @@ serve({
 「`@hono/node-server`をインストールしましょう：」
 
 ```bash
-npm install @hono/node-server
+pnpm add @hono/node-server
 ```
 
 ### package.jsonの設定
@@ -120,7 +120,7 @@ npm install @hono/node-server
 開発サーバーを起動します：
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ブラウザで`http://localhost:3000`にアクセスすると、「Hello Hono!」が表示されます。
@@ -224,7 +224,7 @@ deno run --allow-net deno-server.ts
 `tsx watch`を使うことで、ファイルの変更を自動的に検知してサーバーを再起動できます：
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ### 2. デバッグ情報の表示

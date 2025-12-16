@@ -359,7 +359,7 @@ export default jsxRenderer(({ children, title, description }) => {
 
 ```bash
 # 開発サーバー起動
-npm run dev
+pnpm dev
 
 # ファイル保存時の自動更新
 # - SSR部分: サーバー再起動

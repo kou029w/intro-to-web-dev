@@ -44,7 +44,7 @@ Biome一つで全部できるので、覚えることが少なくて済みます
 ### 1. プロジェクトへのインストール
 
 ```bash
-npm install --save-dev @biomejs/biome
+pnpm add -D @biomejs/biome
 ```
 
 ### 2. 初期設定
@@ -191,7 +191,7 @@ const data: any = getValue(); // @biome-ignore lint/suspicious/noExplicitAny: ex
 この章で学んだポイント：
 
 - **Biomeの基本**: リンティング・フォーマット・import整理を一つのツールで可能
-- **インストールと設定**: `npm install --save-dev @biomejs/biome` と `npx @biomejs/biome init` で簡単導入
+- **インストールと設定**: `pnpm add -D @biomejs/biome` と `npx @biomejs/biome init` で簡単導入
 - **VS Code連携**: 保存時に自動でコード品質チェック・整形
 - **実践的な使い方**: `pnpm run check:fix` でコード品質を自動改善
 

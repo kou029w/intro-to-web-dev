@@ -6,16 +6,6 @@ Web開発のフレームワークの世界で、最近注目を集めているHo
 
 HonoはTypeScriptで書かれた、モダンで軽量なWebフレームワークです。
 
-> ## Features
->
-> - **Ultrafast** 🚀 - The router `RegExpRouter` is really fast. Not using linear loops. Fast.
-> - **Lightweight** 🪶 - The `hono/tiny` preset is under 14kB. Hono has zero dependencies and uses only the Web Standards.
-> - **Multi-runtime** 🌍 - Works on Cloudflare Workers, Fastly Compute, Deno, Bun, AWS Lambda, or Node.js. The same code runs on all platforms.
-> - **Batteries Included** 🔋 - Hono has built-in middleware, custom middleware, third-party middleware, and helpers. Batteries included.
-> - **Delightful DX** 😃 - Super clean APIs. First-class TypeScript support. Now, we've got "Types".
->
-> _引用元: <https://hono.dev/docs/#features>_
-
 ## Honoの特徴
 
 - **爆速** 🚀 - `RegExpRouter` 速い。逐次処理を用いない。まじ速い。
@@ -24,7 +14,15 @@ HonoはTypeScriptで書かれた、モダンで軽量なWebフレームワーク
 - **<ruby>バッテリー同梱<rt>Batteries Included</rt></ruby>** 🔋 - 内蔵のミドルウェア、カスタムミドルウェア、サードパーティのミドルウェア、ヘルパー。いわゆる <ruby>バッテリー同梱<rt>Batteries Included</rt></ruby>。
 - **楽しい開発体験** 😃 - 超クリーンAPI。TypeScriptが第一級対応。すぐ"型"付く。
 
-(筆者拙訳)
+> ### Features
+>
+> - **Ultrafast** 🚀 - The router `RegExpRouter` is really fast. Not using linear loops. Fast.
+> - **Lightweight** 🪶 - The `hono/tiny` preset is under 14kB. Hono has zero dependencies and uses only the Web Standards.
+> - **Multi-runtime** 🌍 - Works on Cloudflare Workers, Fastly Compute, Deno, Bun, AWS Lambda, or Node.js. The same code runs on all platforms.
+> - **Batteries Included** 🔋 - Hono has built-in middleware, custom middleware, third-party middleware, and helpers. Batteries included.
+> - **Delightful DX** 😃 - Super clean APIs. First-class TypeScript support. Now, we've got "Types".
+>
+> _引用元: <https://hono.dev/docs/#features>_
 
 ## エッジランタイムとは？
 
