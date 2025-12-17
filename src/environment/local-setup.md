@@ -41,7 +41,7 @@ Web開発に必要なツールはいくつかあり、それぞれに役割が�
 ```powershell
 # 管理者権限でPowerShellを起動
 wsl --set-default-version 2
-wsl --install Ubuntu
+wsl --install -d Ubuntu
 
 # WSL2での作業推奨
 wsl
