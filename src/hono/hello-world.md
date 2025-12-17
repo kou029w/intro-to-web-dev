@@ -12,7 +12,7 @@ mkdir hono-tutorial
 cd hono-tutorial
 
 # package.jsonを初期化
-pnpm init -y
+pnpm init
 
 # Honoをインストール
 pnpm add hono
