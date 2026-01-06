@@ -36,7 +36,7 @@ HTMLは[マークアップ言語 (Markup Language)](https://ja.wikipedia.org/wik
 このかたまりは「要素 (Element)」と呼ばれます。
 
 <!-- prettier-ignore-start -->
-> ![](https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/HTML_basics/grumpy-cat-small.png)\
+> ![](https://developer.mozilla.org/ja/docs/Learn_web_development/Getting_started/Your_first_website/Creating_the_content/grumpy-cat-small.png)\
 > _― 画像: 「[HTML の基本](https://developer.mozilla.org/ja/docs/Learn/Getting_started_with_the_web/HTML_basics)」より_
 <!-- prettier-ignore-end -->
 
