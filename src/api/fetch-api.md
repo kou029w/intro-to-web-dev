@@ -374,7 +374,7 @@ console.log("作成されたID:", created.id);
 
 ```js
 // 存在しないエンドポイント
-const res = await fetch("https://jsonplaceholder.typicode.com/invalid");
+const res = await fetch("https://example.com/404");
 console.log("ok:", res.ok); // false
 console.log("status:", res.status); // 404
 ```

@@ -150,6 +150,47 @@ function LikeButton({ postId }: { postId: number }) {
 }
 ```
 
+## SWRでのエラーハンドリング戦略
+
+```ts tsx
+import useSWR, { SWRConfig } from "swr";
+
+const fetchJSON = <T,>(url: string) =>
+  fetch(url).then(async (r) => {
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json() as Promise<T>;
+  });
+
+function User() {
+  const { data, error, isLoading, mutate } = useSWR("/api/me", fetchJSON);
+  if (isLoading) return <p>読み込み中</p>;
+
+  // エラーハンドリング (1) … ここでは利用者に「何が起きたか」「どうすべきか」を明確に伝える
+  // 利用者が回復できるように mutate を提供
+  if (error) return <button onClick={() => mutate()}>再試行</button>;
+
+  return <div>{data.name}</div>;
+}
+
+export function Providers({ children }: { children: React.ReactNode }) {
+  return (
+    <SWRConfig
+      value={{
+        // エラーハンドリング (2) … ここでは開発者向けに「何が起きたか」をプライバシーに配慮した範囲で伝える
+        // 具体例: グローバル通知やSentry送信など
+        onError(err) {
+          console.error("[SWR Error]", err);
+        },
+        shouldRetryOnError: true,
+        errorRetryCount: 3,
+      }}
+    >
+      {children}
+    </SWRConfig>
+  );
+}
+```
+
 ## やってみよう！
 
 1. URLを`/users/2`に変えて結果の差を確認

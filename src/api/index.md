@@ -6,5 +6,4 @@
 - [fetch APIの基本](fetch-api.md)
 - [useEffectによる非同期処理](useeffect.md)
 - [useSWR入門](useswr.md)
-- [エラーハンドリング戦略](error-handling.md)
 - [プロキシ確認ガイド](proxy.md)

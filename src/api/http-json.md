@@ -169,34 +169,48 @@ JavaScriptでは`fetch`を使って簡単にJSONを取得できます。
 
 ```js
 async function getPost() {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
-    headers: {
-      Accept: "application/json",
-    },
-  });
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
 
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`);
   }
 
-  const data = await res.json(); // Content-Type: application/json が前提
+  const data = await res.json();
   return data;
 }
 
 getPost().then(console.log).catch(console.error);
 ```
 
-### JSONが返らないときの安全策
+この例では：
+
+1. `fetch()`でURLにリクエストを送る
+2. `res.ok`でステータスコードが2xxかどうか確認
+3. `res.json()`でJSONをJavaScriptオブジェクトに変換
+
+### Content-Typeを確認する
+
+レスポンスが本当にJSONかどうか確認してから`res.json()`を呼ぶと安全です。
 
 ```js
-async function safeParseJSON(res) {
-  const ct = res.headers.get("content-type") || "";
-  if (ct.includes("application/json")) return res.json();
-  return res.text(); // プレーンテキスト等にフォールバック
+async function getData() {
+  const res = await fetch("https://example.com/api/data");
+
+  const contentType = res.headers.get("content-type");
+
+  if (contentType && contentType.includes("application/json")) {
+    return await res.json();
+  } else {
+    return await res.text();
+  }
 }
 ```
 
-### リクエストボディにJSONを送る
+なぜこうするのか：サーバーがエラーメッセージをHTMLやテキストで返すことがあります。そのときに`res.json()`を呼ぶとエラーになるため、Content-Typeヘッダーで判断します。
+
+### リクエストボディにJSONを送る（POSTの例）
+
+データを送るときは`method`と`headers`、`body`を指定します。
 
 ```js
 async function createPost(post) {
@@ -204,12 +218,14 @@ async function createPost(post) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Accept: "application/json",
     },
     body: JSON.stringify(post),
   });
 
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status}`);
+  }
+
   return await res.json();
 }
 
@@ -218,30 +234,37 @@ createPost({ title: "Hello", body: "World", userId: 1 })
   .catch(console.error);
 ```
 
-> **Note**: `JSON.stringify`を忘れると、サーバーは意図しない形式（[object Object]など）を受け取り、400系エラーになることがあります。
+ポイント：
+
+- `method: "POST"` → サーバーにデータを送る
+- `Content-Type: application/json` → 送るデータの形式を伝える
+- `JSON.stringify(post)` → JavaScriptオブジェクトをJSON文字列に変換
+
+> **Note**: `JSON.stringify`を忘れると、サーバーは `[object Object]` という文字列を受け取ってしまい、400エラーになることがあります。
 
 ### ステータスコードとエラーの見分け方
 
-- 2xx: 成功 => `res.ok` が true
-- 4xx: クライアント側の問題 => `res.ok` が false
-- 5xx: サーバー側の問題 => `res.ok` が false
+- 2xx: 成功 → `res.ok` が `true`
+- 4xx: クライアント側の問題 → `res.ok` が `false`
+- 5xx: サーバー側の問題 → `res.ok` が `false`
 
-JavaScriptの`fetch`は「ネットワークに到達したら」例外を投げません。HTTP 404でも`res.ok`がfalseになるだけです（ちょっと紛らわしいですよね）。
+JavaScriptの`fetch`は、ネットワークに到達できれば例外を投げません。つまりHTTP 404やHTTP 500でも`res.ok`が`false`になるだけです（ちょっと紛らわしいですよね）。
+
+だから、必ず`res.ok`をチェックしましょう：
 
 ```js
-async function request(url) {
-  const res = await fetch(url);
+async function fetchUser(id) {
+  const res = await fetch(`https://api.example.com/users/${id}`);
+
   if (!res.ok) {
-    let message = `HTTP ${res.status}`;
-    try {
-      const err = await res.json();
-      message = err.message || message;
-    } catch {}
-    throw new Error(message);
+    throw new Error(`エラー: HTTP ${res.status}`);
   }
-  return res.json();
+
+  return await res.json();
 }
 ```
+
+なぜこうするのか：`res.ok`をチェックしないと、404エラーでも`res.json()`を呼んでしまい、意図しない動作になります。
 
 ## やってみよう！
 
@@ -250,9 +273,8 @@ async function request(url) {
 3. `fetch`で同じURLを読み込み、配列長を`console.log`してみる
 
 ```js
-const url = "https://jsonplaceholder.typicode.com/users";
-fetch(url)
-  .then((r) => r.json())
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then((res) => res.json())
   .then((users) => console.log("件数:", users.length));
 ```
 

@@ -24,7 +24,6 @@
   - [fetch APIの基本](api/fetch-api.md)
   - [useEffectによる非同期処理](api/useeffect.md)
   - [useSWR入門](api/useswr.md)
-  - [エラーハンドリング戦略](api/error-handling.md)
   - [プロキシ確認ガイド](api/proxy.md)
 - [Honoハンズオン](hono/index.md)
   - [Hono概要とエッジランタイム思想](hono/hono-overview.md)

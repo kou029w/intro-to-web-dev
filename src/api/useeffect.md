@@ -13,19 +13,24 @@ Reactコンポーネントでデータ取得をしたい。そんなときに欠
 
 `useEffect`は「レンダーのあと」に実行される副作用（データ取得や購読など）を記述するためのフックです。
 
-```ts tsx
+```tsx
 import { useEffect, useState } from "react";
 
 function UserName({ id }: { id: number }) {
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState("");
 
   useEffect(() => {
-    document.title = `User ${id}`; // レンダー後に副作用
-  }, [id]); // idが変わるたびに実行
+    document.title = `User ${id}`;
+  }, [id]);
 
   return <h1>{name || "loading..."}</h1>;
 }
 ```
+
+この例では：
+
+- `useEffect`の第1引数：実行したい副作用（document.titleの更新）
+- `useEffect`の第2引数：依存配列（`[id]`なので、idが変わるたびに実行される）
 
 > **Note**: 依存配列（`[]`）が空だと、マウント時に1回だけ実行されます。
 
@@ -33,46 +38,56 @@ function UserName({ id }: { id: number }) {
 
 `useEffect`内でasync関数を直接渡すのではなく、中で宣言して呼び出します（細かいですが大事です）。
 
-```ts tsx
+```tsx
 import { useEffect, useState } from "react";
 
-type User = { id: number; name: string };
+type User = {
+  id: number;
+  name: string;
+};
 
 export function UserCard({ id }: { id: number }) {
   const [user, setUser] = useState<User | null>(null);
-  const [error, setError] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
-    const { signal } = controller;
 
-    const load = async () => {
+    async function loadUser() {
       try {
         setLoading(true);
         setError("");
+
         const res = await fetch(
           `https://jsonplaceholder.typicode.com/users/${id}`,
-          { signal },
+          { signal: controller.signal },
         );
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data: User = await res.json();
+
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+
+        const data = await res.json();
         setUser(data);
       } catch (e) {
-        if ((e as any)?.name === "AbortError") return; // アンマウント時の中断
-        setError((e as Error).message);
+        if (e instanceof Error && e.name === "AbortError") {
+          return;
+        }
+        setError(e instanceof Error ? e.message : "エラーが発生しました");
       } finally {
         setLoading(false);
       }
-    };
+    }
 
-    load();
-    return () => controller.abort(); // クリーンアップで中断
+    loadUser();
+    return () => controller.abort();
   }, [id]);
 
   if (loading) return <p>読み込み中...</p>;
   if (error) return <p style={{ color: "crimson" }}>エラー: {error}</p>;
   if (!user) return null;
+
   return (
     <div>
       <h2>{user.name}</h2>
@@ -82,6 +97,15 @@ export function UserCard({ id }: { id: number }) {
 }
 ```
 
+重要なポイント：
+
+1. **AbortController**: コンポーネントがアンマウントされたときにfetchをキャンセル
+2. **3つの状態管理**: loading（読み込み中）、error（エラー）、user（成功時のデータ）
+3. **依存配列 `[id]`**: idが変わるたびに新しいデータを取得
+4. **クリーンアップ関数**: `return () => controller.abort()` で前のリクエストをキャンセル
+
+なぜAbortControllerが必要か：ユーザーが素早く別のユーザーに切り替えたとき、古いリクエストが完了してしまうと、新しいデータが古いデータで上書きされる問題が起きます。
+
 > **Note**: ループやダブルフェッチを避けるため、依存配列に`user`や`loading`を安易に入れないようにしましょう。必要最小限にするのがコツです。
 
 # 無限ループを避けるコツ
@@ -90,9 +114,9 @@ export function UserCard({ id }: { id: number }) {
 - データを`setState`した結果に依存して再度`fetch`しないようにする
 - オブジェクト/配列リテラルは毎回新しい参照になるので注意（`useMemo`で安定化）
 
-# 型安全に書く（ざっくり）
+# 型安全に書く
 
-TypeScriptでは、受け取るJSONの型を定義しておくと安心です。
+TypeScriptでは、APIから受け取るデータの型を定義しておくと、タイプミスや不正なアクセスを防げます。
 
 ```ts
 type Todo = {
@@ -102,7 +126,19 @@ type Todo = {
 };
 ```
 
-JSONを`Todo`にパースして使うだけで、プロパティのタイプミスに気づけます（助かりますよね）。
+使用例：
+
+```tsx
+const [todo, setTodo] = useState<Todo | null>(null);
+
+// 後でこう使える
+if (todo) {
+  console.log(todo.title); // OK
+  console.log(todo.titl); // エラー！タイプミスに気づける
+}
+```
+
+なぜ型を定義するのか：APIのレスポンス形式が変わったときや、プロパティ名を間違えたときに、コンパイル時に気づけるからです。
 
 # やってみよう！
 
