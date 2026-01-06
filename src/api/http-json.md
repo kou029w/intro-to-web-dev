@@ -8,6 +8,7 @@ HTTPリクエストの仕組みとJSONデータの基本をつかみます。実
 - ステータスコードとContent-Type
 - JSONの基本と注意点（数値/日付/ネスト）
 - ブラウザとJavaScriptでJSONを扱う実例
+- 実践的なパターン（認証、クエリパラメータ、エラーハンドリング、複数API呼び出し）
 
 ## HTTPのしくみを分解
 
@@ -277,6 +278,129 @@ fetch("https://jsonplaceholder.typicode.com/users")
   .then((res) => res.json())
   .then((users) => console.log("件数:", users.length));
 ```
+
+## 実践的なパターン
+
+ここまでの基礎を踏まえて、実際のアプリ開発でよく使うパターンを見ていきましょう。
+
+### 認証が必要なAPIを呼び出す
+
+多くの実用的なAPIでは、API キーやトークンを使った認証が必要です。これらは`Authorization`ヘッダーに含めて送ります。
+
+```js
+async function fetchWithAuth() {
+  const res = await fetch("https://api.example.com/user/profile", {
+    headers: {
+      Authorization: "Bearer YOUR_API_TOKEN",
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status}`);
+  }
+
+  return await res.json();
+}
+```
+
+なぜこうするのか：サーバーは`Authorization`ヘッダーで「誰がアクセスしているか」を確認します。`Bearer`はトークン認証の標準的な方式です。
+
+> **Note**: APIキーやトークンは環境変数（`.env`ファイル）で管理し、コードに直接書かないようにしましょう。GitHubなどに誤って公開してしまうと、第三者に悪用される危険があります。
+
+### クエリパラメータでデータを絞り込む
+
+GETリクエストでは、URLにパラメータを付けてデータを絞り込むことができます（検索機能やページネーションで頻繁に使います）。
+
+```js
+// 手動でURLを組み立てる方法
+const userId = 1;
+const res = await fetch(
+  `https://jsonplaceholder.typicode.com/posts?userId=${userId}`,
+);
+
+// URLSearchParamsを使う方法（推奨）
+const params = new URLSearchParams({ userId: 1, _limit: 5 });
+const res2 = await fetch(
+  `https://jsonplaceholder.typicode.com/posts?${params}`,
+);
+
+const data = await res2.json();
+console.log(data); // 最大5件のデータが返ってくる
+```
+
+なぜこうするのか：`URLSearchParams`を使うと、特殊文字のエンコード（例：スペースを`%20`に変換）を自動でやってくれるため安全です。
+
+### ステータスコードに応じたエラー処理
+
+基本の`res.ok`チェックに加えて、ステータスコードごとに適切なエラーメッセージを返すとユーザー体験が向上します。
+
+```js
+async function fetchWithDetailedError(url) {
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    // ステータスコードごとに適切なエラーメッセージを返す
+    switch (res.status) {
+      case 400:
+        throw new Error("リクエストが不正です");
+      case 401:
+        throw new Error("認証が必要です");
+      case 404:
+        throw new Error("データが見つかりません");
+      case 500:
+        throw new Error("サーバーエラーが発生しました");
+      default:
+        throw new Error(`HTTP ${res.status}`);
+    }
+  }
+
+  return await res.json();
+}
+
+// 使用例
+fetchWithDetailedError("https://jsonplaceholder.typicode.com/posts/999999")
+  .then(console.log)
+  .catch((error) => console.error("エラー:", error.message));
+```
+
+なぜこうするのか：エラーの原因が分かれば、ユーザーに「再ログインしてください」「URLを確認してください」といった具体的な対処法を案内できます。
+
+### 複数のAPIを順番に呼び出す
+
+実際のアプリ開発では、1つのリソースに関連する複数のデータを取得することがよくあります。
+
+```js
+async function getUserWithPosts(userId) {
+  try {
+    // 1. ユーザー情報を取得
+    const userRes = await fetch(
+      `https://jsonplaceholder.typicode.com/users/${userId}`,
+    );
+    if (!userRes.ok) throw new Error("ユーザー情報の取得に失敗");
+    const user = await userRes.json();
+
+    // 2. そのユーザーの投稿を取得
+    const postsRes = await fetch(
+      `https://jsonplaceholder.typicode.com/posts?userId=${userId}`,
+    );
+    if (!postsRes.ok) throw new Error("投稿の取得に失敗");
+    const posts = await postsRes.json();
+
+    // 3. データを結合して返す
+    return { ...user, posts };
+  } catch (error) {
+    console.error("エラー:", error);
+    throw error;
+  }
+}
+
+// 使用例
+getUserWithPosts(1).then((data) => {
+  console.log(`${data.name}さんの投稿数: ${data.posts.length}`);
+});
+```
+
+なぜこうするのか：ユーザーのプロフィールページを表示するとき、「ユーザー情報」と「そのユーザーの投稿一覧」を両方取得する必要があります。このように複数のAPIを組み合わせることで、より豊かなアプリケーションが作れます。
 
 ## ポイント（まとめ）
 
