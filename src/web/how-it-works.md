@@ -26,7 +26,7 @@ Webはこれらの要素に支えられています。
 ## Webページ
 
 <!-- prettier-ignore-start -->
-> ![](https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/What_is_JavaScript/cake.png)\
+> ![](https://developer.mozilla.org/ja/docs/Learn_web_development/Core/Scripting/What_is_JavaScript/cake.png)\
 > _― 画像: [JavaScript とは - Web開発を学ぶ | MDN](https://developer.mozilla.org/ja/docs/Learn/JavaScript/First_steps/What_is_JavaScript) より_
 <!-- prettier-ignore-end -->
 
