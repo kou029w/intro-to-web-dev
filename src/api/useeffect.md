@@ -18,23 +18,31 @@ Reactコンポーネントでデータ取得をしたい。そんなときに欠
 ```ts tsx
 import { useEffect, useState } from "react";
 
-function UserName({ id }: { id: number }) {
-  const [name, setName] = useState("");
+type User = {
+  id: number;
+  name: string;
+};
+
+function UserCard({ id }: { id: number }) {
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    document.title = `User ${id}`;
+    setUser({ id, name: `ユーザー${id}` });
   }, [id]);
 
-  return <h1>{name || "loading..."}</h1>;
+  return <h2>{user?.name || "loading..."}</h2>;
 }
 ```
 
 この例では：
 
-- `useEffect`の第1引数：実行したい副作用（document.titleの更新）
-- `useEffect`の第2引数：依存配列（`[id]`なので、idが変わるたびに実行される）
+- `useEffect`の第1引数：実行したい副作用 (ここでは `setUser` で仮の名前をセット)
+- `useEffect`の第2引数：依存配列 (`[id]` なので、idが変わるたび実行)
 
-> **Note**: 依存配列（`[]`）が空だと、マウント時に1回だけ実行されます。
+> **Note**\
+> 復習
+>
+> 依存配列（`[]`）が空だと、マウント時に1回だけ実行されます。
 
 ## データ取得（非同期）を正しく書く
 
@@ -48,7 +56,7 @@ type User = {
   name: string;
 };
 
-export function UserCard({ id }: { id: number }) {
+function UserCard({ id }: { id: number }) {
   const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
