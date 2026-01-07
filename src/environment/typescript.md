@@ -344,7 +344,7 @@ pnpm add -D @tsconfig/vite-react
 }
 ```
 
-> **Note** > `@tsconfig/vite-react` は Vite + React に最適化された設定を提供します。必要に応じて `compilerOptions` で上書き可能です。
+> **Note**: `@tsconfig/vite-react` は Vite + React に最適化された設定を提供します。必要に応じて `compilerOptions` で上書き可能です。
 
 ## React + TypeScript実践
 
