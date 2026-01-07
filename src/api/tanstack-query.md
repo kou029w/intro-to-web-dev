@@ -1,6 +1,6 @@
 # TanStack Query入門
 
-<!-- [💡 NotebookLM で解説を聞く] -->
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/49bdc143-7554-4af7-ae13-dce3386249e4)
 
 データ取得をもっと簡単に、もっと強力に。TanStack Query（旧React Query）は、サーバー状態管理の決定版ライブラリです。キャッシュ、バックグラウンド更新、楽観的更新まで、複雑な非同期処理をシンプルに扱えます（便利ですね）。
 
