@@ -1,5 +1,7 @@
 # useSWR入門
 
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/8d68e3cb-c371-4400-9dbf-7b7547414543)
+
 データ取得をもっと楽に、もっと速く。そんな願いを叶えるのが Vercel 製のデータフェッチングライブラリ「SWR」です。Reactの`useEffect + fetch`よりもシンプルに、キャッシュや再検証（Revalidation）まで面倒を見てくれます（便利です）。
 
 ## この記事で学べること

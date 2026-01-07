@@ -1,5 +1,7 @@
 # GitHubで学ぶREST API実践
 
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/e8e56e3a-4c0e-4268-b28a-be71a7802036)
+
 GitHubのREST APIを題材に、VS Code拡張のThunder Clientとfetchの両アプローチでAPIを扱う基礎をまとめました。認証（PAT）の扱い、代表的なエンドポイント、トラブルシューティングまで一気に押さえます。
 
 ## この記事で学べること

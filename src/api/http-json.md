@@ -1,6 +1,8 @@
 # HTTPリクエストとJSON
 
-HTTPリクエストの仕組みとJSONデータの基本をつかみます。実際に動かしながら気楽にいきましょう。
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/68068ab3-d9eb-46d3-915c-ff8cf453d1ea)
+
+前回の [REST API基礎](rest-basics.md) で、REST APIの概念とメリットを学びました。今回は、HTTPリクエストの詳しい仕組みとJSONデータの実践的な扱い方を身につけます。実際に動かしながら気楽にいきましょう。
 
 ## この記事で学べること
 

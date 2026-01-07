@@ -1,5 +1,7 @@
 # useEffectによる非同期処理
 
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/6d9b22a2-bedd-43aa-b46b-5dafa570fe3a)
+
 Reactコンポーネントでデータ取得をしたい。そんなときに欠かせないのが`useEffect`です。発火のタイミング、クリーンアップ、依存配列などの基本を、実例で身につけましょう（簡単にできます）。
 
 ## この記事で学べること
@@ -13,7 +15,7 @@ Reactコンポーネントでデータ取得をしたい。そんなときに欠
 
 `useEffect`は「レンダーのあと」に実行される副作用（データ取得や購読など）を記述するためのフックです。
 
-```tsx
+```ts tsx
 import { useEffect, useState } from "react";
 
 function UserName({ id }: { id: number }) {
@@ -38,7 +40,7 @@ function UserName({ id }: { id: number }) {
 
 `useEffect`内でasync関数を直接渡すのではなく、中で宣言して呼び出します（細かいですが大事です）。
 
-```tsx
+```ts tsx
 import { useEffect, useState } from "react";
 
 type User = {
@@ -128,7 +130,7 @@ type Todo = {
 
 使用例：
 
-```tsx
+```ts tsx
 const [todo, setTodo] = useState<Todo | null>(null);
 
 // 後でこう使える
