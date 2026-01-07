@@ -37,6 +37,7 @@
 - [HTTPリクエストとJSON](api/http-json.md)
 - [fetch APIの基本](api/fetch-api.md)
 - [useEffectによる非同期処理](api/useeffect.md)
+- [TanStack Query入門](api/tanstack-query.md)
 - [useSWR入門](api/useswr.md)
 - [プロキシ確認ガイド](api/proxy.md)
 
