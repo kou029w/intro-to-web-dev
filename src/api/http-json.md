@@ -333,7 +333,7 @@ const res = await fetch(
 );
 
 // URLSearchParamsを使う方法（推奨）
-const params = new URLSearchParams({ userId: 1, _limit: 5 });
+const query = new URLSearchParams({ userId: 1, _limit: 5 });
 const res2 = await fetch(
   `https://jsonplaceholder.typicode.com/posts?${params}`,
 );
