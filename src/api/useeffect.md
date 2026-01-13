@@ -146,7 +146,7 @@ if (todo) {
 
 1. 上の`UserCard`をコピーして、`userId`を切り替えるボタンを用意
 2. 切り替え時に前のリクエストがキャンセルされることを確認（Networkタブで`(canceled)`が出るはず）
-3. `https://example.com/404`にリクエストしてエラー表示をテスト
+3. `https://jsonplaceholder.typicode.com/users/9999`にリクエストしてエラー表示をテスト
 
 ## ポイント（まとめ）
 
