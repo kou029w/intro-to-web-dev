@@ -31,27 +31,35 @@ pnpm i swr
 ```ts tsx
 import useSWR from "swr";
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+const API_BASE = "https://jsonplaceholder.typicode.com";
 
-export default function Profile() {
-  const { data, error, isLoading } = useSWR(
-    "https://jsonplaceholder.typicode.com/users/1",
-    fetcher,
-  );
+async function fetcher(url: string) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+  return res.json();
+}
+
+function UserDetail({ userId }: { userId: number }) {
+  const { data, error, isLoading } = useSWR<{
+    id: number;
+    name: string;
+    email: string;
+  }>(`${API_BASE}/users/${userId}`, fetcher);
 
   if (isLoading) return <p>読み込み中...</p>;
   if (error) return <p>エラーが発生しました</p>;
 
   return (
     <div>
-      <h2>{data.name}</h2>
+      <h4>{data.name}</h4>
+      <p>{data.email}</p>
       <small>ID: {data.id}</small>
     </div>
   );
 }
 ```
 
-> **Note**: `fetcher`は「URLを受け取ってデータを返す関数」。SWRはこの`fetcher`にURL（キー）を渡して実行します。
+> **Note**: `fetcher`は「URLを受け取ってデータを返す関数」。SWRはこの`fetcher`にURL（キー）を渡して実行します。エラー時は例外を投げることで、SWRの`error`状態が有効になります。
 
 ## ローディング・エラー・データ
 
@@ -68,26 +76,27 @@ SWRは状態管理も内蔵しています。
 ```ts tsx
 import { SWRConfig } from "swr";
 
-const fetcher = (url: string) => fetch(url).then((r) => r.json());
+async function fetcher(url: string) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
+  return res.json();
+}
 
-export function AppProviders({ children }: { children: React.ReactNode }) {
+function Providers({ children }: { children: React.ReactNode }) {
+  return <SWRConfig value={{ fetcher }}>{children}</SWRConfig>;
+}
+
+// 使い方
+function App() {
   return (
-    <SWRConfig
-      value={{
-        fetcher,
-        shouldRetryOnError: true,
-        errorRetryCount: 3,
-        revalidateOnFocus: true,
-        revalidateOnReconnect: true,
-      }}
-    >
-      {children}
-    </SWRConfig>
+    <Providers>
+      <UserDetail userId={1} />
+    </Providers>
   );
 }
 ```
 
-> **Note**: ここで指定した`fetcher`がデフォルトになります。各コンポーネントで省略可能に（楽ですね）。
+> **Note**: ここで指定した`fetcher`がデフォルトになります。各コンポーネントで`fetcher`を省略可能に（楽ですね）。
 
 ## 再検証タイミングをコントロール
 
@@ -96,111 +105,153 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
 - `refreshInterval`: 定期ポーリング（ms）。`0`で無効
 
 ```ts tsx
-const { data } = useSWR("/api/notifications", { refreshInterval: 10_000 });
+function UserDetail({ userId, enableRefresh = false }) {
+  const { data, error, isLoading } = useSWR<{
+    id: number;
+    name: string;
+    email: string;
+  }>(`${API_BASE}/users/${userId}`, {
+    refreshInterval: enableRefresh ? 5_000 : 0, // 5秒ごとに再フェッチ
+  });
+
+  // ...
+}
 ```
+
+> **Note**: `refreshInterval`を使うと、一定間隔でデータが自動更新されます。リアルタイム性が必要な場面で便利です。
 
 ## 依存キーと条件付きフェッチ
 
 キー（第1引数）に`null`を渡すとフェッチしません。必要な条件がそろうまで待てます。
 
 ```ts tsx
-function UserDetail({ id }: { id?: number }) {
+function Profile() {
+  const [userId, setUserId] = useState("");
+  const [submittedUserId, setSubmittedUserId] = useState("");
+
+  // submittedUserIdが空の場合はフェッチしない
   const { data, error, isLoading } = useSWR(
-    id ? `/api/users/${id}` : null, // idがないときはフェッチしない
+    submittedUserId ? `${API_BASE}/users/${submittedUserId}` : null,
   );
-  // ...
+
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setSubmittedUserId(userId.trim());
+      }}
+    >
+      <input
+        type="text"
+        value={userId}
+        onChange={(e) => setUserId(e.target.value)}
+        placeholder="ユーザーID"
+      />
+      <button type="submit">検索</button>
+    </form>
+  );
 }
 ```
 
-キーを配列で表現して、`fetcher`側で受け取ることもできます。
-
-```ts tsx
-const fetchUser = (_key: string, id: number) =>
-  fetch(`/api/users/${id}`).then((r) => r.json());
-const { data } = useSWR(["user", 123], fetchUser);
-```
+> **Note**: フォーム入力が完了して「検索」ボタンを押すまでリクエストは発生しません。
 
 ## ミューテーションでUIを即時更新
 
 `mutate`はキャッシュを書き換え、UIを即時反映させる関数です。サーバー反映を待たずに「先に見た目を更新」できます（便利）。
 
 ```ts tsx
-import useSWR, { mutate } from "swr";
+function Profile() {
+  const [submittedUserId, setSubmittedUserId] = useState("");
 
-function LikeButton({ postId }: { postId: number }) {
-  const key = `/api/posts/${postId}`;
-  const { data } = useSWR(key);
+  const { data, error, mutate } = useSWR(
+    submittedUserId ? `${API_BASE}/users/${submittedUserId}` : null,
+  );
 
-  const onLike = async () => {
-    // 楽観的更新（optimistic UI）
+  // 存在しないユーザーをローカルで「作成」する（mutateでキャッシュに直接書き込む）
+  const createDummyUser = () => {
     mutate(
-      key,
-      { ...data, likes: (data?.likes ?? 0) + 1 },
-      { revalidate: false },
+      {
+        id: Number(submittedUserId),
+        name: `ダミーユーザー ${submittedUserId}`,
+        email: `dummy${submittedUserId}@example.com`,
+        phone: "000-0000-0000",
+      },
+      { revalidate: false }, // サーバーに再リクエストしない
     );
-    try {
-      await fetch(`${key}/like`, { method: "POST" });
-      // サーバー確定後に再検証
-      mutate(key);
-    } catch {
-      // 失敗したら再検証で正しい値に戻す
-      mutate(key);
-    }
   };
 
-  return <button onClick={onLike}>👍 {data?.likes ?? 0}</button>;
+  // エラー時に再試行
+  const retry = () => mutate();
+
+  // ...
 }
 ```
 
+> **Note**: `mutate()`を引数なしで呼ぶと再フェッチ、データを渡すとキャッシュを直接書き換えます。`{ revalidate: false }`でサーバーへの再リクエストを抑制できます。
+
 ## SWRでのエラーハンドリング戦略
 
+エラー発生時の回復パターンを見てみましょう。
+
 ```ts tsx
-import useSWR, { SWRConfig } from "swr";
+function Profile() {
+  const [submittedUserId, setSubmittedUserId] = useState("");
+  const [shouldRetryOnError, setShouldRetryOnError] = useState(false);
 
-const fetchJSON = <T,>(url: string) =>
-  fetch(url).then(async (r) => {
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    return r.json() as Promise<T>;
-  });
+  const { data, error, isLoading, mutate } = useSWR(
+    submittedUserId ? `${API_BASE}/users/${submittedUserId}` : null,
+    { shouldRetryOnError }, // エラー時の自動リトライを制御
+  );
 
-function User() {
-  const { data, error, isLoading, mutate } = useSWR("/api/me", fetchJSON);
-  if (isLoading) return <p>読み込み中</p>;
-
-  // エラーハンドリング (1) … ここでは利用者に「何が起きたか」「どうすべきか」を明確に伝える
-  // 利用者が回復できるように mutate を提供
-  if (error) return <button onClick={() => mutate()}>再試行</button>;
-
-  return <div>{data.name}</div>;
-}
-
-export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <SWRConfig
-      value={{
-        // エラーハンドリング (2) … ここでは開発者向けに「何が起きたか」をプライバシーに配慮した範囲で伝える
-        // 具体例: グローバル通知やSentry送信など
-        onError(err) {
-          console.error("[SWR Error]", err);
-        },
-        shouldRetryOnError: true,
-        errorRetryCount: 3,
-      }}
-    >
-      {children}
-    </SWRConfig>
+    <>
+      {error && !isLoading && (
+        <div>
+          <p>ユーザー {submittedUserId} が見つかりません</p>
+          <button onClick={() => mutate()}>再試行</button>
+          <button onClick={createDummyUser}>ユーザーを作成</button>
+        </div>
+      )}
+
+      {data && !error && (
+        <div>
+          <p>{data.name}</p>
+          <p>{data.email}</p>
+        </div>
+      )}
+    </>
   );
 }
 ```
 
+> **Note**: `shouldRetryOnError`オプションでエラー時の自動リトライを制御できます。手動で再試行させたい場合は`false`に設定し、`mutate()`で明示的に再フェッチします。
+
 ## やってみよう！
 
-1. URLを`/users/2`に変えて結果の差を確認
-2. 同じコンポーネントを2つ置いて、2回目が高速表示（キャッシュ命中）されることを体験
-3. ネットワークを「低速 4G」にしてSWRの体験を比較（Chrome DevTools > Network）
-4. `refreshInterval: 5000` を設定して、一定間隔でデータが更新される様子を確認
-5. `mutate`で「楽観的更新」を体験（いいねボタンなど）
-6. 条件付きフェッチで「フォーム入力完了まで待つ」UIを実装
+![https://developer.stackblitz.com/img/open_in_stackblitz.svg](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/useswr?file=src%2FApp.tsx)
+
+サンプルコードには3つのセクションがあります。
+
+### 1. キャッシュ共有 + 定期更新
+
+- 同じURLを参照する複数のコンポーネントがキャッシュを共有することを確認
+- ユーザーIDを切り替えて、2回目以降は即座に表示される（キャッシュヒット）ことを体験
+- DevTools Networkで1回のみリクエストされることを確認
+- 「自動更新」チェックボックスで5秒間隔の`refreshInterval`を体験
+
+### 2. キーの先行切り替え
+
+- IDを変更すると、IDは即座に切り替わるがデータは後から到着する様子を観察
+- SWRのキー変更でリクエストが発生する仕組みを理解
+
+### 3. 条件付きフェッチ + エラーハンドリング
+
+- IDを入力して「検索」を押すまでリクエストが発生しないことを確認
+- 存在しないID（11以上）を入力してエラーハンドリングを体験
+- 「再試行」ボタンで`mutate()`による再フェッチを体験
+- 「ユーザーを作成」ボタンで`mutate()`によるキャッシュ書き込みを体験
+
+> **Tip**: Chrome DevTools > Network を「低速 4G」にすると、SWRの挙動がより分かりやすくなります。
 
 ## ポイント（まとめ）
 
