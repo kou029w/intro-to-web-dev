@@ -33,18 +33,17 @@ import useSWR from "swr";
 
 const API_BASE = "https://jsonplaceholder.typicode.com";
 
-async function fetcher(url: string) {
+async function fetcher(url) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
   return res.json();
 }
 
-function UserDetail({ userId }: { userId: number }) {
-  const { data, error, isLoading } = useSWR<{
-    id: number;
-    name: string;
-    email: string;
-  }>(`${API_BASE}/users/${userId}`, fetcher);
+function UserDetail({ userId }) {
+  const { data, error, isLoading } = useSWR(
+    `${API_BASE}/users/${userId}`,
+    fetcher,
+  );
 
   if (isLoading) return <p>読み込み中...</p>;
   if (error) return <p>エラーが発生しました</p>;
@@ -76,13 +75,13 @@ SWRは状態管理も内蔵しています。
 ```ts tsx
 import { SWRConfig } from "swr";
 
-async function fetcher(url: string) {
+async function fetcher(url) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
   return res.json();
 }
 
-function Providers({ children }: { children: React.ReactNode }) {
+function Providers({ children }) {
   return <SWRConfig value={{ fetcher }}>{children}</SWRConfig>;
 }
 
@@ -106,11 +105,7 @@ function App() {
 
 ```ts tsx
 function UserDetail({ userId, enableRefresh = false }) {
-  const { data, error, isLoading } = useSWR<{
-    id: number;
-    name: string;
-    email: string;
-  }>(`${API_BASE}/users/${userId}`, {
+  const { data, error, isLoading } = useSWR(`${API_BASE}/users/${userId}`, {
     refreshInterval: enableRefresh ? 5_000 : 0, // 5秒ごとに再フェッチ
   });
 
