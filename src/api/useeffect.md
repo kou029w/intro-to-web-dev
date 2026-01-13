@@ -18,13 +18,8 @@ Reactコンポーネントでデータ取得をしたい。そんなときに欠
 ```ts tsx
 import { useEffect, useState } from "react";
 
-type User = {
-  id: number;
-  name: string;
-};
-
-function UserCard({ id }: { id: number }) {
-  const [user, setUser] = useState<User | null>(null);
+function UserCard({ id }) {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     setUser({ id, name: `ユーザー${id}` });
@@ -51,13 +46,8 @@ function UserCard({ id }: { id: number }) {
 ```ts tsx
 import { useEffect, useState } from "react";
 
-type User = {
-  id: number;
-  name: string;
-};
-
-function UserCard({ id }: { id: number }) {
-  const [user, setUser] = useState<User | null>(null);
+function UserCard({ id }) {
+  const [user, setUser] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
