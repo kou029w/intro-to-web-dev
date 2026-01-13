@@ -197,7 +197,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 1. URLを`/users/2`に変えて結果の差を確認
 2. 同じコンポーネントを2つ置いて、2回目が高速表示（キャッシュ命中）されることを体験
-3. ネットワークを「Slow 3G」にしてSWRの体験を比較（Chrome DevTools > Network）
+3. ネットワークを「低速 4G」にしてSWRの体験を比較（Chrome DevTools > Network）
 4. `refreshInterval: 5000` を設定して、一定間隔でデータが更新される様子を確認
 5. `mutate`で「楽観的更新」を体験（いいねボタンなど）
 6. 条件付きフェッチで「フォーム入力完了まで待つ」UIを実装
