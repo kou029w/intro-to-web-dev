@@ -124,13 +124,7 @@ await fetch("https://api.github.com/repos/OWNER/REPO/issues", {
 
 1. 非認証で `/users/octocat` を取得し、`public_repos` を表示
 2. PATを作成し、認証付きで `/user` を叩いて自分の情報を取得
-3. （発展）サーバー側で自分のリポジトリにIssueを1件作成
-4. （応用）Thunder Clientで別の公開API（例: OpenWeather）を叩いてレスポンスを観察
-
-OpenWeatherの例:
-
-- URL: `http://api.openweathermap.org/data/2.5/weather`
-- Query: `?q=London&appid={API_KEY}`
+3. （発展）別の公開APIを叩いてレスポンスを観察
 
 ## 参考リンク
 
