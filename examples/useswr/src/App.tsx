@@ -28,7 +28,7 @@ function UserDetail({ userId, enableRefresh = false }) {
     name: string;
     email: string;
   }>(`${API_BASE}/users/${userId}`, {
-    refreshInterval: enableRefresh ? 5_000 : 0,
+    refreshInterval: enableRefresh ? 5000 : 0,
   });
 
   return (

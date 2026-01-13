@@ -2,30 +2,20 @@
 
 [💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/49bdc143-7554-4af7-ae13-dce3386249e4)
 
-データ取得をもっと簡単に、もっと強力に。TanStack Query（旧React Query）は、サーバー状態管理の決定版ライブラリです。キャッシュ、バックグラウンド更新、楽観的更新まで、複雑な非同期処理をシンプルに扱えます（便利ですね）。
+データ取得をもっと簡単に、もっと強力に。TanStack Query（旧React Query）は、サーバー状態管理の決定版ライブラリです。
+キャッシュ、バックグラウンド更新、楽観的更新まで、複雑な非同期処理を実装するための便利な機能が満載です。
 
-## この記事で学べること
+## SWRとの違い
 
-- TanStack Queryの基本概念
-- `useQuery`によるデータ取得
-- ローディング・エラー状態の扱い方
-- `QueryClient`によるグローバル設定
-- 再検証のタイミング制御（focus/staleTime/gcTime）
-- 条件付きフェッチ（enabled）
-- `useMutation`によるデータ更新と楽観的更新
+TanStack QueryとSWRはどちらも人気のあるサーバー状態管理ライブラリですが、いくつかの違いがあります。
 
-## TanStack Queryとは
-
-TanStack Queryは「サーバー状態」を管理するためのライブラリです。
-
-サーバー状態とは、APIから取得したデータのこと。これはクライアント状態（フォームの入力値やモーダルの開閉など）とは異なり、以下の特徴があります。
-
-- **リモートに保存されている**：サーバー上にあるデータ
-- **非同期で取得・更新する**：ネットワーク越しにやり取り
-- **他のユーザーが変更する可能性がある**：常に最新とは限らない
-- **古くなる可能性がある**：キャッシュの有効期限管理が必要
-
-TanStack Queryはこれらの課題を解決し、キャッシュ管理・バックグラウンド更新・エラーハンドリング・再試行などを自動で行ってくれます。
+| 特徴             | TanStack Query   | SWR                |
+| ---------------- | ---------------- | ------------------ |
+| バンドルサイズ   | やや大きい       | 小さい             |
+| 学習コスト       | やや高い         | 低い               |
+| 楽観的更新       | 組み込みサポート | 手動実装           |
+| Mutation専用Hook | `useMutation`    | なし（手動で実装） |
+| 公式DevTools     | あり             | なし               |
 
 ## まずは使ってみる
 
@@ -58,8 +48,11 @@ export default function App() {
 
 function Profile() {
   const { data, error, isPending } = useQuery({
-    queryKey: ["user", 1], // キャッシュのキー
-    queryFn: async () => {
+    // キャッシュを識別するキー: 同じキーを持つクエリはキャッシュを共有します
+    queryKey: ["user", 1],
+
+    // データを取得する非同期関数
+    async queryFn() {
       const res = await fetch("https://jsonplaceholder.typicode.com/users/1");
       return res.json();
     },
@@ -76,8 +69,6 @@ function Profile() {
   );
 }
 ```
-
-> **Note:** `queryKey`はキャッシュを識別するためのキーです。同じキーを持つクエリはキャッシュを共有します。`queryFn`はデータを取得する非同期関数です。
 
 ## ローディング・エラー・データ
 
@@ -269,62 +260,15 @@ const likeMutation = useMutation({
 });
 ```
 
-## DevToolsで状態を確認
-
-TanStack Query DevToolsを使うと、キャッシュの状態やクエリの動作を視覚的に確認できます。
-
-```bash
-pnpm i @tanstack/react-query-devtools
-```
-
-```ts tsx
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <YourApp />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
-  );
-}
-```
-
-開発モードでのみ表示され、本番ビルドでは自動的に除外されます（便利ですね）。
-
 ## やってみよう！
 
+1. [useSWR入門](swr.md) のコードを TanStack Query に書き換えてみる
 1. `queryKey`を`["user", 2]`に変えて、別のユーザーを取得してみる
-2. 同じ`queryKey`を持つコンポーネントを2つ配置して、キャッシュ共有を確認
-3. `staleTime: 30000`を設定して、30秒間は再取得しないことを確認
-4. `refetchInterval: 5000`で5秒ごとにポーリングする様子を確認
-5. DevToolsでキャッシュの状態を観察
-6. `useMutation`で楽観的更新を実装してみる
-
-## SWRとの違い
-
-同様のライブラリにSWR（Vercel製）があります。選択の参考に：
-
-| 特徴             | TanStack Query   | SWR                |
-| ---------------- | ---------------- | ------------------ |
-| バンドルサイズ   | やや大きい       | 小さい             |
-| 学習コスト       | やや高い         | 低い               |
-| 楽観的更新       | 組み込みサポート | 手動実装           |
-| Mutation専用Hook | `useMutation`    | なし（手動で実装） |
-
-シンプルなデータ取得ならSWR、複雑なミューテーションや状態管理が必要ならTanStack Queryがおすすめです。
-
-## ポイント（まとめ）
-
-- TanStack Queryは「サーバー状態」を管理するライブラリ
-- `useQuery({ queryKey, queryFn })`でデータ取得
-- `queryKey`でキャッシュを識別・共有
-- `isPending`/`isError`/`data`で状態を判定
-- `QueryClient`でグローバル設定（staleTime, gcTime, retry）
-- `enabled`オプションで条件付きフェッチ
-- `useMutation`でデータ更新（CRUD操作）
-- `invalidateQueries`でキャッシュを無効化して再取得
-- 楽観的更新で高速なUX実現
+1. 同じ`queryKey`を持つコンポーネントを2つ配置して、キャッシュ共有を確認
+1. `staleTime: 30000`を設定して、30秒間は再取得しないことを確認
+1. `refetchInterval: 5000`で5秒ごとにポーリングする様子を確認
+1. `useMutation`で楽観的更新を実装してみる
+1. [TanStack DevTools](https://tanstack.com/devtools/latest) を使ってみる
 
 ## 参考リンク
 

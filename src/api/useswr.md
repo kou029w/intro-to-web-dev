@@ -2,23 +2,33 @@
 
 [💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/8d68e3cb-c371-4400-9dbf-7b7547414543)
 
-データ取得をもっと楽に、もっと速く。そんな願いを叶えるのが Vercel 製のデータフェッチングライブラリ「SWR」です。Reactの`useEffect + fetch`よりもシンプルに、キャッシュや再検証（Revalidation）まで面倒を見てくれます（便利です）。
+データ取得をもっと楽に、もっと速く。そんな願いを叶えるのが「[SWR](https://swr.vercel.app/)」です。
+Reactの`useEffect + fetch`よりも簡単なコードで、またキャッシュ管理・バックグラウンド更新・エラーハンドリング・再試行などを自動で行ってくれます。
 
 ## この記事で学べること
 
 - SWRの基本概念（Stale-While-Revalidate）
-- 最小コードでのデータ取得
-- ローディング・エラー表示のパターン
+- データ取得
+- 状態管理（isLoading/error/data）
 - グローバル設定（SWRConfig）
 - 再検証のタイミング制御（focus/reconnect/interval）
-- ミューテーション（書き込みとキャッシュ更新）
 - 依存キー・条件付きフェッチ
+- ミューテーション（書き込みとキャッシュ更新）
 
-## 基本概念：Stale-While-Revalidate とは
+## 基本概念: Stale-While-Revalidate とは
 
-SWRは「手元のキャッシュ（stale）をすぐ表示しつつ、裏で最新データを取りに行き（revalidate）、更新できたらUIを差し替える」という戦略です。ユーザーは待たされず、でもデータは新鮮。いいとこ取りというわけです。
+SWRは「手元のキャッシュ（stale）をすぐ表示しつつ、裏で最新データを取りに行き（revalidate）、更新できたらUIを差し替える」という戦略です。
+ユーザーは待たされず、でもデータは最新、という理想的なユーザー体験が得られます。いいとこ取りというわけです。
 
-## まずは使ってみる
+<!-- ## まずは試してみる -->
+
+<iframe
+  src="https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/swr-infinite?file=src%2FApp.tsx&embed=1&view=both&hideExplorer=1&hideNavigation=1"
+  style="width:100%; height:500px; border:none;"
+  title="useSWR入門"
+></iframe>
+
+## useSWRを使ってみる
 
 インストール（プロジェクトで一度だけ）
 
@@ -60,11 +70,11 @@ function UserDetail({ userId }) {
 
 > **Note**: `fetcher`は「URLを受け取ってデータを返す関数」。SWRはこの`fetcher`にURL（キー）を渡して実行します。エラー時は例外を投げることで、SWRの`error`状態が有効になります。
 
-## ローディング・エラー・データ
+## 状態管理
 
 SWRは状態管理も内蔵しています。
 
-- `isLoading`: まだ最初のデータがない状態
+- `isLoading`: 読み込み中
 - `error`: フェッチに失敗したときのエラー
 - `data`: フェッチ済みデータ（キャッシュを含む）
 
@@ -106,7 +116,7 @@ function App() {
 ```ts tsx
 function UserDetail({ userId, enableRefresh = false }) {
   const { data, error, isLoading } = useSWR(`${API_BASE}/users/${userId}`, {
-    refreshInterval: enableRefresh ? 5_000 : 0, // 5秒ごとに再フェッチ
+    refreshInterval: enableRefresh ? 5000 : 0, // 5秒ごとに再フェッチ
   });
 
   // ...
