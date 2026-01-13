@@ -61,7 +61,7 @@ Accept-Language: en, mi
 > [HTTP/1.1](https://www.rfc-editor.org/rfc/rfc9112.html)は1995年に公開され、2022年に最新版に改定されました。
 > HTTP/1.1は現在も使われ続けています。
 > 一方、[HTTP/2](https://www.rfc-editor.org/rfc/rfc9113.html)は2022年に公開されました。
-> HTTP/2はHTTP/1.1とは異なり複数のメッセージを同時に扱える、コンピューターにとってより効率的な形式のシンタックスが特徴の新しい仕様です。
+> HTTP/2はHTTP/1.1とは異なり複数のメッセージを同時に扱える、コンピューターにとってより効率的な形式の仕様です。
 > HTTP/2ではリクエストラインの代わりに一貫してフィールドを使うなどHTTP/1.1と文法が大きく異なりますがその意味は全く変わりません。
 >
 > [HTTP/2 仕様のリクエストの例](https://www.rfc-editor.org/rfc/rfc9113.html#section-8.8.1):
