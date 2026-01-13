@@ -1,5 +1,11 @@
 # REST API基礎
 
+<iframe 
+  src="https://docs.google.com/presentation/d/1FyKqP75lrCfKIQQvX-IAg7_CluVLJ6yu/embed" 
+  style="border: none; width: 100%; max-width: 960px; aspect-ratio: 16 / 9;" 
+  allowfullscreen="true">
+</iframe>
+
 [💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/dc7a1bfb-7b04-43cc-b4b3-11c50917edb5)
 
 Web開発において重要なREST APIの基本的な概念と仕組みについて学んでいきましょう。REST APIを理解することで、Webアプリケーション開発の土台を築けます。
