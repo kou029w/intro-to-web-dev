@@ -1,7 +1,7 @@
 # REST API基礎
 
 <iframe 
-  src="https://docs.google.com/presentation/d/1FyKqP75lrCfKIQQvX-IAg7_CluVLJ6yu/embed" 
+  src="https://drive.google.com/file/d/1FyKqP75lrCfKIQQvX-IAg7_CluVLJ6yu/preview" 
   style="border: none; width: 100%; max-width: 960px; aspect-ratio: 16 / 9;" 
   allowfullscreen="true">
 </iframe>
