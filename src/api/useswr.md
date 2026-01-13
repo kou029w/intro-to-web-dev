@@ -228,7 +228,7 @@ function Profile() {
 
 ## やってみよう！
 
-![https://developer.stackblitz.com/img/open_in_stackblitz.svg](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/useswr?file=src%2FApp.tsx)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/useswr?file=src%2FApp.tsx)
 
 サンプルコードには3つのセクションがあります。
 
