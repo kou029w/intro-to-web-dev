@@ -120,7 +120,7 @@ await fetch("https://api.github.com/repos/OWNER/REPO/issues", {
 - 422 Unprocessable Entity: 入力不足・不正。必須パラメータやJSONの形を見直す
 - レート制限: 未認証は特に制限が厳しい。認証＋適切なヘッダーを付与
 
-## 演習
+## やってみよう！
 
 1. 非認証で `/users/octocat` を取得し、`public_repos` を表示
 2. PATを作成し、認証付きで `/user` を叩いて自分の情報を取得
