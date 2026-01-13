@@ -65,39 +65,12 @@ function UserCard({ userId }) {
 // - IDを変更して結果の差を確認
 // ========================================
 function User() {
-  const [userId, setUserId] = useState(1);
+  const userId = 1;
 
   return (
     <section style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
       <h2>useEffect + fetch</h2>
-
-      <div
-        style={{
-          display: "flex",
-          gap: "1rem",
-          alignItems: "center",
-        }}
-      >
-        <label style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          ユーザーID:
-          <select
-            value={userId}
-            onChange={(e) => setUserId(Number(e.target.value))}
-          >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((id) => (
-              <option key={id} value={id}>
-                {id}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-        <UserCard userId={userId} />
-        <UserCard userId={userId} />
-        <UserCard userId={userId} />
-      </div>
+      <UserCard userId={userId} />
     </section>
   );
 }
