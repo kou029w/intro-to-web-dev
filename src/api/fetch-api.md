@@ -36,7 +36,7 @@ Promiseは「将来の結果を約束するオブジェクト」です。APIリ�
 ```js
 // fetchはPromiseを返す
 const promise = fetch("https://jsonplaceholder.typicode.com/posts/1");
-console.log(promise); // Promise { <pending> }
+console.log(promise); // Promise { <pending> } (DevToolsで確認可能)
 ```
 
 ### .then()で結果を受け取る
@@ -65,7 +65,7 @@ async function getPost() {
   console.log(data.title);
 }
 
-getPost();
+await getPost();
 ```
 
 `await`は「Promiseの結果が返ってくるまで待つ」という意味です。`await`を使うには、関数に`async`キーワードを付ける必要があります。
@@ -107,6 +107,8 @@ async function fetchWithHeaders(url) {
   });
   return response.json();
 }
+
+await fetchWithHeaders("https://jsonplaceholder.typicode.com/users/1");
 ```
 
 ### クエリパラメータの扱い
@@ -124,6 +126,10 @@ async function searchUsers(query, limit = 10) {
   const response = await fetch(url);
   return response.json();
 }
+
+// 使用例
+const results = await searchUsers("Leanne");
+console.log(results);
 ```
 
 `URLSearchParams`はエンコードも自動でやってくれます（日本語なども安全に扱えます）。
@@ -191,6 +197,10 @@ async function deletePost(id) {
   );
   return response.ok; // 成功ならtrue
 }
+
+// 例
+await updatePost(1, { title: "Updated", body: "Updated body", userId: 1 });
+await deletePost(1);
 ```
 
 ## エラーハンドリング
@@ -222,53 +232,12 @@ async function fetchPost(id) {
 
   return response.json();
 }
+
+await fetchPost(9999); // HTTP 404の場合、例外が投げられる
 ```
 
 `response.ok`は、ステータスコードが200-299の範囲なら`true`になります。
-
-### try-catchで包む
-
-```js
-async function safeFetch(url) {
-  try {
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    // ネットワークエラー or 上で投げたエラー
-    console.error("Fetch failed:", error.message);
-    throw error; // 再度投げるか、代替値を返す
-  }
-}
-```
-
-### エラーレスポンスのボディを読む
-
-APIによっては、エラー時にJSON形式で詳細を返すものもあります。
-
-```js
-async function fetchWithErrorDetail(url) {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    // エラーレスポンスのボディを読む
-    let errorMessage = `HTTP ${response.status}`;
-    try {
-      const errorBody = await response.json();
-      errorMessage = errorBody.message || errorMessage;
-    } catch {
-      // JSONでない場合は無視
-    }
-    throw new Error(errorMessage);
-  }
-
-  return response.json();
-}
-```
+開発者がレスポンスを確認し適切に対処できるようになっています。
 
 ## AbortControllerによるキャンセル
 
@@ -278,14 +247,13 @@ async function fetchWithErrorDetail(url) {
 
 ```js
 const controller = new AbortController();
-const { signal } = controller;
 
-// 3秒後にキャンセル
-setTimeout(() => controller.abort(), 3000);
+// 10msでキャンセル
+setTimeout(() => controller.abort(), 10);
 
 try {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts/1", {
-    signal,
+    signal: controller.signal,
   });
   const data = await response.json();
   console.log(data);
@@ -298,28 +266,7 @@ try {
 }
 ```
 
-### タイムアウトの実装
-
-```js
-async function fetchWithTimeout(url, timeoutMs = 5000) {
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-
-  try {
-    const response = await fetch(url, { signal: controller.signal });
-    clearTimeout(timeoutId);
-    return response;
-  } catch (error) {
-    clearTimeout(timeoutId);
-    if (error.name === "AbortError") {
-      throw new Error(`Request timed out after ${timeoutMs}ms`);
-    }
-    throw error;
-  }
-}
-```
-
-> **Note**: Reactでは、コンポーネントのアンマウント時にリクエストをキャンセルするのがベストプラクティスです。次回の「useEffectによる非同期処理」で詳しく扱います。
+> **Note**: Reactでは、コンポーネントのアンマウント時にリクエストをキャンセルするのがベストプラクティスです。詳しくは「[useEffectによる非同期処理](use-effect.md)」で解説します。
 
 ## TypeScriptでの型付け
 
@@ -375,8 +322,7 @@ console.log("作成されたID:", created.id);
 3. エラーハンドリングを確認
 
 ```js
-// 存在しないエンドポイント
-const res = await fetch("https://example.com/404");
+const res = await fetch("https://httpbin.org/status/404");
 console.log("ok:", res.ok); // false
 console.log("status:", res.status); // 404
 ```

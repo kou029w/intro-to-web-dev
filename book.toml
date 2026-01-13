@@ -10,4 +10,5 @@ site-url = "/intro-to-web-dev/"
 additional-js = [
   "js/external-links.js",
   "js/regexp-search.js",
+  "js/interactive-code.js",
 ]

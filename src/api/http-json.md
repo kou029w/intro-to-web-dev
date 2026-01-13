@@ -171,18 +171,21 @@ JavaScriptでは`fetch`を使って簡単にJSONを取得できます。
 ### 基本のパターン
 
 ```js
-async function getPost() {
+async function getData() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
 
   if (!res.ok) {
     throw new Error(`HTTP ${res.status}`);
   }
 
+  // res.text() ではなく res.json() なのがポイント
   const data = await res.json();
   return data;
 }
 
-getPost().then(console.log).catch(console.error);
+const data = await getData();
+console.log(data);
+console.log(typeof data);
 ```
 
 この例では：
@@ -197,7 +200,7 @@ getPost().then(console.log).catch(console.error);
 
 ```js
 async function getData() {
-  const res = await fetch("https://example.com/api/data");
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
 
   const contentType = res.headers.get("content-type");
 
@@ -207,6 +210,10 @@ async function getData() {
     return await res.text();
   }
 }
+
+const data = await getData();
+console.log(data);
+console.log(typeof data); // "object" か "string"
 ```
 
 なぜこうするのか：サーバーがエラーメッセージをHTMLやテキストで返すことがあります。そのときに`res.json()`を呼ぶとエラーになるため、Content-Typeヘッダーで判断します。
@@ -232,9 +239,8 @@ async function createPost(post) {
   return await res.json();
 }
 
-createPost({ title: "Hello", body: "World", userId: 1 })
-  .then(console.log)
-  .catch(console.error);
+const data = await createPost({ title: "Hello", body: "World", userId: 1 });
+console.log(data);
 ```
 
 ポイント：
@@ -257,7 +263,7 @@ JavaScriptの`fetch`は、ネットワークに到達できれば例外を投げ
 
 ```js
 async function fetchUser(id) {
-  const res = await fetch(`https://api.example.com/users/${id}`);
+  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
 
   if (!res.ok) {
     throw new Error(`エラー: HTTP ${res.status}`);
@@ -265,6 +271,10 @@ async function fetchUser(id) {
 
   return await res.json();
 }
+
+// 使用例
+const data = await fetchUser(9999);
+console.log(data);
 ```
 
 なぜこうするのか：`res.ok`をチェックしないと、404エラーでも`res.json()`を呼んでしまい、意図しない動作になります。
@@ -276,9 +286,9 @@ async function fetchUser(id) {
 3. `fetch`で同じURLを読み込み、配列長を`console.log`してみる
 
 ```js
-fetch("https://jsonplaceholder.typicode.com/users")
-  .then((res) => res.json())
-  .then((users) => console.log("件数:", users.length));
+const res = await fetch("https://jsonplaceholder.typicode.com/users");
+const data = await res.json();
+console.log("件数:", data.length);
 ```
 
 ## 実践的なパターン
@@ -303,6 +313,8 @@ async function fetchWithAuth() {
 
   return await res.json();
 }
+
+await fetchWithAuth();
 ```
 
 なぜこうするのか：サーバーは`Authorization`ヘッダーで「誰がアクセスしているか」を確認します。`Bearer`はトークン認証の標準的な方式です。
@@ -359,10 +371,8 @@ async function fetchWithDetailedError(url) {
   return await res.json();
 }
 
-// 使用例
-fetchWithDetailedError("https://jsonplaceholder.typicode.com/posts/999999")
-  .then(console.log)
-  .catch((error) => console.error("エラー:", error.message));
+// サーバーエラーが発生!
+await fetchWithDetailedError("https://httpbin.org/status/500");
 ```
 
 なぜこうするのか：エラーの原因が分かれば、ユーザーに「再ログインしてください」「URLを確認してください」といった具体的な対処法を案内できます。
@@ -397,9 +407,8 @@ async function getUserWithPosts(userId) {
 }
 
 // 使用例
-getUserWithPosts(1).then((data) => {
-  console.log(`${data.name}さんの投稿数: ${data.posts.length}`);
-});
+const data = await getUserWithPosts(1);
+console.log(`${data.name}さんの投稿数: ${data.posts.length}`);
 ```
 
 なぜこうするのか：ユーザーのプロフィールページを表示するとき、「ユーザー情報」と「そのユーザーの投稿一覧」を両方取得する必要があります。このように複数のAPIを組み合わせることで、より豊かなアプリケーションが作れます。
