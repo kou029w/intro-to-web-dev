@@ -18,12 +18,12 @@ Reactコンポーネントでデータ取得をしたい。そんなときに欠
 ```ts tsx
 import { useEffect, useState } from "react";
 
-function UserCard({ id }) {
+function UserCard({ userId }) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    setUser({ id, name: `ユーザー${id}` });
-  }, [id]);
+    setUser({ id: userId, name: `ユーザー${userId}` });
+  }, [userId]);
 
   return <h2>{user?.name || "loading..."}</h2>;
 }
@@ -32,7 +32,7 @@ function UserCard({ id }) {
 この例では：
 
 - `useEffect`の第1引数：実行したい副作用 (ここでは `setUser` で仮の名前をセット)
-- `useEffect`の第2引数：依存配列 (`[id]` なので、idが変わるたび実行)
+- `useEffect`の第2引数：依存配列 (`[userId]` なので、userIdが変わるたび実行)
 
 > **Note**\
 > 復習
@@ -46,7 +46,7 @@ function UserCard({ id }) {
 ```ts tsx
 import { useEffect, useState } from "react";
 
-function UserCard({ id }) {
+function UserCard({ userId }) {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ function UserCard({ id }) {
         setError("");
 
         const res = await fetch(
-          `https://jsonplaceholder.typicode.com/users/${id}`,
+          `https://jsonplaceholder.typicode.com/users/${userId}`,
           { signal: controller.signal },
         );
 
@@ -82,7 +82,7 @@ function UserCard({ id }) {
 
     loadUser();
     return () => controller.abort();
-  }, [id]);
+  }, [userId]);
 
   if (loading) return <p>読み込み中...</p>;
   if (error) return <p style={{ color: "crimson" }}>エラー: {error}</p>;
@@ -101,7 +101,7 @@ function UserCard({ id }) {
 
 1. **AbortController**: コンポーネントがアンマウントされたときにfetchをキャンセル
 2. **3つの状態管理**: loading（読み込み中）、error（エラー）、user（成功時のデータ）
-3. **依存配列 `[id]`**: idが変わるたびに新しいデータを取得
+3. **依存配列 `[userId]`**: userIdが変わるたびに新しいデータを取得
 4. **クリーンアップ関数**: `return () => controller.abort()` で前のリクエストをキャンセル
 
 なぜAbortControllerが必要か：ユーザーが素早く別のユーザーに切り替えたとき、古いリクエストが完了してしまうと、新しいデータが古いデータで上書きされる問題が起きます。
@@ -142,7 +142,9 @@ if (todo) {
 
 ## やってみよう！
 
-1. 上の`UserCard`をコピーして、`id`を切り替えるボタンを用意
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/useeffect?file=src%2FApp.tsx)
+
+1. 上の`UserCard`をコピーして、`userId`を切り替えるボタンを用意
 2. 切り替え時に前のリクエストがキャンセルされることを確認（Networkタブで`(canceled)`が出るはず）
 3. `https://example.com/404`にリクエストしてエラー表示をテスト
 

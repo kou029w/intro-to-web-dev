@@ -63,7 +63,7 @@ function User() {
 
   return (
     <section style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <h2 style={{}}>1. キャッシュ共有 + 定期更新</h2>
+      <h2>1. キャッシュ共有 + 定期更新</h2>
       <p style={{ fontSize: "0.9rem", color: "#666" }}>
         同じURLを参照する2つのコンポーネントがキャッシュを共有。
         <br />
