@@ -34,6 +34,7 @@ function FilmList({ onSelect }) {
         className="w-full rounded-xl border border-gray-300 bg-white px-4 py-2 shadow"
         onChange={(e) => onSelect(e.target.value)}
       >
+        <option value="">-</option>
         {data.map((f) => (
           <option key={f.id} value={f.id}>
             {f.original_title} - {f.title}
