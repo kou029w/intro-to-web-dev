@@ -42,9 +42,8 @@ function UserCard({ userId }) {
     return () => controller.abort();
   }, [userId]);
 
-  if (loading) return <p>読み込み中...</p>;
+  if (!user || loading) return <p>読み込み中...</p>;
   if (error) return <p style={{ color: "crimson" }}>エラー: {error}</p>;
-  if (!user) return null;
 
   return (
     <div
