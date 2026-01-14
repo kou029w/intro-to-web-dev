@@ -81,6 +81,17 @@ function Profile() {
 - `error`: エラー情報
 - `isFetching`: バックグラウンドで再取得中
 
+> **Note**\
+> SWRとの対応表
+>
+> | SWR            | TanStack Query      |
+> | -------------- | ------------------- |
+> | `isLoading`    | `isPending`         |
+> | `isValidating` | `isFetching`        |
+> | `error`        | `isError` + `error` |
+> | `data`         | `data`              |
+> | (なし)         | `isSuccess`         |
+
 ```ts tsx
 function Todos() {
   const { isPending, isError, data, error } = useQuery({
@@ -107,7 +118,7 @@ function Todos() {
 }
 ```
 
-> `isPending`でも既にキャッシュがあれば`data`が存在する場合があります（バックグラウンド更新中）。`isFetching`で更新中かどうかを確認できます。
+> **Note**: `isPending`でも既にキャッシュがあれば`data`が存在する場合があります（バックグラウンド更新中）。`isFetching`で更新中かどうかを確認できます。
 
 ## QueryClientでグローバル設定
 
