@@ -102,7 +102,7 @@ export default function App() {
           </li>
           <li>どれかの「映画」を選択</li>
           <li>
-            画像＋説明が<b>即表示</b>される
+            一度選択した映画の画像＋説明が<b>即表示</b>される
           </li>
           <li>
             タブを切り替えて戻す（<code>revalidateOnFocus</code>）
