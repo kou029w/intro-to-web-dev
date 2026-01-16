@@ -128,7 +128,7 @@ http.createServer((req, res) => { ... });
 
 Honoを使えば、**どの環境でも同じコードが動きます**。
 
-```typescript
+```js
 // どの環境でもこのコードでOK
 import { Hono } from "hono";
 const app = new Hono();
@@ -140,9 +140,9 @@ export default app;
 
 ## Honoを使った実践例
 
-### 例1：シンプルなAPIサーバー
+### 例1: シンプルなAPIサーバー
 
-```typescript
+```js
 import { Hono } from "hono";
 
 const app = new Hono();
@@ -164,11 +164,11 @@ app.get("/api/users/:id", (c) => {
 export default app;
 ```
 
-### 例2：ミドルウェアの活用
+### 例2: ミドルウェアの活用
 
 ミドルウェアとは、リクエストを処理する「途中の処理」のことです。
 
-```typescript
+```js
 import { Hono } from "hono";
 import { logger } from "hono/logger"; // ログ出力
 import { cors } from "hono/cors"; // CORS対応
