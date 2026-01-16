@@ -171,5 +171,3 @@ app.get('/api/search', async (c) => {
 ## 参考文献
 
 - [Hono公式サイト](https://hono.dev/)
-- [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/)
-- [Deno Deploy documentation](https://deno.com/deploy/docs)
