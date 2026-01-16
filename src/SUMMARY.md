@@ -27,7 +27,7 @@
   - [TanStack Query入門](api/tanstack-query.md)
   - [プロキシ確認ガイド](api/proxy.md)
 - [Honoハンズオン](hono/index.md)
-  - [Hono概要とエッジランタイム思想](hono/hono-overview.md)
+  - [Honoとエッジランタイム思想](hono/overview.md)
   - [Hello Worldとローカル実行](hono/hello-world.md)
   - [ルーティング基礎](hono/routing.md)
   - [JSONレスポンスとリクエスト処理](hono/json-handling.md)
