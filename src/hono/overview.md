@@ -114,16 +114,16 @@ export default app;
 
 従来、エッジランタイムごとに異なる書き方が必要でした。
 
-```javascript
+```js
 // Cloudflare Workers用
-export default { fetch(request, env) { ... } }
+export default { fetch(req, env) { ... } }
 
 // Deno用
-Deno.serve((req) => { ... })
+Deno.serve((req) => { ... });
 
 // Node.js用
-const http = require('http')
-http.createServer((req, res) => { ... })
+import http from "node:http";
+http.createServer((req, res) => { ... });
 ```
 
 Honoを使えば、**どの環境でも同じコードが動きます**。
