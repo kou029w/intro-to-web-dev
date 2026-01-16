@@ -43,16 +43,9 @@
 
 ## Honoハンズオン
 
-- [Honoとエッジランタイム思想](hono/overview.md)
+- [Honoとエッジランタイム](hono/overview.md)
 - [Hello Worldとローカル実行](hono/hello-world.md)
-- [ルーティング基礎](hono/routing.md)
-- [JSONレスポンスとリクエスト処理](hono/json-handling.md)
-- [ミドルウェア活用](hono/middleware.md)
-- [ファイル構成とコード分割](hono/file-structure.md)
-- [TypeScriptとHono型システム](hono/typescript.md)
-- [エラーハンドリング](hono/error-handling.md)
-- [環境変数と設定管理](hono/environment.md)
-- [デプロイ戦略](hono/deployment.md)
+- [REST APIを作ろう](hono/rest-api.md)
 
 ## HonoXによるフルスタック構築
 
