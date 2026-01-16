@@ -1,5 +1,7 @@
 # Honoとエッジランタイム
 
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/d3710db8-200e-4d23-b698-d9bce6caf47d)
+
 Web開発のフレームワークの世界で、最近注目を集めているHono（炎）について学んでいきましょう。
 Honoにはエッジランタイムにぴったりな特徴があります。
 
