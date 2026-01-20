@@ -88,7 +88,7 @@ Webアプリケーションでは、1回のページ表示で何十回もサー�
 
 Hono（炎）は、TypeScriptで書かれた**軽量・高速なWebフレームワーク**です。
 
-```js
+```ts
 import { Hono } from "hono";
 
 const app = new Hono();
@@ -122,7 +122,7 @@ export default app;
 
 従来、エッジランタイムごとに異なる書き方が必要でした。
 
-```js
+```ts
 // Cloudflare Workers用
 export default { fetch(req, env) { ... } }
 
@@ -136,7 +136,7 @@ http.createServer((req, res) => { ... });
 
 Honoを使えば、**どの環境でも同じコードが動きます**。
 
-```js
+```ts
 // どの環境でもこのコードでOK
 import { Hono } from "hono";
 const app = new Hono();
@@ -150,7 +150,7 @@ export default app;
 
 ### 例1: シンプルなAPIサーバー
 
-```js
+```ts
 import { Hono } from "hono";
 
 const app = new Hono();
@@ -176,7 +176,7 @@ export default app;
 
 ミドルウェアとは、リクエストを処理する「途中の処理」のことです。
 
-```js
+```ts
 import { Hono } from "hono";
 import { logger } from "hono/logger"; // ログ出力
 import { cors } from "hono/cors"; // CORS対応

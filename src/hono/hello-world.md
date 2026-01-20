@@ -46,48 +46,48 @@ my-hono-app/
 
 `src/index.ts` の中身を確認してみましょう。
 
-```typescript
-import { serve } from '@hono/node-server'
-import { Hono } from 'hono'
+```ts
+import { serve } from "@hono/node-server";
+import { Hono } from "hono";
 
-const app = new Hono()
+const app = new Hono();
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
 
-const port = 3000
-console.log(`Server is running on http://localhost:${port}`)
+const port = 3000;
+console.log(`Server is running on http://localhost:${port}`);
 
 serve({
   fetch: app.fetch,
-  port
-})
+  port,
+});
 ```
 
 たったこれだけでWebサーバーが完成しています。1つずつ見ていきましょう。
 
 ### コードの解説
 
-```typescript
-const app = new Hono()
+```ts
+const app = new Hono();
 ```
 
 Honoアプリケーションのインスタンスを作成しています。
 
-```typescript
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
-})
+```ts
+app.get("/", (c) => {
+  return c.text("Hello Hono!");
+});
 ```
 
 `GET /` へのリクエストを処理するルートを定義しています。`c` はContext（コンテキスト）オブジェクトで、リクエストやレスポンスを操作するためのメソッドが含まれています。
 
-```typescript
+```ts
 serve({
   fetch: app.fetch,
-  port
-})
+  port,
+});
 ```
 
 Node.js環境でHTTPサーバーを起動しています。
@@ -116,10 +116,10 @@ Server is running on http://localhost:3000
 
 `src/index.ts` の `c.text('Hello Hono!')` を好きなメッセージに変更してみましょう。
 
-```typescript
-app.get('/', (c) => {
-  return c.text('こんにちは、Hono！')
-})
+```ts
+app.get("/", (c) => {
+  return c.text("こんにちは、Hono！");
+});
 ```
 
 ファイルを保存すると、自動的にサーバーが再起動されます（ホットリロード）。ブラウザをリロードして変化を確認してみてください。
@@ -128,15 +128,15 @@ app.get('/', (c) => {
 
 `/hello` というパスにアクセスしたときに別のメッセージを返すルートを追加してみましょう。
 
-```typescript
-app.get('/', (c) => {
-  return c.text('こんにちは、Hono！')
-})
+```ts
+app.get("/", (c) => {
+  return c.text("こんにちは、Hono！");
+});
 
 // 新しいルートを追加
-app.get('/hello', (c) => {
-  return c.text('Hello from /hello!')
-})
+app.get("/hello", (c) => {
+  return c.text("Hello from /hello!");
+});
 ```
 
 ブラウザで [http://localhost:3000/hello](http://localhost:3000/hello) にアクセスして確認してみましょう。
@@ -145,10 +145,10 @@ app.get('/hello', (c) => {
 
 `c.text()` の代わりに `c.json()` を使うと、JSONを返せます。
 
-```typescript
-app.get('/api', (c) => {
-  return c.json({ message: 'Hello API!' })
-})
+```ts
+app.get("/api", (c) => {
+  return c.json({ message: "Hello API!" });
+});
 ```
 
 ブラウザで [http://localhost:3000/api](http://localhost:3000/api) にアクセスすると、JSONが表示されます。
