@@ -26,6 +26,7 @@
   - [useSWR入門](api/useswr.md)
   - [TanStack Query入門](api/tanstack-query.md)
   - [プロキシ確認ガイド](api/proxy.md)
+  - [🔗 今日こそ理解するCORS](api/cors.md)
 - [Honoハンズオン](hono/index.md)
   - [Honoとエッジランタイム](hono/overview.md)
   - [Hello Worldとローカル実行](hono/hello-world.md)
