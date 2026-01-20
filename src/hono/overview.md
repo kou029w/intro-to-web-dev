@@ -1,5 +1,11 @@
 # Honoとエッジランタイム
 
+<iframe
+  src="https://drive.google.com/file/d/13E4M3HfJ65y8LYbPUjmDDCMpI7u7_q0T/preview"
+  style="border: none; width: 100%; max-width: 960px; aspect-ratio: 16 / 9;"
+  allowfullscreen="true">
+</iframe>
+
 [💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/d3710db8-200e-4d23-b698-d9bce6caf47d)
 
 Web開発のフレームワークの世界で、最近注目を集めているHono（炎）について学んでいきましょう。
