@@ -26,7 +26,7 @@ console.log(data.login, data.public_repos);
 1. [GitHub PAT発行ページ](https://github.com/settings/tokens) にアクセス。
 2. `Generate new token` をクリック。
 3. トークンの名前を指定。
-4. トークンを生成し、表示された値をメモします。(※ 生成したトークンは安全に保管 (環境変数など) 。フロントエンドに埋め込まないこと。)
+4. トークンを生成し、表示された値をメモします。(※ 生成したトークンは安全に保管 (環境変数など)。フロントエンドに埋め込まないこと。)
    - 参考: [GitHubトークンの作成ガイド](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
 ## fetchでGitHub APIを叩く (サーバー側推奨)
