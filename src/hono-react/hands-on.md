@@ -27,8 +27,6 @@ hono-react-demo/
 └── web/    # React (フロントエンド)
 ```
 
----
-
 ## Step 1: Honoでバックエンドを作成する
 
 まず、APIサーバーを作ります。
@@ -99,8 +97,6 @@ pnpm dev
 
 このようなJSONが表示されれば成功です。**このターミナルは開いたまま**にしておいてください。
 
----
-
 ## Step 2: Reactでフロントエンドを作成する
 
 次に、Reactアプリを作ります。**新しいターミナル**を開いてください。
@@ -130,7 +126,7 @@ pnpm install
 
 `src/App.tsx` を以下のように書き換えます。
 
-```tsx
+```ts tsx
 import { useEffect, useState } from "react";
 
 // APIレスポンスの型定義
@@ -202,8 +198,6 @@ No 'Access-Control-Allow-Origin' header is present on the requested resource.
 
 これが**CORSエラー**です。ReactとHonoはポート番号が違うため、別のオリジンとして扱われています。ブラウザのセキュリティ機能により、リクエストがブロックされているのです (詳しくは[概要](overview.md)を参照) 。
 
----
-
 ## Step 3: CORSエラーを解決する
 
 Honoに `cors()` ミドルウェアを追加して、Reactからのリクエストを許可しましょう。
@@ -273,8 +267,6 @@ Access-Control-Allow-Origin: http://localhost:5173
 
 このヘッダーにより、ブラウザは「このリクエストはサーバーが許可している」と判断し、データを受け取れるようになりました。
 
----
-
 ## cors()ミドルウェアのオプション
 
 `cors()` ミドルウェアにはいくつかの設定オプションがあります。
@@ -315,8 +307,6 @@ app.use(
 );
 ```
 
----
-
 ## 完成コード
 
 ### Hono (api/src/index.ts)
@@ -353,7 +343,7 @@ serve({
 
 ### React (web/src/App.tsx)
 
-```tsx
+```ts tsx
 import { useEffect, useState } from "react";
 
 type HelloResponse = {
@@ -401,8 +391,6 @@ function App() {
 export default App;
 ```
 
----
-
 ## やってみよう！
 
 演習が完了したら、以下を試してみましょう。
@@ -426,8 +414,6 @@ React側でボタンをクリックしたら `/api/time` を呼び出すよう�
 ### 3. CORSを外してエラーを確認
 
 `cors()` ミドルウェアをコメントアウトして、再びCORSエラーが発生することを確認してみましょう。
-
----
 
 ## プロジェクトの再現手順 (まとめ)
 
@@ -457,8 +443,6 @@ cd web && pnpm install && cd ..
 
 # 7. http://localhost:5173 で確認
 ```
-
----
 
 ## ポイント
 
