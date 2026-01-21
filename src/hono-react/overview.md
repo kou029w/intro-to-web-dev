@@ -37,13 +37,13 @@ ReactアプリからHono APIにリクエストを送り、レスポンスを画�
 
 ### オリジンとは
 
-オリジンは「プロトコル + ホスト + ポート」の組み合わせです。
+オリジンは「スキーム + ホスト + ポート」の組み合わせです。
 
-| URL                         | オリジン            |
-| --------------------------- | ------------------- |
-| http://localhost:5173       | localhost:5173      |
-| http://localhost:3000       | localhost:3000      |
-| https://example.com         | example.com (HTTPS) |
+| URL                   | オリジン (スキーム, ホスト, ポート) |
+| --------------------- | ----------------------------------- |
+| http://localhost:5173 | (`http`, `localhost`, `5173`)       |
+| http://localhost:3000 | (`http`, `localhost`, `3000`)       |
+| https://example.com   | (`https`, `example.com`, `443`)     |
 
 **ポート番号が違えば別のオリジン**として扱われます。
 
