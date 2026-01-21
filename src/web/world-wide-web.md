@@ -16,7 +16,7 @@ _― 画像: <https://worldwideweb.cern.ch/browser/> より_
 
 普段使っているブラウザーからでも世界最初のWebサイトにアクセスすることができます。
 
-https://info.cern.ch/hypertext/WWW/TheProject.html
+<https://info.cern.ch/hypertext/WWW/TheProject.html>
 
 World Wide Web (Web) は、1989年に[分散型ハイパーテキストシステム (distributed hypertext system)](https://www.w3.org/History/1989/proposal.html)としてティム・バーナーズ・リーによって提案されたアイデアが元になっています。世界中に張り巡らされた蜘蛛の巣を連想して名付けられました。
 
