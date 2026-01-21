@@ -49,42 +49,6 @@ serve({
 
 これでToDoデータを管理する準備ができました。データベースは使わず、メモリ上の配列でデータを保持します。
 
-> **Note:** Thunder Clientを使うと、ブラウザやcurlコマンドの代わりにVSCode上でもAPIをテストできます。以下を参考にインストールしてみましょう。
-
-<details>
-<summary>Thunder Client（VS Code拡張機能）でAPIをテストする方法の詳細</summary>
-
-![Thunder Clientのスクリーンショット](https://raw.githubusercontent.com/thunderclient/thunder-client-support/main/images/thunder-client.gif)
-
-### Thunder Clientとは
-
-Thunder Clientは、VS Code上で動作する軽量なRESTクライアントです。curlコマンドの代わりに、GUIでAPIのテストができます。
-
-### インストール
-
-1. VS Codeの拡張機能ビューを開く（`Ctrl+Shift+X`）
-2. "Thunder Client" を検索してインストール
-   - [マーケットプレイス](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
-
-### 基本的な使い方
-
-1. **HTTPメソッドの選択** - `GET`をクリックして`POST`や`PUT`などを選択
-2. **URLの入力** - `Enter URL`フィールドにAPIのURLを入力
-3. **リクエストの送信** - `Send`ボタンをクリック
-
-### リクエストボディの設定（POST/PUT用）
-
-1. `Body`タブを選択
-2. `JSON`を選択
-3. JSONデータを入力
-
-### リクエストの保存
-
-1. 左側の`Activity`タブで履歴を確認
-2. `...`ボタンから`Save to Collection`を選択して保存
-
-</details>
-
 ## ステップ1: GET - 一覧を取得する
 
 まず、ToDoの一覧を取得するAPIを作りましょう。
@@ -111,13 +75,7 @@ pnpm dev
 ]
 ```
 
-### Thunder Clientで確認してみよう
-
-1. メソッド: `GET`
-2. URL: `http://localhost:3000/todos`
-3. `Send`をクリック
-
-### 別の方法: curlで確認してみよう
+### 確認してみよう
 
 ターミナルからAPIを呼び出すこともできます。別のターミナルを開いて以下を実行してみましょう。
 
@@ -161,15 +119,8 @@ return c.json({ error: "Todo not found" }, 404);
 
 `c.json()` の第2引数でステータスコードを指定できます。404は「見つかりません」を意味します。
 
-### Thunder Clientで確認してみよう
 
-1. メソッド: `GET`
-2. URL: `http://localhost:3000/todos/1`
-3. `Send`をクリック
-
-存在しないIDを試す場合は、URLを `http://localhost:3000/todos/999` に変更して送信します。
-
-### 別の方法: curlで確認してみよう
+### 確認してみよう
 
 ```bash
 # 存在するToDo
@@ -218,28 +169,7 @@ return c.json(newTodo, 201);
 
 リソースが新しく作成されたときは、200 OKではなく 201 Created を返すのが慣習です。
 
-### Thunder Clientで確認してみよう
-
-**新しいToDoを作成:**
-
-1. メソッド: `POST`
-2. URL: `http://localhost:3000/todos`
-3. `Body`タブを選択 → `JSON`を選択
-4. 以下のJSONを入力:
-   ```json
-   {
-     "title": "TypeScriptを勉強する"
-   }
-   ```
-5. `Send`をクリック
-
-**一覧を確認:**
-
-1. メソッド: `GET`
-2. URL: `http://localhost:3000/todos`
-3. `Send`をクリック
-
-### 別の方法: curlで確認してみよう
+### 確認してみよう
 
 ```bash
 curl -X POST http://localhost:3000/todos \
@@ -277,28 +207,7 @@ app.put("/todos/:id", async (c) => {
 });
 ```
 
-### Thunder Clientで確認してみよう
-
-**ToDoを完了状態にする:**
-
-1. メソッド: `PUT`
-2. URL: `http://localhost:3000/todos/1`
-3. `Body`タブを選択 → `JSON`を選択
-4. 以下のJSONを入力:
-   ```json
-   {
-     "completed": true
-   }
-   ```
-5. `Send`をクリック
-
-**確認:**
-
-1. メソッド: `GET`
-2. URL: `http://localhost:3000/todos/1`
-3. `Send`をクリック
-
-### 別の方法: curlで確認してみよう
+### 確認してみよう
 
 ```bash
 # ToDoを完了状態にする
@@ -340,21 +249,7 @@ return c.text("Deleted", 200);
 
 `c.text()` でもステータスコードを指定できます。削除成功時は 200 OK や 204 No Content を返すのが一般的です。
 
-### Thunder Clientで確認してみよう
-
-**削除:**
-
-1. メソッド: `DELETE`
-2. URL: `http://localhost:3000/todos/1`
-3. `Send`をクリック
-
-**一覧を確認:**
-
-1. メソッド: `GET`
-2. URL: `http://localhost:3000/todos`
-3. `Send`をクリック（ID:1が消えていることを確認）
-
-### 別の方法: curlで確認してみよう
+### 確認してみよう
 
 ```bash
 # 削除

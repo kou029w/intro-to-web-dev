@@ -124,12 +124,6 @@ Ctrl/Cmd + Shift + G   # Git表示
 
 ### HTTP・API開発
 
-#### Thunder Client
-
-- VSCode統合APIクライアント
-- リクエスト履歴とコレクション管理
-- 環境変数サポート
-
 ### AI支援開発
 
 #### GitHub Copilot

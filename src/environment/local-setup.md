@@ -30,7 +30,7 @@ Web開発に必要なツールはいくつかあり、それぞれに役割が�
 - **ターミナル**: Windows Terminal, Warp, WezTerm, iTerm2
 - **シェル**: Bash, Zsh, Fish
 - **ブラウザ**: Chrome, Safari, Firefox
-- **HTTP クライアント**: curl, Thunder Client (VS Code)
+- **HTTP クライアント**: curl
 
 ## OS別セットアップガイド
 

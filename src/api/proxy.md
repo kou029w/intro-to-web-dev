@@ -2,7 +2,7 @@
 
 社内ネットワークやセキュリティが厳しい環境では、プロキシ設定が必須になることがあります。まずは自分の環境で通信ができているか確認し、問題がある場合のみ設定を行えば大丈夫です。
 
-このガイドでは、各種開発ツール (npm、Git、Thunder Client、AWS CLI等) でプロキシ環境下での通信確認方法と設定方法を学んでいきましょう。
+このガイドでは、各種開発ツール (npm、Git、AWS CLI等) でプロキシ環境下での通信確認方法と設定方法を学んでいきましょう。
 
 ## HTTP通信の確認方法
 
@@ -110,34 +110,6 @@ S3バケットの一覧が期待通り表示されていればOKです。
 
 確認するコマンドはありません。 拡張機能のインストールなど期待通り動作すればOKです。
 
-### Thunder Client
-
-Step1. インストール
-
-- VSCode: [https://code.visualstudio.com/](https://code.visualstudio.com/)
-- Thunder Client: [https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) (「拡張機能」>「thunder client」 で検索>「Install」)
-
-Step2. リクエストの編集
-
-- VSCodeを起動 > Thunder Client > [New Request] を選択
-- 右側のペイン > [GET] … HTTP メソッドの選択
-- 右側のペイン > (その右隣) Enter Url … URL の入力
-  - [https://www.thunderclient.com/welcome](https://www.thunderclient.com/welcome)
-
-Step3. リクエストの送信
-
-- 右側のペイン > Send ボタン … リクエストの送信
-
-画面上に “Status: 200 OK” というメッセージが表示されていればOKです。
-
-![](https://hackmd.io/_uploads/B19r_2B63.png)
-
-“Status: ERROR” というメッセージが表示される場合はNGです❌
-
----
-
-HTTP通信が可能な環境では、以降の設定は不要です。
-
 ## Webブラウザーのプロキシの設定
 
 - Chrome/Edge/Safari: システムのネットワーク設定から行います。それぞれのOSの設定を確認してください。
@@ -216,17 +188,3 @@ export default s3Client;
 ## VSCodeのプロキシの設定
 
 プロキシ環境下で使用する場合、拡張機能のインストールに失敗することがあります。 そういったケースでは、設定 > Http: Proxy (`http.proxy`) にプロキシのURLを指定すると機能します。
-
-## Thunder Clientのプロキシの設定
-
-[VSCode の REST API 試験用拡張機能 Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)をプロキシ環境下で使用する場合、次のようなエラーメッセージと共にlocalhostへのアクセスに失敗する恐れがあります。
-
-> Connection was forcibly closed by a peer.
-
-そういったケースでは、設定 > Thunder-client: Exclude Proxy Host List (`thunder-client.excludeProxyHostList`) > “localhost” のように設定すると、Thunder Clientがlocalhostへ直接アクセスするようになります。
-
-例:
-
-![](https://i.imgur.com/D062gMm.png)
-
-(`thunder-client.excludeProxyHostList` 設定はここです ↑)
