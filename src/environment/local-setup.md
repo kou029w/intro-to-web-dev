@@ -39,7 +39,7 @@ Web開発に必要なツールはいくつかあり、それぞれに役割が�
 1. **WSL2 セットアップ**
 
 ```powershell
-# 管理者権限でPowerShellを起動
+# PowerShellで実行
 wsl --set-default-version 2
 wsl --install -d Ubuntu
 
