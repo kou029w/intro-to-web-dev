@@ -2,7 +2,7 @@
 
 [💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/659e6f27-4966-464a-b2b1-f8a4897e4a9b)
 
-JavaScriptでAPIリクエストを送るためのfetch APIについて学んでいきましょう。前回Thunder Clientで体験したAPIリクエストを、今度はコードで実装してみます。
+JavaScriptでAPIリクエストを送るためのfetch APIについて学んでいきましょう。前回体験したAPIリクエストを、今度はコードで実装してみます。
 
 ## この記事で学べること
 
