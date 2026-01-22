@@ -44,7 +44,7 @@ setTimeout(resolve, 3000); // 3秒 = 3,000ミリ秒
 実行すると3秒後にメッセージ"3秒!"が表示されたかと思います。
 これでも十分短いコードですが、今度はPromiseとawaitを使って書き換えてみます。
 
-```js
+```js runnable
 await new Promise((resolve) => setTimeout(resolve, 3000));
 console.log("3秒!");
 ```

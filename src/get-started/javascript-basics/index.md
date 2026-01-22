@@ -255,7 +255,7 @@ myVariable = "Steve";
 
 条件分岐は、ある式が true を返すかどうかをテストし、その結果次第でそれぞれのコードを実行するコード構造です。条件分岐のよくある形は `if...else` 文です。例えば以下の通りです。
 
-```js
+```js runnable
 let iceCream = "チョコレート";
 if (iceCream === "チョコレート") {
   alert("やった！チョコレートアイス大好き！");
@@ -274,7 +274,7 @@ if (iceCream === "チョコレート") {
 let myVariable = document.querySelector("h1");
 ```
 
-```js
+```js runnable
 alert("hello!");
 ```
 
@@ -357,7 +357,6 @@ document.querySelector("html").addEventListener("click", () => {
 
 1. 画像の `src` 属性の値を取得します。
 2. 条件分岐を使って、`src` の値が元の画像のパスと等しいかどうかをチェックします。
-
    1. そうであれば、`src` の値を 2 番目の画像へのパスに変更し、もう一方の画像が強制的に \<img\> 要素の中に読み込まれるようにします。
    2. そうでない（すでに変更されている）場合、`src` の値を元の画像のパスに戻して、元の状態に戻ります。
 

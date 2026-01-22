@@ -35,7 +35,7 @@ JavaScriptでは、文字列も一度作成したら変更できないイミュ�
 
 `typeof`演算子を使うことで、次のようにデータ型を調べることができます。
 
-```js
+```js runnable
 console.log(typeof true); // => "boolean"
 console.log(typeof 42); // => "number"
 console.log(typeof 9007199254740992n); // => "bigint"

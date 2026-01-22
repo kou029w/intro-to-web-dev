@@ -170,7 +170,7 @@ JavaScriptでは`fetch`を使って簡単にJSONを取得できます。
 
 ### 基本のパターン
 
-```js
+```js runnable
 async function getData() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
 
@@ -198,7 +198,7 @@ console.log(typeof data);
 
 レスポンスが本当にJSONかどうか確認してから`res.json()`を呼ぶと安全です。
 
-```js
+```js runnable
 async function getData() {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
 
@@ -222,7 +222,7 @@ console.log(typeof data); // "object" か "string"
 
 データを送るときは`method`と`headers`、`body`を指定します。
 
-```js
+```js runnable
 async function createPost(post) {
   const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "POST",
@@ -261,7 +261,7 @@ JavaScriptの`fetch`は、ネットワークに到達できれば例外を投げ
 
 だから、必ず`res.ok`をチェックしましょう：
 
-```js
+```js runnable
 async function fetchUser(id) {
   const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
 
@@ -285,7 +285,7 @@ console.log(data);
 2. Chrome開発者ツールのNetworkタブでレスポンスヘッダー（Content-Type）を確認
 3. `fetch`で同じURLを読み込み、配列長を`console.log`してみる
 
-```js
+```js runnable
 const res = await fetch("https://jsonplaceholder.typicode.com/users");
 const data = await res.json();
 console.log("件数:", data.length);
@@ -299,7 +299,7 @@ console.log("件数:", data.length);
 
 多くの実用的なAPIでは、API キーやトークンを使った認証が必要です。これらは`Authorization`ヘッダーに含めて送ります。
 
-```js
+```js runnable
 async function fetchWithAuth() {
   const res = await fetch("https://api.example.com/user/profile", {
     headers: {
@@ -325,7 +325,7 @@ await fetchWithAuth();
 
 GETリクエストでは、URLにパラメータを付けてデータを絞り込むことができます（検索機能やページネーションで頻繁に使います）。
 
-```js
+```js runnable
 // 手動でURLを組み立てる方法
 const userId = 1;
 const res = await fetch(
@@ -348,7 +348,7 @@ console.log(data); // 最大5件のデータが返ってくる
 
 基本の`res.ok`チェックに加えて、ステータスコードごとに適切なエラーメッセージを返すとユーザー体験が向上します。
 
-```js
+```js runnable
 async function fetchWithDetailedError(url) {
   const res = await fetch(url);
 
@@ -381,7 +381,7 @@ await fetchWithDetailedError("https://httpbin.org/status/500");
 
 実際のアプリ開発では、1つのリソースに関連する複数のデータを取得することがよくあります。
 
-```js
+```js runnable
 async function getUserWithPosts(userId) {
   try {
     // 1. ユーザー情報を取得

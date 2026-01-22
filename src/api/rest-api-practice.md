@@ -15,7 +15,7 @@ GitHub の REST API を題材に fetch API で扱う基礎をまとめました�
 
 公開情報 (ユーザーや公開リポジトリなど) はトークンなしで取得できます。ただしレート制限が厳しめです (未認証はおおむね1時間に60リクエスト程度)。
 
-```ts
+```js runnable
 const res = await fetch("https://api.github.com/users/octocat");
 const data = await res.json();
 console.log(data.login, data.public_repos);

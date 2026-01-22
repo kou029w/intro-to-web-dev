@@ -2,7 +2,7 @@
 
 // JavaScriptコードブロックをインタラクティブにする
 function makeCodeInteractive() {
-  const codeBlocks = document.querySelectorAll("pre > code.language-js");
+  const codeBlocks = document.querySelectorAll("pre > code.language-js.runnable");
 
   codeBlocks.forEach((codeBlock) => {
     const pre = codeBlock.parentElement;
@@ -172,15 +172,14 @@ function makeCodeInteractive() {
           logLine.style.marginBottom = "4px";
 
           const prefix = document.createElement("span");
-          prefix.style.marginRight = "8px";
 
           switch (log.type) {
             case "error":
-              prefix.textContent = "❌";
+              prefix.textContent = "❌ ";
               logLine.style.color = "#f48771";
               break;
             case "warn":
-              prefix.textContent = "⚠️";
+              prefix.textContent = "⚠️ ";
               logLine.style.color = "#dcdcaa";
               break;
             default:

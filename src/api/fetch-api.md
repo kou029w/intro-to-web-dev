@@ -19,7 +19,7 @@ JavaScriptでAPIリクエストを送るためのfetch APIについて学んで�
 
 ### 最小構成
 
-```js
+```js runnable
 fetch("https://jsonplaceholder.typicode.com/posts/1");
 ```
 
@@ -33,7 +33,7 @@ fetch("https://jsonplaceholder.typicode.com/posts/1");
 
 Promiseは「将来の結果を約束するオブジェクト」です。APIリクエストのように時間がかかる処理の結果を扱うために使います。
 
-```js
+```js runnable
 // fetchはPromiseを返す
 const promise = fetch("https://jsonplaceholder.typicode.com/posts/1");
 console.log(promise); // Promise { <pending> } (DevToolsで確認可能)
@@ -41,7 +41,7 @@ console.log(promise); // Promise { <pending> } (DevToolsで確認可能)
 
 ### .then()で結果を受け取る
 
-```js
+```js runnable
 fetch("https://jsonplaceholder.typicode.com/posts/1")
   .then((response) => {
     console.log("レスポンスを受け取りました");
@@ -58,7 +58,7 @@ fetch("https://jsonplaceholder.typicode.com/posts/1")
 
 `async/await`を使うと、非同期コードを同期的な見た目で書けます。
 
-```js
+```js runnable
 async function getPost() {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts/1");
   const data = await response.json();
@@ -78,7 +78,7 @@ await getPost();
 
 ### 基本形
 
-```js
+```js runnable
 async function fetchUser(id) {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/users/${id}`,
@@ -96,7 +96,7 @@ console.log(user.name); // "Leanne Graham"
 
 APIによっては、リクエストヘッダーの指定が必要です。
 
-```js
+```js runnable
 async function fetchWithHeaders(url) {
   const response = await fetch(url, {
     method: "GET", // GETの場合は省略可能
@@ -115,7 +115,7 @@ await fetchWithHeaders("https://jsonplaceholder.typicode.com/users/1");
 
 URLにパラメータを付けるには`URLSearchParams`が便利です。
 
-```js
+```js runnable
 async function searchUsers(query, limit = 10) {
   const params = new URLSearchParams({
     q: query,
@@ -140,7 +140,7 @@ console.log(results);
 
 ### 基本形
 
-```js
+```js runnable
 async function createPost(post) {
   const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "POST",
@@ -173,7 +173,7 @@ console.log(newPost.id); // 101（サーバーが割り当てたID）
 
 ### PUT/PATCH/DELETEも同様
 
-```js
+```js runnable
 // PUT: リソース全体を置き換え
 async function updatePost(id, post) {
   const response = await fetch(
@@ -209,7 +209,7 @@ await deletePost(1);
 
 ### fetchは404でも例外を投げない
 
-```js
+```js runnable
 const response = await fetch("https://jsonplaceholder.typicode.com/posts/9999");
 console.log(response.ok); // false
 console.log(response.status); // 404
@@ -220,7 +220,7 @@ console.log(response.status); // 404
 
 ### response.okを確認する
 
-```js
+```js runnable
 async function fetchPost(id) {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${id}`,
@@ -245,7 +245,7 @@ await fetchPost(9999); // HTTP 404の場合、例外が投げられる
 
 ### 基本的な使い方
 
-```js
+```js runnable
 const controller = new AbortController();
 
 // 10msでキャンセル
@@ -299,7 +299,7 @@ async function fetchUser(id: number): Promise<User> {
 
 1. ブラウザの開発者ツール（Console）で以下を実行してみましょう
 
-```js
+```js runnable
 // GETリクエスト
 const res = await fetch("https://jsonplaceholder.typicode.com/users");
 const users = await res.json();
@@ -308,7 +308,7 @@ console.log("ユーザー数:", users.length);
 
 2. POSTリクエストを試してみましょう
 
-```js
+```js runnable
 // POSTリクエスト
 const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
   method: "POST",
@@ -321,7 +321,7 @@ console.log("作成されたID:", created.id);
 
 3. エラーハンドリングを確認
 
-```js
+```js runnable
 const res = await fetch("https://httpbin.org/status/404");
 console.log("ok:", res.ok); // false
 console.log("status:", res.status); // 404
@@ -329,7 +329,7 @@ console.log("status:", res.status); // 404
 
 4. タイムアウトを体験
 
-```js
+```js runnable
 const controller = new AbortController();
 setTimeout(() => controller.abort(), 100); // 100msでキャンセル
 
