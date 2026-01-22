@@ -19,48 +19,42 @@
 
 ## Web開発環境構築
 
-- [モダンWebアーキテクチャ概要](environment/architecture.md)
-- [ローカル開発環境セットアップ](environment/local-setup.md)
-- [miseによるツール管理](environment/mise.md)
-- [VSCode入門](environment/vscode.md)
-- [Git・GitHub基礎](environment/git-github.md)
-- [React環境構築](environment/react-setup.md)
-- [TypeScript導入](environment/typescript.md)
-- [Biomeによるコード品質管理](environment/biome.md)
-- [AI支援ツール活用法](environment/ai-agents.md)
-- [基本的な開発の流れ](environment/workflow.md)
+- [Web開発環境構築](environment/index.md)
+  - [モダンWebアーキテクチャ概要](environment/architecture.md)
+  - [ローカル開発環境セットアップ](environment/local-setup.md)
+  - [miseによるツール管理](environment/mise.md)
+  - [VSCode入門](environment/vscode.md)
+  - [Git・GitHub基礎](environment/git-github.md)
+  - [React環境構築](environment/react-setup.md)
+  - [TypeScript導入](environment/typescript.md)
+  - [Biomeによるコード品質管理](environment/biome.md)
+  - [AI支援ツール活用法](environment/ai-agents.md)
+  - [基本的な開発の流れ](environment/workflow.md)
 
 ## REST APIと非同期処理
 
-- [REST API基礎](api/rest-basics.md)
-- [GitHubで学ぶREST API実践](api/rest-api-practice.md)
-- [HTTPリクエストとJSON](api/http-json.md)
-- [fetch APIの基本](api/fetch-api.md)
-- [useEffectによる非同期処理](api/useeffect.md)
-- [useSWR入門](api/useswr.md)
-- [TanStack Query入門](api/tanstack-query.md)
-- [プロキシ確認ガイド](api/proxy.md)
+- [REST APIと非同期処理](api/index.md)
+  - [REST API基礎](api/rest-basics.md)
+  - [HTTPリクエストとJSON](api/http-json.md)
+  - [GitHubで学ぶREST API実践](api/rest-api-practice.md)
+  - [fetch APIの基本](api/fetch-api.md)
+  - [useEffectによる非同期処理](api/useeffect.md)
+  - [useSWR入門](api/useswr.md)
+  - [TanStack Query入門](api/tanstack-query.md)
+  - [プロキシ確認ガイド](api/proxy.md)
 
 ## Honoハンズオン
 
-- [Honoとエッジランタイム](hono/overview.md)
-- [Hello Worldとローカル実行](hono/hello-world.md)
-- [REST APIを作ろう](hono/rest-api.md)
+- [Honoハンズオン](hono/index.md)
+  - [Honoとエッジランタイム](hono/overview.md)
+  - [Hello Worldとローカル実行](hono/hello-world.md)
+  - [REST APIを作ろう](hono/rest-api.md)
 
-## HonoXによるフルスタック構築
+## Hono + React 連携
 
-- [HonoX概要とアーキテクチャ](honox/honox-overview.md)
-- [プロジェクトセットアップ](honox/project-setup.md)
-- [プロジェクト構造とディレクトリ設計](honox/project-structure.md)
-- [フロントエンドページ開発](honox/frontend-pages.md)
-- [API定義とサーバー関数](honox/api-server-functions.md)
-- [型安全なAPI連携](honox/type-safe-api.md)
-- [認証とセッション管理](honox/auth-session.md)
-- [RPC実装とzodバリデーション](honox/rpc-zod.md)
-- [SSR/CSR戦略](honox/ssr-csr.md)
-- [テスト戦略](honox/testing.md)
-- [デプロイとキャッシュ戦略](honox/deployment-cache.md)
-- [CRUD アプリケーション構築](honox/crud-app.md)
+- [Hono + React 連携](hono-react/index.md)
+  - [概要](hono-react/overview.md)
+  - [HonoとReactアプリを連携させよう](hono-react/hands-on.md)
 
 ## 開発実践
 
