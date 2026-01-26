@@ -358,7 +358,7 @@ DELETE FROM todos;
 DELETE FROM todos WHERE id = 1;
 ```
 
-## 練習問題
+## やってみよう！
 
 データベースをリセットして、以下の操作を順番に試してみましょう。
 
