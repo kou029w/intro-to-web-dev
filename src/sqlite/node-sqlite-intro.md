@@ -233,7 +233,7 @@ node main.js
 
 もう一度実行すると、さらにユーザーが追加されます (IDは3, 4になります)。これがデータの永続化です。
 
-## run()の戻り値
+### `sql.run` の戻り値
 
 `sql.run` は、実行結果の情報を返します。
 
@@ -249,7 +249,7 @@ console.log(result);
 - **changes**: INSERT、UPDATE、DELETEで影響を受けた行数
 - **lastInsertRowid**: INSERTで自動生成されたID
 
-## エラーハンドリング
+### エラーハンドリング
 
 SQLにエラーがあると例外がスローされます。
 
