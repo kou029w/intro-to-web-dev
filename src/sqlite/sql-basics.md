@@ -6,21 +6,32 @@ SQLite を使う準備ができたので、SQLの基本を学んでいきまし�
 
 データベース操作は、基本的に4つの操作に分類できます。これを **CRUD**（クラッド）と呼びます。
 
-| 操作       | SQL文  | 意味             |
-| ---------- | ------ | ---------------- |
-| **C**reate | INSERT | データを作成する |
-| **R**ead   | SELECT | データを読み取る |
-| **U**pdate | UPDATE | データを更新する |
-| **D**elete | DELETE | データを削除する |
+### CRUD操作とSQLの対応
 
-REST APIの HTTPメソッドと対応していますね。
+| 操作       | SQL文  | 意味             | 例                   |
+| ---------- | ------ | ---------------- | -------------------- |
+| **C**reate | INSERT | データを作成する | 新しいToDoの追加     |
+| **R**ead   | SELECT | データを読み取る | ToDo一覧の表示       |
+| **U**pdate | UPDATE | データを更新する | ToDoの完了状態を変更 |
+| **D**elete | DELETE | データを削除する | 不要なToDoの削除     |
 
-| CRUD   | SQL    | HTTP   |
-| ------ | ------ | ------ |
-| Create | INSERT | POST   |
-| Read   | SELECT | GET    |
-| Update | UPDATE | PUT    |
-| Delete | DELETE | DELETE |
+### 実際のSQL文の例
+
+```sql
+INSERT INTO todos (title) VALUES ('牛乳を買う');      -- 新しいToDoを作成
+SELECT * FROM todos;                                 -- 全てのToDoを取得
+UPDATE todos SET completed = 1 WHERE id = 1;         -- ID 1のToDoを完了にする
+DELETE FROM todos WHERE id = 1;                      -- ID 1のToDoを削除
+```
+
+見覚えのあるおなじみパターンですよね。REST APIが「リソース」を操作するのに対し、SQLは「データ (レコード)」を操作しますが、「[REST API](../api/rest-basics.md)」と全く同じ概念です。
+
+| 操作   | SQL    | REST API | 対象                    |
+| ------ | ------ | -------- | ----------------------- |
+| Create | INSERT | POST     | データ / リソースの作成 |
+| Read   | SELECT | GET      | データ / リソースの取得 |
+| Update | UPDATE | PUT      | データ / リソースの更新 |
+| Delete | DELETE | DELETE   | データ / リソースの削除 |
 
 ## 準備: 練習用のプロジェクト
 
