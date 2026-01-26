@@ -2,41 +2,33 @@ import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import { SqliteTodoRepository } from "./todo.sqlite.js";
 
 const app = new Hono();
 
+const repo = {
+  todo: new SqliteTodoRepository(),
+};
+
 // serve static files from the web build output
 app.use("*", serveStatic({ root: "../web/dist" }));
-
-interface Todo {
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
-let todos: Todo[] = [
-  { id: 1, title: "Honoの使い方を学びました", completed: true },
-  { id: 2, title: "HonoとReactアプリを連携させよう", completed: false },
-];
-
-let nextId = 3;
 
 app.use("/api/*", cors());
 
 app.get("/api/todos", (c) => {
   switch (c.req.query("completed")) {
     case "true":
-      return c.json(todos.filter((t) => t.completed));
+      return c.json(repo.todo.all(true));
     case "false":
-      return c.json(todos.filter((t) => !t.completed));
+      return c.json(repo.todo.all(false));
     default:
-      return c.json(todos);
+      return c.json(repo.todo.all());
   }
 });
 
 app.get("/api/todos/:id", (c) => {
   const id = Number(c.req.param("id"));
-  const todo = todos.find((t) => t.id === id);
+  const todo = repo.todo.get(id);
 
   if (!todo) {
     return c.json({ message: "Todo not found" }, 404);
@@ -47,30 +39,20 @@ app.get("/api/todos/:id", (c) => {
 
 app.post("/api/todos", async (c) => {
   const body = await c.req.json();
-  const todo = {
-    id: nextId++,
-    title: body.title,
-    completed: false,
-  };
-  todos.push(todo);
+  const todo = repo.todo.create(body.title);
   return c.json(todo, 201);
 });
 
 app.put("/api/todos/:id", async (c) => {
   const id = Number(c.req.param("id"));
   const body = await c.req.json();
-  const todo = todos.find((t) => t.id === id);
+  const todo = repo.todo.update(id, {
+    title: body.title,
+    completed: body.completed,
+  });
 
   if (!todo) {
     return c.json({ message: "Todo not found" }, 404);
-  }
-
-  if (body.title !== undefined) {
-    todo.title = body.title;
-  }
-
-  if (body.completed !== undefined) {
-    todo.completed = body.completed;
   }
 
   return c.json(todo);
@@ -78,15 +60,13 @@ app.put("/api/todos/:id", async (c) => {
 
 app.delete("/api/todos/:id", (c) => {
   const id = Number(c.req.param("id"));
-  const todo = todos.find((t) => t.id === id);
+  const deleted = repo.todo.delete(id);
 
-  if (!todo) {
+  if (deleted) {
+    return c.json({ message: "Todo deleted" });
+  } else {
     return c.json({ message: "Todo not found" }, 404);
   }
-
-  todos = todos.filter((t) => t.id !== id);
-
-  return c.json({ message: "Todo deleted" });
 });
 
 serve(
