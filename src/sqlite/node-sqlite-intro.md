@@ -13,7 +13,7 @@ Node.js v22.5.0で追加された、SQLiteデータベースを操作するた�
 ```js
 import { DatabaseSync } from "node:sqlite";
 
-using db = new DatabaseSync("mydata.db");
+using db = new DatabaseSync("data.db");
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
@@ -66,7 +66,7 @@ pnpm init --init-type=module
 import { DatabaseSync } from "node:sqlite";
 
 // データベースに接続 (ファイルがなければ自動で作成される)
-using db = new DatabaseSync("test.db");
+using db = new DatabaseSync("data.db");
 
 console.log("データベースに接続しました！");
 
@@ -83,14 +83,14 @@ node main.js
 データベースに接続しました！
 ```
 
-カレントディレクトリに `test.db` というファイルが作成されているはずです。これがSQLiteのデータベースファイルです。
+カレントディレクトリに `data.db` というファイルが作成されているはずです。これがSQLiteのデータベースファイルです。
 
 ```bash
 ls -la
 ```
 
 ```
--rw-r--r--  1 user  staff  8192  1月 20 10:00 test.db
+-rw-r--r--  1 user  staff  8192  1月 20 10:00 data.db
 ```
 
 ## DatabaseSyncクラスの基本
@@ -103,7 +103,7 @@ ls -la
 import { DatabaseSync } from "node:sqlite";
 
 // ファイルベースのデータベース
-using db = new DatabaseSync("mydata.db");
+using db = new DatabaseSync("data.db");
 
 // メモリ上のデータベース (一時的なデータベース)
 using memoryDb = new DatabaseSync(":memory:");
@@ -115,7 +115,7 @@ using memoryDb = new DatabaseSync(":memory:");
 
 ```js
 // 従来の書き方
-const db = new DatabaseSync("mydata.db");
+const db = new DatabaseSync("data.db");
 try {
   // データベース操作
 } finally {
@@ -123,7 +123,7 @@ try {
 }
 
 // using を使った書き方
-using db = new DatabaseSync("mydata.db");
+using db = new DatabaseSync("data.db");
 // データベース操作
 // スコープを抜けると自動でdb.close()が呼ばれる
 ```
@@ -175,8 +175,7 @@ console.log(users); // [{ id: 1, ... }, { id: 2, ... }]
 ```js
 import { DatabaseSync } from "node:sqlite";
 
-// データベースに接続 (using構文で自動的にcloseされる)
-using db = new DatabaseSync("users.db");
+using db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
 // テーブルを作成 (存在しなければ)
@@ -259,7 +258,7 @@ try {
 
 1. `main.js` を実行して、ユーザーが追加されることを確認しましょう
 2. 何度か実行して、データが蓄積されることを確認しましょう
-3. `users.db` を削除してから実行すると、どうなるか試してみましょう
+3. `data.db` を削除してから実行すると、どうなるか試してみましょう
 
 ## ポイント
 
