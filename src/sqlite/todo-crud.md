@@ -222,7 +222,7 @@ app.post("/api/todos", async (c) => {
 
 ToDoを更新するエンドポイントを修正します。
 
-```ts
+```js
 // PUT /api/todos/:id - ToDoを更新
 app.put("/api/todos/:id", async (c) => {
   const id = Number(c.req.param("id"));
@@ -237,17 +237,21 @@ app.put("/api/todos/:id", async (c) => {
 
   // 渡されたフィールドを更新（部分更新）
   if (body.title !== undefined) {
-    sql.run`UPDATE todos SET title = ${body.title} WHERE id = ${id}`;
+    sql.run`
+      UPDATE todos
+        SET title = ${body.title}
+        WHERE id = ${id}`;
   }
 
   if (body.completed !== undefined) {
-    sql.run`UPDATE todos SET completed = ${
-      body.completed ? 1 : 0
-    } WHERE id = ${id}`;
+    sql.run`
+      UPDATE todos
+        SET completed = ${body.completed ? 1 : 0}
+        WHERE id = ${id}`;
   }
 
   // 更新後のデータを取得して返す
-  const updatedTodo: any = sql.get`SELECT * FROM todos WHERE id = ${id}`;
+  const updatedTodo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
 
   return c.json({
     id: updatedTodo.id,
