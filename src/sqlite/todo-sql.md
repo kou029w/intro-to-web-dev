@@ -79,8 +79,8 @@ const app = new Hono();
 
 app.use("/*", cors());
 
-// データベースに接続（usingを使うと自動で接続が閉じられます）
-using db = new DatabaseSync("data.db");
+// データベースに接続
+const db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
 // テーブルを作成（なければ作る）
@@ -305,7 +305,7 @@ const app = new Hono();
 
 app.use("/*", cors());
 
-using db = new DatabaseSync("data.db");
+const db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
 db.exec(`

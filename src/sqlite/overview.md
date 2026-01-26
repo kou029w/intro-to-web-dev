@@ -109,7 +109,7 @@ import { Hono } from "hono";
 import { DatabaseSync } from "node:sqlite";
 
 const app = new Hono();
-using db = new DatabaseSync("data.db");
+const db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
 // ToDoリスト取得API
@@ -184,7 +184,7 @@ UPDATE todos SET completed = true WHERE id = 1;
 // Node.js標準のSQLite (追加パッケージ不要)
 import { DatabaseSync } from "node:sqlite";
 
-using db = new DatabaseSync("data.db");
+const db = new DatabaseSync("data.db");
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS todos (

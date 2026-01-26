@@ -26,8 +26,8 @@ db.exec(`
 > **Note**\
 > `using` とは?
 >
-> このコードには `using` というキーワードがあります。これは **Explicit Resource Management** という新しい構文で、変数がスコープを抜けるときに自動的にリソースを解放してくれます。ここではサーバーが停止するときに、自動的に `db.close()` が呼ばれます。
-> Node.js v24以降で利用可能です。
+> このコードには `using` というキーワードがあります。これは Node.js v24 以降で利用可能な **Explicit Resource Management** という新しい構文で、変数がスコープを抜けるときに自動的にリソースを解放してくれます。ここではSQLクエリ実行後、終了前に自動的に `db.close()` が呼ばれます。
+> ただし、このハンズオンではより広い環境で使えるように `using` を使わないコードで説明します。
 
 ### 2. `--experimental-webstorage` フラグ
 
@@ -68,7 +68,7 @@ pnpm init --init-type=module
 import { DatabaseSync } from "node:sqlite";
 
 // データベースに接続 (ファイルがなければ自動で作成される)
-using db = new DatabaseSync("data.db");
+const db = new DatabaseSync("data.db");
 
 console.log("データベースに接続しました！");
 
@@ -104,40 +104,19 @@ ls -la
 
 `node:sqlite` の中心となるのが `DatabaseSync` クラスです。基本的な使い方を見ていきましょう。
 
-### データベースへの接続と `using` 構文
+### データベースへの接続
 
 ```js
 import { DatabaseSync } from "node:sqlite";
 
 // ファイルベースのデータベース
-using db = new DatabaseSync("data.db");
+const db = new DatabaseSync("data.db");
 
 // メモリ上のデータベース (一時的なデータベース)
-using memoryDb = new DatabaseSync(":memory:");
+const memoryDb = new DatabaseSync(":memory:");
 ```
 
-ここで `using` という見慣れないキーワードが登場しました。これは **Explicit Resource Management** と呼ばれる新しい構文です (JavaScript ES2026で追加予定)。
-
-`using` を使うと、変数がスコープを抜けるときに **自動的にリソースを解放**してくれます。つまり、`db.close()` を明示的に呼ぶ必要がなくなります。
-
-```js
-// 従来の書き方
-const db = new DatabaseSync("data.db");
-try {
-  // データベース操作
-} finally {
-  db.close(); // 忘れずに閉じる必要がある
-}
-
-// using を使った書き方
-using db = new DatabaseSync("data.db");
-// データベース操作
-// スコープを抜けると自動でdb.close()が呼ばれる
-```
-
-これにより、コードがシンプルになり、閉じ忘れのリスクもなくなります (便利ですね)。
-
-### exec() - 基本的なSQLを実行する
+### `db.exec()` - 基本的なSQLを実行する
 
 テーブルの作成など、結果を返さないSQLを実行するときに使います。
 
@@ -151,9 +130,9 @@ db.exec(`
 `);
 ```
 
-### createTagStore() - タグ付きテンプレートでSQLを実行する
+### `db.createTagStore()` - タグ付きテンプレートでSQLを実行する
 
-`createTagStore()` を使うと、**タグ付きテンプレート**でSQLを実行できます。より読みやすく、安全なコードになります。
+`db.createTagStore()` を使うと、**タグ付きテンプレート**でSQLを実行できます。より読みやすく、安全なコードになります。
 
 ```js
 // タグストアを作成
@@ -182,7 +161,7 @@ console.log(users); // [{ id: 1, ... }, { id: 2, ... }]
 ```js
 import { DatabaseSync } from "node:sqlite";
 
-using db = new DatabaseSync("data.db");
+const db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
 // テーブルを作成 (すでにテーブルが存在する場合は何もしない)

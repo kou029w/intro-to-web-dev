@@ -70,12 +70,10 @@ app.delete("/api/todos/:id", (c) => {
   }
 });
 
-serve(
-  {
-    fetch: app.fetch,
-    port: 3000,
-  },
-  (info) => {
-    console.log(`Server is running on http://localhost:${info.port}`);
-  },
-);
+const port = 3000;
+console.log(`Server is running on http://localhost:${port}`);
+
+serve({
+  fetch: app.fetch,
+  port,
+});
