@@ -211,7 +211,7 @@ node -v
 node -e 'console.log(process.version)'
 
 # package.json 作成
-pnpm init
+pnpm init --init-type=module
 
 # 依存関係インストール
 pnpm add -D react react-dom typescript @types/react @types/react-dom

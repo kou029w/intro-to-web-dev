@@ -343,7 +343,7 @@ mise use node@24
 mise use pnpm@latest
 
 # package.jsonの作成
-pnpm init
+pnpm init --init-type=module
 ```
 
 ### 3. パッケージのインストールと実行

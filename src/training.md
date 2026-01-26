@@ -56,6 +56,15 @@
   - [概要](hono-react/overview.md)
   - [HonoとReactアプリを連携させよう](hono-react/hands-on.md)
 
+## SQLiteハンズオン
+
+- [SQLiteハンズオン](sqlite/index.md)
+  - [概要](sqlite/overview.md)
+  - [Node.jsでSQLiteを使う](sqlite/node-sqlite-intro.md)
+  - [SQLの基本](sqlite/sql-basics.md)
+  - [ToDoアプリをSQLiteで永続化](sqlite/todo-crud.md)
+  - [Drizzle ORMの紹介](sqlite/drizzle-orm.md)
+
 ## 開発実践
 
 - [プロジェクト企画と要件定義](practice/project-planning.md)

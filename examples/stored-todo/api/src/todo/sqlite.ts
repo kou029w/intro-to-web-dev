@@ -1,7 +1,7 @@
 import { DatabaseSync } from "node:sqlite";
 import type { Todo, TodoRepo } from "./types.js";
 
-const db = new DatabaseSync("todo.db");
+using db = new DatabaseSync("todo.db");
 const sql = db.createTagStore();
 
 db.exec(`
