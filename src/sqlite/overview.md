@@ -188,9 +188,9 @@ using db = new DatabaseSync("data.db");
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS todos (
-    id INTEGER PRIMARY KEY,
+    id    INTEGER PRIMARY KEY,
     title TEXT
-  )
+  );
 `);
 ```
 
@@ -198,35 +198,38 @@ db.exec(`
 
 ToDoアプリで「新しいタスクを追加する」操作を例に、3層アーキテクチャでのデータの流れを見てみましょう。
 
-```
 1. ユーザーがフォームに入力して送信ボタンをクリック
-   ↓
-2. フロントエンド (React)がPOSTリクエストを送信
-   fetch('/api/todos', {
-     method: 'POST',
-     body: JSON.stringify({ title: '買い物' })
-   })
-   ↓
-3. バックエンド (Hono)がリクエストを受け取り、データを検証
-   app.post('/api/todos', async (c) => {
+2. フロントエンド (fetch API) でPOSTリクエストを送信
+   ```js
+   fetch("/api/todos", {
+     method: "POST",
+     body: JSON.stringify({ title: "買い物" }),
+   });
+   ```
+3. バックエンド (Hono) がリクエストを受け取り、データをバリデーション
+   ```js
+   app.post("/api/todos", async (c) => {
      const { title } = await c.req.json();
      // バリデーション: titleが空でないかチェック
-     if (!title) return c.json({ error: 'Title is required' }, 400);
-     ...
-   })
-   ↓
-4. SQLを実行してデータベースに保存
-   INSERT INTO todos (title, completed) VALUES ('買い物', false)
-   ↓
-5. データベースが保存を確認し、新しいIDを返す
-   → { lastID: 1, changes: 1 }
-   ↓
+     if (!title) return c.json({ error: "Title is required" }, 400);
+     // データベースに保存処理へ進む
+     // ...
+   });
+   ```
+4. SQLを実行しデータベースに保存
+   ```js
+   sql.run(`INSERT INTO todos (title) VALUES (${"買い物"})`);
+   ```
+5. データベースへの保存を確定し、新しいIDを返す\
+   → `{ lastID: 1, changes: 1 }`
 6. バックエンドがレスポンスを生成して返す
-   return c.json({ id: 1, title: '買い物', completed: false }, 201)
-   ↓
-7. フロントエンドがレスポンスを受け取り、UIを更新
-   setTodos([...todos, newTodo])
-```
+   ```js
+   return c.json({ id: 1, title: "買い物", completed: false }, 201);
+   ```
+7. フロントエンドがレスポンスを受け取り、ReactなどでUIを更新
+   ```js
+   setTodos([...todos, newTodo]);
+   ```
 
 このハンズオンでは、**3〜6の部分** (バックエンド層とデータ層)を実装していきます。
 

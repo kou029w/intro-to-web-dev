@@ -86,10 +86,10 @@ const sql = db.createTagStore();
 // テーブルを作成（なければ作る）
 db.exec(`
   CREATE TABLE IF NOT EXISTS todos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
+    id        INTEGER PRIMARY KEY,
+    title     TEXT NOT NULL,
     completed INTEGER NOT NULL DEFAULT 0
-  )
+  );
 `);
 
 console.log("データベースを初期化しました");
@@ -145,7 +145,7 @@ INSERT INTO todos (title) VALUES ('牛乳を買う');
 ```js
 // ❌ ダメな例 (SQLインジェクションの危険あり)
 const title = "牛乳を買う";
-db.exec(`INSERT INTO todos (title) VALUES ('${title}')`);
+db.exec(`INSERT INTO todos (title) VALUES ('${title}');`);
 
 // ✅ 良い例
 const sql = db.createTagStore();
@@ -217,16 +217,18 @@ app.put("/api/todos/:id", async (c) => {
   if (body.title !== undefined) {
     sql.run`
       UPDATE todos
-        SET title = ${body.title}
-        WHERE id = ${id}`;
+        SET   title = ${body.title}
+        WHERE id = ${id}
+    `;
   }
 
   if (body.completed !== undefined) {
     // boolean を 0/1 に変換して保存
     sql.run`
       UPDATE todos
-        SET completed = ${body.completed ? 1 : 0}
-        WHERE id = ${id}`;
+        SET   completed = ${body.completed ? 1 : 0}
+        WHERE id = ${id}
+    `;
   }
 
   const updatedTodo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
@@ -303,17 +305,15 @@ const app = new Hono();
 
 app.use("/*", cors());
 
-// データベースに接続（using構文で自動的にcloseされる）
 using db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
-// テーブルを作成（存在しなければ）
 db.exec(`
   CREATE TABLE IF NOT EXISTS todos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
+    id        INTEGER PRIMARY KEY,
+    title     TEXT NOT NULL,
     completed INTEGER NOT NULL DEFAULT 0
-  )
+  );
 `);
 
 console.log("データベースを初期化しました");

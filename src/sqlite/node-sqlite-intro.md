@@ -17,9 +17,9 @@ using db = new DatabaseSync("data.db");
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY,
+    id   INTEGER PRIMARY KEY,
     name TEXT
-  )
+  );
 `);
 ```
 
@@ -144,10 +144,10 @@ using db = new DatabaseSync("data.db");
 ```js
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
+    id    INTEGER PRIMARY KEY,
+    name  TEXT NOT NULL,
     email TEXT
-  )
+  );
 `);
 ```
 
@@ -185,14 +185,14 @@ import { DatabaseSync } from "node:sqlite";
 using db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
-// テーブルを作成 (存在しなければ)
+// テーブルを作成 (すでにテーブルが存在する場合は何もしない)
 db.exec(`
   CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    email TEXT,
+    id         INTEGER PRIMARY KEY,
+    name       TEXT NOT NULL,
+    email      TEXT,
     created_at TEXT DEFAULT CURRENT_TIMESTAMP
-  )
+  );
 `);
 
 console.log("テーブルを作成しました");
@@ -255,7 +255,7 @@ SQLにエラーがあると例外がスローされます。
 
 ```js
 try {
-  db.exec("CREATE TABLE invalid syntax");
+  db.exec("CREATE TABLE invalid syntax;");
 } catch (error) {
   console.error("SQLエラー:", error.message);
 }

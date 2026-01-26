@@ -6,10 +6,10 @@ const sql = db.createTagStore();
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS todos (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     title TEXT NOT NULL,
     completed INTEGER NOT NULL CHECK (completed IN (0, 1)) DEFAULT 0
-  )
+  );
 `);
 
 export const todo = {
@@ -50,15 +50,17 @@ export const todo = {
     if (patch.title !== undefined) {
       sql.run`
         UPDATE todos
-          SET title = ${patch.title}
-          WHERE id = ${id}`;
+          SET   title = ${patch.title}
+          WHERE id = ${id}
+      `;
     }
 
     if (patch.completed !== undefined) {
       sql.run`
         UPDATE todos
-          SET completed = ${Number(patch.completed)}
-          WHERE id = ${id}`;
+          SET   completed = ${Number(patch.completed)}
+          WHERE id = ${id}
+      `;
     }
 
     return this.get(id);
