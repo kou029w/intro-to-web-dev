@@ -58,7 +58,7 @@ export const todo = {
     return this.get(id);
   },
   delete(id: number) {
-    sql.run`DELETE FROM todos WHERE id = ${id}`;
-    return true;
+    const result = sql.run`DELETE FROM todos WHERE id = ${id}`;
+    return result.changes > 0;
   },
 } satisfies TodoRepo;
