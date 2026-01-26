@@ -19,8 +19,8 @@ jobs:
           git config user.email github-actions[bot]@users.noreply.github.com
       - name: Update subtree
         run: |
-          git subtree add --prefix=examples/todo https://github.com/kou029w/todo-example.git main --squash -m add || \
-          git subtree pull --prefix=examples/todo https://github.com/kou029w/todo-example.git main --squash -m update
+          git subtree add --prefix=examples/todo https://github.com/kou029w/todo-template.git main --squash -m add || \
+          git subtree pull --prefix=examples/todo https://github.com/kou029w/todo-template.git main --squash -m update
       - name: Check for changes and push
         run: |
           if git log --oneline origin/main..@ | read; then
