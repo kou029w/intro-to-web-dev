@@ -11,4 +11,5 @@ additional-js = [
   "js/external-links.js",
   "js/regexp-search.js",
   "js/interactive-code.js",
+  "js/mermaid-init.js",
 ]
