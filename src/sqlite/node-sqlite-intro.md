@@ -71,8 +71,6 @@ import { DatabaseSync } from "node:sqlite";
 const db = new DatabaseSync("data.db");
 
 console.log("データベースに接続しました！");
-
-// スコープを抜けると自動的にdb.close()が呼ばれる
 ```
 
 実行してみましょう。
@@ -119,6 +117,12 @@ const memoryDb = new DatabaseSync(":memory:");
 ### `db.exec()` - 基本的なSQLを実行する
 
 テーブルの作成など、結果を返さないSQLを実行するときに使います。
+
+`users` テーブルのイメージ:
+
+| id (PK) | name | email |
+| ------- | ---- | ----- |
+| -       | -    | -     |
 
 ```js
 db.exec(`
@@ -190,8 +194,6 @@ console.log("\n登録されているユーザー:");
 for (const user of users) {
   console.log(`  ${user.id}: ${user.name} (${user.email})`);
 }
-
-// スコープを抜けると自動的にdb.close()が呼ばれる
 ```
 
 実行してみましょう。
@@ -209,6 +211,13 @@ node main.js
   1: 田中太郎 (tanaka@example.com)
   2: 山田花子 (yamada@example.com)
 ```
+
+`users` テーブルのイメージ:
+
+| id (PK) | name       | email                |
+| ------- | ---------- | -------------------- |
+| 1       | `田中太郎` | `tanaka@example.com` |
+| 2       | `山田花子` | `yamada@example.com` |
 
 もう一度実行すると、さらにユーザーが追加されます (IDは3, 4になります)。これがデータの永続化です。
 

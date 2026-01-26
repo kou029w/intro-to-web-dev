@@ -62,9 +62,15 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 );
 ```
 
-ここで使う `INTEGER` は整数、`TEXT` は文字列、`PRIMARY KEY` は主キー（ID）、`AUTOINCREMENT` は自動連番を意味します。
+ここで使う `INTEGER` は整数、`TEXT` は文字列、`PRIMARY KEY` は主キー（ID）を意味します。
 
 ### やってみよう: 接続とテーブル作成
+
+`todos` テーブルのイメージ:
+
+| id (PK) | title | completed |
+| ------- | ----- | --------- |
+| -       | -     | -         |
 
 `api/src/index.ts` の冒頭を以下のように書き換えて、データベースファイル (`data.db`) に接続し、テーブルを作りましょう。
 
@@ -133,6 +139,12 @@ app.get("/api/todos", (c) => {
 新しいToDoを追加しましょう。ここではセキュリティが重要になります。
 
 ### INSERT と SQLインジェクション
+
+`todos` テーブルのイメージ:
+
+| id (PK) | title        | completed |
+| ------- | ------------ | --------- |
+| 1       | `牛乳を買う` | 0         |
 
 データを追加するのは `INSERT` です。
 
