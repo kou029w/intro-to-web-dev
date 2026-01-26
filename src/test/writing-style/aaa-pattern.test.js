@@ -1,4 +1,4 @@
-import assert from "node:assert";
+import assert from "node:assert/strict";
 import test from "node:test";
 
 test("正しくJSONをパースできる", () => {
@@ -9,5 +9,5 @@ test("正しくJSONをパースできる", () => {
   const parsed = JSON.parse(json);
 
   // 検証
-  assert.deepStrictEqual(parsed, { name: "Claude Monet", birth: "1840" });
+  assert.deepEqual(parsed, { name: "Claude Monet", birth: "1840" });
 });

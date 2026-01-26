@@ -91,15 +91,14 @@ $ node --test
 - 第一引数には、このテストの説明を人間が読める形式で記述します
 - 第二引数には、テストの本体を記述します
 
-`assert.strictEqual()` 関数
+`assert.equal()` 関数
 
 引数に与えた値を検証します。
 
-`assert.strictEqual(<検査される値>, <期待する値>)`
-
+`assert.equal(<検査される値>, <期待する値>)`
 「検査される値」と「期待する値」の同一性を検証します。
 
-最初の行は `import` 文によって `node:assert` と `node:test` を指定しています。
+最初の行は `import` 文によって `node:assert/strict` と `node:test` を指定しています。
 
 ```js
 {{#include getting-started/hello.test.js:2:3}}
