@@ -29,7 +29,7 @@ pnpm install
 pnpm dev
 ```
 
-ブラウザで [http://localhost:5173](http://localhost:5173) にアクセスすると、ToDoアプリが表示されます。いくつかToDoを追加してみてください。
+ブラウザで <http://localhost:5173> にアクセスすると、ToDoアプリが表示されます。いくつかToDoを追加してみてください。
 
 現状では、サーバーを再起動（`Ctrl+C` で停止して `pnpm dev` で再起動）するとデータが消えてしまいます。これをSQLiteで永続化していきましょう。
 
@@ -83,7 +83,7 @@ let nextId = 1;
 
 `api/src/index.ts` の先頭部分を以下のように変更します。
 
-```ts
+```js
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
@@ -116,22 +116,22 @@ console.log("データベースを初期化しました");
 3. `db.createTagStore()` でタグ付きテンプレートを使えるようにする
 4. `todos` テーブルを作成
 
-**TypeScriptの補足:**
+**JavaScriptの補足:**
 このコードには `using` というキーワードがあります。これは前のセクションで学んだ **Explicit Resource Management** という新しい構文で、変数がスコープを抜けるときに自動的にリソースを解放してくれます。ここではサーバーが停止するときに、自動的に `db.close()` が呼ばれます。
 
-古いメモリベースの変数（`let todos: Todo[] = []` と `let nextId = 1`）は削除します。
+古いメモリベースの変数（`let todos = []` と `let nextId = 1`）は削除します。
 
 ## ステップ3: GET /api/todos - 一覧取得
 
 ToDoの一覧を取得するエンドポイントを修正します。
 
-```ts
+```js
 // GET /api/todos - ToDoの一覧を取得
 app.get("/api/todos", (c) => {
   const todos = sql.all`SELECT * FROM todos ORDER BY id DESC`;
 
   // completedをbooleanに変換（SQLiteでは0/1で保存されるため）
-  const result = todos.map((todo: any) => ({
+  const result = todos.map((todo) => ({
     id: todo.id,
     title: todo.title,
     completed: todo.completed === 1,
@@ -147,19 +147,16 @@ app.get("/api/todos", (c) => {
 - `ORDER BY id DESC` で新しい順に並び替え
 - SQLiteでは真偽値が `0` / `1` で保存されるので、`boolean` に変換
 
-**TypeScriptの補足:**
-`todo: any` の `any` は「どんな型でもOK」という意味です。SQLiteから取得したデータの型を明示的に書くのは少し複雑なので、ここでは簡略化しています（読み飛ばしてOK）。
-
 ## ステップ4: GET /api/todos/:id - 1件取得
 
 特定のToDoを取得するエンドポイントを修正します。
 
-```ts
+```js
 // GET /api/todos/:id - 特定のToDoを取得
 app.get("/api/todos/:id", (c) => {
   const id = Number(c.req.param("id"));
 
-  const todo: any = sql.get`SELECT * FROM todos WHERE id = ${id}`;
+  const todo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
 
   if (!todo) {
     return c.json({ error: "Todo not found" }, 404);
@@ -183,7 +180,7 @@ app.get("/api/todos/:id", (c) => {
 
 ToDoを作成するエンドポイントを修正します。
 
-```ts
+```js
 // POST /api/todos - 新しいToDoを作成
 app.post("/api/todos", async (c) => {
   const body = await c.req.json();
@@ -195,7 +192,7 @@ app.post("/api/todos", async (c) => {
   const result = sql.run`INSERT INTO todos (title) VALUES (${body.title})`;
 
   // 作成したToDoを取得して返す
-  const newTodo: any = sql.get`SELECT * FROM todos WHERE id = ${result.lastInsertRowid}`;
+  const newTodo = sql.get`SELECT * FROM todos WHERE id = ${result.lastInsertRowid}`;
 
   return c.json(
     {
@@ -215,7 +212,7 @@ app.post("/api/todos", async (c) => {
 - `result.lastInsertRowid` で自動採番されたIDを取得
 - 作成したデータを取得して、クライアントに返す
 
-**TypeScriptの補足:**
+**JavaScriptの補足:**
 `result.lastInsertRowid` は、INSERT文で自動的に生成されたIDを取得する特別なプロパティです。これを使うことで、作成したばかりのToDoを取得できます。
 
 ## ステップ6: PUT /api/todos/:id - 更新
@@ -268,14 +265,14 @@ app.put("/api/todos/:id", async (c) => {
 - `boolean` を `0` / `1` に変換してから保存
 - タグ付きテンプレートで、読みやすく安全なコードになる
 
-**TypeScriptの補足:**
+**JavaScriptの補足:**
 `body.title !== undefined` は、「titleプロパティが渡されたかどうか」をチェックしています。これにより、送られてきたフィールドだけを更新できます。
 
 ## ステップ7: DELETE /api/todos/:id - 削除
 
 ToDoを削除するエンドポイントを修正します。
 
-```ts
+```js
 // DELETE /api/todos/:id - ToDoを削除
 app.delete("/api/todos/:id", (c) => {
   const id = Number(c.req.param("id"));
@@ -304,7 +301,7 @@ app.delete("/api/todos/:id", (c) => {
 
 すべての修正を反映した `api/src/index.ts` の完成版です。
 
-```ts
+```js
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
@@ -333,7 +330,7 @@ console.log("データベースを初期化しました");
 app.get("/api/todos", (c) => {
   const todos = sql.all`SELECT * FROM todos ORDER BY id DESC`;
 
-  const result = todos.map((todo: any) => ({
+  const result = todos.map((todo) => ({
     id: todo.id,
     title: todo.title,
     completed: todo.completed === 1,
@@ -346,7 +343,7 @@ app.get("/api/todos", (c) => {
 app.get("/api/todos/:id", (c) => {
   const id = Number(c.req.param("id"));
 
-  const todo: any = sql.get`SELECT * FROM todos WHERE id = ${id}`;
+  const todo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
 
   if (!todo) {
     return c.json({ error: "Todo not found" }, 404);
@@ -369,7 +366,7 @@ app.post("/api/todos", async (c) => {
 
   const result = sql.run`INSERT INTO todos (title) VALUES (${body.title})`;
 
-  const newTodo: any = sql.get`SELECT * FROM todos WHERE id = ${result.lastInsertRowid}`;
+  const newTodo = sql.get`SELECT * FROM todos WHERE id = ${result.lastInsertRowid}`;
 
   return c.json(
     {
@@ -397,10 +394,12 @@ app.put("/api/todos/:id", async (c) => {
   }
 
   if (body.completed !== undefined) {
-    sql.run`UPDATE todos SET completed = ${body.completed ? 1 : 0} WHERE id = ${id}`;
+    sql.run`UPDATE todos SET completed = ${
+      body.completed ? 1 : 0
+    } WHERE id = ${id}`;
   }
 
-  const updatedTodo: any = sql.get`SELECT * FROM todos WHERE id = ${id}`;
+  const updatedTodo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
 
   return c.json({
     id: updatedTodo.id,
