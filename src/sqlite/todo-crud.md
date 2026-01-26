@@ -93,7 +93,7 @@ const app = new Hono();
 
 app.use("/*", cors());
 
-// データベースに接続（using構文で自動的にcloseされる）
+// データベースに接続
 using db = new DatabaseSync("todo.db");
 const sql = db.createTagStore();
 
@@ -115,11 +115,6 @@ console.log("データベースを初期化しました");
 2. `new DatabaseSync("todo.db")` で `todo.db` ファイルに接続
 3. `db.createTagStore()` でSQLを実行するためのストアを作成
 4. ``db.exec(`CREATE TABLE IF NOT EXISTS todos (…)`)`` で `todos` テーブル作成
-
-> **Note**\
-> `using` とは?
->
-> このコードには `using` というキーワードがあります。これは **Explicit Resource Management** という新しい構文で、変数がスコープを抜けるときに自動的にリソースを解放してくれます。ここではサーバーが停止するときに、自動的に `db.close()` が呼ばれます。
 
 古いメモリベースの変数（`let todos = []` と `let nextId = 1`）は削除します。
 
