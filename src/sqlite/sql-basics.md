@@ -24,7 +24,7 @@ UPDATE todos SET completed = 1 WHERE id = 1;         -- ID 1のToDoを完了に�
 DELETE FROM todos WHERE id = 1;                      -- ID 1のToDoを削除
 ```
 
-見覚えのあるおなじみパターンですよね。REST APIが「リソース」を操作するのに対し、SQLは「データ (レコード)」を操作しますが、「[REST API](../api/rest-basics.md)」と全く同じ概念です。
+見覚えのあるおなじみパターンですよね。「[REST API](../api/rest-basics.md)」と全く同じ概念です。REST APIが「リソース」を操作するのに対し、SQLは「データ (レコード)」を操作します。
 
 | 操作   | SQL    | REST API | 対象                    |
 | ------ | ------ | -------- | ----------------------- |
