@@ -1,8 +1,8 @@
 import { DatabaseSync } from "node:sqlite";
-import { TodoRepository, type Todo } from "./todo.js";
+import type { Todo, TodoRepo } from "./types.js";
 
 const db = new DatabaseSync("todo.db");
-const sql = db.createTagStore(db);
+const sql = db.createTagStore();
 
 db.exec(`
   CREATE TABLE IF NOT EXISTS todos (
@@ -12,7 +12,7 @@ db.exec(`
   )
 `);
 
-export class SqliteTodoRepository extends TodoRepository {
+export const todo = {
   all(completed?: boolean) {
     let result: Todo[] = [];
 
@@ -31,15 +31,15 @@ export class SqliteTodoRepository extends TodoRepository {
       ...todo,
       completed: Boolean(todo.completed),
     }));
-  }
+  },
   get(id: number) {
     const result = sql.get`SELECT * FROM todos WHERE id = ${id}`;
     return result && { ...result, completed: Boolean(result.completed) };
-  }
+  },
   create(title: string) {
     const result = sql.run`INSERT INTO todos (title) VALUES (${title})`;
     return this.get(result.lastInsertRowid);
-  }
+  },
   update(id: number, patch: Partial<Todo>) {
     if (patch.title !== undefined) {
       sql.run`
@@ -56,9 +56,9 @@ export class SqliteTodoRepository extends TodoRepository {
     }
 
     return this.get(id);
-  }
+  },
   delete(id: number) {
     sql.run`DELETE FROM todos WHERE id = ${id}`;
     return true;
-  }
-}
+  },
+} satisfies TodoRepo;

@@ -1,4 +1,4 @@
-import { TodoRepository, type Todo } from "./todo.js";
+import type { Todo, TodoRepo } from "./types.js";
 
 const key = "todos";
 
@@ -12,15 +12,15 @@ function save(todos: Todo[]) {
   localStorage.setItem(key, JSON.stringify(todos));
 }
 
-export class LocalStorageTodoRepository extends TodoRepository {
+export const todo = {
   all(completed?: boolean) {
     const todos = load();
     if (completed === undefined) return todos;
     return todos.filter((t) => t.completed === completed);
-  }
+  },
   get(id: number) {
     return load().find((t) => t.id === id);
-  }
+  },
   create(title: string) {
     const todos = load();
     const todo = {
@@ -30,7 +30,7 @@ export class LocalStorageTodoRepository extends TodoRepository {
     };
     save([...todos, todo]);
     return todo;
-  }
+  },
   update(id: number, patch: Partial<Todo>) {
     const todos = load();
     const todo = todos.find((t) => t.id === id);
@@ -39,11 +39,11 @@ export class LocalStorageTodoRepository extends TodoRepository {
     if (patch.completed !== undefined) todo.completed = patch.completed;
     save(todos);
     return todo;
-  }
+  },
   delete(id: number) {
     let todos = load();
     todos = todos.filter((t) => t.id !== id);
     save(todos);
     return true;
-  }
-}
+  },
+} satisfies TodoRepo;

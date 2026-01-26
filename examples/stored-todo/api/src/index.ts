@@ -2,13 +2,13 @@ import { serve } from "@hono/node-server";
 import { serveStatic } from "@hono/node-server/serve-static";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
-import { SqliteTodoRepository } from "./todo.sqlite.js";
-
-const app = new Hono();
+import { todo } from "./todo/sqlite.js";
 
 const repo = {
-  todo: new SqliteTodoRepository(),
+  todo,
 };
+
+const app = new Hono();
 
 // serve static files from the web build output
 app.use("*", serveStatic({ root: "../web/dist" }));
