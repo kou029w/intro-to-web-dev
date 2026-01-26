@@ -10,9 +10,9 @@ test("西暦年号が4で割り切れる年はうるう年", () => {
 });
 
 test("西暦年号が4で割り切れない年はうるう年でない", () => {
-  assert.ok(!isLeapYear(2021));
-  assert.ok(!isLeapYear(2022));
-  assert.ok(!isLeapYear(2023));
+  assert.equal(isLeapYear(2021), false);
+  assert.equal(isLeapYear(2022), false);
+  assert.equal(isLeapYear(2023), false);
 });
 
 /** TODO:
