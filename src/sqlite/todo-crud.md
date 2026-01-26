@@ -112,12 +112,14 @@ console.log("データベースを初期化しました");
 **変更点:**
 
 1. `node:sqlite` から `DatabaseSync` をインポート
-2. `using` 構文で `todo.db` ファイルに接続（プログラム終了時に自動的にcloseされる）
-3. `db.createTagStore()` でタグ付きテンプレートを使えるようにする
-4. `todos` テーブルを作成
+2. `new DatabaseSync("todo.db")` で `todo.db` ファイルに接続
+3. `db.createTagStore()` でSQLを実行するためのストアを作成
+4. ``db.exec(`CREATE TABLE IF NOT EXISTS todos (…)`)`` で `todos` テーブル作成
 
-**JavaScriptの補足:**
-このコードには `using` というキーワードがあります。これは前のセクションで学んだ **Explicit Resource Management** という新しい構文で、変数がスコープを抜けるときに自動的にリソースを解放してくれます。ここではサーバーが停止するときに、自動的に `db.close()` が呼ばれます。
+> **Note**\
+> `using` とは?
+>
+> このコードには `using` というキーワードがあります。これは **Explicit Resource Management** という新しい構文で、変数がスコープを抜けるときに自動的にリソースを解放してくれます。ここではサーバーが停止するときに、自動的に `db.close()` が呼ばれます。
 
 古いメモリベースの変数（`let todos = []` と `let nextId = 1`）は削除します。
 
@@ -448,7 +450,7 @@ pnpm dev
 
 `api/` ディレクトリに `todo.db` ファイルが作成されているはずです。これがSQLiteのデータベースファイルです。
 
-## やってみよう
+## やってみよう！
 
 1. ToDoを追加して、サーバーを再起動してもデータが残ることを確認
 2. ToDoの完了/未完了を切り替えて、再起動後も状態が保持されることを確認
@@ -457,15 +459,10 @@ pnpm dev
 ## ポイント
 
 - **永続化**: データをファイル（データベース）に保存することで、サーバー再起動後もデータが残る
-- **DatabaseSync**: Node.jsの `node:sqlite` モジュールで、SQLiteデータベースに接続
-- **`using` 構文**: リソースを自動的に解放する構文。プログラム終了時に `db.close()` が自動的に呼ばれる
-- **`createTagStore()`**: タグ付きテンプレートでSQLを実行できるストアを作成
-- **タグ付きテンプレート**: `sql.run`、`sql.get`、`sql.all` などで、読みやすく安全なSQL実行が可能
-- **SQLインジェクション対策**: `${value}` で値を埋め込むと、自動的にエスケープされる
-- **CRUD操作**: SQL文（INSERT/SELECT/UPDATE/DELETE）でデータを操作
 - **型変換**: SQLiteの `INTEGER`（0/1）とJavaScriptの `boolean` の変換が必要
-- **result.lastInsertRowid**: INSERTで自動生成されたIDを取得
-- **result.changes**: UPDATE/DELETEで影響を受けた行数を取得
+- `sql.run`: INSERT/UPDATE/DELETEを実行するために使用
+  - `result.lastInsertRowid`: INSERTで自動生成されたIDを取得
+  - `result.changes`: UPDATE/DELETEで影響を受けた行数を取得
 
 ## 早く進んだ人向け
 

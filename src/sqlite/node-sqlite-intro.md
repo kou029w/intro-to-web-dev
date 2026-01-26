@@ -23,6 +23,11 @@ db.exec(`
 `);
 ```
 
+> **Note**\
+> `using` とは?
+>
+> このコードには `using` というキーワードがあります。これは **Explicit Resource Management** という新しい構文で、変数がスコープを抜けるときに自動的にリソースを解放してくれます。ここではサーバーが停止するときに、自動的に `db.close()` が呼ばれます。
+
 ### 2. `--experimental-webstorage` フラグ
 
 実験的な機能として、**localStorage API** をNode.jsで使えるようにするフラグです。ブラウザの `localStorage` と同じAPIで、データを永続化できます (Node.js v24.9.0以降で利用可能)。
@@ -258,14 +263,13 @@ try {
 
 ## ポイント
 
-- **`node:sqlite`**: Node.js v22.5.0以降で使えるSQLiteモジュール (Deno/Bunでも使える)
+- **`node:sqlite`**: Node.js (Deno/Bunでも使える) SQLite モジュール
 - **`DatabaseSync`**: データベース接続を管理するクラス
-- **`using` 構文**: リソースを自動的に解放する構文 (ES2026)。スコープを抜けると自動的に dispose (ここでは`db.close()`) 処理が呼ばれる
 - **`db.exec(sql)`**: 結果を返さないSQLを実行 (CREATE TABLEなど)
 - **`db.createTagStore()`**: タグ付きテンプレートでSQLを実行できるストアを作成
-- **`sql.run`**: INSERT/UPDATE/DELETEを実行。自動的にSQLインジェクション対策される
-- **`sql.get`**: 1件取得
-- **`sql.all`**: 全件取得
+  - **`sql.run`**: INSERT/UPDATE/DELETEを実行。自動的にSQLインジェクション対策される
+  - **`sql.get`**: 1件取得
+  - **`sql.all`**: 全件取得
 
 ## 参考文献
 

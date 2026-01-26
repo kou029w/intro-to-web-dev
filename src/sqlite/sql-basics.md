@@ -1,10 +1,10 @@
 # SQLの基本
 
-SQLite を使う準備ができたので、SQLの基本を学んでいきましょう。SQL（Structured Query Language）は、データベースを操作するための言語です。
+SQLite を使う準備ができたので、SQLの基本を学んでいきましょう。SQL (Structured Query Language)は、データベースを操作するための言語です。
 
 ## SQLの4大操作: CRUD
 
-データベース操作は、基本的に4つの操作に分類できます。これを **CRUD**（クラッド）と呼びます。
+データベース操作は、基本的に4つの操作に分類できます。これを **CRUD** (クラッド)と呼びます。
 
 ### CRUD操作とSQLの対応
 
@@ -45,7 +45,7 @@ pnpm init --init-type=module
 
 ## テーブルの作成: CREATE TABLE
 
-まず、データを格納する「テーブル」を作成します。テーブルはExcelのシートのようなもので、列（カラム）と行（レコード）でデータを管理します。
+まず、データを格納する「テーブル」を作成します。テーブルはExcelのシートのようなもので、列 (カラム)と行 (レコード)でデータを管理します。
 
 `create-table.js` を作成します。
 
@@ -96,13 +96,13 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 
 ### よく使う制約
 
-| 制約          | 説明                   |
-| ------------- | ---------------------- |
-| PRIMARY KEY   | 主キー（一意の識別子） |
-| AUTOINCREMENT | 自動で連番を振る       |
-| NOT NULL      | NULLを許可しない       |
-| DEFAULT 値    | デフォルト値を設定     |
-| UNIQUE        | 重複を許可しない       |
+| 制約          | 説明                  |
+| ------------- | --------------------- |
+| PRIMARY KEY   | 主キー (一意の識別子) |
+| AUTOINCREMENT | 自動で連番を振る      |
+| NOT NULL      | NULLを許可しない      |
+| DEFAULT 値    | デフォルト値を設定    |
+| UNIQUE        | 重複を許可しない      |
 
 ## データの追加: INSERT
 
@@ -248,10 +248,10 @@ console.log("未完了のToDo:", incompleteTodos);
 ### 並び替え: ORDER BY
 
 ```js
-// IDの降順（新しい順）で取得
+// IDの降順 (新しい順)で取得
 const todosDesc = sql.all`SELECT * FROM todos ORDER BY id DESC`;
 
-// タイトルの昇順（あいうえお順）で取得
+// タイトルの昇順 (あいうえお順)で取得
 const todosAsc = sql.all`SELECT * FROM todos ORDER BY title ASC`;
 ```
 
@@ -377,14 +377,11 @@ node create-table.js
 
 ## ポイント
 
-- **CRUD**: Create（INSERT）、Read（SELECT）、Update（UPDATE）、Delete（DELETE）
-- **using 構文**: リソースを自動的に解放する構文。スコープを抜けると自動的に `db.close()` が呼ばれる
-- **`db.createTagStore()`**: タグ付きテンプレートでSQLを実行できるストアを作成
-- **CREATE TABLE**: テーブルを作成する（`db.exec()` を使用）
-- **INSERT**: データを追加する（`sql.run` を使用）
-- **SELECT**: データを取得する（`sql.get` で1件、`sql.all` で複数件、`WHERE` で条件指定、`ORDER BY` で並び替え）
-- **UPDATE**: データを更新する（`sql.run` を使用、**WHERE を忘れずに**）
-- **DELETE**: データを削除する（`sql.run` を使用、**WHERE を忘れずに**）
+- **CREATE TABLE**: テーブルを作成 (`db.exec()` を使用)
+- **INSERT**: データ (レコード) を追加 (`sql.run` を使用)
+- **SELECT**: データを取得 (`sql.get` で1件、`sql.all` で複数件、`WHERE` で条件指定、`ORDER BY` で並び替え)
+- **UPDATE**: データを更新 (`sql.run` を使用、**WHERE を忘れず**)
+- **DELETE**: データを削除 (`sql.run` を使用、**WHERE を忘れず**)
 
 ## 参考文献
 
