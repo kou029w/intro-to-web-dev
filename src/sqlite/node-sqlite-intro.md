@@ -27,6 +27,7 @@ db.exec(`
 > `using` とは?
 >
 > このコードには `using` というキーワードがあります。これは **Explicit Resource Management** という新しい構文で、変数がスコープを抜けるときに自動的にリソースを解放してくれます。ここではサーバーが停止するときに、自動的に `db.close()` が呼ばれます。
+> Node.js v24以降で利用可能です。
 
 ### 2. `--experimental-webstorage` フラグ
 
