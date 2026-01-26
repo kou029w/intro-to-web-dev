@@ -12,8 +12,11 @@ SQLiteで書いたコードは、PostgreSQLやMySQLにそのまま使えるわ�
 // SQLite
 sql.get`SELECT * FROM todos WHERE id = ${1}`;
 
-// 別のライブラリ、別の書き方
-client.query("SELECT * FROM todos WHERE id = $1", [1]);
+// 別のライブラリ、別の書き方 (例: postgres)
+sql`SELECT * FROM todos WHERE id = ${1}`;
+
+// pg
+pg.query("SELECT * FROM todos WHERE id = $1", [1]);
 ```
 
 データベースを変更するたびに、コードを大幅に書き直す必要があります。

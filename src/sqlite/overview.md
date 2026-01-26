@@ -70,7 +70,7 @@ graph TD
 | API連携        | fetch/axiosでのリクエスト送信、レスポンス処理     |
 | バリデーション | 入力値の形式チェック (最終チェックはバックエンド) |
 
-```javascript
+```js
 // フロントエンドでのAPI連携の例 (React)
 import useSWR from "swr";
 
@@ -103,13 +103,13 @@ function TodoList() {
 | バリデーション   | 入力値の検証、エラーハンドリング                  |
 | セキュリティ     | 認証・認可、SQLインジェクション対策               |
 
-```javascript
+```js
 // バックエンドでのAPI実装の例 (Hono)
 import { Hono } from "hono";
 import { DatabaseSync } from "node:sqlite";
 
 const app = new Hono();
-using db = new DatabaseSync("todos.db");
+using db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
 // ToDoリスト取得API
@@ -180,14 +180,18 @@ UPDATE todos SET completed = true WHERE id = 1;
 3. **SQLの学習に最適**: 本格的なRDBと同じSQLが使える (PostgreSQLやMySQLへの移行も容易)
 4. **実用的**: 小〜中規模アプリなら本番でも十分使える (モノリシックアーキテクチャに最適)
 
-```javascript
+```js
 // Node.js標準のSQLite (追加パッケージ不要)
 import { DatabaseSync } from "node:sqlite";
 
-const db = new DatabaseSync("./todos.db");
-db.exec(
-  "CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY, title TEXT)",
-);
+using db = new DatabaseSync("data.db");
+
+db.exec(`
+  CREATE TABLE IF NOT EXISTS todos (
+    id INTEGER PRIMARY KEY,
+    title TEXT
+  )
+`);
 ```
 
 ## データの流れを追ってみよう
@@ -279,26 +283,32 @@ ToDoアプリで「新しいタスクを追加する」操作を例に、3層ア
 
 Honoの章で学んだように、エッジランタイムには実行時間やメモリの制約があります。そのため、データベースも特別な選択肢が用意されています。
 
-- **Durable Objects**（SQLite API）: 世界中のエッジサーバーに分散されたSQLite互換のストレージ。各地域でデータを保持しながら低遅延アクセスを実現
-- **Hyperdrive**: 既存のPostgreSQLやMySQLをエッジから高速アクセスできる接続プール技術
+- **[Hyperdrive](https://developers.cloudflare.com/hyperdrive/)**: 既存のPostgreSQLやMySQLをエッジから高速アクセスできる接続プール技術
+- **[Durable Objects](https://developers.cloudflare.com/durable-objects/api/sqlite-storage-api/)** (SQLite API): 世界中のエッジサーバーに分散されたSQLite互換のストレージ。各地域でデータを保持しながら低遅延アクセスを実現
 
-```javascript
-// Durable ObjectsでSQLiteを使う例
-export class MyDatabase {
-  constructor(state, env) {
-    this.sql = state.storage.sql;
+```ts
+// Hyperdriveを使う例
+import postgres from "postgres";
+
+const sql = postgres(env.HYPERDRIVE.connectionString);
+
+export const todo = {
+  async all() {
+    return await sql`SELECT * FROM todos`;
+  },
+};
+
+// Durable Objectsを使う例
+export class TodoStorage extends DurableObject {
+  sql: SqlStorage;
+  constructor(ctx: DurableObjectState, env: Env) {
+    super(ctx, env);
+    this.sql = ctx.storage.sql;
   }
-
-  async getTodos() {
-    return this.sql.exec("SELECT * FROM todos");
+  async all() {
+    return Array.from(this.sql.exec("SELECT * FROM todos;"));
   }
 }
-
-// HyperdriveでPostgreSQLに接続する例
-app.get("/api/todos", async (c) => {
-  const result = await c.env.DB.prepare("SELECT * FROM todos").all();
-  return c.json(result);
-});
 ```
 
 > **Note**
