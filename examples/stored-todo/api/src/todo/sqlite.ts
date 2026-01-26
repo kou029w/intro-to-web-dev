@@ -14,31 +14,37 @@ db.exec(`
 
 export const todo = {
   all(completed?: boolean) {
-    let result: Todo[] = [];
+    let results = [];
 
     switch (completed) {
       case true:
-        result = sql.all`SELECT * FROM todos WHERE completed = 1`;
+        results = sql.all`SELECT * FROM todos WHERE completed = 1`;
         break;
       case false:
-        result = sql.all`SELECT * FROM todos WHERE completed = 0`;
+        results = sql.all`SELECT * FROM todos WHERE completed = 0`;
         break;
       default:
-        result = sql.all`SELECT * FROM todos`;
+        results = sql.all`SELECT * FROM todos`;
     }
 
-    return result.map((todo) => ({
-      ...todo,
-      completed: Boolean(todo.completed),
-    }));
+    return results.map((result) => ({
+      ...result,
+      completed: Boolean(result.completed),
+    })) as Todo[];
   },
   get(id: number) {
     const result = sql.get`SELECT * FROM todos WHERE id = ${id}`;
-    return result && { ...result, completed: Boolean(result.completed) };
+
+    if (!result) return;
+
+    return {
+      ...result,
+      completed: Boolean(result.completed),
+    } as Todo;
   },
   create(title: string) {
     const result = sql.run`INSERT INTO todos (title) VALUES (${title})`;
-    return this.get(result.lastInsertRowid);
+    return this.get(result.lastInsertRowid as number) as Todo;
   },
   update(id: number, patch: Partial<Todo>) {
     if (patch.title !== undefined) {
