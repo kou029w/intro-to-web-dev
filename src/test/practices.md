@@ -98,9 +98,6 @@ npm test
 node --test --watch
 ```
 
-> **Note**\
-> `--watch` オプションは Node.js v18 では利用できません。
-
 テスト結果:
 
 ```console
