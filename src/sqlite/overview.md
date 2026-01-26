@@ -1,5 +1,11 @@
 # 概要
 
+<iframe
+  src="https://drive.google.com/file/d/1Yiy5qdBgug87RC-tcFI-V84xAg9Q8zqi/preview"
+  style="border: none; width: 100%; max-width: 960px; aspect-ratio: 16 / 9;"
+  allowfullscreen="true">
+</iframe>
+
 [💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/365f3a94-657c-45ec-97cf-b523e506db71)
 
 Webアプリケーションでデータを保存するとき、どんな仕組みが使われているのでしょうか？\
