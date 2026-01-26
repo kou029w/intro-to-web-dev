@@ -91,7 +91,7 @@ import { eq } from "drizzle-orm";
 import Database from "better-sqlite3";
 import { todos } from "./schema";
 
-const sqlite = new Database("todo.db");
+const sqlite = new Database("data.db");
 const db = drizzle(sqlite);
 
 // 一覧取得（SELECT）

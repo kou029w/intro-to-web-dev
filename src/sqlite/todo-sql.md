@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 
 ### やってみよう: 接続とテーブル作成
 
-`api/src/index.ts` の冒頭を以下のように書き換えて、データベースファイル (`todo.db`) に接続し、テーブルを作りましょう。
+`api/src/index.ts` の冒頭を以下のように書き換えて、データベースファイル (`data.db`) に接続し、テーブルを作りましょう。
 
 ```ts
 import { serve } from "@hono/node-server";
@@ -80,7 +80,7 @@ const app = new Hono();
 app.use("/*", cors());
 
 // データベースに接続（usingを使うと自動で接続が閉じられます）
-using db = new DatabaseSync("todo.db");
+using db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
 // テーブルを作成（なければ作る）
@@ -268,13 +268,13 @@ pnpm dev
 4. `pnpm dev` で再起動
 5. **ToDoが残っていることを確認！**
 
-`api/` ディレクトリに `todo.db` ファイルが作成されているはずです。これがSQLiteのデータベースファイルです。
+`api/` ディレクトリに `data.db` ファイルが作成されているはずです。これがSQLiteのデータベースファイルです。
 
 ## やってみよう！
 
 1. ToDoを追加して、サーバーを再起動してもデータが残ることを確認
 2. ToDoの完了/未完了を切り替えて、再起動後も状態が保持されることを確認
-3. `todo.db` を削除してからサーバーを起動すると、空のToDoリストになることを確認
+3. `data.db` を削除してからサーバーを起動すると、空のToDoリストになることを確認
 
 ## ポイント
 
@@ -304,7 +304,7 @@ const app = new Hono();
 app.use("/*", cors());
 
 // データベースに接続（using構文で自動的にcloseされる）
-using db = new DatabaseSync("todo.db");
+using db = new DatabaseSync("data.db");
 const sql = db.createTagStore();
 
 // テーブルを作成（存在しなければ）
