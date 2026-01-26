@@ -144,11 +144,11 @@ sql.run`INSERT INTO todos (title) VALUES (${title})`;
 `${}` の中に値を埋め込むと、自動的に **SQLインジェクション対策**がされます。直接文字列を埋め込むのは **絶対にやめましょう**。
 
 ```js
-// ダメな例（SQLインジェクションの危険）
+// ❌ ダメな例 (SQLインジェクションの危険あり)
 const title = "牛乳を買う";
 db.exec(`INSERT INTO todos (title) VALUES ('${title}')`);
 
-// 良い例（タグ付きテンプレートを使う）
+// ✅ 良い例
 const sql = db.createTagStore();
 sql.run`INSERT INTO todos (title) VALUES (${title})`;
 ```
@@ -385,7 +385,6 @@ node create-table.js
 - **SELECT**: データを取得する（`sql.get` で1件、`sql.all` で複数件、`WHERE` で条件指定、`ORDER BY` で並び替え）
 - **UPDATE**: データを更新する（`sql.run` を使用、**WHERE を忘れずに**）
 - **DELETE**: データを削除する（`sql.run` を使用、**WHERE を忘れずに**）
-- **タグ付きテンプレート `${}`**: SQLインジェクション対策として必ず使う
 
 ## 参考文献
 
