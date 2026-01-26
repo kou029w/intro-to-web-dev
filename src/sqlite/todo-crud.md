@@ -209,8 +209,7 @@ app.post("/api/todos", async (c) => {
 - `result.lastInsertRowid` で自動採番されたIDを取得
 - 作成したデータを取得して、クライアントに返す
 
-**JavaScriptの補足:**
-`result.lastInsertRowid` は、INSERT文で自動的に生成されたIDを取得する特別なプロパティです。これを使うことで、作成したばかりのToDoを取得できます。
+> **Note**: `result.lastInsertRowid` は、INSERT文で自動的に生成されたIDを取得する特別なプロパティです。これを使うことで、作成したばかりのToDoを取得できます。
 
 ## ステップ6: PUT /api/todos/:id - 更新
 
@@ -262,8 +261,7 @@ app.put("/api/todos/:id", async (c) => {
 - `boolean` を `0` / `1` に変換してから保存
 - タグ付きテンプレートで、読みやすく安全なコードになる
 
-**JavaScriptの補足:**
-`body.title !== undefined` は、「titleプロパティが渡されたかどうか」をチェックしています。これにより、送られてきたフィールドだけを更新できます。
+> **Note**: `body.title !== undefined` は、「titleプロパティが渡されたかどうか」をチェックしています。これにより、送られてきたフィールドだけを更新できます。
 
 ## ステップ7: DELETE /api/todos/:id - 削除
 
