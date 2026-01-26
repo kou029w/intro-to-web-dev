@@ -64,6 +64,7 @@ pnpm init --init-type=module
 `main.js` を作成して、以下のコードを書いてみましょう。
 
 ```js
+#!/usr/bin/env node
 import { DatabaseSync } from "node:sqlite";
 
 // データベースに接続 (ファイルがなければ自動で作成される)
@@ -78,6 +79,11 @@ console.log("データベースに接続しました！");
 
 ```bash
 node main.js
+
+# あるいは、実行権限を付与して実行
+chmod +x main.js
+# 実行
+./main.js
 ```
 
 ```
