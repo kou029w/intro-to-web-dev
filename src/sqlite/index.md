@@ -8,6 +8,5 @@
 
 - [概要](overview.md)
 - [Node.jsでSQLiteを使う](node-sqlite-intro.md)
-- [SQLの基本](sql-basics.md)
-- [ToDoアプリをSQLiteで永続化](todo-crud.md)
+- [ToDoアプリで学ぶSQL入門](todo-sql.md)
 - [Drizzle ORMの紹介](drizzle-orm.md)

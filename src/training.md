@@ -61,8 +61,7 @@
 - [SQLiteハンズオン](sqlite/index.md)
   - [概要](sqlite/overview.md)
   - [Node.jsでSQLiteを使う](sqlite/node-sqlite-intro.md)
-  - [SQLの基本](sqlite/sql-basics.md)
-  - [ToDoアプリをSQLiteで永続化](sqlite/todo-crud.md)
+  - [ToDoアプリで学ぶSQL入門](sqlite/todo-sql.md)
   - [Drizzle ORMの紹介](sqlite/drizzle-orm.md)
 
 ## 開発実践
