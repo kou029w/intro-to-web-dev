@@ -438,16 +438,22 @@ app.put("/api/todos/:id", async (c) => {
   const body = await c.req.json();
 
   if (body.title !== undefined) {
-    const result = sql.run`UPDATE todos SET title = ${body.title} WHERE id = ${id}`;
+    const result = sql.run`
+      UPDATE todos
+        SET title = ${body.title}
+        WHERE id = ${id}
+    `;
     if (result.changes === 0) {
       return c.json({ error: "Todo not found" }, 404);
     }
   }
 
   if (body.completed !== undefined) {
-    const result = sql.run`UPDATE todos SET completed = ${
-      body.completed ? 1 : 0
-    } WHERE id = ${id}`;
+    const result = sql.run`
+      UPDATE todos
+        SET completed = ${body.completed ? 1 : 0}
+        WHERE id = ${id}
+    `;
     if (result.changes === 0) {
       return c.json({ error: "Todo not found" }, 404);
     }
