@@ -4,7 +4,7 @@ WSL (Windows Subsystem for Linux) 環境で Web 開発を行う際に遭遇し�
 
 ## プロジェクトの作業ディレクトリについて
 
-WSL 環境では **プロジェクトをどこに置くか** がとても重要です。先にこの原則を押さえておきましょう。
+**基本方針:** プロジェクトは `/home/ユーザー` 以下に作成し、VS Code の Remote - WSL 拡張機能でアクセスすることを推奨します。
 
 | パス             | ファイルシステム | おすすめ度 |
 | ---------------- | ---------------- | ---------- |
@@ -12,8 +12,6 @@ WSL 環境では **プロジェクトをどこに置くか** がとても重要�
 | `/mnt/c/Users/…` | Windows (NTFS)   | ⚠️ 非推奨  |
 
 `/mnt/c/` 以下は Windows のファイルシステムを WSL からマウントしたものです。ここで作業すると、ファイル監視やパフォーマンスの問題が発生しやすくなります（詳しくは後述）。
-
-**基本方針:** プロジェクトは `/home/` 以下に作成し、VS Code の Remote - WSL 拡張機能でアクセスする。
 
 ## `/mnt/c/` 以下でファイル監視が動かない
 
@@ -51,7 +49,7 @@ pnpm dev
 
 VS Code の **Remote - WSL** 拡張機能をインストールすると、WSL 内のファイルを直接編集できるようになります。
 
-1. Windows 側の VS Code で拡張機能 `ms-vscode-remote.remote-wsl` をインストール
+1. Windows 側の VS Code で拡張機能 [`ms-vscode-remote.remote-wsl`](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) をインストール
 2. WSL のターミナルからプロジェクトディレクトリに移動して `code .` を実行
 
 ```bash
@@ -61,7 +59,7 @@ code .
 
 VS Code が WSL モードで開き、`/home/` 以下のファイルをシームレスに編集できます。左下に「WSL: Ubuntu」のような表示が出ていれば正しく接続されています。
 
-## `pnpm create hono` で GitHub API エラーが出る
+## `pnpm create hono` など実行時に GitHub API エラーが出る
 
 ### 症状
 
@@ -78,8 +76,9 @@ Error: Error running hook for nodejs: Failed to fetch https://api.github.com/rep
 ### 考えられる原因
 
 - ネットワーク環境（プロキシ、ファイアウォール、VPN）が GitHub API へのアクセスをブロックしている
-- WSL の DNS 設定の問題
+  - [プロキシ確認ガイド](../api/proxy.md) を参照
 - Windows 側のバイナリが意図せず参照されている
+- WSL の DNS 設定の問題
 
 ### 対処法
 
@@ -95,7 +94,7 @@ which git
 which curl
 ```
 
-`/mnt/c/` から始まるパスが表示された場合、Windows 側のバイナリが参照されています。WSL 内にインストールされたツールを使うようにしてください（[mise によるツール管理](mise.md) を参照）。
+`/mnt/c/` から始まるパスが表示された場合、Windows 側のバイナリが参照されています。WSL 内にインストールされたツールが正常に使われるように設定してください（[mise によるツール管理](mise.md) を参照）。
 
 #### 2. GitHub API への接続テスト
 
@@ -103,7 +102,7 @@ which curl
 curl -I https://api.github.com
 ```
 
-ステータスコード `200` が返れば接続は正常です。エラーが出る場合はネットワーク環境を確認してください。
+ステータスコード `200` が返れば接続は正常です。エラーが出る場合はネットワーク環境を確認してください。([プロキシ確認ガイド](../api/proxy.md) を参照)。
 
 #### 3. テンプレートを手動で取得する
 
