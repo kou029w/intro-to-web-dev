@@ -65,7 +65,22 @@ CREATE TABLE IF NOT EXISTS テーブル名 (
 );
 ```
 
+`IF NOT EXISTS` を付けることで、既にテーブルが存在する場合は作成をスキップします。これにより、サーバー再起動時にエラーになるのを防げます。
+
+具体例 (SQL):
+
+```sql
+CREATE TABLE IF NOT EXISTS todos (
+  id        INTEGER PRIMARY KEY,
+  title     TEXT NOT NULL,
+  completed INTEGER NOT NULL DEFAULT 0
+);
+```
+
 ここで使う `INTEGER` は整数、`TEXT` は文字列、`PRIMARY KEY` は主キー（ID）を意味します。
+`NOT NULL` は必須、`DEFAULT` はデフォルト値を指定します。
+
+> **Note**: SQLiteでは、`boolean` 型が存在しません。代わりに `INTEGER` 型の `0`（false）と `1`（true）を使用します。
 
 ### やってみよう: 接続とテーブル作成
 
@@ -115,6 +130,8 @@ console.log("データベースを初期化しました");
 
 データを取得するには `SELECT` を使います。「`todos` テーブルから全てのカラム (`*`) を取得し、`id` の降順 (`DESC`) で並べる」という命令は以下のようになります。
 
+SQL:
+
 ```sql
 SELECT * FROM todos ORDER BY id DESC;
 ```
@@ -162,6 +179,8 @@ SQLiteでは、`boolean` 型が存在しません。代わりに `INTEGER` 型�
 | 1       | `牛乳を買う` | 0         |
 
 データを追加するのは `INSERT` です。
+
+SQL:
 
 ```sql
 INSERT INTO todos (title) VALUES ('牛乳を買う');
@@ -219,6 +238,8 @@ app.post("/api/todos", async (c) => {
 
 ![](assets/update-operation.webp)
 
+SQL:
+
 ```sql
 -- 更新
 UPDATE todos SET completed = 1 WHERE id = 1;
@@ -227,6 +248,8 @@ UPDATE todos SET completed = 1 WHERE id = 1;
 ### DELETE 文
 
 ![](assets/delete-operation.webp)
+
+SQL:
 
 ```sql
 -- 削除
@@ -245,28 +268,29 @@ app.put("/api/todos/:id", async (c) => {
   const id = Number(c.req.param("id"));
   const body = await c.req.json();
 
-  // 存在確認
-  const existingTodo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
-  if (!existingTodo) {
-    return c.json({ error: "Todo not found" }, 404);
-  }
-
   // 部分更新
   if (body.title !== undefined) {
-    sql.run`
+    const result = sql.run`
       UPDATE todos
         SET   title = ${body.title}
         WHERE id = ${id}
     `;
+    // 影響を受けた行数が0なら存在しない
+    if (result.changes === 0) {
+      return c.json({ error: "Todo not found" }, 404);
+    }
   }
 
   if (body.completed !== undefined) {
     // boolean を 0/1 に変換して保存
-    sql.run`
+    const result = sql.run`
       UPDATE todos
         SET   completed = ${body.completed ? 1 : 0}
         WHERE id = ${id}
     `;
+    if (result.changes === 0) {
+      return c.json({ error: "Todo not found" }, 404);
+    }
   }
 
   const updatedTodo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
@@ -283,12 +307,12 @@ app.put("/api/todos/:id", async (c) => {
 app.delete("/api/todos/:id", (c) => {
   const id = Number(c.req.param("id"));
 
-  const existingTodo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
-  if (!existingTodo) {
+  const result = sql.run`DELETE FROM todos WHERE id = ${id}`;
+
+  // 影響を受けた行数が0なら存在しなかった
+  if (result.changes === 0) {
     return c.json({ error: "Todo not found" }, 404);
   }
-
-  sql.run`DELETE FROM todos WHERE id = ${id}`;
 
   return c.json({ message: "Deleted" });
 });
@@ -413,20 +437,20 @@ app.put("/api/todos/:id", async (c) => {
   const id = Number(c.req.param("id"));
   const body = await c.req.json();
 
-  const existingTodo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
-
-  if (!existingTodo) {
-    return c.json({ error: "Todo not found" }, 404);
-  }
-
   if (body.title !== undefined) {
-    sql.run`UPDATE todos SET title = ${body.title} WHERE id = ${id}`;
+    const result = sql.run`UPDATE todos SET title = ${body.title} WHERE id = ${id}`;
+    if (result.changes === 0) {
+      return c.json({ error: "Todo not found" }, 404);
+    }
   }
 
   if (body.completed !== undefined) {
-    sql.run`UPDATE todos SET completed = ${
+    const result = sql.run`UPDATE todos SET completed = ${
       body.completed ? 1 : 0
     } WHERE id = ${id}`;
+    if (result.changes === 0) {
+      return c.json({ error: "Todo not found" }, 404);
+    }
   }
 
   const updatedTodo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
@@ -442,13 +466,11 @@ app.put("/api/todos/:id", async (c) => {
 app.delete("/api/todos/:id", (c) => {
   const id = Number(c.req.param("id"));
 
-  const existingTodo = sql.get`SELECT * FROM todos WHERE id = ${id}`;
+  const result = sql.run`DELETE FROM todos WHERE id = ${id}`;
 
-  if (!existingTodo) {
+  if (result.changes === 0) {
     return c.json({ error: "Todo not found" }, 404);
   }
-
-  const result = sql.run`DELETE FROM todos WHERE id = ${id}`;
 
   return c.json({ message: "Deleted" });
 });
