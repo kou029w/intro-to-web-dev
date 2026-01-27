@@ -1,5 +1,13 @@
 # Drizzle ORMの紹介
 
+<iframe
+  src="https://drive.google.com/file/d/1F1VSyijYhgVeHqWFi7Eh85AHP686yqPo/preview"
+  style="border: none; width: 100%; max-width: 960px; aspect-ratio: 16 / 9;"
+  allowfullscreen="true">
+</iframe>
+
+[💡 NotebookLM で解説を聞く](https://notebooklm.google.com/notebook/7a95610a-2932-4382-bcef-8697c40af85d)
+
 ここまでSQLを直接書いてデータベースを操作してきました。シンプルなアプリケーションならこれで十分ですが、規模が大きくなると課題が出てきます。
 
 ## SQL直接操作の課題
