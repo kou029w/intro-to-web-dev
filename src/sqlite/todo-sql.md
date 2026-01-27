@@ -9,13 +9,6 @@ SQLite を使う準備ができたので、SQLの基本を学んでいきまし�
 
 ### CRUD操作とSQLの対応
 
-| 操作       | SQL文  | 意味             | 例                   |
-| ---------- | ------ | ---------------- | -------------------- |
-| **C**reate | INSERT | データを作成する | 新しいToDoの追加     |
-| **R**ead   | SELECT | データを読み取る | ToDo一覧の表示       |
-| **U**pdate | UPDATE | データを更新する | ToDoの完了状態を変更 |
-| **D**elete | DELETE | データを削除する | 不要なToDoの削除     |
-
 ![](assets/crud-api-mapping.webp)
 
 具体例:
@@ -27,7 +20,7 @@ sql.run`INSERT INTO todos (title) VALUES (${"牛乳を買う"})`;
 sql.all`SELECT * FROM todos`;
 // ID 1 の ToDo を取得
 sql.get`SELECT * FROM todos WHERE id = ${1}`;
-// ID 1 のToDoを完了に更新
+// ID 1 の ToDo を完了に更新
 sql.run`UPDATE todos SET completed = ${1} WHERE id = ${1}`;
 // ID 1 の ToDo を削除
 sql.run`DELETE FROM todos WHERE id = ${1}`;
