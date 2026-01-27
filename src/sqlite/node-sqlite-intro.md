@@ -145,11 +145,14 @@ db.exec(`
 > **Note**\
 > Prisma Studioで実際にデータベースを確認する方法
 >
-> [Prisma Studio](https://www.prisma.io/studio) はデータベースをGUIで確認・操作できるツールです。SQLiteのファイルからテーブルやデータを視覚的に確認できます。
+> 実際に手元のSQLiteのファイル `data.db` にテーブルが作成されているか確認してみましょう。
+> [Prisma Studio](https://www.prisma.io/studio) を使うとデータベースをGUIで確認・操作できるので非常に便利ですよ。
 >
-> 1. `$ npx -y prisma@latest studio --url file:data.db` を実行
-> 2. ブラウザで表示されるURL <http://localhost:51212> にアクセス
+> 1. ターミナルで `npx prisma studio --url=file:data.db` を実行
+> 2. 表示されるURL <http://localhost:51212> にブラウザでアクセス
 > 3. `users` テーブルが作成されていることを確認
+>
+> ![Prisma Studioでのテーブルの確認](assets/prisma-studio.webp)
 
 ### `db.createTagStore()` - タグ付きテンプレートでSQLを実行する
 
