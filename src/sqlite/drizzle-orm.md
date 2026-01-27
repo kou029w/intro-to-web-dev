@@ -175,7 +175,11 @@ import { drizzle } from "drizzle-orm/node-postgres";
 - 型安全性を重視する場合
 - データベースを変更する可能性がある
 
-## Drizzleの導入方法（参考）
+## やってみよう！
+
+- 前章のToDoアプリをDrizzleで実装してみましょう
+
+### Drizzleの導入方法 (参考)
 
 実際にDrizzleを導入する場合の手順を簡単に紹介します。
 
@@ -185,7 +189,7 @@ pnpm add drizzle-orm better-sqlite3
 pnpm add -D drizzle-kit @types/better-sqlite3
 ```
 
-詳しいセットアップ方法は公式ドキュメントを参照してください。
+詳しいセットアップ方法は[公式ドキュメント](https://orm.drizzle.team/)を参照してください。
 
 ## ポイント
 
