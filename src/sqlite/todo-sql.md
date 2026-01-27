@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS todos (
 
 | id (PK) | title | completed |
 | ------- | ----- | --------- |
-| -       | -     | -         |
+| INTEGER | TEXT  | INTEGER   |
 
 `api/src/index.ts` の冒頭を以下のように書き換えて、データベースファイル (`data.db`) に接続し、テーブルを作りましょう。
 
