@@ -1,5 +1,7 @@
 # Node.jsでSQLiteを使う
 
+![](assets/intro.webp)
+
 Node.js v22.5.0から、SQLiteを扱うための新しいAPIが追加されました。外部ライブラリをインストールせずに、Node.jsだけでSQLiteデータベースを操作できます。
 
 ## 2つの新機能
@@ -9,6 +11,8 @@ Node.jsには、SQLite関連の機能が2つ追加されています。
 ### 1. `node:sqlite` モジュール
 
 Node.js v22.5.0で追加された、SQLiteデータベースを操作するためのモジュールです。
+
+![](assets/native-sqlite-comparison.webp)
 
 ```js
 import { DatabaseSync } from "node:sqlite";
@@ -73,6 +77,8 @@ const db = new DatabaseSync("data.db");
 console.log("データベースに接続しました！");
 ```
 
+![](assets/db-connection-resource-management.webp)
+
 実行してみましょう。
 
 ```bash
@@ -118,6 +124,8 @@ const memoryDb = new DatabaseSync(":memory:");
 
 テーブルの作成など、結果を返さないSQLを実行するときに使います。
 
+![](assets/schema-setup-table-creation.webp)
+
 `users` テーブルのイメージ:
 
 | id (PK) | name | email |
@@ -137,6 +145,8 @@ db.exec(`
 ### `db.createTagStore()` - タグ付きテンプレートでSQLを実行する
 
 `db.createTagStore()` を使うと、**タグ付きテンプレート**でSQLを実行できます。より読みやすく、安全なコードになります。
+
+![](assets/secure-tagstore.webp)
 
 ```js
 // タグストアを作成
@@ -256,6 +266,8 @@ try {
 3. `data.db` を削除してから実行すると、どうなるか試してみましょう
 
 ## ポイント
+
+![](assets/summary.webp)
 
 - **`node:sqlite`**: Node.js (Deno/Bunでも使える) SQLite モジュール
 - **`DatabaseSync`**: データベース接続を管理するクラス

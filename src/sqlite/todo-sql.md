@@ -16,23 +16,24 @@ SQLite を使う準備ができたので、SQLの基本を学んでいきまし�
 | **U**pdate | UPDATE | データを更新する | ToDoの完了状態を変更 |
 | **D**elete | DELETE | データを削除する | 不要なToDoの削除     |
 
-### 実際のSQL文の例
+![](assets/crud-api-mapping.webp)
 
-```sql
-INSERT INTO todos (title) VALUES ('牛乳を買う');      -- 新しいToDoを作成
-SELECT * FROM todos;                                 -- 全てのToDoを取得
-UPDATE todos SET completed = 1 WHERE id = 1;         -- ID 1のToDoを完了にする
-DELETE FROM todos WHERE id = 1;                      -- ID 1のToDoを削除
+具体例:
+
+```js
+// 新しい ToDo を作成
+sql.run`INSERT INTO todos (title) VALUES (${"牛乳を買う"})`;
+// 全ての ToDo を取得
+sql.all`SELECT * FROM todos`;
+// ID 1 の ToDo を取得
+sql.get`SELECT * FROM todos WHERE id = ${1}`;
+// ID 1 のToDoを完了に更新
+sql.run`UPDATE todos SET completed = ${1} WHERE id = ${1}`;
+// ID 1 の ToDo を削除
+sql.run`DELETE FROM todos WHERE id = ${1}`;
 ```
 
 見覚えのあるおなじみパターンですよね。「[REST API](../api/rest-basics.md)」と全く同じ概念です。REST APIが「リソース」を操作するのに対し、SQLは「データ (レコード)」を操作します。
-
-| 操作   | SQL    | REST API | 対象                    |
-| ------ | ------ | -------- | ----------------------- |
-| Create | INSERT | POST     | データ / リソースの作成 |
-| Read   | SELECT | GET      | データ / リソースの取得 |
-| Update | UPDATE | PUT      | データ / リソースの更新 |
-| Delete | DELETE | DELETE   | データ / リソースの削除 |
 
 ## 準備: テンプレートのセットアップ
 
@@ -49,9 +50,11 @@ pnpm dev
 
 今回編集するのは、バックエンド側の `api/src/index.ts` です。
 
-## データベースの準備 (CREATE TABLE)
+## データベースの作成
 
 まずはデータを保存する箱、「テーブル」を作る必要があります。Excelのシートを作るようなイメージですね。
+
+![](assets/schema-setup-table-creation.webp)
 
 ### CREATE TABLE の構文
 
@@ -102,9 +105,11 @@ console.log("データベースを初期化しました");
 // ※ 古い let todos = []; などの変数は削除
 ```
 
-## データの取得 (SELECT)
+## データの取得
 
 次に、保存されたデータを取得して表示できるようにします。
+
+![](assets/select-operation.webp)
 
 ### SELECT 文
 
@@ -134,11 +139,21 @@ app.get("/api/todos", (c) => {
 });
 ```
 
-## データの挿入 (INSERT)
+### 型の変換
 
-新しいToDoを追加しましょう。ここではセキュリティが重要になります。
+SQLiteでは、`boolean` 型が存在しません。代わりに `INTEGER` 型の `0`（false）と `1`（true）を使用します。
 
-### INSERT と SQLインジェクション
+![](assets/type-conversion.webp)
+
+データの保存時と取得時に型変換が必要です。
+
+## データの追加
+
+新しいToDoを追加しましょう。
+
+![](assets/insert-operation.webp)
+
+### INSERT 文
 
 `todos` テーブルのイメージ:
 
@@ -196,13 +211,24 @@ app.post("/api/todos", async (c) => {
 
 `result.lastInsertRowid` を使うと、今登録されたデータのIDが分かります。便利ですね。
 
-## データを更新・削除 (UPDATE / DELETE)
+## データの更新・削除
 
-最後に、変更と削除です。
+最後に、更新と削除です。
+
+### UPDATE 文
+
+![](assets/update-operation.webp)
 
 ```sql
 -- 更新
 UPDATE todos SET completed = 1 WHERE id = 1;
+```
+
+### DELETE 文
+
+![](assets/delete-operation.webp)
+
+```sql
 -- 削除
 DELETE FROM todos WHERE id = 1;
 ```
