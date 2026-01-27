@@ -188,8 +188,8 @@ Host github.com
 
 ```bash
 # mise経由でツールインストール
-mise install node@24
-mise use --global node@24
+mise install node@lts
+mise use --global node@lts
 
 # グローバルパッケージ
 npm i -g @biomejs/biome
@@ -203,7 +203,7 @@ mkdir -p web-dev-2025/test
 cd test-environment
 
 # mise.toml 作成
-mise use node@24
+mise use node@lts
 mise use pnpm@latest
 
 # 動作確認
@@ -217,7 +217,9 @@ pnpm init --init-type=module
 pnpm add -D react react-dom typescript @types/react @types/react-dom
 ```
 
-<!-- ## トラブルシューティング -->
+## トラブルシューティング
+
+Windows/WSL 環境で問題が起きた場合は「[WSLトラブルシューティング](wsl-troubleshooting.md)」をご確認ください。
 
 ## まとめ
 

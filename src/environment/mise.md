@@ -136,7 +136,7 @@ echo "${HOME}/.local/bin/mise activate fish | source" >> ~/.config/fish/config.f
 cd my-project
 
 # Node.js最新LTS版をインストール
-mise use node@24
+mise use node@lts
 
 # パッケージマネージャ pnpm もインストール
 mise use pnpm@latest
@@ -264,7 +264,7 @@ mise ls
 
 ```bash
 # システム全体のデフォルトバージョン
-mise use --global node@24
+mise use --global node@lts
 mise use --global pnpm@latest
 ```
 
@@ -273,7 +273,7 @@ mise use --global pnpm@latest
 ```bash
 # プロジェクトディレクトリで実行
 cd my-project
-mise use node@24
+mise use node@lts
 mise use pnpm@latest
 ```
 
@@ -339,7 +339,7 @@ mkdir my-first-project
 cd my-first-project
 
 # Node.jsとpnpmの設定
-mise use node@24
+mise use node@lts
 mise use pnpm@latest
 
 # package.jsonの作成
