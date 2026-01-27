@@ -22,6 +22,7 @@
 - [Web開発環境構築](environment/index.md)
   - [モダンWebアーキテクチャ概要](environment/architecture.md)
   - [ローカル開発環境セットアップ](environment/local-setup.md)
+  - [WSLトラブルシューティング](environment/wsl-troubleshooting.md)
   - [miseによるツール管理](environment/mise.md)
   - [VSCode入門](environment/vscode.md)
   - [Git・GitHub基礎](environment/git-github.md)
