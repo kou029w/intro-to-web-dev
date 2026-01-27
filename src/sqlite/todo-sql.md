@@ -43,7 +43,7 @@ pnpm dev
 
 今回編集するのは、バックエンド側の `api/src/index.ts` です。
 
-## データベースの作成
+## データベースとテーブルの作成
 
 まずはデータを保存する箱、「テーブル」を作る必要があります。Excelのシートを作るようなイメージですね。
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS todos (
 
 > **Note**: SQLiteでは、`boolean` 型が存在しません。代わりに `INTEGER` 型の `0`（false）と `1`（true）を使用します。
 
-### やってみよう: 接続とテーブル作成
+### やってみよう: データベースとテーブル作成
 
 `todos` テーブルのイメージ:
 
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS todos (
 | ------- | ----- | --------- |
 | INTEGER | TEXT  | INTEGER   |
 
-`api/src/index.ts` の冒頭を以下のように書き換えて、データベースファイル (`data.db`) に接続し、テーブルを作りましょう。
+`api/src/index.ts` の冒頭を以下のように書き換えて、データベース (`data.db` ファイル) に接続し、テーブルを作りましょう。
 
 ```ts
 import { serve } from "@hono/node-server";
