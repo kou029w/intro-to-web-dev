@@ -36,7 +36,7 @@ VS Codeにはこんな素晴らしい特徴があります：
 
 VS Codeの画面は、いくつかのエリアに分かれています。最初は覚えにくいかもしれませんが、慣れてしまえばとても使いやすいですよ。
 
-![](assets/vscode.dio.png)
+![](assets/vscode.excalidraw.svg)
 
 ### キーボードショートカット
 

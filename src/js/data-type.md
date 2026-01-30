@@ -75,4 +75,4 @@ console.log(typeof function () {}); // => "function"
   - BigInt … `9007199254740992n` など
   - null … `null`
 
-![](assets/data-type.dio.png)
+![](assets/data-type.excalidraw.svg)

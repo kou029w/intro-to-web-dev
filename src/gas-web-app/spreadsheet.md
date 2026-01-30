@@ -77,7 +77,7 @@ Googleアカウントへのアクセス許可を求められるのでアカウ�
 
 WebアプリのURLが表示されればデプロイ完了です。
 
-![](gas-url.dio.png)
+![](gas-url.excalidraw.svg)
 
 データの送信にはこのWebアプリのURL (`https://script.google.com/macros/s/AKf...`) を使用します。
 

@@ -13,7 +13,7 @@
 
 - if文
 
-![](assets/condition.dio.png)
+![](assets/condition.excalidraw.svg)
 
 [![](assets/if-statement.png)](https://dorey.github.io/JavaScript-Equality-Table/)
 

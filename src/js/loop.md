@@ -19,7 +19,7 @@
 - while文
 - for文
 
-![](assets/loop.dio.png)
+![](assets/loop.excalidraw.svg)
 
 ## やってみよう！
 
