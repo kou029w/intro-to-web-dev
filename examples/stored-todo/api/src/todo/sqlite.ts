@@ -1,4 +1,4 @@
-import { DatabaseSync } from "node:sqlite";
+import { DatabaseSync, type SQLOutputValue } from "node:sqlite";
 import type { Todo, TodoRepo } from "./types.js";
 
 const db = new DatabaseSync("data.db");
@@ -12,56 +12,47 @@ db.exec(`
   );
 `);
 
+function toTodo(result: Record<string, SQLOutputValue>) {
+  return {
+    ...result,
+    completed: Boolean(result.completed),
+  } as Todo;
+}
+
 export const todo = {
   all(completed?: boolean) {
-    let results = [];
+    const completedValue =
+      typeof completed === "boolean" ? Number(completed) : null;
 
-    switch (completed) {
-      case true:
-        results = sql.all`SELECT * FROM todos WHERE completed = 1`;
-        break;
-      case false:
-        results = sql.all`SELECT * FROM todos WHERE completed = 0`;
-        break;
-      default:
-        results = sql.all`SELECT * FROM todos`;
-    }
+    const results = sql.all`
+      SELECT * FROM todos WHERE completed = ${completedValue} OR ${completedValue} IS NULL
+    `;
 
-    return results.map((result) => ({
-      ...result,
-      completed: Boolean(result.completed),
-    })) as Todo[];
+    return results.map(toTodo);
   },
-  get(id: number) {
+  get(id: number | bigint) {
     const result = sql.get`SELECT * FROM todos WHERE id = ${id}`;
-
-    if (!result) return;
-
-    return {
-      ...result,
-      completed: Boolean(result.completed),
-    } as Todo;
+    return result && toTodo(result);
   },
   create(title: string) {
     const result = sql.run`INSERT INTO todos (title) VALUES (${title})`;
-    return this.get(result.lastInsertRowid as number) as Todo;
+    return this.get(result.lastInsertRowid as number)!;
   },
   update(id: number, patch: Partial<Todo>) {
-    if (patch.title !== undefined) {
-      sql.run`
-        UPDATE todos
-          SET   title = ${patch.title}
-          WHERE id = ${id}
-      `;
-    }
-
-    if (patch.completed !== undefined) {
-      sql.run`
-        UPDATE todos
-          SET   completed = ${Number(patch.completed)}
-          WHERE id = ${id}
-      `;
-    }
+    sql.run`
+      UPDATE todos
+        SET
+          title     = COALESCE(${patch.title ?? null}, title),
+          completed = COALESCE(
+            ${
+              typeof patch.completed === "boolean"
+                ? Number(patch.completed)
+                : null
+            },
+            completed
+          )
+        WHERE id = ${id}
+    `;
 
     return this.get(id);
   },

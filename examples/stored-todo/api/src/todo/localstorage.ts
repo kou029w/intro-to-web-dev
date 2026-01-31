@@ -15,8 +15,9 @@ function save(todos: Todo[]) {
 export const todo = {
   all(completed?: boolean) {
     const todos = load();
-    if (completed === undefined) return todos;
-    return todos.filter((t) => t.completed === completed);
+    return typeof completed === "boolean"
+      ? todos.filter((t) => t.completed === completed)
+      : todos;
   },
   get(id: number) {
     return load().find((t) => t.id === id);
@@ -34,15 +35,14 @@ export const todo = {
   update(id: number, patch: Partial<Todo>) {
     const todos = load();
     const todo = todos.find((t) => t.id === id);
-    if (!todo) return undefined;
+    if (!todo) return;
     if (patch.title !== undefined) todo.title = patch.title;
     if (patch.completed !== undefined) todo.completed = patch.completed;
     save(todos);
     return todo;
   },
   delete(id: number) {
-    let todos = load();
-    todos = todos.filter((t) => t.id !== id);
+    const todos = load().filter((t) => t.id !== id);
     save(todos);
     return true;
   },
