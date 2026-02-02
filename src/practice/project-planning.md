@@ -85,7 +85,7 @@
 以下を済ませておくとスムーズです。
 
 ```bash
-# ToDoテンプレートを事前にクローン
+# テンプレートを事前にクローン
 git clone -b template https://github.com/kou029w/todo-template my-app
 cd my-app
 ```
