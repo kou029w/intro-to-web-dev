@@ -99,5 +99,5 @@
 - [🔗 GitHub と CodeSandbox の使い方 (スライド資料)](github-and-codesandbox-guide.md)
 - [🔗 CHIRIMENハンズオン](chirimen-hands-on.md)
 - [🔗 アジャイル開発概論](intro-to-agile.md)
-- [🔗 Scrapbox](scrapbox-intro-to-web-dev.md)
+- [🔗 Scrapbox](scrapbox.md)
 - [質問・提案・問題の報告](issues.md)
