@@ -90,7 +90,7 @@ git clone -b template https://github.com/kou029w/todo-template my-app
 cd my-app
 ```
 
-または <https://github.com/kou029w/todo-template> から Zip でダウンロードして展開してもOKです。
+またはGitHubからZipでダウンロードして展開してもOKです。
 
 **Zipでダウンロードする場合:**
 
