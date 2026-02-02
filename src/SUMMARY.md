@@ -41,7 +41,7 @@
   - [ToDoアプリで学ぶSQL入門](sqlite/todo-sql.md)
   - [Drizzle ORMの紹介](sqlite/drizzle-orm.md)
 - [開発実践](practice/index.md)
-  - [プロジェクト企画と要件定義](practice/project-planning.md)
+  - [アイディアを形に](practice/project-planning.md)
   - [成果発表](practice/presentation.md)
 - [Node.js Test Runnerではじめる自動テスト](test/index.md)
   - [事前準備](test/preparation.md)
