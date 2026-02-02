@@ -96,7 +96,7 @@
 - [🔗 GraphQL概論](intro-to-graphql.md)
 - [🔗 Hasura概論](intro-to-hasura.md)
 - [🔗 Hasura RESTハンズオン](hasura-rest-hands-on.md)
-- [🔗 GitHub & CodeSandboxガイド](github-and-codesandbox-guide.md)
+- [🔗 GitHub と CodeSandbox の使い方 (スライド資料)](github-and-codesandbox-guide.md)
 - [🔗 CHIRIMENハンズオン](chirimen-hands-on.md)
 - [🔗 アジャイル開発概論](intro-to-agile.md)
 - [🔗 Scrapbox](scrapbox-intro-to-web-dev.md)
