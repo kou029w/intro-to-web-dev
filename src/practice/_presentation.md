@@ -40,6 +40,8 @@ web/
 └── detail.html       ← 詳細ページ
 ```
 
+※ あくまで一例です。ファイル構成は自由に決めてOK。
+
 <!-- _footer: ご参考まで: 詳細は [todo-template PR #1](https://github.com/kou029w/todo-template/pull/1) をご確認ください。 -->
 
 ---
@@ -57,7 +59,7 @@ import { defineConfig } from "vite";
 // **/*.html にマッチするすべての HTML ファイルをエントリーポイントとして収集
 const entrypoints = [];
 for await (const html of fs.glob("**/*.html", {
-  cwd: import.meta.dirname,          // このファイルのディレクトリを起点に検索
+  cwd: import.meta.dirname, // このファイルのディレクトリを起点に検索
   exclude: ["node_modules/**", "dist/**"], // 依存関係とビルド成果物は除外
 })) {
   entrypoints.push(html);
@@ -126,6 +128,36 @@ document.querySelectorAll("a").forEach(function (a) {
     target: "_blank",
     rel: "noreferrer",
   });
+});
+
+const slides = document.querySelectorAll("section");
+const total = slides.length;
+
+function currentSlide() {
+  const n = parseInt(location.hash.replace("#", ""), 10);
+  return isNaN(n) || n < 1 ? 1 : Math.min(n, total);
+}
+
+function goTo(n) {
+  location.hash = `#${n}`;
+}
+
+document.addEventListener("keydown", function (e) {
+  switch (e.key) {
+    case "ArrowRight":
+    case "ArrowDown":
+    case "PageDown":
+    case " ":
+      e.preventDefault();
+      goTo(Math.min(currentSlide() + 1, total));
+      break;
+    case "ArrowLeft":
+    case "ArrowUp":
+    case "PageUp":
+      e.preventDefault();
+      goTo(Math.max(currentSlide() - 1, 1));
+      break;
+  }
 });
 </script>
 
