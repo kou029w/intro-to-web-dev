@@ -134,8 +134,8 @@ const slides = document.querySelectorAll("section");
 const total = slides.length;
 
 function currentSlide() {
-  const n = parseInt(location.hash.replace("#", ""), 10);
-  return isNaN(n) || n < 1 ? 1 : Math.min(n, total);
+  const n = parseInt(location.hash.replace("#", ""), 10) || 1;
+  return Math.min(Math.max(1, n), total);
 }
 
 function goTo(n) {
