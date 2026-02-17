@@ -3,12 +3,10 @@ marp: true
 paginate: true
 ---
 
-# 開発実践
+# 開発実践 〜アイディアを形に〜
 
 WebDINO Japan エンジニア
 [渡邉浩平](https://scrapbox.io/intro-to-web-dev/watanabe)
-
-アイディアを形に
 
 ---
 
@@ -50,18 +48,17 @@ web/
 
 `web/vite.config.ts` を変更してすべての HTML を自動検出
 
-<!-- _class: small-code -->
-
 ```typescript
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
-import fs from "node:fs/promises";
+import fs from "node:fs/promises"; // ファイルシステム操作 (非同期版)
 import { defineConfig } from "vite";
 
+// **/*.html にマッチするすべての HTML ファイルをエントリーポイントとして収集
 const entrypoints = [];
 for await (const html of fs.glob("**/*.html", {
-  cwd: import.meta.dirname,
-  exclude: ["node_modules/**", "dist/**"],
+  cwd: import.meta.dirname,          // このファイルのディレクトリを起点に検索
+  exclude: ["node_modules/**", "dist/**"], // 依存関係とビルド成果物は除外
 })) {
   entrypoints.push(html);
 }
@@ -70,11 +67,13 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   build: {
     rollupOptions: {
-      input: entrypoints,
+      input: entrypoints, // 収集した全 HTML をビルド対象に指定
     },
   },
 });
 ```
+
+<!-- _class: small-code -->
 
 ---
 
@@ -90,7 +89,9 @@ export default defineConfig({
 
 ## 成果発表
 
----
+- 概要紹介・デモ
+- 一人あたり4〜5分程度
+- ポイント: **実際に動くこと** (部分的にはモックでも全然OK 👌)
 
 ---
 
@@ -102,7 +103,8 @@ Webの仕様は標準化団体によって管理されています。
 - [W3C](https://www.w3.org/) — CSS など
 - [WHATWG](https://whatwg.org/) — HTML など ([HTML Living Standard](https://html.spec.whatwg.org/multipage/))
 
-Web上で**無償公開**、**誰でも参加・実装可能**なオープンな標準です。
+Webは**無償公開**、**誰でも参加可能**、**自由に実装可能**なオープンなプラットフォームです。
+みなさまもぜひ、Webの未来を一緒に作っていきましょう！
 
 ---
 
@@ -111,6 +113,12 @@ Web上で**無償公開**、**誰でも参加・実装可能**なオープンな
 > **"This is for everyone"**
 >
 > _― [Tim Berners-Lee (@timberners_lee)](https://twitter.com/timberners_lee/status/228960085672599552)_
+
+---
+
+## フィードバック
+
+[このスライドを編集する](https://github.com/kou029w/intro-to-web-dev/edit/main/src/practice/_presentation.md) / [問題を報告する](https://github.com/kou029w/intro-to-web-dev/issues/new)
 
 <script type="module">
 document.querySelectorAll("a").forEach(function (a) {
