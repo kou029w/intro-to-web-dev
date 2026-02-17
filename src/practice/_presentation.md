@@ -148,9 +148,11 @@ document.addEventListener("keydown", function (e) {
     case "ArrowDown":
     case "PageDown":
     case " ":
-      e.preventDefault();
-      goTo(Math.min(currentSlide() + 1, total));
-      break;
+      if (!e.shiftKey) {
+        e.preventDefault();
+        goTo(Math.min(currentSlide() + 1, total));
+        break;
+      }
     case "ArrowLeft":
     case "ArrowUp":
     case "PageUp":
