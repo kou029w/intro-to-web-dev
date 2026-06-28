@@ -9,7 +9,6 @@ collections:
   - name: top
     label: トップ・各種ページ
     folder: src
-    create: false
     extension: md
     fields:
       - name: body
@@ -18,7 +17,6 @@ collections:
   - name: get-started
     label: Web開発入門
     folder: src/get-started
-    create: false
     extension: md
     nested:
       depth: 10
@@ -34,7 +32,6 @@ collections:
   - name: environment
     label: Web開発環境構築
     folder: src/environment
-    create: false
     extension: md
     nested:
       depth: 10
@@ -50,7 +47,6 @@ collections:
   - name: js
     label: JavaScript
     folder: src/js
-    create: false
     extension: md
     nested:
       depth: 10
@@ -66,7 +62,6 @@ collections:
   - name: api
     label: REST APIと非同期処理
     folder: src/api
-    create: false
     extension: md
     nested:
       depth: 10
@@ -82,7 +77,6 @@ collections:
   - name: hono
     label: Honoハンズオン
     folder: src/hono
-    create: false
     extension: md
     nested:
       depth: 10
@@ -98,7 +92,6 @@ collections:
   - name: hono-react
     label: Hono + React 連携
     folder: src/hono-react
-    create: false
     extension: md
     nested:
       depth: 10
@@ -114,7 +107,6 @@ collections:
   - name: sqlite
     label: SQLiteハンズオン
     folder: src/sqlite
-    create: false
     extension: md
     nested:
       depth: 10
@@ -130,7 +122,6 @@ collections:
   - name: practice
     label: 開発実践
     folder: src/practice
-    create: false
     extension: md
     nested:
       depth: 10
@@ -146,7 +137,6 @@ collections:
   - name: test
     label: Node.js Test Runnerではじめる自動テスト
     folder: src/test
-    create: false
     extension: md
     nested:
       depth: 10
@@ -162,7 +152,6 @@ collections:
   - name: web
     label: Web
     folder: src/web
-    create: false
     extension: md
     nested:
       depth: 10
@@ -178,7 +167,6 @@ collections:
   - name: web-publishing
     label: Webサイトを公開する
     folder: src/web-publishing
-    create: false
     extension: md
     nested:
       depth: 10
@@ -194,7 +182,6 @@ collections:
   - name: gas-web-app
     label: Google Apps Script (GAS) で作るWebアプリ
     folder: src/gas-web-app
-    create: false
     extension: md
     nested:
       depth: 10
@@ -210,7 +197,6 @@ collections:
   - name: gas-raspberry-pi
     label: Raspberry Piで温度センサーのデータの送信
     folder: src/gas-raspberry-pi
-    create: false
     extension: md
     nested:
       depth: 10
@@ -226,7 +212,6 @@ collections:
   - name: ntfy-raspberry-pi
     label: Raspberry Piからスマートフォンにデータを送信する
     folder: src/ntfy-raspberry-pi
-    create: false
     extension: md
     nested:
       depth: 10
