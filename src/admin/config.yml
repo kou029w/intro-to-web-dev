@@ -1,0 +1,62 @@
+backend:
+  name: github
+  repo: kou029w/intro-to-web-dev
+  branch: main
+  base_url: https://sveltia-cms-auth.kou029w.workers.dev
+media_folder: src/assets
+public_folder: /intro-to-web-dev/assets
+collections:
+  - name: top
+    label: トップ・各種ページ
+    folder: src
+    create: false
+    extension: md
+    fields:
+      - name: body
+        label: 本文
+        widget: markdown
+  - name: get-started
+    label: Web開発入門
+    folder: src/get-started
+    create: false
+    extension: md
+    fields:
+      - name: body
+        label: 本文
+        widget: markdown
+  - name: environment
+    label: Web開発環境構築
+    folder: src/environment
+    create: false
+    extension: md
+    fields:
+      - name: body
+        label: 本文
+        widget: markdown
+  - name: js
+    label: JavaScript
+    folder: src/js
+    create: false
+    extension: md
+    fields:
+      - name: body
+        label: 本文
+        widget: markdown
+  - name: api
+    label: REST APIと非同期処理
+    folder: src/api
+    create: false
+    extension: md
+    fields:
+      - name: body
+        label: 本文
+        widget: markdown
+  - name: web-publishing
+    label: Webサイトを公開する
+    folder: src/web-publishing
+    create: false
+    extension: md
+    fields:
+      - name: body
+        label: 本文
+        widget: markdown
