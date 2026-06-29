@@ -12,10 +12,6 @@ AI支援ツールは、コーディング作業を支援してくれる強力な
 npm i -g @anthropic-ai/claude-code
 # インストール後 claude コマンドで起動
 
-# Gemini CLI
-npm i -g @google/gemini-cli
-# インストール後 gemini コマンドで起動
-
 # Codex
 npm i -g @openai/codex
 # インストール後 codex コマンドで起動
@@ -23,14 +19,18 @@ npm i -g @openai/codex
 # GitHub Copilot CLI
 npm i -g @github/copilot
 # インストール後 copilot コマンドで起動
+
+# Google Antigravity CLI
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+# インストール後 agy コマンドで起動
 ```
 
 ### 学習リソース
 
 - [Claude Code 概要](https://docs.claude.com/ja/docs/claude-code/overview)
-- [Gemini CLI](https://github.com/google-gemini/gemini-cli)
 - [OpenAI Codex](https://developers.openai.com/codex/cli/)
 - [GitHub Copilot CLI](https://docs.github.com/ja/copilot/concepts/agents/about-copilot-cli)
+- [Antigravity CLI](https://antigravity.google/docs/cli/overview)
 
 ## プロジェクトでの活用例
 
