@@ -11,12 +11,11 @@ Webサイトを公開する流れ:
 1. <https://app.netlify.com/drop> にアクセスします
 2. 公開したいHTMLファイルなどが入ったフォルダを、ページ上にドラッグ&ドロップします
 3. アップロードが完了すると、公開用のURLが発行されます
+4. 発行されたURLにアクセスし、「Password protected site」と表示されるので、パスワード `My-Drop-Site` を入力し、[Submit] ボタンを押すと、Webサイトを閲覧できます
 
 公式ドキュメント: [Netlify Drop quickstart (Netlify Docs)](https://docs.netlify.com/start/quickstarts/netlify-drop-quickstart/)
 
-なお、ログインせずにアップロードした場合、発行されたURLは一時的なパスワードで保護されています。アクセスすると「Password protected site」という画面が表示されるので、パスワード欄に `My-Drop-Site` と入力し、[Submit] を選択すると閲覧できます。
-
-サイトを確保しないままだと、アップロードから約1時間で公開が終了します。継続的に公開したい場合は、無料のNetlifyアカウントでログインして<ruby>サイトを自分のアカウントに確保<rt>Claim this site</rt></ruby>しましょう。確保したサイトは無料プランのまま公開を続けられます。
+Netlify Dropで公開したWebサイトはアップロードしてから約1時間で公開終了します。継続的に公開したい場合は、無料のNetlifyアカウントでログインして<ruby>サイトを自分のアカウントに確保<rt>Claim this site</rt></ruby>しましょう。確保したサイトは無料で公開し続けられます。
 
 ## GitHubを使う
 
