@@ -19,7 +19,7 @@ Netlify Dropで公開したWebサイトはアップロードしてから約1時�
 
 ## GitHubを使う
 
-GitHub <https://github.com> を使うことで、より本格的にWebサイトを公開できます(このガイドもそうです)。
+GitHub <https://github.com> を使うことで、より本格的にWebサイトを公開できます（このガイドもそうです）。
 
 GitHubを使うには、無料アカウントの作成が必要です。
 
