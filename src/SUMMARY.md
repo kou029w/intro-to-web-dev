@@ -74,6 +74,7 @@
   - [オブジェクト](js/object.md)
   - [配列](js/array.md)
 - [Webサイトを公開する](web-publishing/index.md)
+  - [🔗 Netlify Dropでの公開](web-publishing/netlify-drop.md)
   - [🔗 GitHubでのアカウントの作成](web-publishing/github-signup.md)
   - [🔗 GitHub Pagesサイトの作成](web-publishing/creating-github-pages.md)
 - [Google Apps Script (GAS) で作るWebアプリ](gas-web-app/index.md)
