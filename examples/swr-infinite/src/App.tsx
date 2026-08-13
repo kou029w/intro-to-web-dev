@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type RefObject } from "react";
 import { useIntersection } from "react-use";
 import useSWRInfinite from "swr/infinite";
 import "./App.css";
@@ -6,14 +6,20 @@ import "./App.css";
 const API_BASE = "https://jsonplaceholder.typicode.com";
 const PAGE_SIZE = 10;
 
-async function fetcher(url) {
+interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+
+async function fetcher(url: string) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
   return res.json();
 }
 
 function Posts() {
-  const getKey = (pageIndex, previousPageData) => {
+  const getKey = (pageIndex: number, previousPageData: Post[] | null) => {
     if (previousPageData && !previousPageData.length) return null;
 
     const query = new URLSearchParams({
@@ -24,13 +30,15 @@ function Posts() {
     return `${API_BASE}/posts?${query}`;
   };
 
-  const { data, size, setSize, isLoading, isValidating } = useSWRInfinite(
-    getKey,
-    fetcher,
-  );
+  const { data, size, setSize, isLoading, isValidating } = useSWRInfinite<
+    Post[]
+  >(getKey, fetcher);
 
-  const bottomRef = useRef(null);
-  const intersection = useIntersection(bottomRef, { rootMargin: "100px" });
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const intersection = useIntersection(
+    bottomRef as RefObject<HTMLElement>,
+    { rootMargin: "100px" },
+  );
 
   const posts = data ? data.flat() : [];
   const isEnd = data && data[data.length - 1]?.length < PAGE_SIZE;

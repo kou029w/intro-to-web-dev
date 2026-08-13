@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import useSWR, { SWRConfig } from "swr";
 import "./App.css";
 
 const API_BASE = "https://jsonplaceholder.typicode.com";
 
-async function fetcher(url) {
+async function fetcher(url: string) {
   const res = await fetch(url);
   if (!res.ok) throw new Error(`HTTP Error: ${res.status}`);
   return res.json();
@@ -13,7 +13,7 @@ async function fetcher(url) {
 // ========================================
 // Providers: SWRのグローバル設定
 // ========================================
-function Providers({ children }) {
+function Providers({ children }: { children: ReactNode }) {
   return <SWRConfig value={{ fetcher }}>{children}</SWRConfig>;
 }
 
@@ -22,7 +22,13 @@ function Providers({ children }) {
 // - 同じuserIdで複数回使用 → キャッシュ共有を確認
 // - refreshInterval で定期更新を確認
 // ========================================
-function UserDetail({ userId, enableRefresh = false }) {
+function UserDetail({
+  userId,
+  enableRefresh = false,
+}: {
+  userId: number;
+  enableRefresh?: boolean;
+}) {
   const { data, error, isLoading } = useSWR<{
     id: number;
     name: string;

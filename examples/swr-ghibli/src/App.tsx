@@ -1,7 +1,17 @@
 import { useState } from "react";
 import useSWR from "swr";
 
-async function fetcher(url) {
+interface Film {
+  id: string;
+  title: string;
+  original_title: string;
+  movie_banner: string;
+  description: string;
+  director: string;
+  producer: string;
+}
+
+async function fetcher(url: string) {
   const res = await fetch(url);
 
   if (!res.ok) {
@@ -11,8 +21,8 @@ async function fetcher(url) {
   return await res.json();
 }
 
-function FilmList({ onSelect }) {
-  const { data, error, isValidating } = useSWR(
+function FilmList({ onSelect }: { onSelect: (id: string) => void }) {
+  const { data, error, isValidating } = useSWR<Film[]>(
     "https://ghibliapi.vercel.app/films",
     fetcher,
   );
@@ -45,8 +55,8 @@ function FilmList({ onSelect }) {
   );
 }
 
-function FilmDetail({ id }) {
-  const { data, isValidating } = useSWR(
+function FilmDetail({ id }: { id: string | null }) {
+  const { data, isValidating } = useSWR<Film>(
     id && `https://ghibliapi.vercel.app/films/${id}`,
     fetcher,
   );
@@ -87,7 +97,7 @@ function FilmDetail({ id }) {
 }
 
 export default function App() {
-  const [id, setId] = useState(null);
+  const [id, setId] = useState<string | null>(null);
 
   return (
     <div className="max-w-xl mx-auto min-h-screen p-8 flex flex-col gap-4">

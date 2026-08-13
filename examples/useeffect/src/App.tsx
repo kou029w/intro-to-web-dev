@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+interface User {
+  id: number;
+  name: string;
+}
+
 // ========================================
 // UserCard: ユーザー表示コンポーネント
 // ========================================
-function UserCard({ userId }) {
-  const [user, setUser] = useState(null);
+function UserCard({ userId }: { userId: number }) {
+  const [user, setUser] = useState<User | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
