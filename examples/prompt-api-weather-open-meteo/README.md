@@ -17,7 +17,8 @@ APIキー不要の[Open-Meteo](https://open-meteo.com/)から、入力した地�
 Chrome 148以降で、このディレクトリを静的サーバーで配信して開いてください。
 
 ```bash
-npx serve .
+npm install
+npm start
 ```
 
 ## 解説

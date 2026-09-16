@@ -1,0 +1,11 @@
+{
+  "name": "prompt-api-weather-open-meteo",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "serve"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
+  }
+}

@@ -8,7 +8,8 @@
 Chrome 148以降で、このディレクトリを静的サーバーで配信して開いてください。
 
 ```bash
-npx serve .
+npm install
+npm start
 ```
 
 `file://`から直接開くと、`<script type="module">`がCORSでブロックされるため動作しません。

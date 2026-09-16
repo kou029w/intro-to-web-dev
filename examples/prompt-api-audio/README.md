@@ -10,7 +10,8 @@
 Chrome 148以降で、このディレクトリを静的サーバーで配信して開いてください。マイクへのアクセス許可が必要です。
 
 ```bash
-npx serve .
+npm install
+npm start
 ```
 
 `file://`から直接開くと、`getUserMedia()`がセキュアコンテキストとして扱われず失敗します。

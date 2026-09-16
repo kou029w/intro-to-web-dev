@@ -12,7 +12,8 @@
 Chrome 148以降で、このディレクトリを静的サーバーで配信して開いてください。
 
 ```bash
-npx serve .
+npm install
+npm start
 ```
 
 ## 解説

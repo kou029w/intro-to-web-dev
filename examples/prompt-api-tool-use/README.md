@@ -19,7 +19,8 @@ Prompt APIに`tools`を渡し、モデルが必要に応じて`get_weather`関�
 Chrome 148以降で、このディレクトリを静的サーバーで配信して開いてください。
 
 ```bash
-npx serve .
+npm install
+npm start
 ```
 
 ## 解説
