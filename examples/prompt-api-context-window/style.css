@@ -1,0 +1,47 @@
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  line-height: 1.6;
+}
+
+#usage {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+#chat {
+  background: #f5f5f5;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  min-height: 4rem;
+  margin-bottom: 1rem;
+}
+
+#chat p {
+  margin: 0.25rem 0;
+}
+
+form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input,
+button {
+  font: inherit;
+  padding: 0.5rem;
+}
+
+input {
+  flex: 1;
+}
+
+button {
+  cursor: pointer;
+}
+
+#compact {
+  margin-top: 0.5rem;
+}

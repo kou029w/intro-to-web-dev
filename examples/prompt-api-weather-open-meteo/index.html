@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>気象データの説明（Open-Meteo）</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>気象データの説明（Open-Meteo）</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <form id="form">
+        <label for="place">場所</label>
+        <input
+          id="place"
+          type="text"
+          value="Tokyo"
+          placeholder="Tokyo / Osaka / Kyoto"
+        />
+        <button id="run" type="submit">現在の天気を取得して説明してもらう</button>
+      </form>
+
+      <section>
+        <h2>取得した気象データ</h2>
+        <pre id="raw"></pre>
+      </section>
+
+      <section>
+        <h2>Prompt APIによる説明</h2>
+        <pre id="description"></pre>
+      </section>
+
+      <section>
+        <h2>構造化出力による判定</h2>
+        <pre id="judgment"></pre>
+      </section>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+# コンテキスト使用量の管理
+
+チャットを続けるうちに`session.contextUsage`と`session.contextWindow`がどう増えていくかを確認できるサンプルです。
+[chrome.devのprompt-api-session-compacting](https://chrome.dev/web-ai-demos/)を参考にしていますが、元のデモがSummarizer APIとLanguageDetector APIを組み合わせているのに対して、このサンプルはPrompt API単体で完結するように単純化しています。
+
+「会話を要約して圧縮する」ボタンを押すと、モデル自身にこれまでの会話を要約させ、その要約だけを`initialPrompts`に持たせた新しいセッションに作り直します。
+古いセッションを`destroy()`してから作り直すことで、コンテキスト使用量をリセットしつつ、会話の要点だけを引き継げます。
+
+## 動かし方
+
+Chrome 148以降で、このディレクトリを静的サーバーで配信して開いてください。
+
+```bash
+npx serve .
+```
+
+## 解説
+
+このサンプルの背景にある仕組みは [Prompt API入門](../../src/prompt-api.md) で解説しています。

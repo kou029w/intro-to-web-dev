@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt API プレイグラウンド</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Prompt API プレイグラウンド</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <form id="form">
+        <label>
+          システムプロンプト（任意）
+          <textarea
+            id="system-prompt"
+            placeholder="モデルの役割や口調を指定します"
+          ></textarea>
+        </label>
+        <label>
+          ユーザープロンプト
+          <textarea id="prompt" required>
+日本語で自己紹介してください。</textarea
+          >
+        </label>
+        <label>
+          JSON Schema（任意、構造化出力）
+          <textarea
+            id="schema"
+            class="code"
+            placeholder='{"type":"object","properties":{"answer":{"type":"string"}},"required":["answer"]}'
+          ></textarea>
+        </label>
+        <button type="submit">送信</button>
+      </form>
+
+      <pre id="output"></pre>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

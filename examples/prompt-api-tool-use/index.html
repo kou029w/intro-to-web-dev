@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ツール呼び出し（天気ツール）</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>ツール呼び出し（天気ツール）</h1>
+      <p id="status">対応状況を確認しています…</p>
+      <p class="hint">
+        利用できるツール: <code>get_weather</code>（対応都市:
+        東京、大阪、札幌）
+      </p>
+
+      <div id="chat"></div>
+
+      <form id="form">
+        <input
+          id="message"
+          type="text"
+          placeholder="例: 東京と大阪、どっちが暖かい？"
+          required
+        />
+        <button type="submit">送信</button>
+      </form>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>コンテキスト使用量の管理</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>コンテキスト使用量の管理</h1>
+      <p id="status">対応状況を確認しています…</p>
+      <p id="usage"></p>
+
+      <div id="chat"></div>
+
+      <form id="form">
+        <input id="message" type="text" placeholder="メッセージを入力" required />
+        <button type="submit">送信</button>
+      </form>
+      <button id="compact" type="button">会話を要約して圧縮する</button>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

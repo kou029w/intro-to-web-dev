@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>書き起こしのフィラー除去</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>書き起こしのフィラー除去</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <label>
+        書き起こしテキスト
+        <textarea id="transcript" rows="6">
+えーっと、今日はですね、あの、プロジェクトの進捗について、まあ、共有したいと思います。なんか、先週から始めた機能なんですけど、そのー、思ったより順調に進んでいて、えー、来週にはリリースできそうです。</textarea
+        >
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" id="auto-clean" checked />
+        録音後に自動でフィラー除去まで実行する（ストリーミング表示）
+      </label>
+
+      <div class="actions">
+        <button id="record">🎤 5秒録音して書き起こす</button>
+        <button id="clean">フィラーを除去する</button>
+      </div>
+      <audio id="playback" controls hidden></audio>
+
+      <section>
+        <h2>除去後のテキスト</h2>
+        <pre id="cleaned"></pre>
+      </section>
+
+      <section>
+        <h2>除去したフィラー</h2>
+        <pre id="removed"></pre>
+      </section>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

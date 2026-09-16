@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>気象データの説明（wttr.in）</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>気象データの説明（wttr.in）</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <button id="run">東京の現在の天気を取得して説明してもらう</button>
+
+      <section>
+        <h2>取得した気象データ（テキスト形式）</h2>
+        <pre id="raw"></pre>
+      </section>
+
+      <section>
+        <h2>Prompt APIによる説明</h2>
+        <pre id="description"></pre>
+      </section>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

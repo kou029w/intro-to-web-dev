@@ -71,37 +71,54 @@ function makeCodeInteractive() {
       // コンソール出力をクリア
       consoleOutput.innerHTML = "";
       consoleOutput.style.display = "block";
-      consoleVisible = true;
+      consoleOutput.style.color = "#d4d4d4";
 
-      // console.logをキャプチャする
-      const originalLog = console.log;
-      const originalError = console.error;
-      const originalWarn = console.warn;
+      // ストリーミング表示用に受け取ったログ行数をカウント
+      let logCount = 0;
 
-      const capturedLogs = [];
+      // ログ1行をコンソール出力エリアに即座に追記する
+      const appendLogLine = (type, args) => {
+        logCount += 1;
 
-      console.log = (...args) => {
-        capturedLogs.push({
-          type: "log",
-          args: args,
-        });
-        originalLog.apply(console, args);
-      };
+        const logLine = document.createElement("div");
+        logLine.style.marginBottom = "4px";
 
-      console.error = (...args) => {
-        capturedLogs.push({
-          type: "error",
-          args: args,
-        });
-        originalError.apply(console, args);
-      };
+        const prefix = document.createElement("span");
 
-      console.warn = (...args) => {
-        capturedLogs.push({
-          type: "warn",
-          args: args,
-        });
-        originalWarn.apply(console, args);
+        switch (type) {
+          case "error":
+            prefix.textContent = "❌ ";
+            logLine.style.color = "#f48771";
+            break;
+          case "warn":
+            prefix.textContent = "⚠️ ";
+            logLine.style.color = "#dcdcaa";
+            break;
+          default:
+            prefix.textContent = "";
+            logLine.style.color = "#4ec9b0";
+        }
+
+        logLine.appendChild(prefix);
+
+        const formattedArgs = args
+          .map((arg) => {
+            if (typeof arg === "object") {
+              try {
+                return JSON.stringify(arg, null, 2);
+              } catch {
+                return String(arg);
+              }
+            }
+            return String(arg);
+          })
+          .join(" ");
+
+        logLine.appendChild(document.createTextNode(formattedArgs));
+        consoleOutput.appendChild(logLine);
+
+        // 自動スクロール
+        consoleOutput.scrollTop = consoleOutput.scrollHeight;
       };
 
       // ESMとして実行するために動的にスクリプトを作成
@@ -111,108 +128,72 @@ function makeCodeInteractive() {
       script.id = scriptId;
 
       // ラップされたコードを作成（console.logをキャプチャ＋トップレベルawait対応）
+      // 各ログは溜め込まず、発生した時点で"-log"イベントとして即座に送信する
       const wrappedCode = `
         (async () => {
           const originalLog = console.log;
           const originalError = console.error;
           const originalWarn = console.warn;
 
-          const capturedLogs = [];
+          const emit = (type, args) => {
+            window.dispatchEvent(new CustomEvent("${scriptId}-log", {
+              detail: { type, args }
+            }));
+          };
 
           console.log = (...args) => {
-            capturedLogs.push({ type: "log", args: args });
+            emit("log", args);
             originalLog.apply(console, args);
           };
 
           console.error = (...args) => {
-            capturedLogs.push({ type: "error", args: args });
+            emit("error", args);
             originalError.apply(console, args);
           };
 
           console.warn = (...args) => {
-            capturedLogs.push({ type: "warn", args: args });
+            emit("warn", args);
             originalWarn.apply(console, args);
           };
 
           try {
             ${code}
           } catch (error) {
-            capturedLogs.push({ type: "error", args: [error.message] });
+            const message = error instanceof Error ? error.message : String(error);
+            emit("error", [message]);
           } finally {
             console.log = originalLog;
             console.error = originalError;
             console.warn = originalWarn;
           }
 
-          // 実行結果をカスタムイベントで返す
-          window.dispatchEvent(new CustomEvent("${scriptId}-complete", {
-            detail: { capturedLogs }
-          }));
+          // 実行完了を通知（後始末用）
+          window.dispatchEvent(new CustomEvent("${scriptId}-complete"));
         })();
       `;
 
       script.textContent = wrappedCode;
 
+      // ログ1件ごとに即座に表示する
+      const handleLog = (event) => {
+        appendLogLine(event.detail.type, event.detail.args);
+      };
+
       // 実行完了イベントを処理する関数
-      const handleComplete = (event) => {
-        const { capturedLogs } = event.detail;
-
-        // console.logを元に戻す（念のため）
-        console.log = originalLog;
-        console.error = originalError;
-        console.warn = originalWarn;
-
-        // スクリプト要素を削除
+      const handleComplete = () => {
+        // スクリプト要素とリスナーを削除
         document.getElementById(scriptId)?.remove();
+        window.removeEventListener(`${scriptId}-log`, handleLog);
         window.removeEventListener(`${scriptId}-complete`, handleComplete);
 
-        // キャプチャしたログを表示
-        capturedLogs.forEach((log) => {
-          const logLine = document.createElement("div");
-          logLine.style.marginBottom = "4px";
-
-          const prefix = document.createElement("span");
-
-          switch (log.type) {
-            case "error":
-              prefix.textContent = "❌ ";
-              logLine.style.color = "#f48771";
-              break;
-            case "warn":
-              prefix.textContent = "⚠️ ";
-              logLine.style.color = "#dcdcaa";
-              break;
-            default:
-              prefix.textContent = "";
-              logLine.style.color = "#4ec9b0";
-          }
-
-          logLine.appendChild(prefix);
-
-          const formattedArgs = log.args
-            .map((arg) => {
-              if (typeof arg === "object") {
-                try {
-                  return JSON.stringify(arg, null, 2);
-                } catch {
-                  return String(arg);
-                }
-              }
-              return String(arg);
-            })
-            .join(" ");
-
-          logLine.appendChild(document.createTextNode(formattedArgs));
-          consoleOutput.appendChild(logLine);
-        });
-
-        if (capturedLogs.length === 0) {
+        if (logCount === 0) {
           consoleOutput.textContent = "出力なし";
           consoleOutput.style.color = "#858585";
         }
       };
 
       // イベントリスナーを登録してスクリプトを実行
+      window.addEventListener(`${scriptId}-log`, handleLog);
       window.addEventListener(`${scriptId}-complete`, handleComplete);
       document.body.appendChild(script);
     });

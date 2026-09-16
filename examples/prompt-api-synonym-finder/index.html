@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>類義語検索</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>類義語検索</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <form id="form">
+        <label>
+          単語
+          <input id="word" type="text" value="面白い" required />
+        </label>
+        <button type="submit">検索</button>
+      </form>
+
+      <pre id="result"></pre>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
