@@ -1,5 +1,8 @@
 # 音声を文字起こしする
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio?file=script.js&view=preview)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio)
+
 マイクから5秒間録音した音声を、Prompt API（`LanguageModel`）にそのまま渡して文字起こしするサンプルです。
 [chrome.devのmediarecorder-audio-prompt](https://chrome.dev/web-ai-demos/)を参考にした実装です。
 

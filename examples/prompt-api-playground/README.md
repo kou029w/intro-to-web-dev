@@ -1,5 +1,8 @@
 # Prompt API プレイグラウンド
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground?file=script.js&view=preview)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground)
+
 システムプロンプト・ユーザープロンプト・JSON Schemaを自由に入力して、Prompt API（`LanguageModel`）の応答をストリーミングで確認できるサンプルです。
 [Microsoft EdgeのPrompt APIプレイグラウンド](https://microsoftedge.github.io/Demos/built-in-ai/playgrounds/prompt-api/)を参考にした、最小構成の実装です。
 

@@ -1,5 +1,8 @@
 # 書き起こしのフィラー除去
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup?file=script.js&view=preview)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup)
+
 音声を書き起こしたテキストから、「えーと」「あの」「まあ」のようなフィラー（言い淀み）だけをPrompt API（`LanguageModel`）に取り除かせるサンプルです。
 
 2段階のパイプライン構成になっています。「録音後に自動でフィラー除去まで実行する」（既定でオン）にチェックが入っていると、録音から除去まで自動で続けて実行されます。オフにすると、書き起こし後に「フィラーを除去する」ボタンを押すまで待機します。

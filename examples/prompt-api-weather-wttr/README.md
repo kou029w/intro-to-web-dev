@@ -1,5 +1,8 @@
 # 気象データの説明（wttr.in）
 
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr?file=script.js&view=preview)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr)
+
 [wttr.in](https://wttr.in/)の`format=j1`から東京の現在の気象データを取得し、Prompt API（`LanguageModel`）で自然な日本語の説明に変換するサンプルです。
 
 [気象データの説明（Open-Meteo）](../prompt-api-weather-open-meteo/)がコード側で天気コードを日本語ラベルに変換してから渡すのに対して、このサンプルは`weatherDesc`に含まれる英語の天気表現（例: `"Patchy rain nearby"`）をそのままモデルに渡し、日本語への翻訳も含めて説明させる構成です。
