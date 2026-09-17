@@ -1,7 +1,7 @@
 # Prompt APIサンプル集をブラウザで試す
 
-[Prompt APIサンプル](https://github.com/kou029w/intro-to-web-dev/tree/main/examples)を、インストールなしでオンラインエディタ上で動かせます。
-**StackBlitz**と**LiveCodes**は、どちらもGitHubリポジトリのディレクトリを直接読み込んで実行できるオンラインエディタです。
+[Prompt APIサンプル](https://github.com/kou029w/intro-to-web-dev/tree/main/examples)を、インストールなしでオンラインエディター上で動かせます。
+**StackBlitz**と**LiveCodes**は、どちらもGitHubリポジトリのディレクトリを直接読み込んで実行できるオンラインエディターです。
 コードを直接書き換えて、その場で挙動を確認できます。
 
 各サンプルの詳しい解説は [Prompt API入門](prompt-api.md) を参照してください。
