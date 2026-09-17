@@ -7,6 +7,8 @@ const CITY_COORDS = {
   東京: { latitude: 35.6812, longitude: 139.7671 },
   大阪: { latitude: 34.6937, longitude: 135.5023 },
   札幌: { latitude: 43.0618, longitude: 141.3545 },
+  沖縄: { latitude: 26.2124, longitude: 127.6809 },
+  鳥取: { latitude: 35.5011, longitude: 134.2351 },
 };
 
 function describeWeatherCode(code) {
@@ -44,7 +46,7 @@ const tools = [
   {
     name: "get_weather",
     description:
-      "指定した日本の都市の現在の気温と天気を取得します。対応都市は東京、大阪、札幌です。",
+      "指定した日本の都市の現在の気温と天気を取得します。対応都市は東京、大阪、札幌、沖縄、鳥取です。",
     inputSchema: {
       type: "object",
       properties: { city: { type: "string" } },
