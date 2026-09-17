@@ -14,7 +14,7 @@
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground)
 
-<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground&console=open" style="width:100%; height:800px; border:0; border-radius:0.5rem;"></iframe>
+<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
 ## 類義語検索
 
@@ -24,7 +24,7 @@ n-shotプロンプティングと`clone()`によるセッション複製を確�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder)
 
-<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder&console=open" style="width:100%; height:800px; border:0; border-radius:0.5rem;"></iframe>
+<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
 ## 気象データの説明（Open-Meteo）
 
@@ -35,7 +35,7 @@ APIキー不要のOpen-Meteoから、入力した地名（Tokyo / Osaka / Kyoto�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo)
 
-<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo&console=open" style="width:100%; height:800px; border:0; border-radius:0.5rem;"></iframe>
+<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
 ## 気象データの説明（wttr.in）
 
@@ -45,7 +45,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr)
 
-<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr&console=open" style="width:100%; height:800px; border:0; border-radius:0.5rem;"></iframe>
+<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
 ## 画像を説明してもらう
 
@@ -55,7 +55,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image)
 
-<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image&console=open" style="width:100%; height:800px; border:0; border-radius:0.5rem;"></iframe>
+<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
 ## 音声を文字起こしする
 
@@ -65,7 +65,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio)
 
-<iframe loading="lazy" allow="microphone; language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio&console=open" style="width:100%; height:800px; border:0; border-radius:0.5rem;"></iframe>
+<iframe loading="lazy" allow="microphone; language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
 ## コンテキスト使用量の管理
 
@@ -75,7 +75,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window)
 
-<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window&console=open" style="width:100%; height:800px; border:0; border-radius:0.5rem;"></iframe>
+<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
 ## ツール呼び出し（天気ツール）
 
@@ -85,7 +85,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use)
 
-<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use&console=open" style="width:100%; height:800px; border:0; border-radius:0.5rem;"></iframe>
+<iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
 ## 書き起こしのフィラー除去
 
@@ -95,4 +95,4 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup)
 
-<iframe loading="lazy" allow="microphone; language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup&console=open" style="width:100%; height:800px; border:0; border-radius:0.5rem;"></iframe>
+<iframe loading="lazy" allow="microphone; language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
