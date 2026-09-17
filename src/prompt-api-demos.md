@@ -77,6 +77,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
+<!--
 ## ツール呼び出し（天気ツール）
 
 `tools`オプションで、モデルが必要に応じて`get_weather`関数を自分で呼び出す様子を確認できます。実験的な機能のため、Chromeのフラグ有効化が必要な場合があります。
@@ -86,6 +87,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use?file=script.js&view=preview)
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
+-->
 
 ## 書き起こしのフィラー除去
 
