@@ -31,7 +31,7 @@
   - [受講環境の事前確認](prompt-api-setup.md)
 - [Prompt APIサンプル集をブラウザで試す](prompt-api-demos.md)
 - [Webでハードウェアを動かす](web-serial/index.md)
-  - [M5Stackの準備](web-serial/m5stack-setup.md)
+  - [M5Stack Core2の準備](web-serial/m5stack-setup.md)
   - [Web Serial APIの基礎](web-serial/web-serial-api.md)
   - [センサー値をブラウザでモニターする](web-serial/sensor-monitor.md)
   - [センサー値をPrompt APIで解説させる](web-serial/sensor-ai.md)
