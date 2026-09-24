@@ -1,0 +1,13 @@
+#options label {
+  display: block;
+}
+
+#interim-result {
+  color: #888;
+}
+
+.confidence {
+  margin-inline-start: 0.5rem;
+  color: #888;
+  font-size: 0.85em;
+}

@@ -1,0 +1,37 @@
+canvas {
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid #ccc;
+}
+
+.legend {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.legend .x {
+  color: #e53935;
+}
+
+.legend .y {
+  color: #43a047;
+}
+
+.legend .z {
+  color: #1e88e5;
+}
+
+output {
+  font-variant-numeric: tabular-nums;
+}
+
+#command-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#log {
+  white-space: pre-wrap;
+  max-height: 16rem;
+  overflow-y: auto;
+}

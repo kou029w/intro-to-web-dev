@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>センサー値をモニターする</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fogtype/css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>センサー値をモニターする</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <button id="connect" type="button">接続</button>
+      <button id="disconnect" type="button" disabled>切断</button>
+
+      <h2>加速度（G）</h2>
+      <canvas id="chart" width="600" height="200"></canvas>
+      <p class="legend">
+        <span class="x">x: <output id="ax">-</output></span>
+        <span class="y">y: <output id="ay">-</output></span>
+        <span class="z">z: <output id="az">-</output></span>
+      </p>
+
+      <h2>そのほかの値</h2>
+      <table>
+        <tbody>
+          <tr>
+            <th>角速度（度/秒）</th>
+            <td><output id="gyro">-</output></td>
+          </tr>
+          <tr>
+            <th>バッテリー</th>
+            <td><output id="battery">-</output></td>
+          </tr>
+          <tr>
+            <th>最後に押されたボタン</th>
+            <td><output id="button">-</output></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>コマンドを送る</h2>
+      <form id="command-form">
+        <input
+          id="command"
+          type="text"
+          value="sensor 500"
+          autocomplete="off"
+          aria-label="コマンド"
+        />
+        <button type="submit" disabled>送信</button>
+      </form>
+
+      <h2>ログ</h2>
+      <pre id="log"></pre>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,22 @@
+.joint {
+  margin-block: 1.5rem;
+}
+
+.joint label {
+  display: block;
+  font-weight: bold;
+}
+
+.joint input {
+  width: 100%;
+}
+
+output {
+  font-variant-numeric: tabular-nums;
+}
+
+#log {
+  white-space: pre-wrap;
+  max-height: 16rem;
+  overflow-y: auto;
+}

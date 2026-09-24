@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>音声を認識する</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fogtype/css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>音声を認識する</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <fieldset id="options">
+        <legend>設定</legend>
+        <label>
+          言語
+          <select id="lang">
+            <option value="ja-JP">日本語（ja-JP）</option>
+            <option value="en-US">英語（en-US）</option>
+          </select>
+        </label>
+        <label>
+          <input id="interim" type="checkbox" checked />
+          認識途中の結果も表示する（interimResults）
+        </label>
+        <label>
+          <input id="continuous" type="checkbox" />
+          止めるまで認識を続ける（continuous）
+        </label>
+        <label>
+          <input id="local" type="checkbox" />
+          端末内で処理する（processLocally）
+        </label>
+      </fieldset>
+
+      <button id="start" type="button">認識を開始</button>
+      <button id="stop" type="button" disabled>停止</button>
+
+      <h2>認識結果</h2>
+      <ol id="results"></ol>
+      <p id="interim-result"></p>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+#prompt {
+  white-space: pre-wrap;
+}
+
+#level {
+  padding: 0.1rem 0.6rem;
+  border-radius: 0.3rem;
+  color: white;
+}
+
+#level:empty {
+  display: none;
+}
+
+#level.normal {
+  background: #43a047;
+}
+
+#level.warning {
+  background: #fb8c00;
+}
+
+#level.alert {
+  background: #e53935;
+}

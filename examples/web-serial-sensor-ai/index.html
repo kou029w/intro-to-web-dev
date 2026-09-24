@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>センサー値をPrompt APIで解説させる</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fogtype/css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>センサー値をPrompt APIで解説させる</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <button id="connect" type="button">接続</button>
+      <button id="explain" type="button" disabled>今の状態を説明する</button>
+      <p>M5Stackの画面下の左ボタン（A）を押しても説明が始まります。</p>
+
+      <h2>モデルに渡した文</h2>
+      <pre id="prompt"></pre>
+
+      <h2>モデルの判断</h2>
+      <p><span id="level"></span> <span id="comment"></span></p>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

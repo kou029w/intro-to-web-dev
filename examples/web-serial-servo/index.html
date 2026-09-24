@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>サーボモーターを動かす</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fogtype/css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>サーボモーターを動かす</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <button id="connect" type="button">接続</button>
+      <button id="home" type="button" disabled>初期位置に戻す</button>
+      <button id="release" type="button" disabled>脱力させる</button>
+
+      <div id="joints"></div>
+
+      <h2>ログ</h2>
+      <pre id="log"></pre>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
