@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+
+td:last-child {
+  white-space: nowrap;
+}
+
+progress {
+  width: 100%;
+}
+
+#result {
+  white-space: pre-wrap;
+}

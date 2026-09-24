@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt API 動作確認</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fogtype/css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Prompt API 動作確認</h1>
+      <p id="summary">対応状況を確認しています…</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>結果</th>
+            <th>判定</th>
+          </tr>
+        </thead>
+        <tbody id="checks"></tbody>
+      </table>
+
+      <p>
+        ストレージの空き容量（22GB以上）とGPUのVRAM（4GB超）は、ブラウザから正確に取得できません。
+        配布したチェックリストを見て、手動で確認してください。
+      </p>
+
+      <h2>モデルのダウンロードと応答テスト</h2>
+      <p>
+        ボタンを押すとモデル（数GB）のダウンロードが始まります。
+        Wi-Fiなど従量課金でない回線で実行してください。
+      </p>
+      <button id="test" type="button" disabled>ダウンロードして試す</button>
+      <progress id="progress" max="1" value="0" hidden></progress>
+      <p id="test-status"></p>
+      <pre id="result"></pre>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

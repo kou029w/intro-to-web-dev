@@ -28,6 +28,7 @@
   - [TanStack Query入門](api/tanstack-query.md)
   - [プロキシ確認ガイド](api/proxy.md)
 - [Prompt API入門](prompt-api.md)
+  - [受講環境の事前確認](prompt-api-setup.md)
 - [Prompt APIサンプル集をブラウザで試す](prompt-api-demos.md)
 - [Honoハンズオン](hono/index.md)
   - [Honoとエッジランタイム](hono/overview.md)
