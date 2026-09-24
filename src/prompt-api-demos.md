@@ -67,6 +67,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 
 <iframe loading="lazy" allow="microphone; language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
+<!--
 ## コンテキスト使用量の管理
 
 `session.contextUsage`/`contextWindow`を監視し、モデル自身に会話を要約させて圧縮します。
@@ -76,7 +77,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window?file=script.js&view=preview)
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
-
+-->
 <!--
 ## ツール呼び出し（天気ツール）
 
