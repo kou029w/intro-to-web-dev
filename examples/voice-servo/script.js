@@ -91,7 +91,7 @@ function handleLine(line) {
     return;
   }
   if (message?.type === "error") {
-    statusEl.textContent = `M5Stackがエラーを返しました: ${message.message}`;
+    statusEl.textContent = `Core2がエラーを返しました: ${message.message}`;
   }
 }
 

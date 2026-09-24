@@ -20,7 +20,7 @@ if (!("serial" in navigator)) {
     "この環境ではWeb Serial APIを利用できません。Chrome 89以降でお試しください。";
   connectEl.hidden = true;
 } else {
-  statusEl.textContent = "M5StackをUSBで接続し、「接続」を押してください。";
+  statusEl.textContent = "Core2をUSBで接続し、「接続」を押してください。";
 }
 
 function log(text) {

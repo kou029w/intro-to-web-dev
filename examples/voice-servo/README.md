@@ -3,8 +3,8 @@
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/voice-servo?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/voice-servo)
 
-Speech Recognition APIで認識した指示を、Prompt APIで関節の動作（JSON）に変換し、Web Serial APIでM5Stackに送るサンプルです。
-M5Stackを接続しなくても、画面上の角度の変化で動作を確かめられます。
+Speech Recognition APIで認識した指示を、Prompt APIで関節の動作（JSON）に変換し、Web Serial APIでCore2に送るサンプルです。
+Core2を接続しなくても、画面上の角度の変化で動作を確かめられます。
 
 ## 動かし方
 

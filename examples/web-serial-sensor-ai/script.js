@@ -49,7 +49,7 @@ if (!("serial" in navigator) || !("LanguageModel" in self)) {
   statusEl.textContent = "この端末ではPrompt APIを利用できません。";
   connectEl.hidden = true;
 } else {
-  statusEl.textContent = "M5StackをUSBで接続し、「接続」を押してください。";
+  statusEl.textContent = "Core2をUSBで接続し、「接続」を押してください。";
   // ダウンロード済みなら、ボタンを押す前にセッションを用意しておく
   if ((await LanguageModel.availability()) === "available") getBaseSession();
 }
@@ -188,7 +188,7 @@ connectEl.addEventListener("click", async () => {
   connectEl.disabled = true;
   explainEl.disabled = false;
   statusEl.textContent =
-    "接続しました。M5Stackを傾けたり揺らしたりしてから、説明させてみましょう。";
+    "接続しました。Core2を傾けたり揺らしたりしてから、説明させてみましょう。";
 
   await readLines(handleLine);
 
