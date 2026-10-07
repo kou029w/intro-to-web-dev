@@ -1,0 +1,22 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#output {
+  display: block;
+  white-space: pre-wrap;
+  min-height: 3rem;
+}

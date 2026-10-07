@@ -30,6 +30,7 @@
 - [Prompt API入門](prompt-api.md)
   - [受講環境の事前確認](prompt-api-setup.md)
 - [Prompt APIサンプル集をブラウザで試す](prompt-api-demos.md)
+- [WebAssemblyでAIモデルを動かす](webassembly.md)
 - [Webブラウザからハードウェアを動かす](web-serial/index.md)
   - [M5Stack Core2の準備](web-serial/m5stack-setup.md)
   - [Web Serial APIの基礎](web-serial/web-serial-api.md)
