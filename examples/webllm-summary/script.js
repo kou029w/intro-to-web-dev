@@ -13,7 +13,7 @@ if (!adapter) {
     "WebGPUを利用できません。WebGPU対応ブラウザでHTTPSまたはlocalhostから開いてください。";
 } else {
   statusEl.textContent =
-    "WebGPUを利用できます。初回はモデル（約0.5GB）をダウンロードします。";
+    "WebGPUを利用できます。初回はモデル（約0.3GB）をダウンロードします。";
   generateEl.disabled = false;
 }
 
@@ -25,7 +25,7 @@ formEl.addEventListener("submit", async (event) => {
   outputEl.textContent = "";
 
   try {
-    engine ??= await CreateMLCEngine("Qwen3.5-0.8B-q4f32_1-MLC", {
+    engine ??= await CreateMLCEngine("Qwen2.5-0.5B-Instruct-q4f32_1-MLC", {
       initProgressCallback: ({ text }) => (statusEl.textContent = text),
     });
 
@@ -42,18 +42,11 @@ formEl.addEventListener("submit", async (event) => {
       ],
       max_tokens: 256,
       temperature: 0.2,
-      extra_body: { enable_thinking: false },
       stream: true,
     });
 
-    let text = "";
     for await (const chunk of stream) {
-      text += chunk.choices[0]?.delta.content ?? "";
-      // 先頭に付く空の<think>...</think>を除いて表示する
-      outputEl.textContent = text.replace(
-        /^<think>[\s\S]*?(<\/think>\s*|$)/,
-        "",
-      );
+      outputEl.textContent += chunk.choices[0]?.delta.content ?? "";
     }
     statusEl.textContent = "完了しました。";
   } catch (error) {

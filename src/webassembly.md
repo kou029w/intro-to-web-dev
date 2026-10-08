@@ -65,22 +65,23 @@ WebGPUが使えない端末では実行を止め、対応状況を表示しま�
 ONNX Runtime WebとLiteRT.jsは用途が重なるため、使いたいモデルの形式や対応する演算を基準に選びます。
 文章生成を試す場合、WebLLMなら文章とトークンの変換や生成ループをライブラリに任せ、会話用のAPIから利用できます。
 
-## Qwen3.5-0.8Bで日本語を要約する
+## Qwen2.5-0.5Bで日本語を要約する
 
-ここでは[Qwen3.5-0.8B](https://huggingface.co/Qwen/Qwen3.5-0.8B)を使い、入力文を2文に要約します。
-8億パラメーターのモデルで、日本語を含む多言語の文章を扱えます。
+ここでは[Qwen2.5-0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)を使い、入力文を2文に要約します。
+約5億パラメーターのモデルで、日本語を含む多言語の文章を扱えます。
 端末で動かすモデルとして、原文を与えて要約や言い換えを行う用途を試せます。
 生成結果には誤りがありうるため、要約から情報が抜けていないか、原文にない内容を足していないかを照合してください。
 モデルが小さいほど誤りは増えやすいため、この照合は省けません。
 
-この例では、WebLLM 0.2.85に登録された`Qwen3.5-0.8B-q4f32_1-MLC`を指定します。
+この例では、WebLLM 0.2.85に登録された`Qwen2.5-0.5B-Instruct-q4f32_1-MLC`を指定します。
+名前の`Instruct`は、指示に従って応答するように調整した版であることを示します。
 `q4f32_1`版を選ぶことで、GPUの`shader-f16`機能を前提にしない構成にしています。
-[WebLLMのモデル設定](https://github.com/mlc-ai/web-llm/blob/v0.2.85/src/config.ts)ではGPUメモリの目安は約1.9GBですが、利用できる容量や実行速度は端末によって変わります。
+[WebLLMのモデル設定](https://github.com/mlc-ai/web-llm/blob/v0.2.85/src/config.ts)ではGPUメモリの目安は約1.1GBですが、利用できる容量や実行速度は端末によって変わります。
 
 ### サンプルを動かす
 
 WebGPUを使えるブラウザで、次のサンプルを開いてください。
-初回はライブラリとモデル（約0.5GB）を取得するため、数百MB単位の通信と保存領域が必要です。
+初回はライブラリとモデル（約0.3GB）を取得するため、数百MB単位の通信と保存領域が必要です。
 2回目以降はブラウザに保存したファイルを再利用します。
 推論は端末で行うため、入力文を推論サーバーに送信しません。
 
@@ -96,7 +97,7 @@ WebGPUを使えるブラウザで、次のサンプルを開いてください�
 APIはOpenAIのChat Completions APIに似ていますが、処理はブラウザ内で完結し、APIキーは不要です。
 
 ```js
-const engine = await CreateMLCEngine("Qwen3.5-0.8B-q4f32_1-MLC", {
+const engine = await CreateMLCEngine("Qwen2.5-0.5B-Instruct-q4f32_1-MLC", {
   initProgressCallback: ({ text }) => (statusEl.textContent = text),
 });
 const stream = await engine.chat.completions.create({
@@ -106,14 +107,12 @@ const stream = await engine.chat.completions.create({
   ],
   max_tokens: 256,
   temperature: 0.2,
-  extra_body: { enable_thinking: false },
   stream: true,
 });
 ```
 
 `max_tokens`は出力の上限です。
 トークンはモデルが文章を処理する単位で、256トークンは256文字を意味しません。
-`enable_thinking: false`は思考過程の生成を抑えますが、出力の先頭には空の`<think>...</think>`が付くため、表示前に取り除いています。
 `stream: true`を指定すると、生成された断片を`delta.content`で順に受け取れます。
 生成を途中で止めるには`engine.interruptGenerate()`を呼びます。
 
@@ -131,7 +130,7 @@ WebLLMの場合は、WasmにWebGPUを組み合わせてモデルの計算をGPU�
 
 | 比較する項目             | Prompt API                                      | WebLLM                                                  |
 | ------------------------ | ----------------------------------------------- | ------------------------------------------------------- |
-| モデルの選択             | ブラウザが提供するモデル。ChromeではGemini Nano | 開発者がQwen3.5-0.8Bなどを指定                          |
+| モデルの選択             | ブラウザが提供するモデル。ChromeではGemini Nano | 開発者がQwen2.5-0.5Bなどを指定                          |
 | 配布と更新               | ブラウザが管理                                  | Webアプリがモデルの取得先とライブラリの版を指定         |
 | JavaScriptからの呼び出し | `LanguageModel.create()`と`session.prompt()`    | `CreateMLCEngine()`と`engine.chat.completions.create()` |
 | 計算の実行               | ブラウザが対応する端末のCPUやGPUで実行          | WasmのランタイムとWebGPUを使用                          |
