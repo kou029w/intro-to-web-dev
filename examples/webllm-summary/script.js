@@ -13,7 +13,7 @@ if (!adapter) {
     "WebGPUを利用できません。WebGPU対応ブラウザでHTTPSまたはlocalhostから開いてください。";
 } else {
   statusEl.textContent =
-    "WebGPUを利用できます。初回はモデル（GB単位）をダウンロードします。";
+    "WebGPUを利用できます。初回はモデル（約0.5GB）をダウンロードします。";
   generateEl.disabled = false;
 }
 
@@ -25,7 +25,7 @@ formEl.addEventListener("submit", async (event) => {
   outputEl.textContent = "";
 
   try {
-    engine ??= await CreateMLCEngine("Qwen3.5-2B-q4f32_1-MLC", {
+    engine ??= await CreateMLCEngine("Qwen3.5-0.8B-q4f32_1-MLC", {
       initProgressCallback: ({ text }) => (statusEl.textContent = text),
     });
 

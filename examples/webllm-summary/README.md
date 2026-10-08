@@ -3,7 +3,7 @@
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/webllm-summary?file=script.js&view=preview)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/webllm-summary)
 
-[WebLLM](https://webllm.mlc.ai/)でQwen3.5-2Bをブラウザ内で動かし、入力した文章を2文に要約するサンプルです。
+[WebLLM](https://webllm.mlc.ai/)でQwen3.5-0.8Bをブラウザ内で動かし、入力した文章を2文に要約するサンプルです。
 
 ## 動かし方
 
@@ -14,7 +14,7 @@ npm install
 npm start
 ```
 
-初回はモデルのダウンロードにGB単位の通信が発生します。
+初回はモデル（約0.5GB）のダウンロードで通信が発生します。
 
 ## 解説
 
