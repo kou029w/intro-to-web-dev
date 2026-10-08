@@ -67,7 +67,7 @@ ONNX Runtime WebとLiteRT.jsは用途が重なるため、使いたいモデル�
 
 ## Qwen2.5-0.5Bで日本語を要約する
 
-ここでは[Qwen2.5-0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)を使い、入力文を2文に要約します。
+ここでは[Qwen2.5-0.5B](https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct)を使い、入力文を要約します。
 約5億パラメーターのモデルで、日本語を含む多言語の文章を扱えます。
 端末で動かすモデルとして、原文を与えて要約や言い換えを行う用途を試せます。
 生成結果には誤りがありうるため、要約から情報が抜けていないか、原文にない内容を足していないかを照合してください。
@@ -102,7 +102,7 @@ const engine = await CreateMLCEngine("Qwen2.5-0.5B-Instruct-q4f32_1-MLC", {
 });
 const stream = await engine.chat.completions.create({
   messages: [
-    { role: "system", content: "入力文を日本語で2文に要約してください。…" },
+    { role: "system", content: "入力文を1文に要約してください。" },
     { role: "user", content: inputEl.value },
   ],
   max_tokens: 256,

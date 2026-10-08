@@ -36,7 +36,7 @@ formEl.addEventListener("submit", async (event) => {
         {
           role: "system",
           content:
-            "入力文を日本語で2文に要約してください。入力にない情報は補わず、要約だけを出力してください。",
+            "入力文を1文に要約してください。入力文を1文に要約してください。",
         },
         { role: "user", content: inputEl.value },
       ],
