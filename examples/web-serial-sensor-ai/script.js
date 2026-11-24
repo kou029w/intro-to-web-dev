@@ -135,6 +135,7 @@ async function explain() {
 
 function handleMessage(message) {
   if (message?.type === "sensor") {
+    if (!Array.isArray(message.accel) || !Array.isArray(message.gyro)) return;
     latest = message;
     samples.push(message);
     if (samples.length > WINDOW_SIZE) samples.shift();
@@ -183,8 +184,9 @@ connectEl.addEventListener("click", async () => {
   }
 
   writer = port.writable.getWriter();
-  // 別のページでセンサー値の送信を止めていても、ここで再開させる
-  writer.write(new TextEncoder().encode("sensor on\n"));
+  // 別のページで送信を止めたり間隔を変えたりしていても、100ミリ秒間隔で再開させる
+  // summarize()の「直近30件で約3秒」はこの間隔が前提
+  writer.write(new TextEncoder().encode("sensor 100\n"));
   connectEl.disabled = true;
   explainEl.disabled = false;
   statusEl.textContent =

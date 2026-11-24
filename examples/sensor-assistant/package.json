@@ -1,0 +1,16 @@
+{
+  "name": "sensor-assistant",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "serve",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "serve": "^14.2.6"
+  },
+  "overrides": {
+    "compression": "^1.8.2"
+  }
+}

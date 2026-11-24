@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ja">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>センサーと音声をPrompt APIでつなぐ</title>
+  <style>
+    body { font-family: sans-serif; max-width: 52rem; margin: 2rem auto; padding: 0 1rem; }
+    button, input { font: inherit; padding: .4rem; margin: .2rem; }
+    pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #eee; color: #111; padding: 1rem; }
+    #instruction { width: min(90%, 28rem); }
+  </style>
+  <main>
+    <h1>センサーと音声をPrompt APIでつなぐ</h1>
+    <p id="status" role="status">「モデルを準備」を押してください。</p>
+    <button id="prepare" type="button">モデルを準備</button>
+    <button id="connect" type="button">Core2に接続</button>
+    <h2>センサーの状態</h2>
+    <pre id="state">未接続</pre>
+    <h2>アームによる警告</h2>
+    <p>チャンネル0を使います。サーボの教材で可動範囲を確認し、以下の角度を設定してください。</p>
+    <label>戻す角度 <input id="home" type="number" min="0" max="180" value="90" /></label>
+    <label>警告の角度 <input id="angle" type="number" min="0" max="180" value="120" /></label>
+    <p><label><input id="armed" type="checkbox" />可動範囲を確認しました。自動警告を有効にします。</label></p>
+    <button id="reset" type="button">自動警告を解除してアームを戻す</button>
+    <h2>計測条件の変更と問い合わせ</h2>
+    <button id="talk" type="button">話す</button>
+    <p id="heard" role="status"></p>
+    <form id="form">
+      <label for="instruction">指示または質問</label><br />
+      <input id="instruction" value="計測間隔を500ミリ秒にして" required />
+      <button type="submit">送信</button>
+    </form>
+    <pre id="result" aria-live="polite"></pre>
+    <h2>記録</h2>
+    <p>直近500件の判断、指示、機器の応答を保存します。センサーの全受信値は保存しません。</p>
+    <button id="save" type="button">JSONファイルに保存</button>
+    <button id="opfs-save" type="button">OPFSに保存</button>
+    <button id="opfs-read" type="button">OPFSの記録を表示</button>
+    <pre id="stored"></pre>
+  </main>
+  <script type="module" src="script.js"></script>
+</html>
