@@ -1,10 +1,13 @@
-# M5Stack Core2 (UIFlow2) 用 USBシリアル ブリッジ
+# M5Stack (UIFlow2) 用 USBシリアル ブリッジ
 #
-# - 内蔵センサー（IMU、バッテリー）の値を1行1JSONで送信する
-# - 受信した1行のテキストコマンドで、PCA9685に接続したサーボモーターを動かす
+# 対応機種: M5Stack Core2（Core2 for AWS を含む）、M5Stack Basic
+#
+# - 内蔵センサー（IMU、バッテリー）と ENV III（温度、湿度）の値を1行1JSONで送信する
+# - 受信した1行のテキストコマンドで、GPIOにつないだサーボモーターをPWMで直接動かす
+# - IMU や ENV III が無い・外れている場合も止まらず、その値を null にして送信を続ける
 #
 # 受信コマンド（改行区切り）:
-#   ping                 生存確認（PCA9685の有無も返す）
+#   ping                 生存確認（つながっている部品の状態も返す）
 #   servo <ch> <deg> ... サーボの角度を指定（例: servo 0 90 1 45）
 #   release [<ch> ...]   サーボの出力を止めて脱力させる（省略時は全チャンネル）
 #   sensor on|off        センサー値の送信を開始・停止する
@@ -23,79 +26,176 @@ import json
 import select
 import sys
 import time
-from machine import I2C, Pin
+from machine import I2C, PWM, Pin
 
-# PCA9685を接続するI2Cのピン（Core2のPort A）
-I2C_SDA = 32
-I2C_SCL = 33
-PCA9685_ADDRESS = 0x40
+# 機種ごとのピン配置
+#   i2c:   ENV III をつなぐ Port A（赤いGrove端子）の SDA / SCL
+#   servo: チャンネル番号の順に並べた、サーボの信号線をつなぐ GPIO
+BOARDS = {
+    # Port A: G32/G33、サーボ: Port B の G26、Port C の G14（Core2 for AWS の底面ユニット）
+    "core2": {"i2c": (32, 33), "servo": (26, 14)},
+    # Port A: G21/G22、サーボ: 本体側面のピンソケットの G26 と G5
+    # Basic の Port A は、電源IC（IP5306、0x75）と同じI2Cバスにつながっている
+    "basic": {"i2c": (21, 22), "servo": (26, 5)},
+}
+# 機種の自動判別がうまくいかないときは、"core2" か "basic" を指定する
+BOARD = None
 
 # サーボモーターのパルス幅（SG90などのマイクロサーボ向け）
+# 端まで回らない、端でうなるときは、自分のサーボに合わせて書き換える
 SERVO_MIN_US = 500
 SERVO_MAX_US = 2400
-SERVO_CHANNELS = 16
+SERVO_FREQ = 50
+
+# ENV III の温湿度センサー（SHT30）
+SHT30_ADDRESS = 0x44
+ENV_INTERVAL_MS = 1000   # 温湿度の計測間隔
+ENV_MEASURE_MS = 20      # 計測の開始から結果が読めるまでの待ち時間
+ENV_RETRY_MS = 2000      # 見つからないときに探し直す間隔
 
 SENSOR_INTERVAL_MS = 100
 DRAW_INTERVAL_MS = 200
-
-
-class PCA9685:
-    MODE1 = 0x00
-    PRESCALE = 0xFE
-    LED0_ON_L = 0x06
-
-    def __init__(self, i2c, address=PCA9685_ADDRESS):
-        self.i2c = i2c
-        self.address = address
-        self._write(self.MODE1, 0x00)
-        self.set_freq(50)
-
-    def _write(self, register, value):
-        self.i2c.writeto_mem(self.address, register, bytes([value]))
-
-    def _read(self, register):
-        return self.i2c.readfrom_mem(self.address, register, 1)[0]
-
-    def set_freq(self, freq):
-        self.freq = freq
-        prescale = int(25000000 / (4096 * freq) + 0.5) - 1
-        mode = self._read(self.MODE1)
-        # プリスケーラーはスリープ中にしか書き換えられない
-        self._write(self.MODE1, (mode & 0x7F) | 0x10)
-        self._write(self.PRESCALE, prescale)
-        self._write(self.MODE1, mode)
-        time.sleep_us(500)
-        # 再起動し、レジスタの自動インクリメントを有効にする
-        self._write(self.MODE1, mode | 0xA0)
-
-    def set_pwm(self, channel, on, off):
-        data = bytes([on & 0xFF, on >> 8, off & 0xFF, off >> 8])
-        self.i2c.writeto_mem(self.address, self.LED0_ON_L + 4 * channel, data)
-
-    def set_pulse_us(self, channel, us):
-        period_us = 1000000 / self.freq
-        self.set_pwm(channel, 0, int(us * 4096 / period_us))
-
-    def release(self, channel):
-        # OFFレジスタの上位ビット（full off）を立てて出力を止める
-        self.set_pwm(channel, 0, 0x1000)
-
-
-def angle_to_us(angle):
-    return SERVO_MIN_US + (SERVO_MAX_US - SERVO_MIN_US) * angle / 180
 
 
 def send(message):
     print(json.dumps(message))
 
 
+def detect_board():
+    if BOARD in BOARDS:
+        return BOARD
+    try:
+        kind = M5.getBoard()
+        if kind == M5.BOARD.M5StackCore2:
+            return "core2"
+        if kind == M5.BOARD.M5Stack:
+            return "basic"
+    except Exception:
+        pass
+    # Core2 の G5 と Basic の G14 は画面の配線に使われているため、
+    # 機種がわからないまま片方のピン配置を当てはめるわけにはいかない
+    return None
+
+
+class Servo:
+    """1本のGPIOから、サーボモーター用のPWM信号を出す"""
+
+    def __init__(self, pin):
+        self.pin = pin
+        self.pwm = None
+
+    def write_us(self, us):
+        # 起動直後にサーボが跳ねないよう、最初に角度を指定されるまでPWMを作らない
+        if self.pwm is None:
+            self.pwm = PWM(Pin(self.pin), freq=SERVO_FREQ, duty_ns=0)
+        # duty() は分解能が粗く、動きがカクつくため、パルス幅をナノ秒で指定する
+        self.pwm.duty_ns(int(us * 1000))
+
+    def release(self):
+        if self.pwm is not None:
+            self.pwm.duty_ns(0)
+
+
+class Env:
+    """ENV III の SHT30 を、メインループを止めずに読む
+
+    計測の開始と結果の読み出しを別々の呼び出しに分け、待ち時間に sleep を使わない。
+    途中で外れたり、値が壊れていたりした場合は、値を None に戻して探し直す。
+    """
+
+    def __init__(self, i2c):
+        self.i2c = i2c
+        self.connected = False
+        try:
+            self.connected = SHT30_ADDRESS in i2c.scan()
+        except Exception:
+            pass
+        self.value = None
+        self.measuring = False
+        self.next_ms = time.ticks_ms()
+
+    def poll(self, now):
+        if time.ticks_diff(now, self.next_ms) < 0:
+            return
+        try:
+            if not self.connected:
+                self.connected = SHT30_ADDRESS in self.i2c.scan()
+                if not self.connected:
+                    self.next_ms = time.ticks_add(now, ENV_RETRY_MS)
+                    return
+            if not self.measuring:
+                # 単発計測・高精度・クロックストレッチなし
+                self.i2c.writeto(SHT30_ADDRESS, b"\x24\x00")
+                self.measuring = True
+                self.next_ms = time.ticks_add(now, ENV_MEASURE_MS)
+                return
+            self.measuring = False
+            self.value = self._parse(self.i2c.readfrom(SHT30_ADDRESS, 6))
+            self.next_ms = time.ticks_add(now, ENV_INTERVAL_MS)
+        except Exception:
+            # 抜き差しの途中などで通信に失敗した。次の機会に探し直す
+            self.connected = False
+            self.measuring = False
+            self.value = None
+            self.next_ms = time.ticks_add(now, ENV_RETRY_MS)
+
+    def _parse(self, data):
+        if crc8(data[0:2]) != data[2] or crc8(data[3:5]) != data[5]:
+            raise ValueError("CRC mismatch")
+        t_raw = data[0] << 8 | data[1]
+        h_raw = data[3] << 8 | data[4]
+        return {
+            "temperature": round(-45 + 175 * t_raw / 65535, 1),
+            "humidity": round(100 * h_raw / 65535, 1),
+        }
+
+
+def crc8(data):
+    crc = 0xFF
+    for byte in data:
+        crc ^= byte
+        for _ in range(8):
+            crc = ((crc << 1) ^ 0x31) & 0xFF if crc & 0x80 else (crc << 1) & 0xFF
+    return crc
+
+
+def has_imu():
+    try:
+        return bool(M5.Imu.isEnabled())
+    except AttributeError:
+        pass
+    except Exception:
+        return False
+    # isEnabled() が無いファームウェアでは、試しに読んでみる。
+    # 静止していても重力の分だけ値が出るので、すべて0ならIMUは無いとみなす
+    try:
+        return any(M5.Imu.getAccel())
+    except Exception:
+        return False
+
+
+def angle_to_us(angle):
+    return SERVO_MIN_US + (SERVO_MAX_US - SERVO_MIN_US) * angle / 180
+
+
 M5.begin()
 M5.Lcd.setTextSize(2)
 
-i2c = I2C(0, scl=Pin(I2C_SCL), sda=Pin(I2C_SDA), freq=400000)
-pca = None
-if PCA9685_ADDRESS in i2c.scan():
-    pca = PCA9685(i2c)
+board = detect_board()
+env = None
+if board:
+    config = BOARDS[board]
+    sda, scl = config["i2c"]
+    try:
+        env = Env(I2C(0, scl=Pin(scl), sda=Pin(sda), freq=100000))
+    except Exception:
+        pass
+    servos = [Servo(pin) for pin in config["servo"]]
+else:
+    # どちらの機種でも安全な G26 だけを使い、ENV III は読まない
+    board = "unknown"
+    servos = [Servo(26)]
+imu = has_imu()
 
 angles = {}
 sensor_enabled = True
@@ -104,45 +204,61 @@ last_command = "-"
 dirty = True
 
 
+def status():
+    return {
+        "board": board,
+        "servo": True,
+        "channels": len(servos),
+        "imu": imu,
+        "env": env is not None and env.connected,
+    }
+
+
 def draw():
     M5.Lcd.clear(0x000000)
     M5.Lcd.setCursor(0, 0)
-    M5.Lcd.print("Serial Bridge\n\n")
-    M5.Lcd.print("PCA9685: " + ("OK" if pca else "not found") + "\n")
+    M5.Lcd.print("Serial Bridge (" + board + ")\n\n")
+    M5.Lcd.print("IMU: " + ("OK" if imu else "-") + "\n")
+    value = env.value if env else None
+    if value:
+        M5.Lcd.print("ENV: " + str(value["temperature"]) + "C " + str(value["humidity"]) + "%\n")
+    else:
+        M5.Lcd.print("ENV: -\n")
     M5.Lcd.print("sensor: " + (str(sensor_interval_ms) + "ms" if sensor_enabled else "off") + "\n\n")
     for channel in sorted(angles):
-        M5.Lcd.print("ch" + str(channel) + ": " + str(angles[channel]) + "\n")
+        M5.Lcd.print("ch" + str(channel) + " (G" + str(servos[channel].pin) + "): " + str(angles[channel]) + "\n")
     M5.Lcd.print("\n> " + last_command[:20] + "\n")
 
 
+def parse_channel(text):
+    channel = int(text)
+    if not 0 <= channel < len(servos):
+        raise ValueError("channel out of range: " + str(channel))
+    return channel
+
+
 def command_servo(args):
-    if pca is None:
-        raise ValueError("PCA9685 not found")
     if len(args) == 0 or len(args) % 2 != 0:
         raise ValueError("usage: servo <ch> <deg> ...")
     targets = {}
     for i in range(0, len(args), 2):
-        channel = int(args[i])
+        channel = parse_channel(args[i])
         angle = int(args[i + 1])
-        if not 0 <= channel < SERVO_CHANNELS:
-            raise ValueError("channel out of range: " + str(channel))
         if not 0 <= angle <= 180:
             raise ValueError("angle out of range: " + str(angle))
         targets[channel] = angle
     # 範囲外の値を含むコマンドは、1つも動かさずに拒否する
     for channel, angle in targets.items():
-        pca.set_pulse_us(channel, angle_to_us(angle))
+        servos[channel].write_us(angle_to_us(angle))
         angles[channel] = angle
     # JSONのキーは文字列にしておく
     return {"servo": {str(channel): angle for channel, angle in targets.items()}}
 
 
 def command_release(args):
-    if pca is None:
-        raise ValueError("PCA9685 not found")
-    channels = [int(arg) for arg in args] or list(range(SERVO_CHANNELS))
+    channels = [parse_channel(arg) for arg in args] or list(range(len(servos)))
     for channel in channels:
-        pca.release(channel)
+        servos[channel].release()
         angles.pop(channel, None)
     return {"released": channels}
 
@@ -162,7 +278,7 @@ def command_sensor(args):
 
 
 COMMANDS = {
-    "ping": lambda args: {"servo": pca is not None},
+    "ping": lambda args: status(),
     "servo": command_servo,
     "release": command_release,
     "sensor": command_sensor,
@@ -207,42 +323,78 @@ def read_lines():
     return lines
 
 
+def read_imu():
+    if not imu:
+        return None, None
+    try:
+        ax, ay, az = M5.Imu.getAccel()
+        gx, gy, gz = M5.Imu.getGyro()
+    except Exception:
+        return None, None
+    return [round(ax, 3), round(ay, 3), round(az, 3)], [round(gx, 1), round(gy, 1), round(gz, 1)]
+
+
+def read_battery():
+    try:
+        return M5.Power.getBatteryLevel(), M5.Power.isCharging()
+    except Exception:
+        return None, None
+
+
 def send_sensor():
-    ax, ay, az = M5.Imu.getAccel()
-    gx, gy, gz = M5.Imu.getGyro()
+    accel, gyro = read_imu()
+    battery, charging = read_battery()
     send({
         "type": "sensor",
         "time": time.ticks_ms(),
-        "accel": [round(ax, 3), round(ay, 3), round(az, 3)],
-        "gyro": [round(gx, 1), round(gy, 1), round(gz, 1)],
-        "battery": M5.Power.getBatteryLevel(),
-        "charging": M5.Power.isCharging(),
+        "accel": accel,
+        "gyro": gyro,
+        "env": env.value if env else None,
+        "battery": battery,
+        "charging": charging,
     })
 
 
-send({"type": "ready", "servo": pca is not None, "channels": SERVO_CHANNELS})
+ready = status()
+ready["type"] = "ready"
+send(ready)
 last_sent = time.ticks_ms()
 last_drawn = last_sent
+env_shown = None
 
 while True:
-    M5.update()
+    try:
+        M5.update()
 
-    for line in read_lines():
-        if line:
-            handle(line)
+        for line in read_lines():
+            if line:
+                handle(line)
 
-    for name, button in (("A", M5.BtnA), ("B", M5.BtnB), ("C", M5.BtnC)):
-        if button.wasPressed():
-            send({"type": "button", "name": name})
+        for name, button in (("A", M5.BtnA), ("B", M5.BtnB), ("C", M5.BtnC)):
+            if button.wasPressed():
+                send({"type": "button", "name": name})
 
-    now = time.ticks_ms()
-    if sensor_enabled and time.ticks_diff(now, last_sent) >= sensor_interval_ms:
-        send_sensor()
-        last_sent = now
+        now = time.ticks_ms()
+        if env:
+            env.poll(now)
+            if env.value != env_shown:
+                env_shown = env.value
+                dirty = True
 
-    if dirty and time.ticks_diff(now, last_drawn) >= DRAW_INTERVAL_MS:
-        draw()
-        dirty = False
-        last_drawn = now
+        if sensor_enabled and time.ticks_diff(now, last_sent) >= sensor_interval_ms:
+            send_sensor()
+            last_sent = now
+
+        if dirty and time.ticks_diff(now, last_drawn) >= DRAW_INTERVAL_MS:
+            draw()
+            dirty = False
+            last_drawn = now
+    except KeyboardInterrupt:
+        # Ctrl-C でプログラムを止め、REPLに戻れるようにしておく
+        raise
+    except Exception as error:
+        # 想定外のエラーでもブリッジを止めず、ブラウザーに知らせて動き続ける
+        send({"type": "error", "command": "-", "message": str(error)})
+        time.sleep_ms(100)
 
     time.sleep_ms(5)

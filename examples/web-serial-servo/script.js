@@ -119,11 +119,10 @@ function handleLine(line) {
   // センサー値は使わないので、それ以外の応答だけを表示する
   if (message?.type === "sensor") return;
   log(line);
-  // 起動時のreadyか、接続時に送ったpingへの応答でPCA9685の有無がわかる
+  // 起動時のreadyか、接続時に送ったpingへの応答で、ブリッジが動かせるサーボの数がわかる
   const checked = message?.type === "ready" || message?.command === "ping";
-  if (checked && !message.servo) {
-    statusEl.textContent =
-      "PCA9685が見つかりません。配線とI2Cアドレスを確認してください。";
+  if (checked && message.channels < JOINTS.length) {
+    statusEl.textContent = `ブリッジが動かせるサーボは${message.channels}個です。機種の設定（BOARD）を確認してください。`;
   }
 }
 

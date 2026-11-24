@@ -88,6 +88,7 @@ function drawChart() {
 function handleMessage(message) {
   switch (message?.type) {
     case "sensor": {
+      if (!Array.isArray(message.accel) || !Array.isArray(message.gyro)) break;
       const [ax, ay, az] = message.accel;
       document.querySelector("#ax").value = ax.toFixed(2);
       document.querySelector("#ay").value = ay.toFixed(2);
