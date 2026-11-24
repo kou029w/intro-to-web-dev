@@ -175,6 +175,12 @@ Memory64は、従来4GiBまでだった1つの線形メモリのアドレス空�
 
 WebAssembly 3.0にはGCや例外処理の追加もあり、計算ライブラリ以外の言語処理系もブラウザに持ち込みやすくなっています。
 
+Wasmに移植するC++のプログラムには、ファイルの読み込みなどの結果を、関数の戻り値としてその場で受け取る前提で書かれたものが多くあります。
+一方、ブラウザのAPIの多くは、結果をPromiseで後から返します。
+JSPI（JavaScript Promise Integration）は、Promiseを返すJavaScriptの関数をWasmから呼んだとき、Promiseが解決するまでWasmの実行を中断し、解決した値を戻り値として渡して再開する仕組みです。
+Wasm側のコードを非同期の書き方に直さずに、ブラウザの非同期APIを呼べるようになります。
+JSPIは[WebAssemblyの提案の一覧](https://github.com/WebAssembly/proposals)で標準化を終えた段階（Phase 5）にあり、[V8の解説](https://v8.dev/blog/jspi)によるとChrome 137から利用できます。
+
 ## コラム：ブラウザでPythonが動かない理由とJavaScriptの速さ
 
 Webブラウザでは、どうしてPythonが使えないのでしょうか。

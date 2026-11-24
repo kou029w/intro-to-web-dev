@@ -17,6 +17,7 @@ Day1のこの時間（45分）では、まずプレイグラウンドを動か�
 
 システムプロンプト、ユーザープロンプト、JSON Schemaを自由に入力して、応答をストリーミングで確認できる汎用プレイグラウンドです。
 確かめること：システムプロンプトやJSON Schemaを変えたときに、同じユーザープロンプトへの応答がどう変わるか。
+システムプロンプトを「入力文を3行に要約してください。」や「入力文を英語に翻訳してください。」に変えると、同じ画面で要約や翻訳も試せます。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground)
