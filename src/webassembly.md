@@ -1,5 +1,8 @@
 # WebAssemblyでAIモデルを動かす
 
+> **Note**\
+> このページは2026年12月の研修に向けて編集中です。内容は変更されることがあります。
+
 ブラウザでAIモデルを動かす方法には、ブラウザが用意するモデルを呼び出す方法と、Webアプリがモデルを持ち込む方法があります。
 [Prompt API](prompt-api.md)は、前者の「ビルトインAI」です。
 ChromeではブラウザがGemini Nanoのダウンロードと更新を管理し、Webアプリは`LanguageModel`を通じて利用します。
@@ -53,7 +56,7 @@ WebGPUが使えない端末では実行を止め、対応状況を表示しま�
 ## ブラウザで使う推論ライブラリ
 
 モデルはライブラリが対応する形式に変換して使います。
-次の3つは代表的なモデルをブラウザで実行するライブラリです。（モデルそのものではありません）
+次の3つは、代表的なモデルをブラウザで実行するライブラリです（モデルそのものではありません）。
 
 - [ONNX Runtime Web](https://onnxruntime.ai/docs/tutorials/web/)：Microsoftが開発し、ONNX形式のモデルをCPU（Wasm）またはGPU（WebGPUなど）で実行します。
   APIには数値配列（テンソル）を渡し、推論結果を数値配列で受け取ります。
@@ -83,6 +86,7 @@ ONNX Runtime WebとLiteRT.jsは用途が重なるため、使いたいモデル�
 WebGPUを使えるブラウザで、次のサンプルを開いてください。
 初回はライブラリとモデル（約0.3GB）を取得するため、数百MB単位の通信と保存領域が必要です。
 2回目以降はブラウザに保存したファイルを再利用します。
+保存したファイルはオリジンごとに分かれるため、事前に取得したときと同じ開き方（埋め込み画面、LiveCodes、StackBlitz、`http://localhost`のいずれか）で当日も開きます。
 推論は端末で行うため、入力文を推論サーバーに送信しません。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/webllm-summary)
@@ -127,6 +131,21 @@ WebGPUを使えるブラウザでも、GPUの取得、モデルのダウンロ�
 Prompt APIは、ブラウザが管理するモデルをWebアプリから使うためのAPIです。
 対して、Wasmを使う推論ライブラリは、開発者が選んだサードパーティのモデルをブラウザで実行するための部品です。
 WebLLMの場合は、WasmにWebGPUを組み合わせてモデルの計算をGPUに任せます。
+次の図は、モデルを用意するのがブラウザかWebアプリかという違いを示しています。
+
+```mermaid
+flowchart LR
+    subgraph PA[Prompt API]
+        App1[Webアプリ] -- LanguageModel --> Browser[ブラウザ]
+        Browser -- 取得と更新を管理 --> Nano[内蔵のGemini Nano]
+    end
+    subgraph WL[WebLLM]
+        App2[Webアプリ] -- 取得 --> Model[Qwen2.5-0.5Bなど]
+        Model -- 読み込む --> Runtime[Wasmのランタイム]
+        App2 --> Runtime
+        Runtime -- 演算を任せる --> GPU[WebGPU]
+    end
+```
 
 | 比較する項目             | Prompt API                                      | WebLLM                                                  |
 | ------------------------ | ----------------------------------------------- | ------------------------------------------------------- |
@@ -155,3 +174,19 @@ Memory64は、従来4GiBまでだった1つの線形メモリのアドレス空�
 これらの機能によって、Wasmで扱える計算の規模や用途が広がります。
 
 WebAssembly 3.0にはGCや例外処理の追加もあり、計算ライブラリ以外の言語処理系もブラウザに持ち込みやすくなっています。
+
+## コラム：ブラウザでPythonが動かない理由とJavaScriptの速さ
+
+Webブラウザでは、どうしてPythonが使えないのでしょうか。
+CPU側の処理としてブラウザが直接実行するのは、JavaScriptとWasmだけだからです。
+PythonのコードをそのままWebページに書いても、ブラウザにはそれを解釈する仕組みがありません。
+
+それでも、ブラウザでPythonを動かす方法はあります。
+[Pyodide](https://pyodide.org/)は、Pythonのインタープリター（CPython）をWasmにコンパイルしたものです。
+ページがPyodideのWasmを読み込むと、そのインタープリターがPythonのコードを実行します。
+C++の計算ライブラリと同じように、言語の処理系そのものをWasmにして持ち込むわけです。
+
+では、JavaScriptは遅いのでしょうか。
+現在のブラウザは、実行中によく使われる部分を機械語にコンパイルするJITコンパイラーを備えています。
+画面の操作や通信の待ち合わせのような処理なら、JavaScriptで十分な速さが出ます。
+一方、AI推論のように大量の数値計算を繰り返す処理では、型を決めてコンパイルしたWasmや、GPUで並列に計算するWebGPUが向いています。

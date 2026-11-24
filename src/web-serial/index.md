@@ -1,8 +1,11 @@
 # Webブラウザからハードウェアを動かす
 
+> **Note**\
+> このページは2026年12月の研修に向けて編集中です。内容は変更されることがあります。
+
 ブラウザからUSBでつないだM5Stack Core2（以下、Core2）を読み書きし、話しかけた言葉でサーボモーターを動かすハンズオンです。
-使うのは、ブラウザに組み込まれた3つのWeb標準APIだけです。
-アプリのインストールもサーバーも要りません。
+音声の認識、モデルへの入力、USBシリアル通信をブラウザから呼び出します。
+専用アプリのインストールは要りません。
 
 - **Speech Recognition API**：マイクの音声を文字列に変換する
 - **Prompt API**：ブラウザに組み込まれた言語モデルで、文字列を構造化されたコマンドに変換する
@@ -30,30 +33,26 @@ Core2には、USBシリアルとセンサーやサーボモーターのあいだ
 
 ## 進め方
 
-Core2の準備は、ハンズオンの前に済ませておきます。
-所要時間は、休憩を含めて約5.5時間です。
+配布するCore2には、UIFlow2とブリッジを書き込んであります。
+当日は[M5Stack Core2の準備](m5stack-setup.md#サーボモーターを配線する)の配線から始めます。
+当日の時間配分は[Day2のスケジュール](../day2.md)に従います。
 
-| 目安時間 | 内容                                                                 |
-| -------- | -------------------------------------------------------------------- |
-| 事前     | [M5Stack Core2の準備](m5stack-setup.md)                              |
-| 20分     | 導入デモと全体像（このページ）                                       |
-| 30分     | [Web Serial APIの基礎](web-serial-api.md)                            |
-| 40分     | ハンズオン①：[センサー値をブラウザでモニターする](sensor-monitor.md) |
-| 40分     | ハンズオン②：[センサー値をPrompt APIで解説させる](sensor-ai.md)      |
-| 60分     | 昼休み                                                               |
-| 40分     | ハンズオン③：[サーボモーターを動かす](servo.md)                      |
-| 30分     | [Speech Recognition APIの基礎](speech-recognition.md)                |
-| 60分     | ハンズオン④：[声でサーボモーターを動かす](voice-servo.md)            |
-| 10分     | 休憩                                                                 |
-| 40分     | グループワーク                                                       |
-| 20分     | まとめと質疑応答                                                     |
+1. [Web Serial APIの基礎](web-serial-api.md)
+2. [センサー値をブラウザでモニターする](sensor-monitor.md)
+3. [センサー値をPrompt APIで解説させる](sensor-ai.md)
+4. [サーボモーターを動かす](servo.md)
+5. [Speech Recognition APIの基礎](speech-recognition.md)
+6. [声でサーボモーターを動かす](voice-servo.md)
+7. [センサーと音声をPrompt APIでつなぐ](sensor-assistant.md)
+
+最後の演習では、揺れへの警告、計測条件の変更、状態への質問をつなぎます。
+判断と機器の応答は、[File System Access APIとOPFS](../file-system.md)で保存します。
 
 ## 必要なもの
 
-- M5Stack Core2（UIFlow2とブリッジを書き込み済みのもの）とUSBケーブル
-- PCA9685を搭載したサーボドライバーのボードと、Grove端子につなぐケーブル
-- マイクロサーボ（SG90など）を2つ使ったアーム
-- サーボモーター用の5V電源
+- M5Stack Core2 for AWS（UIFlow2とブリッジを書き込み済みのもの）と、データ通信に対応したUSB-Cケーブル
+- 温湿度センサーのENV Ⅲ（なくても動きます）
+- マイクロサーボ（SG90など）を2つ使ったアーム（研修では2人で1台）と、配線用の部品（[配線](m5stack-setup.md#サーボモーターを配線する)を参照）
 - Chrome 148以降が動くPC（[受講環境の事前確認](../prompt-api-setup.md)でPrompt APIの動作を確認済みのもの）
 - マイク（PC内蔵のものでよい）
 
@@ -72,6 +71,5 @@ npm install
 npm start
 ```
 
-Web Serial APIとマイクは、`https://`か`http://localhost`で配信したページ（安全なコンテキスト）で使う前提のAPIです。
-特にSpeech Recognition APIは、HTMLファイルをダブルクリックして`file://`で開くとChromeで動作しません。
-どのサンプルも静的サーバーを経由して開きます。
+Web Serial APIとマイクは、`https://`か`http://localhost`で配信したページ（安全なコンテキスト）で使います。
+サンプルは`<script type="module">`で書いてあり、HTMLファイルを`file://`で開くとブラウザがスクリプトの読み込みを拒否するため、静的サーバーを経由して開きます（[利用者の操作を起点にする権限モデル](../web-platform.md#利用者の操作を起点にする権限モデル)）。

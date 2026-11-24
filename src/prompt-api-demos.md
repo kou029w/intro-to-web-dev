@@ -1,14 +1,22 @@
 # Prompt APIサンプル集をブラウザで試す
 
+> **Note**\
+> このページは2026年12月の研修に向けて編集中です。内容は変更されることがあります。
+
 [Prompt APIサンプル](https://github.com/kou029w/intro-to-web-dev/tree/main/examples)を、インストールなしでオンラインエディター上で動かせます。
 [LiveCodes](https://livecodes.io/) と [StackBlitz](https://stackblitz.com/) は、どちらもGitHubリポジトリのディレクトリを直接読み込んで実行できるオンラインエディターです。
 コードを直接書き換えて、その場で挙動を確認できます。
 
-各サンプルの詳しい解説は [Prompt API入門](prompt-api.md) を参照してください。
+Open-Meteoの気象データのサンプルは、[Prompt API入門](prompt-api.md)で順を追って解説しています。
+ほかのサンプルの仕組みは、GitHubの各ディレクトリにあるREADMEとコードで確認できます。
+
+Day1のこの時間（45分）では、まずプレイグラウンドを動かし、続けてミニチャレンジで作るものに近いサンプルを1つ選んで動かします。
+どのサンプルでも、入力、プロンプト、出力の対応を確かめます。
 
 ## Prompt API プレイグラウンド
 
-システムプロンプト・ユーザープロンプト・JSON Schemaを自由に入力して、応答をストリーミングで確認できる汎用プレイグラウンドです。
+システムプロンプト、ユーザープロンプト、JSON Schemaを自由に入力して、応答をストリーミングで確認できる汎用プレイグラウンドです。
+確かめること：システムプロンプトやJSON Schemaを変えたときに、同じユーザープロンプトへの応答がどう変わるか。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground)
@@ -18,7 +26,8 @@
 
 ## 類義語検索
 
-n-shotプロンプティングと`clone()`によるセッション複製を確認できるサンプルです。
+入力と正しい出力の例を何組かプロンプトに並べて応答の形を示す**n-shotプロンプティング**と、`clone()`によるセッション複製を確認できるサンプルです。
+確かめること：並べた例の形と、入力した語に対する応答の形が一致しているか。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder)
@@ -30,6 +39,7 @@ n-shotプロンプティングと`clone()`によるセッション複製を確�
 
 APIキー不要のOpen-Meteoから、入力した地名（Tokyo / Osaka / Kyotoなど）の気象データを取得し、自然な日本語の説明と構造化出力（傘の要否判定）に変換します。
 地名から緯度経度への変換にもAPIキー不要のジオコーディングAPIを使っています。
+確かめること：取得した気象データ、モデルに渡した文、説明と傘の判定の対応。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo)
@@ -40,6 +50,7 @@ APIキー不要のOpen-Meteoから、入力した地名（Tokyo / Osaka / Kyoto�
 ## 気象データの説明（wttr.in）
 
 wttr.inの`format=j1`から取得した英語の天気表現を、日本語に訳しながら説明させます。
+確かめること：英語の天気表現と、日本語の説明の対応。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr)
@@ -50,6 +61,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 ## 画像を説明してもらう
 
 選択した画像ファイルをPrompt APIに渡し、内容を日本語で説明させます。
+確かめること：画像に写っているものと、説明の対応。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image)
@@ -60,6 +72,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 ## 音声を文字起こしする
 
 マイクで5秒録音した音声を、Prompt APIにそのまま渡して文字起こしします。
+確かめること：話した内容と、文字起こしの対応。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio)
@@ -93,6 +106,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 ## 書き起こしのフィラー除去
 
 録音した音声をストリーミングで文字起こしし、続けてフィラー（言い淀み）をストリーミングで除去する2段階パイプラインです。
+確かめること：1段目の文字起こしと、2段目でフィラーを除いた文の対応。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup)

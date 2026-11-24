@@ -169,7 +169,7 @@ function formatRequest(current, previous, instruction) {
   return `現在の角度: ${state}\n直前の指示: ${previous}\n指示: ${instruction}`;
 }
 
-// 入力と出力の例。JOINTSの名前や範囲を変えたら、例も合わせて直す
+// 入力と出力の例。JOINTSの名前や範囲、hintの向きを変えたら、例も合わせて直す
 const examples = [
   [
     formatRequest({ base: 90, grip: 60 }, "なし", "左を向いて"),
