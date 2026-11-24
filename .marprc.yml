@@ -1,0 +1,3 @@
+themeSet:
+  - src/training/theme.css
+allowLocalFiles: true
