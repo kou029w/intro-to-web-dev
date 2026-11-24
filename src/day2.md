@@ -12,7 +12,7 @@ Prompt APIとFile System Access APIは、[Day1](day1.md)で扱った内容を前
 Day1と同じPCで、[受講環境の事前確認](prompt-api-setup.md)のPrompt APIが動くことを確かめておきます。
 サンプルを`npm start`で起動するため、[Node.js](https://nodejs.org/)のLTS版をインストールしておきます。
 リポジトリは、`git clone https://github.com/kou029w/intro-to-web-dev.git`で取得するか、[GitHubのページ](https://github.com/kou029w/intro-to-web-dev)の「Code」から「Download ZIP」を選んで取得し、展開しておきます。
-Core2のUSBシリアル変換チップ用のドライバー（CP210XまたはCH9102）も、[M5Stack Core2の準備](web-serial/m5stack-setup.md#uiflow2を書き込む)の手順1に従ってインストールしておきます。
+Core2のUSBシリアル変換チップ用のドライバー（CP210xまたはCH9102）も、[M5Stack Core2の準備](web-serial/m5stack-setup.md#uiflow2を書き込む)の手順1に従ってインストールしておきます。
 会社のPCでは管理者権限が必要な場合があるので、当日までに済ませてください。
 Core2は、UIFlow2とブリッジを書き込んだ状態で配布します。
 当日は、[M5Stack Core2の準備](web-serial/m5stack-setup.md#サーボモーターを配線する)のうち配線と接続の確認から始めます。
