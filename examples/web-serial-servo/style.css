@@ -1,13 +1,13 @@
-.joint {
+.servo {
   margin-block: 1.5rem;
 }
 
-.joint label {
+.servo label {
   display: block;
   font-weight: bold;
 }
 
-.joint input {
+.servo input {
   width: 100%;
 }
 

@@ -157,15 +157,15 @@ Keep empty plain background above the folder and above the drawer for labels.
 
 - 配置先：`src/web-serial/index.md`の「## 全体像」
 - ファイル名：`src/assets/illustrations/web-serial-overview.png`
-- 場面：分身がノートPCとCore2風の小型機器をUSBケーブルでつなぎ、機器にはサーボモーターのアームがつながっています。
+- 場面：分身がノートPCとCore2風の小型機器をUSBケーブルでつなぎ、機器にはサーボホーンを付けたマイクロサーボが1個つながっています。
   アプリのインストールもサーバーも使わずに、ブラウザから機器を動かすことを示します。
-- 重ねる文字：「ブラウザ」「USBシリアル」「Core2」「アーム」
-- 代替テキスト：講師がノートPCと小型の機器をUSBケーブルでつなぎ、機器の先に小さなロボットアームがある
+- 重ねる文字：「ブラウザ」「USBシリアル」「Core2」「サーボ」
+- 代替テキスト：講師がノートPCと小型の機器をUSBケーブルでつなぎ、機器の先に小さなサーボモーターがある
 
 ```text
 The character sits on the left with a laptop showing a generic browser window.
 He holds a USB cable that connects the laptop to a small square palm-sized device with a screen and three buttons below the screen (a generic microcontroller box, no logo).
-The device is wired to a small desktop robot arm made of two hobby servo motors with a simple gripper.
+The device is wired to a single small blue hobby micro servo motor with a white plastic horn (a short pointer arm) on its shaft.
 Leave the upper right area as empty plain background.
 ```
 
@@ -221,14 +221,14 @@ Keep the upper area as empty plain background.
 
 - 配置先：`src/web-serial/servo.md`の「## 可動範囲を確かめる」
 - ファイル名：`src/assets/illustrations/servo-range.png`
-- 場面：分身がノートPCのスライダーを少しずつ動かし、机の上のアームの横には分度器のような扇形の目盛りがあります。
+- 場面：分身がノートPCのスライダーを少しずつ動かし、机の上のサーボモーターの後ろには分度器のような扇形の目盛りがあります。
   扇形の両端には止まる位置の印があり、安全に動かせる範囲を記録することを示します。
 - 重ねる文字：「最小の角度」「最大の角度」「ここで止める」
-- 代替テキスト：講師がスライダーを動かし、アームの横の扇形の目盛りに止める位置の印がある
+- 代替テキスト：講師がスライダーを動かし、サーボモーターの後ろの扇形の目盛りに止める位置の印がある
 
 ```text
 The character sits on the left, carefully moving a slider on a laptop screen with one finger, with a focused but calm expression.
-On the right, a small desktop robot arm made of hobby servo motors sits on the desk, with a large semicircular protractor-like fan shape behind it.
+On the right, a single small blue hobby micro servo motor with a white plastic horn (a short pointer arm) on its shaft sits on the desk, with a large semicircular protractor-like fan shape behind it.
 Two small flags mark the stopping points near both ends of the fan shape. The tick marks have no numbers.
 Keep the upper right area as empty plain background.
 ```
@@ -250,18 +250,18 @@ The lower path goes straight into the same laptop, where a small box (a language
 Leave empty plain background next to each path for labels.
 ```
 
-### 13. 声でアームを動かす
+### 13. 声でサーボモーターを動かす
 
 - 配置先：`src/web-serial/voice-servo.md`の「# 声でサーボモーターを動かす」の直後
 - ファイル名：`src/assets/illustrations/voice-servo.png`
-- 場面：分身がマイクに話しかけると、ノートPCを通じて机の上のアームが向きを変え、グリッパーで小さなブロックをつかみます。
-- 重ねる文字：「もう少し右に」「つかんで」
-- 代替テキスト：講師がマイクに話しかけ、机の上の小さなロボットアームがブロックをつかんでいる
+- 場面：分身がマイクに話しかけると、ノートPCを通じて机の上のサーボモーターのサーボホーンが向きを変えます。
+- 重ねる文字：「もう少し右に」「正面に戻して」
+- 代替テキスト：講師がマイクに話しかけ、机の上のサーボモーターが向きを変えている
 
 ```text
 The character stands on the left, speaking into a microphone with an empty speech bubble.
 In the middle, a laptop with a generic browser window is connected by a USB cable to a small square palm-sized device with a screen.
-On the right, a small desktop robot arm made of hobby servo motors turns with curved motion lines and grabs a small colored block with its gripper.
+On the right, a single small blue hobby micro servo motor with a white plastic horn (a short pointer arm) on its shaft sits on the desk, and its horn turns with curved motion lines.
 Keep the empty speech bubble and the upper area clear for adding text later.
 ```
 
@@ -269,7 +269,7 @@ Keep the empty speech bubble and the upper area clear for adding text later.
 
 - 配置先：`src/web-serial/voice-servo.md`の「## モデルの出力を検証する」
 - ファイル名：`src/assets/illustrations/voice-servo-validation.png`
-- 場面：AIが出した指示のカードが、3つの関所を順に通ってアームへ向かいます。
+- 場面：AIが出した指示のカードが、3つの関所を順に通ってサーボモーターへ向かいます。
   分身は2つ目の関所で、カードの角度を定規で確かめています。
 - 重ねる文字：「スキーマ」「ブラウザのコード」「ブリッジ」
 - 代替テキスト：AIが出したカードが3つの関所を順に通り、2つ目の関所で講師が定規で確かめている
@@ -278,22 +278,22 @@ Keep the empty speech bubble and the upper area clear for adding text later.
 On the left, a friendly AI chat bubble character hands out a small card.
 The card travels to the right along a path through three simple gates (like small toll booths), placed at even intervals.
 At the second gate, the character checks the card with a ruler and a magnifying glass.
-At the far right end of the path, a small desktop robot arm made of hobby servo motors waits.
+At the far right end of the path, a single small blue hobby micro servo motor with a white plastic horn (a short pointer arm) on its shaft waits.
 Leave empty plain background above each gate for labels.
 ```
 
-### 15. 揺れを見張り、アームで知らせる
+### 15. 揺れを見張り、サーボモーターで知らせる
 
-- 配置先：`src/web-serial/sensor-assistant.md`の「## 異常な揺れからアームでの警告へ」
+- 配置先：`src/web-serial/sensor-assistant.md`の「## 異常な揺れからサーボモーターでの警告へ」
 - ファイル名：`src/assets/illustrations/sensor-assistant-alert.png`
-- 場面：机の上の小型機器が揺れ、AIの判断を受けたアームが持ち上がって合図しています。
+- 場面：机の上の小型機器が揺れ、AIの判断を受けたサーボモーターがサーボホーンを振って合図しています。
   分身はノートPCの前で、状態を質問する吹き出しを出しています。
 - 重ねる文字：「異常な揺れ」「警告」「今、揺れていますか」
-- 代替テキスト：揺れている小型の機器の横でアームが持ち上がって合図し、講師がノートPCの前で質問している
+- 代替テキスト：揺れている小型の機器の横でサーボモーターが合図し、講師がノートPCの前で質問している
 
 ```text
 On the right, a small square palm-sized device with a screen shakes on the desk, with small motion lines and a tiny exclamation-shaped spark (no text).
-Next to it, a small desktop robot arm made of hobby servo motors raises its arm upward like a warning signal.
+Next to it, a single small blue hobby micro servo motor with a white plastic horn (a short pointer arm) on its shaft swings its horn like a warning signal.
 On the left, the character sits in front of a laptop that shows a friendly AI chat bubble character, and he asks a question with an empty speech bubble.
 Keep the empty speech bubble and the upper left area clear for adding text later.
 ```
@@ -312,7 +312,7 @@ mdBookでは、画像のパスをMarkdownファイルからの相対パスで書
 `src/web-serial/`の章では、1つ上の階層に戻ります。
 
 ```markdown
-![講師がマイクに話しかけ、机の上の小さなロボットアームがブロックをつかんでいる](../assets/illustrations/voice-servo.png)
+![講師がマイクに話しかけ、机の上のサーボモーターが向きを変えている](../assets/illustrations/voice-servo.png)
 ```
 
 挿絵は見出しの直後か、見出しの下の最初の段落の後に置きます。

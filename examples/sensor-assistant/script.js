@@ -166,7 +166,7 @@ async function judge() {
       latched = true;
       status("警告の角度を送信しました。機器の応答も確認してください。");
     } else {
-      status("判断を記録しました。アームは動かしていません。");
+      status("判断を記録しました。サーボモーターは動かしていません。");
     }
   } finally {
     busy = false;

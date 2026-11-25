@@ -453,7 +453,7 @@ await writer.write(new TextEncoder().encode("servo 0 90\n"));
 
 **servo 0 90**\n
 
-チャンネル0（旋回）を90度に
+チャンネル0のサーボを90度に
 
 改行がないと、Core2 はコマンドの続きを待ち続ける
 
@@ -493,14 +493,14 @@ PART 3
 
 <!-- _class: late -->
 
-# 言葉の指示がアームに届くまで
+# 言葉の指示がサーボに届くまで
 
-![w:1120 声から、Speech Recognition API、Prompt API、コードでの計算、Web Serial API を経て、アームに届くまでの流れ](assets/diagrams/pipeline.svg)
+![w:1120 声から、Speech Recognition API、Prompt API、コードでの計算、Web Serial API を経て、サーボに届くまでの流れ](assets/diagrams/pipeline.svg)
 
 モデルが返す JSON の `actions` の1要素
 
 ```json
-{ "joint": "base", "change": "add", "value": -15 }
+{ "change": "add", "value": -15 }
 ```
 
 ---
@@ -512,7 +512,7 @@ PART 3
 ### **モデル**：言葉を解釈する
 
 「もう少し右に」→ 右に15度
-「つかんで」→ グリッパーを閉じる
+「正面に戻して」→ 90度にする
 
 ### **コード**：角度を計算する
 
@@ -529,7 +529,7 @@ PART 3
 
 ![w:1120 モデルの誤った出力が、スキーマ、ブラウザーのコード、Core2 側の順に止められる図](assets/diagrams/layers.svg)
 
-どれか1か所に誤りがあっても、ほかの制限がアームを守る
+どれか1か所に誤りがあっても、ほかの制限がサーボを守る
 
 ---
 
@@ -544,7 +544,7 @@ PART 3
 | 検証と計算 | PC 内（JavaScript） |
 | Core2 との通信 | PC 内（USB シリアル） |
 
-ページとモデルを読み込んだ後なら、文字入力と PC 内で認識した声で、*オフラインでも*アームを動かせる
+ページとモデルを読み込んだ後なら、文字入力と PC 内で認識した声で、*オフラインでも*サーボを動かせる
 
 ---
 
@@ -586,7 +586,7 @@ PART 3
 
 機内モードで返事をした AI に、
 
-# 2日目は、アームを動かしてもらいます
+# 2日目は、サーボを動かしてもらいます
 
 > Day 1 は、自分の PC で AI を動かすところから始めます
 > 教材：kou029w.github.io/intro-to-web-dev

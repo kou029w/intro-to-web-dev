@@ -4,7 +4,7 @@
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/web-serial-servo)
 
 スライダーで、M5StackのGPIOに接続したサーボモーターの角度を指定するサンプルです。
-関節ごとの可動範囲を確かめるために使います。
+サーボモーターを安全に動かせる角度の範囲（可動範囲）を確かめるために使います。
 
 ## 動かし方
 

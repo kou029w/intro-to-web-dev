@@ -2,14 +2,11 @@ const statusEl = document.querySelector("#status");
 const connectEl = document.querySelector("#connect");
 const homeEl = document.querySelector("#home");
 const releaseEl = document.querySelector("#release");
-const jointsEl = document.querySelector("#joints");
+const servoEl = document.querySelector("#servo");
 const logEl = document.querySelector("#log");
 
-// 関節ごとの設定。可動範囲を確かめたら、minとmaxを書き換える
-const JOINTS = [
-  { channel: 0, label: "関節1（旋回）", min: 0, max: 180, home: 90 },
-  { channel: 1, label: "関節2（グリッパー）", min: 0, max: 180, home: 90 },
-];
+// サーボモーターの設定。可動範囲を確かめたら、minとmaxを書き換える
+const SERVO = { channel: 0, min: 0, max: 180, home: 90 };
 
 const encoder = new TextEncoder();
 let port;
@@ -33,60 +30,50 @@ function sendLine(line) {
   return writer.write(encoder.encode(`${line}\n`));
 }
 
-// スライダーを動かしている間は、50ミリ秒ごとにまとめて送る
-const pending = new Map();
+// スライダーを動かしている間は、50ミリ秒ごとに最後の角度だけを送る
+let pendingAngle;
 let timer;
 
-function queueServo(channel, angle) {
-  pending.set(channel, angle);
+function queueServo(angle) {
+  pendingAngle = angle;
   timer ??= setTimeout(() => {
-    sendLine(`servo ${[...pending].flat().join(" ")}`);
-    pending.clear();
+    sendLine(`servo ${SERVO.channel} ${pendingAngle}`);
     timer = undefined;
   }, 50);
 }
 
-const sliders = JOINTS.map((joint) => {
-  const container = document.createElement("div");
-  container.className = "joint";
+const label = document.createElement("label");
+label.htmlFor = "angle";
+label.textContent = `角度（ch${SERVO.channel}）: `;
+const output = document.createElement("output");
+output.value = SERVO.home;
+label.append(output, "度");
 
-  const label = document.createElement("label");
-  label.htmlFor = `joint-${joint.channel}`;
-  label.textContent = `${joint.label}（ch${joint.channel}）: `;
-  const output = document.createElement("output");
-  output.value = joint.home;
-  label.append(output, "度");
-
-  const slider = document.createElement("input");
-  slider.id = `joint-${joint.channel}`;
-  slider.type = "range";
-  slider.min = joint.min;
-  slider.max = joint.max;
-  slider.value = joint.home;
-  slider.disabled = true;
-  slider.addEventListener("input", () => {
-    output.value = slider.value;
-    queueServo(joint.channel, slider.valueAsNumber);
-  });
-
-  container.append(label, slider);
-  jointsEl.append(container);
-  return { joint, slider, output };
+const slider = document.createElement("input");
+slider.id = "angle";
+slider.type = "range";
+slider.min = SERVO.min;
+slider.max = SERVO.max;
+slider.value = SERVO.home;
+slider.disabled = true;
+slider.addEventListener("input", () => {
+  output.value = slider.value;
+  queueServo(slider.valueAsNumber);
 });
+
+servoEl.append(label, slider);
 
 function setConnected(connected) {
   connectEl.disabled = connected;
   homeEl.disabled = !connected;
   releaseEl.disabled = !connected;
-  for (const { slider } of sliders) slider.disabled = !connected;
+  slider.disabled = !connected;
 }
 
 function moveHome() {
-  for (const { joint, slider, output } of sliders) {
-    slider.value = joint.home;
-    output.value = joint.home;
-    queueServo(joint.channel, joint.home);
-  }
+  slider.value = SERVO.home;
+  output.value = SERVO.home;
+  queueServo(SERVO.home);
 }
 
 async function readLines(onLine) {
@@ -119,11 +106,6 @@ function handleLine(line) {
   // センサー値は使わないので、それ以外の応答だけを表示する
   if (message?.type === "sensor") return;
   log(line);
-  // 起動時のreadyか、接続時に送ったpingへの応答で、ブリッジが動かせるサーボの数がわかる
-  const checked = message?.type === "ready" || message?.command === "ping";
-  if (checked && message.channels < JOINTS.length) {
-    statusEl.textContent = `ブリッジが動かせるサーボは${message.channels}個です。機種の設定（BOARD）を確認してください。`;
-  }
 }
 
 connectEl.addEventListener("click", async () => {

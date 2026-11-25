@@ -37,7 +37,7 @@ test("角度の範囲外と非数値を機器に送らない", () => {
   for (const value of [-1, 181, 90.5, "90", NaN]) assert.throws(() => servoCommand(value));
 });
 
-test("alertでも未有効、警告済み、時間不足、揺れ不足ならアームを動かさない", () => {
+test("alertでも未有効、警告済み、時間不足、揺れ不足ならサーボモーターを動かさない", () => {
   const summary = { durationMs: 2900, deviationG: 0.18 };
   const result = { level: "alert" };
   assert.equal(shouldWarn(summary, result, true, false), true);

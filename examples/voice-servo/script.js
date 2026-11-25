@@ -1,61 +1,36 @@
 const statusEl = document.querySelector("#status");
 const connectEl = document.querySelector("#connect");
-const jointsEl = document.querySelector("#joints");
+const meterEl = document.querySelector("#meter");
+const angleEl = document.querySelector("#angle");
 const talkEl = document.querySelector("#talk");
 const heardEl = document.querySelector("#heard");
 const textFormEl = document.querySelector("#text-form");
 const textEl = document.querySelector("#text");
 const historyEl = document.querySelector("#history");
 
-// 関節ごとの設定。minとmaxは「サーボモーターを動かす」で確かめた可動範囲にする
-const JOINTS = [
-  {
-    name: "base",
-    channel: 0,
-    label: "旋回",
-    min: 0,
-    max: 180,
-    home: 90,
-    hint: "値を大きくすると左、小さくすると右を向く。90度が正面",
-  },
-  {
-    name: "grip",
-    channel: 1,
-    label: "グリッパー",
-    min: 40,
-    max: 120,
-    home: 60,
-    hint: "値を大きくすると閉じてつかみ、小さくすると開いて離す",
-  },
-];
+// サーボモーターの設定。minとmaxは「サーボモーターを動かす」で確かめた可動範囲にする
+const SERVO = {
+  channel: 0,
+  min: 0,
+  max: 180,
+  home: 90,
+  hint: "値を大きくすると左、小さくすると右を向く。90度が正面",
+};
 
-const angles = Object.fromEntries(JOINTS.map((j) => [j.name, j.home]));
+let angle = SERVO.home;
 let lastInstruction = "なし";
 
 // ---- 画面の表示 ----
 
-const meters = Object.fromEntries(
-  JOINTS.map((joint) => {
-    const row = jointsEl.insertRow();
-    row.insertCell().textContent = `${joint.label}（${joint.name}）`;
-    const meter = document.createElement("meter");
-    meter.min = joint.min;
-    meter.max = joint.max;
-    const output = document.createElement("output");
-    row.insertCell().append(meter);
-    row.insertCell().append(output);
-    return [joint.name, { meter, output }];
-  }),
-);
+meterEl.min = SERVO.min;
+meterEl.max = SERVO.max;
 
-function renderAngles() {
-  for (const [name, { meter, output }] of Object.entries(meters)) {
-    meter.value = angles[name];
-    output.value = `${angles[name]}度`;
-  }
+function renderAngle() {
+  meterEl.value = angle;
+  angleEl.value = `${angle}度`;
 }
 
-renderAngles();
+renderAngle();
 
 // ---- Web Serial ----
 
@@ -113,9 +88,7 @@ connectEl.addEventListener("click", async () => {
   connectEl.disabled = true;
   statusEl.textContent = "接続しました。";
   await sendLine("sensor off");
-  await sendLine(
-    `servo ${JOINTS.map((j) => `${j.channel} ${angles[j.name]}`).join(" ")}`,
-  );
+  await sendLine(`servo ${SERVO.channel} ${angle}`);
 
   await readLines(handleLine);
 
@@ -129,15 +102,11 @@ connectEl.addEventListener("click", async () => {
 // ---- Prompt API ----
 
 const systemPrompt = [
-  "あなたはロボットアームの操作係です。利用者の日本語の指示を、関節の動作の列に変換します。",
-  "関節の一覧:",
-  ...JOINTS.map(
-    (j) => `- ${j.name}（${j.label}）: ${j.min}〜${j.max}度。${j.hint}。`,
-  ),
+  "あなたはサーボモーターの操作係です。利用者の日本語の指示を、角度の変え方の列に変換します。",
+  `サーボモーターの角度は${SERVO.min}〜${SERVO.max}度です。${SERVO.hint}。`,
   'changeが"set"なら角度をvalueにし、"add"なら現在の角度にvalueを足します。',
   "「少し」は15度、程度の指定がなければ30度動かします。",
-  "指示と関係のない関節は動かしません。",
-  "アームの操作と関係のない指示には、actionsを空にしてreplyで断ります。",
+  "サーボモーターの操作と関係のない指示には、actionsを空にしてreplyで断ります。",
   "replyには利用者への短い返事を書きます。",
 ].join("\n");
 
@@ -150,11 +119,10 @@ const schema = {
       items: {
         type: "object",
         properties: {
-          joint: { type: "string", enum: JOINTS.map((j) => j.name) },
           change: { type: "string", enum: ["set", "add"] },
           value: { type: "integer", minimum: -180, maximum: 180 },
         },
-        required: ["joint", "change", "value"],
+        required: ["change", "value"],
       },
     },
     reply: { type: "string" },
@@ -163,48 +131,36 @@ const schema = {
 };
 
 function formatRequest(current, previous, instruction) {
-  const state = Object.entries(current)
-    .map(([name, angle]) => `${name}=${angle}`)
-    .join(", ");
-  return `現在の角度: ${state}\n直前の指示: ${previous}\n指示: ${instruction}`;
+  return `現在の角度: ${current}\n直前の指示: ${previous}\n指示: ${instruction}`;
 }
 
-// 入力と出力の例。JOINTSの名前や範囲、hintの向きを変えたら、例も合わせて直す
+// 入力と出力の例。SERVOの範囲やhintの向きを変えたら、例も合わせて直す
 const examples = [
   [
-    formatRequest({ base: 90, grip: 60 }, "なし", "左を向いて"),
-    {
-      actions: [{ joint: "base", change: "add", value: 30 }],
-      reply: "左に向けます",
-    },
+    formatRequest(90, "なし", "左を向いて"),
+    { actions: [{ change: "add", value: 30 }], reply: "左に向けます" },
   ],
   [
-    formatRequest({ base: 120, grip: 60 }, "左を向いて", "もうちょっと"),
-    {
-      actions: [{ joint: "base", change: "add", value: 15 }],
-      reply: "もう少し左に向けます",
-    },
+    formatRequest(120, "左を向いて", "もうちょっと"),
+    { actions: [{ change: "add", value: 15 }], reply: "もう少し左に向けます" },
   ],
   [
-    formatRequest({ base: 90, grip: 60 }, "なし", "つかんで"),
-    {
-      actions: [{ joint: "grip", change: "set", value: 120 }],
-      reply: "つかみます",
-    },
+    formatRequest(135, "もうちょっと", "正面に戻して"),
+    { actions: [{ change: "set", value: 90 }], reply: "正面に戻します" },
   ],
   [
-    formatRequest({ base: 45, grip: 120 }, "つかんで", "正面に戻して離して"),
+    formatRequest(90, "なし", "右を向いてから正面に戻して"),
     {
       actions: [
-        { joint: "base", change: "set", value: 90 },
-        { joint: "grip", change: "set", value: 40 },
+        { change: "add", value: -30 },
+        { change: "set", value: 90 },
       ],
-      reply: "正面に戻してから離します",
+      reply: "右に向けてから正面に戻します",
     },
   ],
   [
-    formatRequest({ base: 90, grip: 60 }, "なし", "今日の天気は？"),
-    { actions: [], reply: "アームの動かし方を指示してください" },
+    formatRequest(90, "なし", "今日の天気は？"),
+    { actions: [], reply: "サーボモーターの動かし方を指示してください" },
   ],
 ];
 
@@ -230,14 +186,11 @@ function getBaseSession() {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// モデルの出力は信頼できない入力として扱い、関節名と可動範囲をコード側で検証する
-function toCommand(action) {
-  const joint = JOINTS.find((j) => j.name === action.joint);
-  if (!joint || !Number.isInteger(action.value)) return null;
-  const target =
-    action.change === "add" ? angles[joint.name] + action.value : action.value;
-  const angle = Math.min(joint.max, Math.max(joint.min, target));
-  return { joint, angle };
+// モデルの出力は信頼できない入力として扱い、値と可動範囲をコード側で検証する
+function toAngle(action) {
+  if (!Number.isInteger(action.value)) return null;
+  const target = action.change === "add" ? angle + action.value : action.value;
+  return Math.min(SERVO.max, Math.max(SERVO.min, target));
 }
 
 async function run(instruction) {
@@ -251,7 +204,7 @@ async function run(instruction) {
     const base = await getBaseSession();
     const session = await base.clone();
     const response = await session.prompt(
-      formatRequest(angles, lastInstruction, instruction),
+      formatRequest(angle, lastInstruction, instruction),
       { responseConstraint: schema },
     );
     session.destroy();
@@ -259,11 +212,11 @@ async function run(instruction) {
 
     const { actions, reply } = JSON.parse(response);
     for (const action of actions) {
-      const command = toCommand(action);
-      if (!command) continue;
-      const line = `servo ${command.joint.channel} ${command.angle}`;
-      angles[command.joint.name] = command.angle;
-      renderAngles();
+      const next = toAngle(action);
+      if (next === null) continue;
+      const line = `servo ${SERVO.channel} ${next}`;
+      angle = next;
+      renderAngle();
       await sendLine(line);
       commandCell.textContent += `${line}\n`;
       // 複数の動作は、前の動作を待ってから順に行う

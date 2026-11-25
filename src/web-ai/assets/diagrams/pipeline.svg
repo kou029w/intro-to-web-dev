@@ -22,7 +22,7 @@
 <text x="824.0" y="154.4" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="19" font-weight="400" fill="#6b7280" text-anchor="middle">Web Serial</text>
 <text x="824.0" y="179.1" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="19" font-weight="400" fill="#6b7280" text-anchor="middle">API</text>
 <rect x="929" y="116" width="142" height="90" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
-<text x="1000.0" y="168.8" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="26" font-weight="400" fill="#353c48" text-anchor="middle">アーム</text>
+<text x="1000.0" y="168.8" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="26" font-weight="400" fill="#353c48" text-anchor="middle">サーボ</text>
 <line x1="195" y1="161" x2="221" y2="161" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
 <line x1="371" y1="161" x2="397" y2="161" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
 <line x1="547" y1="161" x2="573" y2="161" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>

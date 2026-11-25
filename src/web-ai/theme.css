@@ -165,7 +165,7 @@ section.wire ul { display: flex; gap: 10px; list-style: none; padding: 0; margin
 section.wire ul > li { margin: 0; background: #fff; border: 1px solid var(--ink); padding: 8px 12px; }
 section.wire ul > li strong { color: var(--red); }
 
-/* サーボへの送信。アームの台は背景、腕は ::before で描く */
+/* サーボへの送信。サーボの本体は背景、サーボホーンは ::before で描く */
 section.servo {
   --punch: 2.4s;
   background-image: linear-gradient(var(--ink), var(--ink));
@@ -176,7 +176,7 @@ section.servo > pre + p { font-family: 'Source Code Pro', monospace; font-size: 
 section.servo > pre + p strong { color: var(--ink); font-weight: 400; }
 section.servo > pre + p + p { font-size: 24px; color: var(--sub); }
 
-/* 音声からアームまでの流れ */
+/* 音声からサーボまでの流れ */
 section.pipeline { --late: 3.4s; }
 section.pipeline ol { margin-top: 16px; }
 section.pipeline ol > li { font-size: 21px; padding: 10px 12px; }
@@ -249,7 +249,7 @@ section:is(.wiring, .proto, .aggregate) table + p { margin-top: 24px; font-size:
 section.proto h1 { margin-bottom: 20px; }
 section.proto pre { font-size: 21px; margin: 24px 0 0; }
 
-/* JOINTS の書き換え */
+/* SERVO の書き換え */
 section.hint pre { font-size: 21px; }
 section.hint li { font-size: 28px; margin: 4px 0; }
 
