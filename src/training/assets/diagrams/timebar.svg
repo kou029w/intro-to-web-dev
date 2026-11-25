@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 200" width="1120" height="200">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#353c48"/></marker><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a51d3c"/></marker></defs>
+<rect x="40.0" y="40" width="148.6" height="64" fill="#e2e3e6" stroke="#ffffff" stroke-width="3"/>
+<text x="114.28571428571429" y="82" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#353c48" text-anchor="middle">10分</text>
+<text x="114.28571428571429" y="144" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#353c48" text-anchor="middle">題材を選び</text>
+<text x="114.28571428571429" y="174" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">手作業で3件</text>
+<rect x="188.6" y="40" width="148.6" height="64" fill="#e2e3e6" stroke="#ffffff" stroke-width="3"/>
+<text x="262.8571428571429" y="82" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#353c48" text-anchor="middle">10分</text>
+<text x="262.8571428571429" y="144" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#353c48" text-anchor="middle">サンプルを開き</text>
+<text x="262.8571428571429" y="174" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">そのまま動かす</text>
+<rect x="337.1" y="40" width="445.7" height="64" fill="#a51d3c" stroke="#ffffff" stroke-width="3"/>
+<text x="560.0" y="82" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">30分</text>
+<text x="560.0" y="144" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#353c48" text-anchor="middle">プロンプトと</text>
+<text x="560.0" y="174" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">スキーマを変える</text>
+<rect x="782.9" y="40" width="297.1" height="64" fill="#353c48" stroke="#ffffff" stroke-width="3"/>
+<text x="931.4285714285714" y="82" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#ffffff" text-anchor="middle">20分</text>
+<text x="931.4285714285714" y="144" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#353c48" text-anchor="middle">3件と比べ</text>
+<text x="931.4285714285714" y="174" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">コードで確かめる</text>
+</svg>

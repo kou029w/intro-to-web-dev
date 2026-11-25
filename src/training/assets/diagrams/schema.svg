@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 340" width="1120" height="340">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#353c48"/></marker><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a51d3c"/></marker></defs>
+<rect x="40" y="30" width="520" height="280" rx="12" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="300" y="72" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="26" font-weight="400" fill="#353c48" text-anchor="middle">モデルの返答（JSON）</text>
+<rect x="70" y="96" width="460" height="186" rx="8" fill="#e2e3e6" stroke="none" stroke-width="0"/>
+<text x="96" y="138" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="24" font-weight="400" fill="#353c48" text-anchor="start">{</text>
+<text x="96" y="178" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="24" font-weight="400" fill="#353c48" text-anchor="start">  "summary": "快晴です",</text>
+<text x="96" y="218" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="24" font-weight="400" fill="#353c48" text-anchor="start">  "needsUmbrella": true</text>
+<text x="96" y="258" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="24" font-weight="400" fill="#353c48" text-anchor="start">}</text>
+<rect x="600" y="50" width="480" height="110" rx="12" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<polyline points="626.5,105.0 636.4,115.8 655.0,93.0" fill="none" stroke="#353c48" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="686" y="96" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="28" font-weight="400" fill="#353c48" text-anchor="start">形：スキーマどおり</text>
+<text x="686" y="134" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#6b7280" text-anchor="start">必ず満たす（JSON として読める）</text>
+<rect x="600" y="190" width="480" height="110" rx="12" fill="#f6e6ea" stroke="#a51d3c" stroke-width="2.5"/>
+<path d="M628.2,233.2 L651.8,256.8 M651.8,233.2 L628.2,256.8" stroke="#a51d3c" stroke-width="5" stroke-linecap="round" fill="none"/>
+<text x="686" y="236" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="28" font-weight="400" fill="#353c48" text-anchor="start">中身：天気と合わない</text>
+<text x="686" y="274" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#6b7280" text-anchor="start">快晴なのに needsUmbrella: true</text>
+</svg>

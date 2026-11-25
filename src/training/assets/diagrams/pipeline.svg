@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 290" width="1120" height="290">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#353c48"/></marker><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a51d3c"/></marker></defs>
+<rect x="417" y="72" width="110" height="30" rx="15" fill="#a51d3c" stroke="#a51d3c" stroke-width="2.5"/>
+<text x="472.0" y="93.0" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#ffffff" text-anchor="middle">モデル</text>
+<rect x="593" y="72" width="110" height="30" rx="15" fill="#353c48" stroke="#353c48" stroke-width="2.5"/>
+<text x="648.0" y="93.0" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#ffffff" text-anchor="middle">コード</text>
+<rect x="769" y="72" width="110" height="30" rx="15" fill="#353c48" stroke="#353c48" stroke-width="2.5"/>
+<text x="824.0" y="93.0" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#ffffff" text-anchor="middle">コード</text>
+<rect x="49" y="116" width="142" height="90" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="120.0" y="169.4" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="28" font-weight="400" fill="#353c48" text-anchor="middle">声</text>
+<rect x="225" y="116" width="142" height="90" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="296.0" y="144.2" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">音声認識</text>
+<text x="296.0" y="169.0" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="18" font-weight="400" fill="#6b7280" text-anchor="middle">Speech</text>
+<text x="296.0" y="192.4" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="18" font-weight="400" fill="#6b7280" text-anchor="middle">Recognition</text>
+<rect x="401" y="116" width="142" height="90" rx="8" fill="#a51d3c" stroke="#a51d3c" stroke-width="2.5"/>
+<text x="472.0" y="154.0" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="20" font-weight="400" fill="#ffffff" text-anchor="middle">Prompt API</text>
+<text x="472.0" y="180.0" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#ffffff" text-anchor="middle">言語モデル</text>
+<rect x="577" y="116" width="142" height="90" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="648.0" y="153.3" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">コードで</text>
+<text x="648.0" y="181.9" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">検証と計算</text>
+<rect x="753" y="116" width="142" height="90" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="824.0" y="154.4" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="19" font-weight="400" fill="#6b7280" text-anchor="middle">Web Serial</text>
+<text x="824.0" y="179.1" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="19" font-weight="400" fill="#6b7280" text-anchor="middle">API</text>
+<rect x="929" y="116" width="142" height="90" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="1000.0" y="168.8" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="26" font-weight="400" fill="#353c48" text-anchor="middle">アーム</text>
+<line x1="195" y1="161" x2="221" y2="161" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
+<line x1="371" y1="161" x2="397" y2="161" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
+<line x1="547" y1="161" x2="573" y2="161" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
+<line x1="723" y1="161" x2="749" y2="161" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
+<line x1="899" y1="161" x2="925" y2="161" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
+<text x="120.0" y="236" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">もう少し右に</text>
+<text x="296.0" y="236" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">文字に変換</text>
+<text x="472.0" y="236" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">add -15</text>
+<text x="648.0" y="236" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">90 − 15</text>
+<text x="648.0" y="264" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">= 75</text>
+<text x="824.0" y="236" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">servo 0 75</text>
+<text x="1000.0" y="236" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">角度 75度</text>
+</svg>

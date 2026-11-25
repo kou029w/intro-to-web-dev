@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 400" width="1120" height="400">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#353c48"/></marker><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a51d3c"/></marker></defs>
+<rect x="40" y="20" width="480" height="350" rx="12" fill="#ffffff" stroke="#c9cbcf" stroke-width="2"/>
+<text x="280.0" y="60" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="26" font-weight="700" fill="#353c48" text-anchor="middle">机に置いたまま</text>
+<text x="280.0" y="92" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">（イメージ）</text>
+<line x1="70" y1="260" x2="490" y2="260" stroke="#353c48" stroke-width="2"/>
+<rect x="118.0" y="257" width="64" height="3" fill="#6b7280"/>
+<text x="150.0" y="246" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#6b7280" text-anchor="middle">0G</text>
+<text x="150.0" y="296" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#353c48" text-anchor="middle">X</text>
+<rect x="248.0" y="257" width="64" height="3" fill="#6b7280"/>
+<text x="280.0" y="246" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#6b7280" text-anchor="middle">0G</text>
+<text x="280.0" y="296" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#353c48" text-anchor="middle">Y</text>
+<rect x="378.0" y="140.0" width="64" height="120.0" fill="#353c48"/>
+<text x="410.0" y="128.0" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#353c48" text-anchor="middle">1.0G</text>
+<text x="410.0" y="296" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#353c48" text-anchor="middle">Z</text>
+<text x="280.0" y="336" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#6b7280" text-anchor="middle">1本が約1G、残り2本は0G付近</text>
+<rect x="600" y="20" width="480" height="350" rx="12" fill="#ffffff" stroke="#c9cbcf" stroke-width="2"/>
+<text x="840.0" y="60" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="26" font-weight="700" fill="#353c48" text-anchor="middle">傾けたとき</text>
+<text x="840.0" y="92" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">（イメージ）</text>
+<line x1="630" y1="260" x2="1050" y2="260" stroke="#353c48" stroke-width="2"/>
+<rect x="678.0" y="176.0" width="64" height="84.0" fill="#353c48"/>
+<text x="710.0" y="164.0" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#353c48" text-anchor="middle">0.7G</text>
+<text x="710.0" y="296" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#353c48" text-anchor="middle">X</text>
+<rect x="808.0" y="257" width="64" height="3" fill="#6b7280"/>
+<text x="840.0" y="246" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#6b7280" text-anchor="middle">0G</text>
+<text x="840.0" y="296" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#353c48" text-anchor="middle">Y</text>
+<rect x="938.0" y="176.0" width="64" height="84.0" fill="#353c48"/>
+<text x="970.0" y="164.0" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#353c48" text-anchor="middle">0.7G</text>
+<text x="970.0" y="296" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="700" fill="#353c48" text-anchor="middle">Z</text>
+<text x="840.0" y="336" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#6b7280" text-anchor="middle">約1Gが、ほかの軸にも分かれる</text>
+</svg>

@@ -72,20 +72,11 @@ PART 1
 
 ---
 
-<!-- _class: cols seq punch -->
+<!-- _class: seq punch -->
 
 # 開いただけのサイトに、機器を触らせない
 
-### **ユーザー操作の延長**で呼ぶ
-
-- `requestPort()`
-- `showSaveFilePicker()`
-- 未取得時の `LanguageModel.create()`
-
-### **安全なコンテキスト**で開く
-
-- `https://` か `http://localhost`
-- `file://` では、どのサンプルも動かない
+![w:1120 ユーザー操作の中で呼ぶこと、安全なコンテキストで開くことの2つの条件を示す図](assets/diagrams/gate.svg)
 
 ポートやファイルを選ぶのは利用者。ページの読み込み時に呼ぶと失敗する
 
@@ -290,17 +281,11 @@ PART 4
 
 ---
 
-<!-- _class: compare punch -->
+<!-- _class: punch -->
 
 # 保存先は、利用者が選ぶか、アプリが持つか
 
-|  | File System Access API | OPFS |
-| --- | --- | --- |
-| 保存先 | 利用者が選んだ PC 上のファイル | オリジンごとの領域 |
-| 選択画面 | 必要 | 不要 |
-| 開く方法 | PC のアプリからも開ける | Web アプリが読み込む |
-| 入口 | `showSaveFilePicker()` | `navigator.storage.getDirectory()` |
-
+![w:1120 File System Access API は選んだ PC のファイルに、OPFS はオリジンごとの領域に保存する図](assets/diagrams/storage.svg)
 `localhost:3000` と `localhost:3001` は別のオリジン。同じ URL で開き直す
 
 持ち帰る記録は、選んだファイルにも保存する
@@ -337,18 +322,11 @@ PART 5
 
 ---
 
-<!-- _class: flow steps seq -->
+<!-- _class: seq -->
 
 # 70分の進め方
 
-1. 題材を選び<br>手作業の結果を3件
-   - 10分
-1. サンプルを開き<br>そのまま動かす
-   - 10分
-1. **プロンプトと<br>スキーマを変える**
-   - 30分
-1. 3件と比べ<br>コードで確かめる
-   - 20分
+![w:1120 70分の時間配分。10分、10分、30分、20分の4段階](assets/diagrams/timebar.svg)
 
 読みやすい要約にも、元の文章にない数値が混ざることがある
 

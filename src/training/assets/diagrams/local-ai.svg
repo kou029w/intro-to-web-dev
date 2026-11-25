@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 360" width="1120" height="360">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#353c48"/></marker><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a51d3c"/></marker></defs>
+<rect x="40" y="20" width="1040" height="236" rx="14" fill="none" stroke="#353c48" stroke-width="2.5" stroke-dasharray="10 8"/>
+<rect x="62" y="8" width="128" height="34" fill="#f1f1f1"/>
+<text x="126" y="33" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#6b7280" text-anchor="middle">PC の中</text>
+<line x1="340" y1="135" x2="440" y2="135" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
+<line x1="680" y1="135" x2="780" y2="135" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="100" y="80" width="240" height="110" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="220.0" y="143.4" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="28" font-weight="400" fill="#353c48" text-anchor="middle">Web ページ</text>
+<rect x="440" y="80" width="240" height="110" rx="8" fill="#ffffff" stroke="#a51d3c" stroke-width="3"/>
+<text x="560.0" y="131.0" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="30" font-weight="400" fill="#353c48" text-anchor="middle">Prompt API</text>
+<text x="560.0" y="160.5" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">LanguageModel</text>
+<rect x="780" y="80" width="240" height="110" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="900.0" y="117.4" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="28" font-weight="400" fill="#353c48" text-anchor="middle">Gemini Nano</text>
+<text x="900.0" y="146.2" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">ブラウザー内蔵の</text>
+<text x="900.0" y="172.2" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">言語モデル</text>
+<text x="560" y="226" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#6b7280" text-anchor="middle">入力も出力も、PC の中で処理する</text>
+<line x1="900" y1="296" x2="900" y2="194" stroke="#a51d3c" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#ar)"/>
+<text x="880" y="280" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="700" fill="#a51d3c" text-anchor="end">モデルの取得・更新のみ</text>
+<rect x="780" y="296" width="240" height="56" rx="28" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="900.0" y="331.2" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="24" font-weight="400" fill="#353c48" text-anchor="middle">インターネット</text>
+</svg>

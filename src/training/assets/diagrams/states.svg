@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 280" width="1120" height="280">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#353c48"/></marker><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#a51d3c"/></marker></defs>
+<text x="375" y="34" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="20" font-weight="400" fill="#6b7280" text-anchor="middle">create()</text>
+<line x1="320" y1="99" x2="430" y2="99" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
+<line x1="690" y1="99" x2="800" y2="99" stroke="#353c48" stroke-width="2.5" marker-end="url(#ah)"/>
+<rect x="60" y="44" width="260" height="110" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="190.0" y="92.5" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="26" font-weight="400" fill="#353c48" text-anchor="middle">downloadable</text>
+<text x="190.0" y="122.5" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">モデルが未取得</text>
+<rect x="430" y="44" width="260" height="110" rx="8" fill="#ffffff" stroke="#353c48" stroke-width="2.5"/>
+<text x="560.0" y="92.5" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="26" font-weight="400" fill="#353c48" text-anchor="middle">downloading</text>
+<text x="560.0" y="122.5" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">取得中</text>
+<rect x="800" y="44" width="260" height="110" rx="8" fill="#ffffff" stroke="#a51d3c" stroke-width="3"/>
+<text x="930.0" y="92.5" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="26" font-weight="400" fill="#353c48" text-anchor="middle">available</text>
+<text x="930.0" y="122.5" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">すぐ使える</text>
+<rect x="430" y="186" width="260" height="84" rx="8" fill="#f6e6ea" stroke="#a51d3c" stroke-width="2.5"/>
+<text x="560.0" y="221.5" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="26" font-weight="400" fill="#353c48" text-anchor="middle">unavailable</text>
+<text x="560.0" y="251.5" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="22" font-weight="400" fill="#353c48" text-anchor="middle">PC が要件外</text>
+</svg>

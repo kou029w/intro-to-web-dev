@@ -41,15 +41,11 @@ title: 動かして学ぶ Prompt API・Web Serial API
 
 ---
 
-<!-- _class: flow pc seq -->
+<!-- _class: seq -->
 
 # 答えはブラウザーの中
 
-1. Web ページ
-1. **Prompt API**
-   - LanguageModel
-1. Gemini Nano
-   - ブラウザー内蔵の言語モデル
+![w:1120 PC の中で Web ページ、Prompt API、Gemini Nano が動き、インターネットとはモデルの取得と更新だけでつながる](assets/diagrams/local-ai.svg)
 
 通信するのはモデルの取得と更新だけ
 
@@ -63,12 +59,7 @@ title: 動かして学ぶ Prompt API・Web Serial API
 
 ブラウザーを、AI と機器とファイルをつなぐ実行環境として使う
 
-| つなぐもの | 使う API |
-| --- | --- |
-| AI モデル | Prompt API、WebAssembly |
-| USB 機器 | Web Serial API |
-| ローカルファイル | File System Access API、OPFS |
-| 音声 | Speech Recognition API |
+![w:1120 中央のブラウザーから、AI モデル、USB 機器、ローカルファイル、音声へつながる図](assets/diagrams/hub.svg)
 
 > アプリを配布しなくても、Windows、macOS、Linux の Chrome で同じコードが動く
 
@@ -118,12 +109,7 @@ PART 1
 await LanguageModel.availability();
 ```
 
-| 戻り値 | 状態 |
-| --- | --- |
-| `"available"` | すぐ使える |
-| `"downloadable"` | モデルが未取得 |
-| `"downloading"` | 取得中 |
-| `"unavailable"` | PC が要件外 |
+![w:1120 availability の戻り値。downloadable から downloading を経て available になる。unavailable は要件外](assets/diagrams/states.svg)
 
 > Firefox と Safari には `LanguageModel` がなく、`ReferenceError` になる
 
@@ -212,9 +198,7 @@ const { needsUmbrella } = JSON.parse(result);
 
 # スキーマが保証するのは「形」まで
 
-天気が快晴でも　`needsUmbrella: true`
-
-形は正しく、*中身はおかしい*
+![w:1120 天気が快晴なのに needsUmbrella が true になる例。形は正しいが中身はおかしい](assets/diagrams/schema.svg)
 
 どこからをコードで確かめるかは、アプリを作る人が決める
 
@@ -335,20 +319,11 @@ PART 3
 
 ---
 
-<!-- _class: flow pipeline late -->
+<!-- _class: late -->
 
 # 「もう少し右に」がアームに届くまで
 
-1. 声
-1. Speech<br>Recognition API
-   - 「もう少し右に」
-1. **Prompt API**
-   - `add -15`
-1. コードで<br>検証と計算
-   - 90 − 15 = 75
-1. Web Serial API
-   - `servo 0 75`
-1. アーム
+![w:1120 声から、Speech Recognition API、Prompt API、コードでの計算、Web Serial API を経て、アームに届くまでの流れ](assets/diagrams/pipeline.svg)
 
 モデルが返す JSON の `actions` の1要素
 
@@ -376,22 +351,11 @@ PART 3
 
 ---
 
-<!-- _class: flow layers punch -->
+<!-- _class: layers punch -->
 
 # 機器に送る前に、もう一度確かめる
 
-1. モデルの出力
-   - `grip を set 180`
-1. **可動範囲に収める**
-   - 40〜120度
-1. 実際に送る
-   - `servo 1 120`
-
-| 制限する場所 | 内容 |
-| --- | --- |
-| スキーマ | 形、関節名の候補、値の範囲（−180〜180度） |
-| ブラウザーのコード | アームごとの可動範囲 |
-| Core2 側のプログラム | サーボが受け付ける範囲（0〜180度） |
+![w:1120 モデルの誤った出力が、スキーマ、ブラウザーのコード、Core2 側の順に止められる図](assets/diagrams/layers.svg)
 
 どれか1か所に誤りがあっても、ほかの制限がアームを守る
 
