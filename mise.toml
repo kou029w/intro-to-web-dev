@@ -1,2 +1,3 @@
 [tools]
+"core:node" = "latest"
 "github:rust-lang/mdBook" = "latest"
