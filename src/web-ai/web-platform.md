@@ -226,15 +226,25 @@ Chromeは、この処理を複数のプロセスに分けて動かしていま�
 ページのコードがどれだけ書き換えられても、選択画面で利用者が選ばない限り、機器には届きません。
 前の節の権限モデルは、この構造の上に成り立っています。
 
-## コラム：React、Next.js、Vite、Tailwind CSSと新しい名前が次々に出てくる理由
+## コラム：Bun、Vite etc.
 
-Web開発の記事を読むと、React、Next.js、Vite、Tailwind CSSのような名前が次々に出てきます。
-これらは、それぞれ別の層の問題を解くための道具です。
-Reactは画面を部品に分けて組み立て、Next.jsはReactの画面をサーバーとどう分担して配信するかを決めます。
-Viteは開発中のファイルの変換と配信を、Tailwind CSSはCSSの書き方を扱います。
+Web開発の記事を読むと、Bun、Viteのような名前が出てきます。
+これらは、JavaScriptのコードを動かし、変換し、検査するための道具です。
+Bunは、Node.jsやDenoと同じく、ブラウザの外でJavaScriptを動かす実行環境（ランタイム）です。
+Vite+は、開発サーバーのVite、テストのVitest、バンドラーのRolldown、リンターとフォーマッターを含むOxcを、一つのコマンドから使えるようにまとめたツールチェインです。
 
-新しい名前が出続けるのは、Webで作るアプリの規模と要求が変わり続けているからです。
-ブラウザの標準機能が追いつく前に、足りない部分をライブラリが補い、npmで誰でも公開できるため、同じ問題に複数の答えが並びます。
+新しい名前が出続ける理由の一つは、道具の作り直しが進んでいることです。
+これまでJavaScriptで書かれていた変換や検査のツールが、RustやGoのようなネイティブのコードにコンパイルされる言語で書き直されています（RolldownとOxcはRust、TypeScriptの新しいコンパイラはGo）。
+アプリの規模が大きくなり、JavaScriptで書いたツールでは、変換や型検査の待ち時間が無視できなくなったからです。
+Vite 8は、それまで開発時と本番のビルドで使い分けていた二つのバンドラー（esbuildとRollup）を、Rolldown一つに置き換えました。
+
+もう一つの理由は、道具を支える組織が入れ替わっていることです。
+Bunは2025年12月にAnthropicに買収され、Viteなどを開発するVoidZeroは2026年にCloudflareに加わりました。
+AIのコーディングエージェントは、コードを書き換えるたびにテストやビルドを繰り返し実行するため、速いランタイムやツールチェインの価値が上がっていると見られています。
+どちらのプロジェクトもオープンソースのまま開発が続いていますが、名前が同じでも、誰がどんな目的で開発しているかは数年で変わります。
+
+加えて、npmでは誰でもパッケージを公開できるため、同じ問題に複数の答えが並びます。
+ブラウザの標準機能が追いつく前に、足りない部分をライブラリが補います。
 標準が追いつくと、[標準に移ってきた機能](#標準に移ってきた機能)の表のように、ライブラリの役割が標準に移ることもあります。
 
 この研修では、フレームワークを使わず、Web標準のAPIを直接呼びます。
@@ -252,3 +262,7 @@ Prompt APIやWeb Serial APIは、どのフレームワークを使っても、�
 - MDN: [User activation](https://developer.mozilla.org/en-US/docs/Web/Security/User_activation)（英語）
 - MDN: [Streams API](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API)（英語）
 - Chrome for Developers: [Inside look at modern web browser (part 1)](https://developer.chrome.com/blog/inside-browser-part1)（英語）
+- mozaic.fm: [ep194 Yearly Ecosystem 2025](https://mozaic.fm/episodes/194/yearly-ecosystem-2025.html)
+- Vite: [Vite 8.0 is out!](https://vite.dev/blog/announcing-vite8)（英語）
+- VoidZero: [Announcing Rolldown 1.0](https://voidzero.dev/posts/announcing-rolldown-1-0)（英語）
+- VoidZero: [Tales from the Void: May 2026 Recap](https://voidzero.dev/posts/whats-new-may-2026)（英語）
