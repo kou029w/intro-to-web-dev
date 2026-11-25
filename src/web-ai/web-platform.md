@@ -64,7 +64,9 @@ Web Serial APIはChrome、Edge、Firefoxで動き、Safariは対応していま�
 JavaScriptの言語仕様（ECMAScript）は、TC39という委員会が決めています。
 提案はStage 0からStage 4までの段階を進み、Stage 4に達したものが、毎年6月に出る新しい版に入ります。
 Stage 3は、仕様の内容が固まり、ブラウザが実装する段階です。
-それでも、実装して見つかった問題によって仕様が変わることがあるため、Stage 3の機能を本番で使うときは変更に備えておく必要があります。
+それでも、実装して見つかった問題によって仕様が変わることがあり、前の段階に差し戻されることもあります。
+クラスに注釈を付けるDecoratorsは、2022年3月にStage 3に達しましたが、どのエンジンも出荷しないまま、2026年5月にStage 2.7へ戻りました。
+Stage 3の機能を本番で使うときは、変更に備えておく必要があります。
 
 | 版 | 入った書き方の例 |
 | --- | --- |
@@ -72,6 +74,16 @@ Stage 3は、仕様の内容が固まり、ブラウザが実装する段階で�
 | ES2023 | 元の配列を変えない`toSorted()`、`findLast()` |
 | ES2024 | `Object.groupBy()`、`Promise.withResolvers()` |
 | ES2025 | イテレーターヘルパー、`Set`の`union()`など、`Promise.try()`、JSONモジュール |
+
+2025年から2026年にかけても、次の提案がStage 4に達しました。
+
+| Stage 4に達した時期 | 提案 | できること |
+| --- | --- | --- |
+| 2025年5月 | `Array.fromAsync()`、`Error.isError()` | 非同期の反復から配列を作る、値がエラーかを判定する |
+| 2025年7月 | `Math.sumPrecise()`、`Uint8Array`のBase64変換 | 浮動小数点数を誤差なく合計する、バイト列とBase64を変換する |
+| 2026年1月 | `Map.prototype.getOrInsert()` | キーに値がなければ入れてから返す |
+| 2026年3月 | Temporal | `Date`に代わる日時のAPI。Stage 1から約9年かかった |
+| 2026年5月 | `using`による資源の解放、`Iterator.zip()` | スコープを抜けるときに確実に後始末する、複数の反復を位置でまとめる |
 
 2026年のJSConf JPでは、AsyncContextや`Math.sumPrecise()`のような言語の提案、HTML-in-CanvasやFedCMのようなブラウザの新しい機能、npmのサプライチェーン攻撃への備えが話題になりました。
 AIを扱う講演も多く、その中には、AIにコードを書かせる話と、Webの上でAIを動かす話の両方があります。
@@ -231,6 +243,7 @@ Prompt APIやWeb Serial APIは、どのフレームワークを使っても、�
 
 ## 参考
 
+- TC39: [tc39/notes](https://github.com/tc39/notes)（会議の議事録、英語）
 - TC39: [The TC39 Process](https://tc39.es/process-document/)（英語）
 - JSConf JP 2026: [Schedule](https://jsconf.jp/2026/en/schedule)（英語）
 - web.dev: [Baseline](https://web.dev/baseline)（英語）

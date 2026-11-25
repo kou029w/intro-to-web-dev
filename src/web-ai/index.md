@@ -1,6 +1,6 @@
-# Web・AI研修
+# Web・AI
 
-## 研修の概要
+## 概要
 
 <iframe
   src="_presentation.html"
@@ -8,7 +8,7 @@
   allowfullscreen="true">
 </iframe>
 
-[研修の概要を開く](_presentation.html)
+[概要を開く](_presentation.html)
 
 ## コア技術編：HTML/CSS/JavaScript/Webの「今」・AIプラットフォームとしてのWeb
 

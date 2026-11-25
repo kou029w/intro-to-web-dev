@@ -119,7 +119,7 @@ section.part > p:first-child { font-family: 'Source Code Pro', monospace; font-s
 
 /* 機内モードのチャット画面 */
 section.chat { --late: 4s; }
-section.chat ul { list-style: none; background: #fff; border: 1px solid var(--rule); padding: 28px 36px; width: 960px; font-size: 30px; margin: 0; }
+section.chat ul { list-style: none; background: #fff; border: 1px solid var(--rule); padding: 28px 36px; width: 820px; font-size: 30px; margin: 0; }
 section.chat li { margin: 0 0 18px; }
 section.chat li:nth-child(1) { font-size: 20px; color: var(--sub); margin-bottom: 20px; }
 section.chat li:nth-child(1) strong { color: var(--red); }

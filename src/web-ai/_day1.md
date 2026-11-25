@@ -75,6 +75,14 @@ PART 1
 
 ---
 
+<!-- _class: seq -->
+
+# 2026年の Web プラットフォーム
+
+![h:480 標準化団体と仕様群ごとの円に、HTML、CSS、ECMAScript、WebAssembly、GPU、デバイス、AI などの機能を並べた全体図](assets/diagrams/web-platform-2026.svg)
+
+---
+
 <!-- _class: cols seq -->
 
 # 新しい機能を、いつから使えるか
@@ -127,7 +135,7 @@ Prompt API と Web Serial API は、まだ Baseline ではない。対応する�
 
 TC39 が提案を段階的に進め、毎年6月に ECMAScript の新しい版が出る
 
-> Stage 3 でも、実装して見つかった問題で仕様が変わることがある
+> Stage 3 でも仕様は変わり、差し戻されることもある。Decorators は、どのエンジンも出荷しないまま、2026年5月に Stage 2.7 へ戻った
 
 ---
 
@@ -148,7 +156,23 @@ TC39 が提案を段階的に進め、毎年6月に ECMAScript の新しい版�
 
 <!-- _class: compare late-note -->
 
-# JSConf JP 2026 で話されていること
+# 2025年から2026年に Stage 4 に達した提案
+
+| 時期 | 提案 | できること |
+| --- | --- | --- |
+| 2025年5月 | `Array.fromAsync()`、`Error.isError()` | 非同期の反復を配列にする |
+| 2025年7月 | `Math.sumPrecise()` | 誤差のない合計 |
+| 2026年1月 | `Map` の `getOrInsert()` | 値がなければ入れて返す |
+| 2026年3月 | Temporal | `Date` に代わる日時の API |
+| 2026年5月 | `using`、`Iterator.zip()` | 資源の確実な解放 |
+
+> Temporal は Stage 1 から約9年かかった。出典：TC39 の議事録（tc39/notes）
+
+---
+
+<!-- _class: compare late-note -->
+
+# JSConf JP 2026
 
 | 分野 | 話題の例 |
 | --- | --- |

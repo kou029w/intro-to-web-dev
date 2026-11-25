@@ -5,7 +5,7 @@ lang: ja
 size: 16:9
 paginate: true
 transition: fade 0.3s
-title: Web・AI研修 プラットフォームとしての Web
+title: Web・AI プラットフォームとしての Web
 ---
 
 <!-- _class: cover seq -->
@@ -17,7 +17,7 @@ title: Web・AI研修 プラットフォームとしての Web
 
 ![WebDINO Japan](assets/webdino-logo-horizontal.svg)
 
-## Web・AI研修
+## Web・AI
 
 # プラットフォームとしての Web
 
@@ -167,8 +167,8 @@ AI モデル、USB 機器、ローカルファイル、高速な演算を、ブ�
 
 <!-- _class: part -->
 <!-- _backgroundImage: url('assets/avatar-point-left.jxl') -->
-<!-- _backgroundSize: 260px -->
-<!-- _backgroundPosition: right 90px center -->
+<!-- _backgroundSize: 240px -->
+<!-- _backgroundPosition: right 70px bottom 30px -->
 <!-- _backgroundRepeat: no-repeat -->
 
 PART 1
