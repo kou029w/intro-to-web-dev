@@ -1,11 +1,11 @@
-# ミニチャレンジ：業務の文章を処理する小さなアプリ
+# ミニチャレンジ
 
 > **Note**\
 > このページは2026年12月の研修に向けて編集中です。内容は変更されることがあります。
 
 Day1の午後は、70分で自分の業務の文章を処理する小さなアプリを作り、続く40分で成果を共有します。
-ゼロから書き始めず、[Prompt APIサンプル集](prompt-api-demos.md)から近いサンプルを選んで改造します。
-モデルの出力は[構造化出力](prompt-api.md#構造化出力で判断結果を得る)でJSONにして、プログラムで確かめられる形にします。
+ゼロから書き始めず、[Prompt APIサンプル集](prompt-api/demos.md)から近いサンプルを選んで改造します。
+モデルの出力は[構造化出力](prompt-api/index.md#構造化出力で判断結果を得る)でJSONにして、プログラムで確かめられる形にします。
 読みやすい要約にも元の文章にない数値が混ざることがあり、読み流すだけでは見落としやすいからです。
 
 ## 題材の探し方
@@ -36,21 +36,21 @@ Day1の午後は、70分で自分の業務の文章を処理する小さなア�
 ### 試験記録の所見を1文に要約する
 
 - 題材：耐久試験や校正の記録を読み、所見を1文にまとめる
-- 出発点：[Prompt API プレイグラウンド](prompt-api-demos.md#prompt-api-プレイグラウンド)
+- 出発点：[Prompt API プレイグラウンド](prompt-api/demos.md#prompt-api-プレイグラウンド)
 - 返させる形：`"summary": { "type": "string" }`
 - コードで確かめること：要約に含まれる数値が、元の記録にすべて出てくるか（`summary.match(/\d+(\.\d+)?/g)`で取り出して比べる）
 
 ### 不具合報告を重大度で分類する
 
 - 題材：不具合報告や品質記録を、重大度と理由に分ける
-- 出発点：[Prompt API プレイグラウンド](prompt-api-demos.md#prompt-api-プレイグラウンド)
+- 出発点：[Prompt API プレイグラウンド](prompt-api/demos.md#prompt-api-プレイグラウンド)
 - 返させる形：`"severity": { "type": "string", "enum": ["重大", "中", "軽微"] }, "reason": { "type": "string" }`
 - コードで確かめること：`severity`が列挙した3つ以外の値にならないか、手作業で分類した3件と一致するか
 
 ### 問い合わせを担当部署に振り分ける
 
 - 題材：製品の問い合わせを読み、担当部署を決める
-- 出発点：[類義語検索](prompt-api-demos.md#類義語検索)
+- 出発点：[類義語検索](prompt-api/demos.md#類義語検索)
 - 改造する箇所：`initialPrompts`に並べた入力例と回答例を、問い合わせと部署名のJSONの組に置き換えます。
   `promptStreaming()`に渡す文を問い合わせ本文に変え、第2引数に`{ responseConstraint: schema }`を渡します。
   `schema`はこのサンプルにないので、`const schema = { ... };`で定義します。
@@ -61,14 +61,14 @@ Day1の午後は、70分で自分の業務の文章を処理する小さなア�
 ### 記録から日付と数値を抜き出す
 
 - 題材：試験ログや点検記録から、日付、測定値、単位を一覧にする
-- 出発点：[Prompt API プレイグラウンド](prompt-api-demos.md#prompt-api-プレイグラウンド)
+- 出発点：[Prompt API プレイグラウンド](prompt-api/demos.md#prompt-api-プレイグラウンド)
 - 返させる形：`"items": { "type": "array", "items": { "type": "object", "properties": { "date": { "type": "string" }, "value": { "type": "number" }, "unit": { "type": "string", "enum": ["℃", "%", "mmHg", "bpm"] } } } }`
 - コードで確かめること：`date`が`/^\d{4}-\d{2}-\d{2}$/`に一致するか、`value`が元の文章に出てくる数値か
 
 ### 口頭の報告を書き言葉に言い換える
 
 - 題材：作業報告の書き起こしや音声メモを、報告書に貼れる文に整える
-- 出発点：[書き起こしのフィラー除去](prompt-api-demos.md#書き起こしのフィラー除去)
+- 出発点：[書き起こしのフィラー除去](prompt-api/demos.md#書き起こしのフィラー除去)
 - 改造する箇所：`cleanFillers()`のシステムプロンプトを、丁寧語の報告文に言い換える指示に変えます。
   続く`session.prompt()`の指示文とスキーマは、取り除いたフィラーの配列の代わりに、言い換えた語句の組を返す形にします。
   その下の`const { removedFillers } = JSON.parse(result);`と表示の処理も、新しい名前`replaced`に合わせて書き換えます。

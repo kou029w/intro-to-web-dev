@@ -1,4 +1,4 @@
-# 受講環境の事前確認
+# 環境の確認
 
 Prompt APIのハンズオンでは、ブラウザに組み込まれた言語モデル**Gemini Nano**を各自の端末で動かします。
 モデルは初回利用時に数GBのダウンロードが必要で、端末の性能が足りないと利用できません。
@@ -92,4 +92,4 @@ console.log(await LanguageModel.availability());
 ## 参考
 
 - [Get started with built-in AI | Chrome for Developers](https://developer.chrome.com/docs/ai/get-started)
-- [Prompt API入門](prompt-api.md)
+- [Prompt API](index.md)

@@ -1,4 +1,4 @@
-# File System Access APIとOPFSで記録を保存する
+# File System Access APIとOPFS
 
 > **Note**\
 > このページは2026年12月の研修に向けて編集中です。内容は変更されることがあります。
@@ -69,7 +69,7 @@ try {
 `createWritable()`で書き込み先を作り、`write()`で内容を渡し、`close()`で保存を確定します。
 既存のファイルを選ぶと、その内容を置き換えるため、演習用の名前で保存してください。
 モデルの推論などで待ってから選択画面を開くと、クリックによる操作の有効期間が切れる場合があります。
-上の例と、Day2の[判断と機器の応答を保存する](web-serial/sensor-assistant.md#判断と機器の応答を保存する)のサンプルでは、選択画面を先に開きます。
+上の例と、Day2の[判断と機器の応答を保存する](hardware/sensor-assistant.md#判断と機器の応答を保存する)のサンプルでは、選択画面を先に開きます。
 
 保存後はPCのテキストエディターでファイルを開き、`intervalMs`と`level`を確認します。
 ブラウザから読み込む場合は、次の例を実行し、保存したJSONファイルを選びます。
@@ -133,4 +133,4 @@ OPFSには、Dedicated Worker内で同期的に読み書きする`createSyncAcce
 Wasmでデータベースなどを動かす場合に使えますが、今回の記録はメインスレッドの非同期APIで保存します。
 APIの定義は[File System Standard](https://fs.spec.whatwg.org/)で確認できます。
 
-センサーとモデルの判断を保存する演習は、[センサーと音声をPrompt APIでつなぐ](web-serial/sensor-assistant.md)で行います。
+センサーとモデルの判断を保存する演習は、[センサーと音声をPrompt APIでつなぐ](hardware/sensor-assistant.md)で行います。

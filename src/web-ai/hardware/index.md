@@ -1,4 +1,4 @@
-# Webブラウザからハードウェアを動かす
+# ハードウェアを動かす
 
 > **Note**\
 > このページは2026年12月の研修に向けて編集中です。内容は変更されることがあります。
@@ -34,13 +34,13 @@ Core2には、USBシリアルとセンサーやサーボモーターのあいだ
 
 配布するCore2には、UIFlow2とブリッジを書き込んであります。
 当日は[M5Stack Core2の準備](m5stack-setup.md#サーボモーターを配線する)の配線から始めます。
-当日の時間配分は[Day2のスケジュール](../day2.md)に従います。
+当日の時間配分は[Day2](../day2.md)に従います。
 
-1. [Web Serial APIの基礎](web-serial-api.md)
-2. [センサー値をブラウザでモニターする](sensor-monitor.md)
+1. [Web Serial API](web-serial.md)
+2. [センサー値を表示する](sensor-monitor.md)
 3. [センサー値をPrompt APIで解説させる](sensor-ai.md)
 4. [サーボモーターを動かす](servo.md)
-5. [Speech Recognition APIの基礎](speech-recognition.md)
+5. [Speech Recognition API](speech-recognition.md)
 6. [声でサーボモーターを動かす](voice-servo.md)
 7. [センサーと音声をPrompt APIでつなぐ](sensor-assistant.md)
 
@@ -52,10 +52,10 @@ Core2には、USBシリアルとセンサーやサーボモーターのあいだ
 - M5Stack Core2 for AWS（UIFlow2とブリッジを書き込み済みのもの）と、データ通信に対応したUSB-Cケーブル
 - 温湿度センサーのENV Ⅲ（なくても動きます）
 - マイクロサーボ（SG90など）を2つ使ったアーム（研修では2人で1台）と、配線用の部品（[配線](m5stack-setup.md#サーボモーターを配線する)を参照）
-- Chrome 148以降が動くPC（[受講環境の事前確認](../prompt-api-setup.md)でPrompt APIの動作を確認済みのもの）
+- Chrome 148以降が動くPC（[環境の確認](../prompt-api/setup.md)でPrompt APIの動作を確認済みのもの）
 - マイク（PC内蔵のものでよい）
 
-Prompt APIの使い方は [Prompt API入門](../prompt-api.md) を前提にしています。
+Prompt APIの使い方は [Prompt API](../prompt-api/index.md) を前提にしています。
 セッションの作成、`prompt()`、`responseConstraint`による構造化出力に見覚えがなければ、先に目を通してください。
 
 ## サンプルの動かし方

@@ -1,4 +1,4 @@
-# Day2のスケジュール
+# Day2
 
 > **Note**\
 > このページは2026年12月の研修に向けて編集中です。内容は変更されることがあります。
@@ -9,20 +9,20 @@ Prompt APIとFile System Access APIは、[Day1](day1.md)で扱った内容を前
 
 ## 受講前の準備
 
-Day1と同じPCで、[受講環境の事前確認](prompt-api-setup.md)のPrompt APIが動くことを確かめておきます。
+Day1と同じPCで、[環境の確認](prompt-api/setup.md)のPrompt APIが動くことを確かめておきます。
 サンプルを`npm start`で起動するため、[Node.js](https://nodejs.org/)のLTS版をインストールしておきます。
 リポジトリは、`git clone https://github.com/kou029w/intro-to-web-dev.git`で取得するか、[GitHubのページ](https://github.com/kou029w/intro-to-web-dev)の「Code」から「Download ZIP」を選んで取得し、展開しておきます。
-Core2のUSBシリアル変換チップ用のドライバー（CP210xまたはCH9102）も、[M5Stack Core2の準備](web-serial/m5stack-setup.md#uiflow2を書き込む)の手順1に従ってインストールしておきます。
+Core2のUSBシリアル変換チップ用のドライバー（CP210xまたはCH9102）も、[M5Stack Core2の準備](hardware/m5stack-setup.md#uiflow2を書き込む)の手順1に従ってインストールしておきます。
 会社のPCでは管理者権限が必要な場合があるので、当日までに済ませてください。
 Core2は、UIFlow2とブリッジを書き込んだ状態で配布します。
-当日は、[M5Stack Core2の準備](web-serial/m5stack-setup.md#サーボモーターを配線する)のうち配線と接続の確認から始めます。
+当日は、[M5Stack Core2の準備](hardware/m5stack-setup.md#サーボモーターを配線する)のうち配線と接続の確認から始めます。
 ポートが見つからない、サーボモーターが動かないなど、当日に起きやすい症状の対処は[困ったときは](troubleshooting.md)にまとめています。
 
 ## 機材と組分け
 
 Core2とセンサーは1人1台、アームは2人で1台を使います。
 アームを2人で1台にするのは、用意できるアームが10台で、最大15名の受講者に1人1台を割り当てられないからです。
-センサーを使う演習は各自のCore2で行い、[サーボモーターを動かす](web-serial/servo.md)からは、アームをつないだCore2を組の2人が交代で操作します。
+センサーを使う演習は各自のCore2で行い、[サーボモーターを動かす](hardware/servo.md)からは、アームをつないだCore2を組の2人が交代で操作します。
 
 | 機材 | 単位 | 15名のときの数 |
 | --- | --- | ---: |
@@ -35,7 +35,7 @@ Core2とセンサーは1人1台、アームは2人で1台を使います。
 | USB ACアダプター（5V 2A）、USB電源取り出し基板 | 2人で1組 | 8 |
 | 電解コンデンサー（1000µF、耐圧16V） | 2人で1個 | 8 |
 
-ブレッドボードの配線は、[サーボモーターを配線する](web-serial/m5stack-setup.md#サーボモーターを配線する)のとおりに組み、動作を確かめた状態で配布します。
+ブレッドボードの配線は、[サーボモーターを配線する](hardware/m5stack-setup.md#サーボモーターを配線する)のとおりに組み、動作を確かめた状態で配布します。
 当日の配線では、全員がENV ⅢをCore2のPort Aにつなぎ、アームを使う組はブレッドボードから出ているGrove→ジャンパー変換ケーブルをPort BとPort Cにつなぎます。
 15名のときは1人で1台を使う受講者が1人出ます。
 
@@ -48,19 +48,19 @@ Core2とセンサーは1人1台、アームは2人で1台を使います。
 | 時刻 | 分数 | 教材 | 確認すること |
 | --- | ---: | --- | --- |
 | 10:00〜10:15 | 15 | Day1の振り返り、機材の配布 | 機材がそろっていること |
-| 10:15〜10:45 | 30 | [M5Stack Core2の準備](web-serial/m5stack-setup.md) | 配線、ブリッジの応答 |
-| 10:45〜11:15 | 30 | [Webブラウザからハードウェアを動かす](web-serial/index.md)、[Web Serial APIの基礎](web-serial/web-serial-api.md) | 接続、改行区切りの送受信 |
+| 10:15〜10:45 | 30 | [M5Stack Core2の準備](hardware/m5stack-setup.md) | 配線、ブリッジの応答 |
+| 10:45〜11:15 | 30 | [ハードウェアを動かす](hardware/index.md)、[Web Serial API](hardware/web-serial.md) | 接続、改行区切りの送受信 |
 | 11:15〜11:25 | 10 | 休憩 | |
-| 11:25〜12:05 | 40 | [センサー値をブラウザでモニターする](web-serial/sensor-monitor.md) | 静止時と揺れたときの値 |
+| 11:25〜12:05 | 40 | [センサー値を表示する](hardware/sensor-monitor.md) | 静止時と揺れたときの値 |
 | 12:05〜13:05 | 60 | 昼休み | |
-| 13:05〜13:35 | 30 | [センサー値をPrompt APIで解説させる](web-serial/sensor-ai.md) | 数値の集計とモデルの判断 |
-| 13:35〜14:05 | 30 | [サーボモーターを動かす](web-serial/servo.md) | 警告に使う関節の可動範囲 |
-| 14:05〜14:25 | 20 | [Speech Recognition APIの基礎](web-serial/speech-recognition.md) | 音声の文字列への変換 |
+| 13:05〜13:35 | 30 | [センサー値をPrompt APIで解説させる](hardware/sensor-ai.md) | 数値の集計とモデルの判断 |
+| 13:35〜14:05 | 30 | [サーボモーターを動かす](hardware/servo.md) | 警告に使う関節の可動範囲 |
+| 14:05〜14:25 | 20 | [Speech Recognition API](hardware/speech-recognition.md) | 音声の文字列への変換 |
 | 14:25〜14:35 | 10 | 休憩 | |
-| 14:35〜15:10 | 35 | [声でサーボモーターを動かす](web-serial/voice-servo.md) | 指示からコマンドへの変換 |
-| 15:10〜15:55 | 45 | [センサーと音声をPrompt APIでつなぐ](web-serial/sensor-assistant.md) | 揺れへの警告、計測条件の変更、状態への質問、記録の保存 |
+| 14:35〜15:10 | 35 | [声でサーボモーターを動かす](hardware/voice-servo.md) | 指示からコマンドへの変換 |
+| 15:10〜15:55 | 45 | [センサーと音声をPrompt APIでつなぐ](hardware/sensor-assistant.md) | 揺れへの警告、計測条件の変更、状態への質問、記録の保存 |
 | 15:55〜16:05 | 10 | 休憩 | |
-| 16:05〜16:45 | 40 | [グループワーク](web-serial/voice-servo.md#グループワーク) | 選んだ課題の動作 |
+| 16:05〜16:45 | 40 | [グループワーク](hardware/voice-servo.md#グループワーク) | 選んだ課題の動作 |
 | 16:45〜17:00 | 15 | 振り返りと質疑、[研修の終わりに](#研修の終わりに) | モデルの判断とコードによる検証の分担 |
 
 ## 連携例で確認すること

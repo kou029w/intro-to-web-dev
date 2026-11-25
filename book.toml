@@ -13,3 +13,29 @@ additional-js = [
   "js/interactive-code.js",
   "js/mermaid-init.js",
 ]
+
+# Web・AI研修のページを web-ai/ に移した際の旧URL
+[output.html.redirect]
+"/web-ai-training.html" = "web-ai/index.html"
+"/day1.html" = "web-ai/day1.html"
+"/day2.html" = "web-ai/day2.html"
+"/web-platform.html" = "web-ai/web-platform.html"
+"/prompt-api.html" = "web-ai/prompt-api/index.html"
+"/prompt-api-setup.html" = "web-ai/prompt-api/setup.html"
+"/prompt-api-demos.html" = "web-ai/prompt-api/demos.html"
+"/webassembly.html" = "web-ai/webassembly.html"
+"/file-system.html" = "web-ai/file-system.html"
+"/mini-challenge.html" = "web-ai/mini-challenge.html"
+"/troubleshooting.html" = "web-ai/troubleshooting.html"
+"/web-serial/index.html" = "../web-ai/hardware/index.html"
+"/web-serial/m5stack-setup.html" = "../web-ai/hardware/m5stack-setup.html"
+"/web-serial/web-serial-api.html" = "../web-ai/hardware/web-serial.html"
+"/web-serial/sensor-monitor.html" = "../web-ai/hardware/sensor-monitor.html"
+"/web-serial/sensor-ai.html" = "../web-ai/hardware/sensor-ai.html"
+"/web-serial/servo.html" = "../web-ai/hardware/servo.html"
+"/web-serial/speech-recognition.html" = "../web-ai/hardware/speech-recognition.html"
+"/web-serial/voice-servo.html" = "../web-ai/hardware/voice-servo.html"
+"/web-serial/sensor-assistant.html" = "../web-ai/hardware/sensor-assistant.html"
+"/training/_presentation.html" = "../web-ai/_presentation.html"
+"/training/_day1.html" = "../web-ai/_day1.html"
+"/training/_day2.html" = "../web-ai/_day2.html"

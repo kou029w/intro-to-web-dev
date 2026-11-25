@@ -5,7 +5,7 @@ lang: ja
 size: 16:9
 paginate: true
 transition: fade 0.3s
-title: Day 2 声とセンサーでアームを動かす
+title: Day 2 サイバーフィジカルシステムプラットフォームとしての Web
 ---
 
 <!-- _class: cover seq -->
@@ -19,9 +19,9 @@ title: Day 2 声とセンサーでアームを動かす
 
 ## Day 2
 
-# 声とセンサーで<br>アームを動かす
+# サイバーフィジカルシステム<br>プラットフォームとしての Web
 
-M5Stack Core2 をブラウザーにつなぐ
+Web Serial API で M5Stack Core2 をつなぎ、測って、判断して、動かす
 
 > 2026年12月2日　10:00〜17:00
 
@@ -82,8 +82,126 @@ M5Stack Core2 をブラウザーにつなぐ
 ---
 
 <!-- _class: part -->
+<!-- _backgroundImage: url('assets/avatar-point-left.jxl') -->
+<!-- _backgroundSize: 220px -->
+<!-- _backgroundPosition: right 60px bottom 36px -->
+<!-- _backgroundRepeat: no-repeat -->
 
 PART 1
+
+# Web から現実の機器へ
+
+## 背景と Web Serial API
+
+---
+
+<!-- _class: flow seq -->
+
+# 現実を測り、判断し、動かす
+
+1. センサー
+   - 現実を測る
+1. **ブラウザー**
+   - 集計して、AI が判断する
+1. アクチュエーター
+   - 現実を動かす
+
+測った値を計算機の側で処理し、結果を現実へ返す仕組みを、サイバーフィジカルシステム（CPS）と呼ぶ
+
+> 工場の設備監視や、ヘルスケア機器の計測と記録も、この形をしている
+
+---
+
+<!-- _class: cols seq -->
+
+# 今日のアームで回す1周
+
+### **Core2 とアーム**
+
+- 加速度と角速度を100ミリ秒ごとに送る
+- 届いたコマンドどおりにサーボを回す
+
+### **ブラウザーの1ページ**
+
+- 値を集計してラベルを付ける（JavaScript）
+- 状態と言葉の指示を判断する（Prompt API）
+- 角度を検証してコマンドを送る（Web Serial API）
+- 判断と応答を記録する（OPFS）
+
+サーバーは置かない。止めるのも直すのも、このページの中で済む
+
+---
+
+<!-- _class: compare late-note -->
+
+# Web は少しずつ、機器に手を伸ばしてきた
+
+| 時期 | 届いた先 | API |
+| --- | --- | --- |
+| 2010年代前半 | 位置、カメラ、マイク | Geolocation API、`getUserMedia()` |
+| 2017年 | Bluetooth、USB | Web Bluetooth、WebUSB |
+| 2021年 | シリアル、HID | Web Serial API、WebHID |
+| 2026年 | Firefox でもシリアル | Web Serial API（Firefox 151） |
+
+> 2017年と2021年は Chrome での対応。どれも、利用者が機器を選んで許可したときだけ届く
+
+---
+
+<!-- _class: cols seq -->
+
+# なぜ USB シリアルなのか
+
+### **開発の現場で一番多い通信路**
+
+- マイコンの開発ボードの多くが、USB シリアル変換チップを載せている
+- 書き込みもログの確認も、同じポートで行う
+- テキストを1行送るだけなら、手で打って確かめられる
+
+### **WebUSB との違い**
+
+- WebUSB は、OS のドライバーがつかんでいない機器にしか届かない
+- Web Serial API は、OS のシリアルドライバーの上で動く
+- 既存の機器を、ファームウェアを変えずにつなげることが多い
+
+---
+
+<!-- _class: compare -->
+
+# 保守用アプリを配る代わりに、URL を配る
+
+|  | 専用の保守用アプリ | Web アプリ |
+| --- | --- | --- |
+| 配布 | OS ごとのインストーラー | URL |
+| 更新 | 再配布して入れ直す | 再読み込みで最新版 |
+| 対応 OS | OS ごとに作り、検証する | 同じコードが動く |
+| 管理者権限 | インストールに必要なことがある | USB シリアルのドライバーだけ |
+
+機器の設定、ログの回収、出荷前の動作確認の画面を、ブラウザーに移せる
+
+---
+
+<!-- _class: compare late-note -->
+
+# 同じコードが、Chrome でも Firefox でも
+
+| ブラウザー | 対応 | 補足 |
+| --- | --- | --- |
+| Chrome、Edge | デスクトップ版 89 以降 | 追加の設定は不要 |
+| Firefox | 151 以降（2026年5月） | サイト権限アドオンで許可する |
+| Safari | 非対応 | |
+
+```js
+const port = await navigator.serial.requestPort(); // クリックの中で呼ぶ
+await port.open({ baudRate: 115200 });
+```
+
+> 対応ブラウザーが増えると、「Chrome で開いてください」と断る場面が減る
+
+---
+
+<!-- _class: part -->
+
+PART 2
 
 # Core2 をつなぐ
 
@@ -162,7 +280,7 @@ ENV Ⅲ が Port A に挿してあるか
 
 <!-- _class: part -->
 
-PART 2
+PART 3
 
 # センサー値を読む
 
@@ -205,7 +323,7 @@ PART 2
 <!-- _backgroundPosition: right 60px bottom 36px -->
 <!-- _backgroundRepeat: no-repeat -->
 
-PART 3
+PART 4
 
 # アームを動かす
 
@@ -275,7 +393,7 @@ const JOINTS = [
 <!-- _backgroundPosition: right 60px bottom 36px -->
 <!-- _backgroundRepeat: no-repeat -->
 
-PART 4
+PART 5
 
 # センサーと音声をつなぐ
 
@@ -393,7 +511,22 @@ npm start
 | サーボが動かない | 5V電源、GND の共通、`ping` の `"channels": 2` |
 | 動いた瞬間に Core2 が再起動 | サーボの電源を Core2 から取っていないか |
 
-> ほかの症状：kou029w.github.io/intro-to-web-dev/troubleshooting.html
+> ほかの症状：kou029w.github.io/intro-to-web-dev/web-ai/troubleshooting.html
+
+---
+
+<!-- _class: compare late-note -->
+
+# 2日間で使った API を、現場に置き換える
+
+| 段階 | 使った API | 現場での置き換え例 |
+| --- | --- | --- |
+| 測る | Web Serial API | 計測機器、検査治具からの値の取得 |
+| 判断する | Prompt API、JavaScript | 異常の一次判定、記録への所見の下書き |
+| 動かす | Web Serial API | 設定値の書き込み、試験の手順の実行 |
+| 残す | File System Access API、OPFS | 試験記録、ログの保存 |
+
+> どの段階も、サーバーを置かずに、URL を開いた PC の中で動く
 
 ---
 

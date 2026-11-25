@@ -5,7 +5,7 @@ lang: ja
 size: 16:9
 paginate: true
 transition: fade 0.3s
-title: 動かして学ぶ Prompt API・Web Serial API
+title: Web・AI研修 プラットフォームとしての Web
 ---
 
 <!-- _class: cover seq -->
@@ -17,9 +17,11 @@ title: 動かして学ぶ Prompt API・Web Serial API
 
 ![WebDINO Japan](assets/webdino-logo-horizontal.svg)
 
-# 動かして学ぶ<br>Prompt API・Web Serial API
+## Web・AI研修
 
-ブラウザーで AI を動かし、機器につなぐ
+# プラットフォームとしての Web
+
+AI と現実の機器を、ブラウザーでつなぐ
 
 > WebDINO Japan 渡邉浩平
 
@@ -53,11 +55,71 @@ title: 動かして学ぶ Prompt API・Web Serial API
 
 ---
 
+<!-- _class: compare late-note -->
+
+# インストール不要の技術が実用段階に
+
+| 時期 | 技術 | できるようになったこと |
+| --- | --- | --- |
+| 2025年 | WebGPU | GPU で演算する。主要3ブラウザーがそろう |
+| 2025年9月 | WebAssembly 3.0 | 4GiB を超えるメモリ（Memory64） |
+| 2026年5月 | Prompt API | 内蔵の言語モデルを呼ぶ。Chrome 148 で安定版 |
+| 2026年5月 | Web Serial API | Chrome に続き、Firefox 151 が実装 |
+
+> どれも OS にもアプリストアにも依存せず、URL を開けば使える
+
+---
+
+<!-- _class: punch -->
+
+# 足りないのは技術より、知られていること
+
+- ブラウザーで AI モデルが動くことを、知らなければ選べない
+- USB 機器にブラウザーから届くことを、知らなければ専用アプリを作る
+- 選択肢を知った上で、クラウドと端末のどちらで処理するかを決める
+
+この研修は、選択肢を手元で確かめるためにある
+
+---
+
+<!-- _class: compare -->
+
+# 処理を、クラウドから端末へ戻す
+
+|  | サーバー中心 | クライアント中心 |
+| --- | --- | --- |
+| データの行き先 | サーバーへ送る | 端末の中にとどまる |
+| 運用の費用 | サーバー代、API の従量課金 | 静的なファイルの配信だけ |
+| 通信が切れたら | 止まる | 読み込んだ後は動く |
+| 配布と更新 | サーバーを更新 | URL を配り、再読み込みで更新 |
+
+閉域網や、通信できない現場にも持ち込める
+
+---
+
+<!-- _class: cols seq -->
+
+# 価値が生まれるのは、現場の側
+
+### **モデル**は入れ替わる
+
+- 汎用の言語モデルは、どのブラウザーにも、どの会社にもある
+- 性能は年ごとに上がり、差は縮まる
+
+### **現場のデータと UX** は残る
+
+- どの値が異常かを知っているのは、現場で値を見てきた人
+- その判断を、毎日使える画面に落とし込む
+
+センシング機器の開発現場では、USB でつなぐ機器と、OS ごとの保守用アプリが多い。どちらも Web 標準で置き換えられる
+
+---
+
 <!-- _class: map late-note -->
 
-# この研修の見取り図
+# ブラウザー＝統合ランタイム
 
-ブラウザーを、AI と機器とファイルをつなぐ実行環境として使う
+AI モデル、USB 機器、ローカルファイル、高速な演算を、ブラウザーという1つの実行環境がつなぐ
 
 ![w:1120 中央のブラウザーから、AI モデル、USB 機器、ローカルファイル、音声へつながる図](assets/diagrams/hub.svg)
 
@@ -65,25 +127,39 @@ title: 動かして学ぶ Prompt API・Web Serial API
 
 ---
 
+<!-- _class: flow seq -->
+
+# どの回も、3つの段階を通る
+
+1. デモを見る
+   - 「おぉ」
+1. 仕組みを知る
+   - 「なるほど」
+1. **自分の PC で動かす**
+   - 「面白い」
+
+デモで終わらせず、どの演習も受講者の PC で動かすところまで進める
+
+---
+
 <!-- _class: cols seq late -->
 
-# 2日間の流れ
+# プログラムの構成
 
-### **Day 1**　PC だけ
+### **Day 1**
 
-- Prompt API の基本と JSON 出力
-- WebAssembly で AI モデルを動かす
-- ファイルへの保存
-- 自分の業務の文章で小さなアプリを作る
+- ① コア技術編
+- ② AI プラットフォームとしての Web
+  - ビルトイン AI（Prompt API）
+  - サードパーティ AI（WebAssembly × AI）
 
-### **Day 2**　M5Stack Core2 をつなぐ
+### **Day 2**
 
-- Web Serial API の基本
-- センサー値を Prompt API に解説させる
-- サーボモーターを動かす
-- 声とセンサーでアームを動かす
+- ③ サイバーフィジカルシステム<br>プラットフォームとしての Web
+  - Web Serial API で M5Stack Core2 をつなぐ
+  - 測って、判断して、動かす
 
-どの演習も、*自分の PC で動かす*ところまで進める
+この概要では、②と③の要点を先に見ておく
 
 > M5Stack Core2：センサーを内蔵した小型のマイコン機器。会場で配布する
 
@@ -97,9 +173,40 @@ title: 動かして学ぶ Prompt API・Web Serial API
 
 PART 1
 
-# ブラウザーに入っている AI
+# AI プラットフォームとしての Web
 
-## Prompt API
+## ビルトイン AI とサードパーティ AI
+
+---
+
+<!-- _class: compare late-note -->
+
+# Web から AI を使う3つの形
+
+|  | クラウドの API | モデルを持ち込む | ブラウザーに内蔵 |
+| --- | --- | --- | --- |
+| 呼び方 | `fetch()` | WebAssembly ＋ WebGPU | Prompt API |
+| モデル | サーバー上の大型モデル | 開発者が選ぶ | ブラウザーが用意 |
+| 入力の行き先 | サーバー | 端末の中 | 端末の中 |
+| 必要なもの | API キー、通信 | モデルの取得 | 対応する Chrome |
+
+> 研修で扱うのは右の2つ。内蔵を「ビルトイン AI」、持ち込みを「サードパーティ AI」と呼ぶ
+
+---
+
+<!-- _class: compare late-note -->
+
+# ブラウザーが AI を標準で備え始めた
+
+| API | 役割 | 状況 |
+| --- | --- | --- |
+| Translator API、Language Detector API | 翻訳、言語の判定 | Chrome 138 で安定版（2025年） |
+| Summarizer API | 要約 | Chrome 138 で安定版（2025年） |
+| Prompt API | 汎用のプロンプト、画像と音声の入力 | Chrome 148 で安定版（2026年） |
+
+API の形は標準として議論し、どのモデルで動かすかはブラウザーが決める。Microsoft Edge は、同じ Prompt API を Phi-4-mini で試験実装した
+
+> 仕様は W3C の Web Machine Learning コミュニティグループで議論されている
 
 ---
 
@@ -206,7 +313,7 @@ const { needsUmbrella } = JSON.parse(result);
 
 <!-- _class: compare late-note -->
 
-# モデルを持ち込む選択肢もある
+# ビルトインか、サードパーティか
 
 |  | Prompt API | WebLLM（WebAssembly ＋ WebGPU） |
 | --- | --- | --- |
@@ -221,9 +328,56 @@ const { needsUmbrella } = JSON.parse(result);
 
 PART 2
 
-# ブラウザーから USB 機器へ
+# サイバーフィジカルシステム<br>プラットフォームとしての Web
 
 ## Web Serial API
+
+---
+
+<!-- _class: flow seq -->
+
+# 現実を測り、判断し、動かす
+
+1. センサー
+   - 現実を測る
+1. **ブラウザー**
+   - 集計して、AI が判断する
+1. アクチュエーター
+   - 現実を動かす
+
+測った値を計算機の側で処理し、結果を現実へ返す仕組みを、サイバーフィジカルシステム（CPS）と呼ぶ
+
+> 研修では、サーバーを置かずに、この1周をブラウザーの1ページで回す
+
+---
+
+<!-- _class: compare late-note -->
+
+# Web は少しずつ、機器に手を伸ばしてきた
+
+| 時期 | 届いた先 | API |
+| --- | --- | --- |
+| 2010年代前半 | 位置、カメラ、マイク | Geolocation API、`getUserMedia()` |
+| 2017年 | Bluetooth、USB | Web Bluetooth、WebUSB |
+| 2021年 | シリアル、HID | Web Serial API、WebHID |
+| 2026年 | Firefox でもシリアル | Web Serial API（Firefox 151） |
+
+> 2017年と2021年は Chrome での対応。どれも、利用者が機器を選んで許可したときだけ届く
+
+---
+
+<!-- _class: compare -->
+
+# 保守用アプリを配る代わりに、URL を配る
+
+|  | 専用の保守用アプリ | Web アプリ |
+| --- | --- | --- |
+| 配布 | OS ごとのインストーラー | URL |
+| 更新 | 再配布して入れ直す | 再読み込みで最新版 |
+| 対応 OS | OS ごとに作り、検証する | 同じコードが動く |
+| 管理者権限 | インストールに必要なことがある | USB シリアルのドライバーだけ |
+
+USB でつなぐ機器の設定、ログの回収、動作確認の画面を、ブラウザーに移せる
 
 ---
 
@@ -313,15 +467,33 @@ await writer.write(new TextEncoder().encode("servo 0 90\n"));
 
 PART 3
 
-# 声でアームを動かす
+# AI と機器をつなぐ
 
-## 3つの API をつなぐ
+## 測る、判断する、動かす
+
+---
+
+<!-- _class: flow seq -->
+
+# センサー値は、ラベルを付けてから渡す
+
+1. Core2 の<br>センサー
+1. **コードで集計**
+   - 揺れ: 標準偏差0.044G
+   - （小さな揺れ）
+1. Prompt API
+1. `level`
+   - normal / warning / alert
+
+0.044G が大きいかどうかを、小型モデルは知らない。
+
+> スキーマではコメントを判定より先に置き、根拠を書かせてから判定させる
 
 ---
 
 <!-- _class: late -->
 
-# 「もう少し右に」がアームに届くまで
+# 言葉の指示がアームに届くまで
 
 ![w:1120 声から、Speech Recognition API、Prompt API、コードでの計算、Web Serial API を経て、アームに届くまでの流れ](assets/diagrams/pipeline.svg)
 
@@ -358,24 +530,6 @@ PART 3
 ![w:1120 モデルの誤った出力が、スキーマ、ブラウザーのコード、Core2 側の順に止められる図](assets/diagrams/layers.svg)
 
 どれか1か所に誤りがあっても、ほかの制限がアームを守る
-
----
-
-<!-- _class: flow seq -->
-
-# センサー値も、ラベルを付けてから渡す
-
-1. Core2 の<br>センサー
-1. **コードで集計**
-   - 揺れ: 標準偏差0.044G
-   - （小さな揺れ）
-1. Prompt API
-1. `level`
-   - normal / warning / alert
-
-0.044G が大きいかどうかを、小型モデルは知らない。
-
-> スキーマではコメントを判定より先に置き、根拠を書かせてから判定させる
 
 ---
 
@@ -417,7 +571,7 @@ PART 3
 - 教材リポジトリの取得
 
 > WebLLM のモデルはオリジンごとに保存されるので、当日も取得したときと同じ開き方で開く。ドライバーは管理者権限が要ることがある
-> 手順：kou029w.github.io/intro-to-web-dev/day1.html、day2.html の「受講前の準備」
+> 手順：kou029w.github.io/intro-to-web-dev/web-ai/day1.html、day2.html の「受講前の準備」
 
 ---
 
@@ -434,5 +588,5 @@ PART 3
 
 # 2日目は、アームを動かしてもらいます
 
-> 1日目は、自分の PC で動かすところから始めます
+> Day 1 は、自分の PC で AI を動かすところから始めます
 > 教材：kou029w.github.io/intro-to-web-dev

@@ -18,4 +18,4 @@ npm start
 
 ## 解説
 
-このサンプルの背景にある仕組みは [WebAssemblyでAIモデルを動かす](https://kou029w.github.io/intro-to-web-dev/webassembly) で解説しています。
+このサンプルの背景にある仕組みは [WebAssemblyでAIモデルを動かす](https://kou029w.github.io/intro-to-web-dev/web-ai/webassembly.html) で解説しています。

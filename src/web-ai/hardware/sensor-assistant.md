@@ -90,7 +90,7 @@ const judgmentSchema = {
 「話す」を押し、「計測間隔を500ミリ秒にして」と話します。
 Speech Recognition APIが音声を文字列へ変換し、Prompt APIが変更対象と値を取り出します。
 音声を利用できない場合は、入力欄から同じ文を送ります。
-音声認識の通信と権限は[Speech Recognition APIの基礎](speech-recognition.md)で確認してください。
+音声認識の通信と権限は[Speech Recognition API](speech-recognition.md)で確認してください。
 
 モデルが返す出力の例です。
 出力例は説明用であり、文言は実行ごとに変わります。

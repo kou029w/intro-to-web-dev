@@ -1,4 +1,4 @@
-# Speech Recognition APIの基礎
+# Speech Recognition API
 
 > **Note**\
 > このページは2026年12月の研修に向けて編集中です。内容は変更されることがあります。

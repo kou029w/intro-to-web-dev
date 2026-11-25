@@ -12,7 +12,7 @@ npm start
 
 表示されたlocalhostのURLをブラウザで開きます。
 Chrome 148以降でPrompt APIの動作を確認し、M5Stack Core2に隣の`m5stack-serial-bridge`を書き込んでください。
-操作手順は[教材](https://kou029w.github.io/intro-to-web-dev/web-serial/sensor-assistant.html)を参照してください。
+操作手順は[教材](https://kou029w.github.io/intro-to-web-dev/web-ai/hardware/sensor-assistant.html)を参照してください。
 
 ## 確認
 

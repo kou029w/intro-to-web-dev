@@ -5,7 +5,7 @@ lang: ja
 size: 16:9
 paginate: true
 transition: fade 0.3s
-title: Day 1 PC だけで動かす
+title: Day 1 コア技術編・AI プラットフォームとしての Web
 ---
 
 <!-- _class: cover seq -->
@@ -19,9 +19,9 @@ title: Day 1 PC だけで動かす
 
 ## Day 1
 
-# PC だけで、AI を動かして<br>記録を残す
+# AI プラットフォームとしての Web
 
-Prompt API、WebAssembly、ファイルへの保存
+コア技術編、ビルトイン AI（Prompt API）、サードパーティ AI（WebAssembly × AI）
 
 > 2026年12月1日　10:00〜17:00
 
@@ -54,9 +54,111 @@ Prompt API、WebAssembly、ファイルへの保存
 
 PART 1
 
-# Web プラットフォームの今
+# コア技術編
 
-## ブラウザーという実行環境
+## HTML、CSS、JavaScript、Web の「今」
+
+---
+
+<!-- _class: compare late-note -->
+
+# 文書を見る道具から、アプリの実行環境へ
+
+| 時期 | ブラウザーでできるようになったこと | 代表的な技術 |
+| --- | --- | --- |
+| 1990年代 | リンクでつながった文書を読む | HTML、CSS |
+| 2000年代 | ページを読み込み直さずに画面を書き換える | Ajax（`XMLHttpRequest`） |
+| 2010年代 | 動画、描画、オフライン動作、ホーム画面への追加 | HTML5、Service Worker |
+| 2020年代 | GPU の演算、USB 機器、内蔵の AI モデル | WebGPU、Web Serial API、Prompt API |
+
+> 新しい機能が加わっても、古いページは同じブラウザーで動き続ける
+
+---
+
+<!-- _class: cols seq -->
+
+# 新しい機能を、いつから使えるか
+
+### **Baseline**
+
+- 主要ブラウザー（Chrome、Edge、Firefox、Safari）すべてで使える機能に付く印
+- MDN や Can I use の各機能のページに表示される
+- 2023年から
+
+### **Interop**
+
+- ブラウザー各社が、その年に互換性をそろえる分野を決めて取り組む
+- 結果はテストの合格率で公開される
+- 2021年から毎年
+
+Prompt API と Web Serial API は、まだ Baseline ではない。対応するブラウザーを確かめてから使う
+
+---
+
+<!-- _class: compare late-note -->
+
+# ライブラリの役割が、標準に移った
+
+| かつての手段 | いまの標準 |
+| --- | --- |
+| jQuery の `$()` | `document.querySelector()` |
+| モーダルのライブラリ | `<dialog>`、`popover` 属性 |
+| ツールチップの位置の計算 | CSS Anchor Positioning |
+| ページ遷移のアニメーション | View Transitions |
+| Sass のネスト | CSS Nesting |
+| Lodash の `groupBy`、`cloneDeep` | `Object.groupBy()`、`structuredClone()` |
+
+> 標準に入った機能は、ライブラリの読み込みも更新も要らない。対応状況は Baseline で確かめる
+
+---
+
+<!-- _class: flow seq -->
+
+# JavaScript の仕様は、毎年少しずつ決まる
+
+1. Stage 1〜2
+   - 課題と解き方の検討
+1. Stage 2.7
+   - 仕様文とテスト
+1. **Stage 3**
+   - ブラウザーが実装
+1. Stage 4
+   - 次の ECMAScript へ
+
+TC39 が提案を段階的に進め、毎年6月に ECMAScript の新しい版が出る
+
+> Stage 3 でも、実装して見つかった問題で仕様が変わることがある
+
+---
+
+<!-- _class: compare -->
+
+# ES2022 から ES2025 で入った書き方
+
+| 版 | 例 |
+| --- | --- |
+| ES2022 | トップレベルの `await`、`#` で始まるプライベートフィールド、`at()` |
+| ES2023 | 元の配列を変えない `toSorted()`、`findLast()` |
+| ES2024 | `Object.groupBy()`、`Promise.withResolvers()` |
+| ES2025 | イテレーターヘルパー、`Set` の `union()` など、`Promise.try()`、JSON モジュール |
+
+研修のサンプルも、トップレベルの `await` と `for await...of` を使っている
+
+---
+
+<!-- _class: compare late-note -->
+
+# JSConf JP 2026 で話されていること
+
+| 分野 | 話題の例 |
+| --- | --- |
+| 言語と仕様 | AsyncContext、`Math.sumPrecise()`、値の比較と同一性 |
+| ブラウザーの機能 | HTML-in-Canvas、Canvas 2D の拡張、FedCM、JPEG XL、`ariaNotify()` |
+| AI | エージェントが書くコード、生成 UI、WebMCP と Chrome の内蔵 AI |
+| 実行環境 | WasmGC、単一バイナリ化、V8 の最適化 |
+| セキュリティ | npm のサプライチェーン攻撃 |
+
+> AI の話題は、「AI でコードを書く」と「Web で AI を動かす」の両方がある。この研修は後者を扱う
 
 ---
 
@@ -118,9 +220,61 @@ const { value, done } =
 
 PART 2
 
-# Prompt API サンプル集
+# ビルトイン AI
 
-## ブラウザーで試す
+## Prompt API
+
+---
+
+<!-- _class: compare late-note -->
+
+# Web から AI を使う3つの形
+
+|  | クラウドの API | サードパーティ AI | ビルトイン AI |
+| --- | --- | --- | --- |
+| 呼び方 | `fetch()` | WebAssembly ＋ WebGPU | Prompt API |
+| モデル | サーバー上の大型モデル | 開発者が選んで配る | ブラウザーが用意する |
+| 入力の行き先 | サーバー | 端末の中 | 端末の中 |
+| 費用 | API の従量課金 | 配信の費用だけ | 配信の費用だけ |
+
+> 午前はビルトイン AI、午後はサードパーティ AI を動かす
+
+---
+
+<!-- _class: cols seq -->
+
+# 端末の中で AI を動かす得失
+
+### **得るもの**
+
+- 入力文が端末の外に出ない
+- API キーも、呼び出しごとの課金もない
+- モデルを取得した後は、通信なしで動く
+- サーバーとの往復を待たない
+
+### **引き受けるもの**
+
+- モデルが小さく、知識も計算も間違えやすい
+- PC に空きストレージと GPU かメモリが要る
+- ブラウザーごとに、使えるモデルが違う
+
+小さいモデルの弱点は、渡す前と受け取った後のコードで補う。今日の演習はその練習でもある
+
+---
+
+<!-- _class: compare late-note -->
+
+# ブラウザーが AI を標準で備え始めた
+
+| API | 役割 | 状況 |
+| --- | --- | --- |
+| Translator API、Language Detector API | 翻訳、言語の判定 | Chrome 138 で安定版（2025年） |
+| Summarizer API | 要約 | Chrome 138 で安定版（2025年） |
+| Prompt API | 汎用のプロンプト、画像と音声の入力 | Chrome 148 で安定版（2026年） |
+
+API の形は標準として議論し、どのモデルで動かすかはブラウザーが決める。Microsoft Edge は、同じ Prompt API を Phi-4-mini で試験実装した
+
+> 用途の決まった API で足りるなら、そちらを使う。今日は汎用の Prompt API を扱う
 
 ---
 
@@ -214,9 +368,28 @@ LanguageModel.create({ initialPrompts: [
 
 PART 3
 
-# WebAssembly
+# サードパーティ AI
 
-## AI モデルを持ち込む
+## WebAssembly × AI
+
+---
+
+<!-- _class: cols seq -->
+
+# WebAssembly が生まれた理由
+
+### **背景**
+
+- JavaScript だけでは、重い計算を速く動かしにくかった
+- C、C++、Rust で書かれた計算の資産は、ブラウザーの外にあった
+
+### **答え**
+
+- コンパイルした命令を、ブラウザーが安全に実行する形式
+- 2017年に主要4ブラウザーがそろって対応
+- 画像編集や地図、CAD の Web 版も Wasm で動いている
+
+AI の推論ランタイムも、この流れでブラウザーに入ってきた
 
 ---
 
@@ -271,6 +444,21 @@ ONNX Runtime Web と LiteRT.js は、どちらも CPU（Wasm）か GPU（WebGPU 
 
 ---
 
+<!-- _class: compare late-note -->
+
+# ビルトインか、サードパーティか
+
+|  | ビルトイン AI | サードパーティ AI |
+| --- | --- | --- |
+| モデルを選ぶ | できない（ブラウザーが決める） | できる（用途に合うモデルを選ぶ） |
+| 初回の取得 | ブラウザーが1回取得し、サイト間で共有 | サイトごとに取得し、オリジンごとに保存 |
+| 対応ブラウザー | Chrome（ほかは対応待ち） | WebGPU のあるブラウザー |
+| 版の固定 | ブラウザーの更新で変わる | 開発者が固定できる |
+
+> 速さと答えの質は、PC と用途で変わる。同じ入力で両方を試し、測って選ぶ
+
+---
+
 <!-- _class: part -->
 
 PART 4
@@ -303,6 +491,24 @@ PART 5
 # ミニチャレンジ
 
 ## 業務の文章を処理する小さなアプリ
+
+---
+
+<!-- _class: cols seq -->
+
+# モデルの差より、現場の課題
+
+### **モデル**は入れ替わる
+
+- 汎用の言語モデルは、年ごとに性能が上がり、差は縮まる
+- 今日使ったモデルも、来年には別のものになっている
+
+### **課題と画面**は残る
+
+- 何を入力し、何を返させれば仕事が減るか
+- 出力をどう確かめれば、現場で使えるか
+
+お題は、自分が毎週繰り返している作業から選ぶ
 
 ---
 
