@@ -9,15 +9,15 @@ AI支援ツールは、コーディング作業を支援してくれる強力な
 
 ```bash
 # Claude Code
-npm i -g @anthropic-ai/claude-code
+curl -fsSL https://claude.ai/install.sh | bash
 # インストール後 claude コマンドで起動
 
 # Codex
-npm i -g @openai/codex
+curl -fsSL https://chatgpt.com/codex/install.sh | sh
 # インストール後 codex コマンドで起動
 
 # GitHub Copilot CLI
-npm i -g @github/copilot
+curl -fsSL https://gh.io/copilot-install | bash
 # インストール後 copilot コマンドで起動
 
 # Google Antigravity CLI
@@ -27,7 +27,7 @@ curl -fsSL https://antigravity.google/cli/install.sh | bash
 
 ### 学習リソース
 
-- [Claude Code 概要](https://docs.claude.com/ja/docs/claude-code/overview)
+- [Claude Code 概要](https://code.claude.com/docs/ja/overview)
 - [OpenAI Codex](https://developers.openai.com/codex/cli/)
 - [GitHub Copilot CLI](https://docs.github.com/ja/copilot/concepts/agents/about-copilot-cli)
 - [Antigravity CLI](https://antigravity.google/docs/cli/overview)

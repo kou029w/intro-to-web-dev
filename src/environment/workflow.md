@@ -154,9 +154,6 @@ pnpm run test
 
 # 型チェック
 pnpm run type-check
-
-# コード品質チェック
-pnpm run check
 ```
 
 ## 4. レビュー：見てもらう
@@ -282,7 +279,6 @@ git commit -m "test: add search tests"
 
 # テスト実行
 pnpm run test
-pnpm run check
 
 # プッシュ
 git push origin feature/search-function
@@ -344,7 +340,6 @@ git commit -m "add login feature"
 | ツール     | 用途                 | コマンド例            |
 | ---------- | -------------------- | --------------------- |
 | Vite       | 開発サーバー・ビルド | `pnpm run dev`        |
-| Biome      | コード品質チェック   | `pnpm run check`      |
 | TypeScript | 型チェック           | `pnpm run type-check` |
 | Vitest     | テスト実行           | `pnpm run test`       |
 | Git        | バージョン管理       | `git status`          |
@@ -355,12 +350,6 @@ git commit -m "add login feature"
 # 開発開始
 pnpm run dev
 
-# コード品質チェック
-pnpm run check
-
-# 自動修正
-pnpm run check:fix
-
 # テスト実行
 pnpm run test
 
@@ -370,19 +359,7 @@ pnpm run build
 
 ## トラブルシューティング
 
-### 1. コミットできない
-
-```bash
-# エラー: コード品質チェックで失敗
-
-# 自動修正を試す
-pnpm run check:fix
-
-# それでもダメなら、エラー内容を確認して手動で修正
-pnpm run check
-```
-
-### 2. ブランチを間違えた
+### 1. ブランチを間違えた
 
 ```bash
 # 現在のブランチを確認
@@ -396,7 +373,7 @@ git switch main
 git switch -c feature/new-branch
 ```
 
-### 3. コンフリクトが起きた
+### 2. コンフリクトが起きた
 
 ```bash
 # mainの最新を取得
@@ -442,7 +419,6 @@ git commit -m "merge: resolve conflicts with main"
 - **Git**: バージョン管理
 - **GitHub**: コード共有・レビュー
 - **Vite**: 開発サーバー
-- **Biome**: コード品質チェック
 - **TypeScript**: 型チェック
 
 最初は覚えることが多くて大変かもしれませんが、この流れに慣れると、安全で効率的な開発ができるようになります。チームで協力しながら、少しずつ慣れていきましょう！

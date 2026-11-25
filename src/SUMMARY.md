@@ -14,7 +14,6 @@
   - [Git・GitHub基礎](environment/git-github.md)
   - [React環境構築](environment/react-setup.md)
   - [TypeScript導入](environment/typescript.md)
-  - [Biomeによるコード品質管理](environment/biome.md)
   - [AI支援ツール活用法](environment/ai-agents.md)
   - [基本的な開発の流れ](environment/workflow.md)
 - [🔗 Reactフロントエンド開発入門](react.md)

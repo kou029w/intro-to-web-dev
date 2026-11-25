@@ -98,22 +98,6 @@ Ctrl/Cmd + Shift + G   # Git表示
 
 ## Web開発推奨拡張機能
 
-### コード品質・フォーマッター
-
-#### Biome
-
-```json
-{
-  "biome.enabled": true,
-  "editor.defaultFormatter": "biomejs.biome",
-  "editor.formatOnSave": true
-}
-```
-
-- ESLint + Prettier の代替
-- 超高速なリンター・フォーマッター
-- Rust製で軽量
-
 ### Git統合強化
 
 #### GitLens

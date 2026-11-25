@@ -190,9 +190,6 @@ Host github.com
 # mise経由でツールインストール
 mise install node@lts
 mise use --global node@lts
-
-# グローバルパッケージ
-npm i -g @biomejs/biome
 ```
 
 ## 環境確認とテスト
