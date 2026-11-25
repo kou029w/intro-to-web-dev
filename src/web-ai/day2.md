@@ -50,9 +50,10 @@ Core2は、UIFlow2とブリッジを書き込んだ状態で配布します。
 | 12:05〜13:05 | 60 | 昼休み | |
 | 13:05〜13:35 | 30 | [センサー値をPrompt APIで解説させる](hardware/sensor-ai.md) | 数値の集計とモデルの判断 |
 | 13:35〜14:05 | 30 | [サーボモーターを動かす](hardware/servo.md) | 警告に使うサーボモーターの可動範囲 |
-| 14:05〜14:25 | 20 | [Speech Recognition API](hardware/speech-recognition.md) | 音声の文字列への変換 |
-| 14:25〜14:35 | 10 | 休憩 | |
-| 14:35〜15:10 | 35 | [声でサーボモーターを動かす](hardware/voice-servo.md) | 指示からコマンドへの変換 |
+| 14:05〜14:30 | 25 | [テキストでサーボモーターを動かす](hardware/text-servo.md) | 指示からコマンドへの変換と検証 |
+| 14:30〜14:50 | 20 | [Speech Recognition API](hardware/speech-recognition.md) | 音声の文字列への変換 |
+| 14:50〜15:00 | 10 | 休憩 | |
+| 15:00〜15:10 | 10 | [声でサーボモーターを動かす](hardware/voice-servo.md) | 声の指示とテキストの指示で同じ動きになること |
 | 15:10〜15:55 | 45 | [センサーと音声をPrompt APIでつなぐ](hardware/sensor-assistant.md) | 揺れへの警告、計測条件の変更、状態への質問、記録の保存 |
 | 15:55〜16:05 | 10 | 休憩 | |
 | 16:05〜16:45 | 40 | [グループワーク](hardware/voice-servo.md#グループワーク) | 選んだ課題の動作 |

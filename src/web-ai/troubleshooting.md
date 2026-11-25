@@ -128,4 +128,4 @@
 ### 音声認識がどうしても使えない
 
 - **確かめること**：テキストの入力欄があるか。
-- **対処**：同じ指示を文字で入力して送信します。[声でサーボモーターを動かす](hardware/voice-servo.md#動かしてみる)と[センサーと音声をPrompt APIでつなぐ](hardware/sensor-assistant.md)のサンプルは、文字の入力でも同じ処理を行います。
+- **対処**：同じ指示を文字で入力して送信します。[テキストでサーボモーターを動かす](hardware/text-servo.md#動かしてみる)、[声でサーボモーターを動かす](hardware/voice-servo.md#動かしてみる)、[センサーと音声をPrompt APIでつなぐ](hardware/sensor-assistant.md)のサンプルは、文字の入力でも同じ処理を行います。

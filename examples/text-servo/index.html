@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>テキストでサーボモーターを動かす</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fogtype/css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>テキストでサーボモーターを動かす</h1>
+      <p id="status">対応状況を確認しています…</p>
+
+      <button id="connect" type="button">Core2に接続</button>
+      <p>接続しなくても、画面上の角度だけで動作を試せます。</p>
+
+      <h2>現在の角度</h2>
+      <p>
+        <meter id="meter"></meter>
+        <output id="angle"></output>
+      </p>
+
+      <h2>指示する</h2>
+      <form id="text-form">
+        <input
+          id="text"
+          type="text"
+          placeholder="左を向いて"
+          autocomplete="off"
+          aria-label="指示"
+        />
+        <button type="submit">送信</button>
+      </form>
+
+      <h2>処理の流れ</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>指示</th>
+            <th>モデルの出力</th>
+            <th>送信したコマンド</th>
+          </tr>
+        </thead>
+        <tbody id="history"></tbody>
+      </table>
+    </main>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

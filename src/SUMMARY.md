@@ -20,6 +20,7 @@
     - [センサー値を表示する](web-ai/hardware/sensor-monitor.md)
     - [センサー値をPrompt APIで解説させる](web-ai/hardware/sensor-ai.md)
     - [サーボモーターを動かす](web-ai/hardware/servo.md)
+    - [テキストでサーボモーターを動かす](web-ai/hardware/text-servo.md)
     - [Speech Recognition API](web-ai/hardware/speech-recognition.md)
     - [声でサーボモーターを動かす](web-ai/hardware/voice-servo.md)
     - [センサーと音声をPrompt APIでつなぐ](web-ai/hardware/sensor-assistant.md)

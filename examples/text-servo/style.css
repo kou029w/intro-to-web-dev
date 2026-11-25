@@ -1,0 +1,22 @@
+#text-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#text {
+  flex: 1;
+}
+
+#history td {
+  vertical-align: top;
+  white-space: pre-wrap;
+  font-size: 0.9em;
+}
+
+meter {
+  width: 100%;
+}
+
+output {
+  font-variant-numeric: tabular-nums;
+}

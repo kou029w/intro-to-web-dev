@@ -17,4 +17,4 @@ npm start
 
 ## 解説
 
-このサンプルの背景にある仕組みは [声でサーボモーターを動かす](../../src/web-serial/voice-servo.md) で解説しています。
+このサンプルの背景にある仕組みは [声でサーボモーターを動かす](../../src/web-ai/hardware/voice-servo.md) で解説しています。

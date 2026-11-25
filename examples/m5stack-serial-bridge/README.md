@@ -23,6 +23,22 @@ ENV Ⅲは動いている途中で抜き差ししても、2秒ほどで自動的
 
 詳しい手順は [M5Stack Core2の準備](../../src/web-serial/m5stack-setup.md) を参照してください。
 
+`mpremote`やThonnyなど、UIFlow2以外の道具で書き込む場合は、`/flash/main.py`に置きます。
+`/flash/apps/`はスタートアップメニューから選んで起動するアプリの置き場所で、ここに置いただけでは電源を入れても自動では起動しません。
+起動時にメニューを出さずに`main.py`を実行させるには、REPLで次のように`boot_option`を`0`にします。
+
+```python
+import esp32
+nvs = esp32.NVS("uiflow")
+nvs.set_u8("boot_option", 0)
+nvs.commit()
+```
+
+このように書き込んだあとで、同じデバイスにUIFlow2のWebから接続しないでください。
+UIFlow2のWebは、ブラウザーで開いているプロジェクトの内容でデバイスのファイルを管理しています。
+接続してDownloadなどを行うと、プロジェクトに含まれない`main.py`が消えたり、`boot_option`が`2`に書き換わったりすることがあります。
+UIFlow2のWebも使いたい場合は、上の手順3のとおりPythonのタブに`main.py`を貼り付けて保存し、プロジェクトの内容そのものをブリッジにしておきます。
+
 ## 通信の形式
 
 通信速度は115200bpsです。

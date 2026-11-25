@@ -40,9 +40,10 @@ Core2には、USBシリアルとセンサーやサーボモーターのあいだ
 2. [センサー値を表示する](sensor-monitor.md)
 3. [センサー値をPrompt APIで解説させる](sensor-ai.md)
 4. [サーボモーターを動かす](servo.md)
-5. [Speech Recognition API](speech-recognition.md)
-6. [声でサーボモーターを動かす](voice-servo.md)
-7. [センサーと音声をPrompt APIでつなぐ](sensor-assistant.md)
+5. [テキストでサーボモーターを動かす](text-servo.md)
+6. [Speech Recognition API](speech-recognition.md)
+7. [声でサーボモーターを動かす](voice-servo.md)
+8. [センサーと音声をPrompt APIでつなぐ](sensor-assistant.md)
 
 最後の演習では、揺れへの警告、計測条件の変更、状態への質問をつなぎます。
 判断と機器の応答は、[File System Access APIとOPFS](../file-system.md)で保存します。

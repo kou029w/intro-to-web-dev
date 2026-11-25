@@ -6,6 +6,8 @@
 [Prompt APIサンプル](https://github.com/kou029w/intro-to-web-dev/tree/main/examples)を、インストールなしでオンラインエディター上で動かせます。
 [LiveCodes](https://livecodes.io/) と [StackBlitz](https://stackblitz.com/) は、どちらもGitHubリポジトリのディレクトリを直接読み込んで実行できるオンラインエディターです。
 コードを直接書き換えて、その場で挙動を確認できます。
+「新しいタブで開く」は、このサイトに置いたサンプルをそのまま開きます。
+オンラインエディターが混み合っているときや、GitHubからの読み込みが制限されたときに使ってください。
 
 Open-Meteoの気象データのサンプルは、[Prompt API](index.md)で順を追って解説しています。
 ほかのサンプルの仕組みは、GitHubの各ディレクトリにあるREADMEとコードで確認できます。
@@ -22,6 +24,7 @@ Day1のこの時間（45分）では、まずプレイグラウンドを動か�
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground?file=script.js&view=preview)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-playground/)
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-playground" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
@@ -33,6 +36,7 @@ Day1のこの時間（45分）では、まずプレイグラウンドを動か�
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder?file=script.js&view=preview)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-synonym-finder/)
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-synonym-finder" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
@@ -45,6 +49,7 @@ APIキー不要のOpen-Meteoから、入力した地名（Tokyo / Osaka / Kyoto�
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo?file=script.js&view=preview)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-weather-open-meteo/)
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
@@ -56,6 +61,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr?file=script.js&view=preview)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-weather-wttr/)
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-wttr" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
@@ -67,6 +73,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image?file=script.js&view=preview)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-image/)
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
@@ -78,6 +85,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio?file=script.js&view=preview)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-audio/)
 
 <iframe loading="lazy" allow="microphone; language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-audio" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 
@@ -89,6 +97,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window?file=script.js&view=preview)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-context-window/)
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 -->
@@ -100,6 +109,7 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use?file=script.js&view=preview)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-tool-use/)
 
 <iframe loading="lazy" allow="language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-tool-use" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
 -->
@@ -112,5 +122,6 @@ wttr.inの`format=j1`から取得した英語の天気表現を、日本語に�
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup?file=script.js&view=preview)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-filler-cleanup/)
 
 <iframe loading="lazy" allow="microphone; language-model" src="https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup" style="width:100%; height:680px; border:0; border-radius:0.5rem;"></iframe>
