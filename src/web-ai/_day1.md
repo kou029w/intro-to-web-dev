@@ -736,3 +736,18 @@ PART 5
 
 > Day 2 は M5Stack Core2 を USB でつなぐ
 > Node.js、ドライバー、教材リポジトリを用意しておく
+
+---
+
+## フィードバック
+
+[このスライドを編集する](https://github.com/kou029w/intro-to-web-dev/edit/main/src/web-ai/_day1.md) / [問題を報告する](https://github.com/kou029w/intro-to-web-dev/issues/new)
+
+<script type="module">
+document.querySelectorAll("a").forEach(function (a) {
+  Object.assign(a, {
+    target: "_blank",
+    rel: "noreferrer",
+  });
+});
+</script>
