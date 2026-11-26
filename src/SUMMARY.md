@@ -4,7 +4,7 @@
   - [HTMLの基本](get-started/html-basics/index.md)
   - [CSSの基本](get-started/css-basics/index.md)
   - [JavaScriptの基本](get-started/javascript-basics/index.md)
-- [Web・AI・エッジデバイス](web-ai/index.md)
+- [AI・エッジデバイス](web-ai/index.md)
   - [Day1](web-ai/day1.md)
   - [Day2](web-ai/day2.md)
   - [Webプラットフォームの今](web-ai/web-platform.md)

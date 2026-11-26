@@ -1,4 +1,4 @@
-# Web・AI・エッジデバイス
+# AI・エッジデバイス
 
 ## コア技術編：HTML/CSS/JavaScript/Webの「今」・AIプラットフォームとしてのWeb
 
