@@ -662,8 +662,23 @@ PART 6
 
 ![WebDINO Japan](assets/webdino-logo-stacked.svg)
 
-モデルの出力が正しいかを見極める基準は、
+モデルの出力が正しいかを見極める基準は
 
-# 現場で値を見てきた人が持っている
+# 現場を見てきた人だけが持っている
 
 > 教材：kou029w.github.io/intro-to-web-dev
+
+---
+
+## フィードバック
+
+[このスライドを編集する](https://github.com/kou029w/intro-to-web-dev/edit/main/src/web-ai/_day2.md) / [問題を報告する](https://github.com/kou029w/intro-to-web-dev/issues/new)
+
+<script type="module">
+document.querySelectorAll("a").forEach(function (a) {
+  Object.assign(a, {
+    target: "_blank",
+    rel: "noreferrer",
+  });
+});
+</script>
