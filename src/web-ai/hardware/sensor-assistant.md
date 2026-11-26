@@ -15,14 +15,13 @@
 
 ## サンプルを起動する
 
-[サンプルのソース](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/sensor-assistant)を取得し、次のコマンドで起動します。
-ファイル選択と機器への接続は、埋め込み画面を使わず、`http://localhost`のページで試します。
+[![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/sensor-assistant)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/sensor-assistant)
+[![新しいタブで開く](https://img.shields.io/badge/%E6%96%B0%E3%81%97%E3%81%84%E3%82%BF%E3%83%96%E3%81%A7%E9%96%8B%E3%81%8F-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/sensor-assistant/)
 
-```bash
-cd examples/sensor-assistant
-npm install
-npm start
-```
+「Open in LiveCodes」から開きます。
+LiveCodesは初回の読み込みで動かないことがあります。
+そのときは「新しいタブで開く」から、このサイトに置いたページを開いてください。
 
 「モデルを準備」を押してから「Core2に接続」を押します。
 Core2は100ミリ秒間隔でセンサー値を送り、画面には直近3秒の件数、揺れ、バッテリー残量、計測間隔が表示されます。

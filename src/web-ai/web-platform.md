@@ -180,7 +180,7 @@ Day1のミニチャレンジで自分の業務を題材にするのは、その�
 Web Serial API、File System Access API、OPFS、WebGPU、マイクは、`https://`か`http://localhost`で配信したページ（**安全なコンテキスト**）で使う前提のAPIです。
 Day1のサンプルは、ページ内の実行ブロックや埋め込みのLiveCodesで、インストールなしに試せます。
 Day2のファイル選択とWeb Serial APIは、`npm start`で起動した`http://localhost`のページで試すことを勧めます。
-[センサーと音声をPrompt APIでつなぐ](hardware/sensor-assistant.md)のサンプルは、`npm start`で起動して開きます。
+[センサーと音声をPrompt APIでつなぐ](hardware/sensor-assistant.md)のサンプルは、このサイトに置いたページを新しいタブで開けます。
 
 HTMLファイルをダブルクリックして`file://`で開くと、どのサンプルも動きません。
 サンプルはすべて`<script type="module">`でJavaScriptを読み込んでおり、ブラウザは`file://`のページからのモジュールスクリプトの読み込みを拒否するからです。

@@ -529,17 +529,14 @@ PART 6
 
 # 連携例を起動する
 
-```bash
-cd examples/sensor-assistant
-npm install
-npm start
-```
+* LiveCodes：https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/sensor-assistant
+* 新しいタブ：https://kou029w.github.io/intro-to-web-dev/examples/sensor-assistant/
 
 * 「モデルを準備」を押してから「Core2 に接続」
 * 動かすのはチャンネル0のサーボ
 * 「戻す角度」と「警告の角度」を、記録した可動範囲に合わせる
 
-> ファイルの選択と機器への接続があるので、`http://localhost` のページで試す
+> LiveCodes が初回に動かないときは、新しいタブのリンクを開く
 
 ---
 
