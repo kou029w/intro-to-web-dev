@@ -88,10 +88,11 @@ PART 1
 ---
 
 <!-- _class: seq -->
+<!-- _footer: '[全体図を別ページで開く](assets/web-platform-2026.html)' -->
 
 # 2026年の Web プラットフォーム
 
-![h:480 標準化団体と仕様群ごとの円に、HTML、CSS、ECMAScript、WebAssembly、GPU、デバイス、AI などの機能を並べた全体図](assets/diagrams/web-platform-2026.svg)
+![h:460 標準化団体と仕様群ごとの円に、HTML、CSS、ECMAScript、WebAssembly、GPU、デバイス、AI などの機能を並べた全体図](assets/diagrams/web-platform-2026.svg)
 
 ---
 
@@ -272,6 +273,8 @@ PART 2
 
 - このメッセージを短く要約して
 - 試験は完了。温度の偏りを1件確認。再試験は来週。
+
+[要約のデモを別ページで開く](../examples/prompt-api-playground/)
 
 この文章は、どの AI プロバイダーにも送っていない。どこで動いている？
 

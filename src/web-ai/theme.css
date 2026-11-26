@@ -12,6 +12,8 @@ section {
   justify-content: flex-start;
 }
 section::after { left: 40px; right: auto; bottom: 22px; font-size: 18px; color: var(--sub); }
+section > footer { position: absolute; left: 80px; right: auto; bottom: 22px; font-size: 18px; color: var(--sub); }
+section > footer a { color: inherit; text-decoration: underline; }
 h1 { font-size: 54px; font-weight: 400; line-height: 1.3; margin: 0 0 36px; color: var(--ink); padding: 0; border: 0; }
 h2 { font-size: 34px; font-weight: 400; color: var(--sub); margin: 0; padding: 0; border: 0; }
 h3 { font-size: 1em; font-weight: 300; color: var(--ink); margin: 0 0 14px; }
@@ -37,9 +39,11 @@ section.compare td:first-child { padding-right: 28px; }
 table tr { background: none !important; }
 
 /* 引用ブロックは補足の小さな注記として使う */
-blockquote { margin: auto 0 0; padding: 0; border: 0; font-size: 20px; color: var(--sub); text-align: right; }
+blockquote { margin: auto 0 0; padding: 0; border: 0; font-size: 20px; color: var(--sub); text-align: left; }
 blockquote::before, blockquote::after { content: none; }
 blockquote p { margin: 0; }
+blockquote p + p { margin-top: 4px; }
+blockquote a { color: inherit; text-decoration: underline; }
 
 /* 動き: スライドを開いたときに一度だけ、順に出す */
 @keyframes in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
@@ -125,7 +129,9 @@ section.chat li:nth-child(1) { font-size: 20px; color: var(--sub); margin-bottom
 section.chat li:nth-child(1) strong { color: var(--red); }
 section.chat li:nth-child(2) { width: fit-content; margin-left: auto; background: #e2e3e6; padding: 8px 18px; }
 section.chat li:nth-child(3) { width: fit-content; white-space: nowrap; margin-bottom: 0; animation: type 2.2s steps(24) both; animation-delay: 1.4s; }
-section.chat > p:last-of-type { margin-top: 40px; font-size: 38px; font-weight: 400; }
+/* デモへのリンク行は文の直前に小さく置く。文は右下のアイコンに被らない幅で折り返す */
+section.chat > p:not(:last-of-type) { margin: 28px 0 0; font-size: 26px; }
+section.chat > p:last-of-type { margin-top: 16px; font-size: 38px; font-weight: 400; max-width: 894px; text-wrap: balance; }
 
 /* 流れ図を「PC」の点線枠で囲む */
 section.pc ol { position: relative; width: fit-content; border: 2px dashed var(--ink); padding: 34px 40px; }

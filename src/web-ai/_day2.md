@@ -451,7 +451,7 @@ PART 5
 
 # 機器に送る前に、もう一度確かめる
 
-![w:1120 モデルの誤った出力が、スキーマ、ブラウザーのコード、Core2 側の順に止められる図](assets/diagrams/layers.svg)
+![w:1120 モデルの誤った出力 grip を set 180 が、スキーマは通り、JavaScript の可動範囲の確認で止まり、Core2 側まで届かない図](assets/diagrams/layers.svg)
 
 どれか1か所に誤りがあっても、ほかの制限がサーボを守る
 
@@ -493,7 +493,9 @@ await SpeechRecognition.available(
 
 マイクが使えないときは、同じ指示を文字で入力する
 
-> 言語パックは、基礎のサンプルで「端末内で処理する」を選ぶと取得できる。声でサーボを動かすサンプルは、取得済みのときだけ PC 内で認識する
+> 言語パックは、基礎のサンプルで「端末内で処理する」を選ぶと取得できる
+>
+> 声でサーボを動かすサンプルは、言語パックを取得済みのときだけ PC 内で認識する
 
 ---
 
@@ -634,7 +636,7 @@ PART 6
 | サーボが動かない | Port B に挿したか、黒が茶の側か |
 | 動いた瞬間に Core2 が再起動 | ホーンが当たっていないか、USB をつないだか |
 
-> ほかの症状：kou029w.github.io/intro-to-web-dev/web-ai/troubleshooting.html
+> ほかの症状：[kou029w.github.io/intro-to-web-dev/web-ai/troubleshooting.html](https://kou029w.github.io/intro-to-web-dev/web-ai/troubleshooting.html)
 
 ---
 
