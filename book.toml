@@ -14,7 +14,6 @@ additional-js = [
   "js/mermaid-init.js",
 ]
 
-# Web・AI研修のページを web-ai/ に移した際の旧URL
 [output.html.redirect]
 "/web-ai-training.html" = "web-ai/index.html"
 "/day1.html" = "web-ai/day1.html"
@@ -36,6 +35,7 @@ additional-js = [
 "/web-serial/speech-recognition.html" = "../web-ai/hardware/speech-recognition.html"
 "/web-serial/voice-servo.html" = "../web-ai/hardware/voice-servo.html"
 "/web-serial/sensor-assistant.html" = "../web-ai/hardware/sensor-assistant.html"
-"/training/_presentation.html" = "../web-ai/_presentation.html"
+"/training/_presentation.html" = "../web-ai/_day1.html"
+"/web-ai/_presentation.html" = "_day1.html"
 "/training/_day1.html" = "../web-ai/_day1.html"
 "/training/_day2.html" = "../web-ai/_day2.html"

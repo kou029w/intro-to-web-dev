@@ -1,14 +1,4 @@
-# Web・AI
-
-## 概要
-
-<iframe
-  src="_presentation.html"
-  style="border: none; width: 100%; max-width: 960px; aspect-ratio: 16 / 9;"
-  allowfullscreen="true">
-</iframe>
-
-[概要を開く](_presentation.html)
+# Web・AI・エッジデバイス
 
 ## コア技術編：HTML/CSS/JavaScript/Webの「今」・AIプラットフォームとしてのWeb
 

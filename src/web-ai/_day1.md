@@ -46,6 +46,18 @@ title: Day 1 コア技術編・AI プラットフォームとしての Web
 
 ---
 
+<!-- _class: punch -->
+
+# 足りないのは技術より、知られていること
+
+- ブラウザーで AI モデルが動くことを、知らなければ選べない
+- USB 機器にブラウザーから届くことを、知らなければ専用アプリを作る
+- 選択肢を知った上で、クラウドと端末のどちらで処理するかを決める
+
+この研修は、選択肢を手元で確かめるためにある
+
+---
+
 <!-- _class: part -->
 <!-- _backgroundImage: url('assets/avatar-point-left.jxl') -->
 <!-- _backgroundSize: 260px -->
@@ -250,6 +262,33 @@ PART 2
 
 ---
 
+<!-- _class: chat late -->
+<!-- _backgroundImage: url('assets/avatar-think.jxl') -->
+<!-- _backgroundSize: 200px -->
+<!-- _backgroundPosition: right 50px bottom 30px -->
+<!-- _backgroundRepeat: no-repeat -->
+
+# メッセージを AI で要約
+
+- このメッセージを短く要約して
+- 試験は完了。温度の偏りを1件確認。再試験は来週。
+
+この文章は、どの AI プロバイダーにも送っていない。どこで動いている？
+
+---
+
+<!-- _class: seq -->
+
+# 答えはブラウザーの中
+
+![w:1120 PC の中で Web ページ、Prompt API、Gemini Nano が動き、インターネットとはモデルの取得と更新だけでつながる](assets/diagrams/local-ai.svg)
+
+通信するのはモデルの取得と更新だけ
+
+> Prompt API は Chrome 148（2026年5月）で安定版になった
+
+---
+
 <!-- _class: compare late-note -->
 
 # Web から AI を使う3つの形
@@ -299,6 +338,107 @@ PART 2
 API の形は標準として議論し、どのモデルで動かすかはブラウザーが決める。Microsoft Edge は、同じ Prompt API を Phi-4-mini で試験実装した
 
 > 用途の決まった API で足りるなら、そちらを使う。今日は汎用の Prompt API を扱う
+
+---
+
+# まず、使えるかを確かめる
+
+```js
+await LanguageModel.availability();
+```
+
+![w:1120 availability の戻り値。downloadable から downloading を経て available になる。unavailable は要件外](assets/diagrams/states.svg)
+
+> Firefox と Safari には `LanguageModel` がなく、`ReferenceError` になる
+
+---
+
+# セッションを作って、聞く
+
+```js
+const session = await LanguageModel.create();
+const answer = await session.prompt("日本語で自己紹介してください。");
+output.textContent = answer;
+session.destroy();
+```
+
+* モデルが未取得なら `create()` はダウンロードを伴う。クリックなどの操作から呼ぶ
+* モデルの出力は信頼できない文字列。`textContent` で表示し、`innerHTML` には入れない
+* 使い終えたら `destroy()` でメモリを返す
+
+---
+
+<!-- _class: stream -->
+
+# 長い応答は、少しずつ表示する
+
+```js
+const stream = session.promptStreaming("日本の四季を一文ずつ紹介して");
+for await (const chunk of stream) {
+  output.textContent += chunk;
+}
+```
+
+春は桜が咲き、夏は海で泳ぐ。秋は…
+
+> `prompt()` は生成が終わるまで返らない
+
+---
+
+<!-- _class: flow seq -->
+
+# 数値は、意味のあるラベルにしてから渡す
+
+1. 気象 API
+   - 天気コード 61
+1. **コードで変換**
+   - `61` → 「雨」
+1. Prompt API
+   - 「東京は雨、気温12度…」
+1. やさしい説明文
+
+小型モデルは、天気コードの割り当てを正確に覚えているとは限らない。
+
+対応表で済む変換は、コードで済ませる。
+
+---
+
+<!-- _class: split seq -->
+
+# 答えを JSON で受け取る
+
+```js
+const schema = {
+  type: "object",
+  properties: {
+    summary: { type: "string" },
+    needsUmbrella: { type: "boolean" },
+  },
+  required: ["summary", "needsUmbrella"],
+};
+const result = await session.prompt(text,
+  { responseConstraint: schema });
+const { needsUmbrella } = JSON.parse(result);
+```
+
+**返ってくるもの**
+スキーマどおりの JSON 文字列
+
+**使い道**
+`if (needsUmbrella)` で分岐できる
+
+**選択肢を限る**
+`enum: ["なし", "小雨", "大雨"]`
+
+---
+
+<!-- _class: schema seq -->
+
+# スキーマが保証するのは「形」まで
+
+![w:1120 天気が快晴なのに needsUmbrella が true になる例。形は正しいが中身はおかしい](assets/diagrams/schema.svg)
+
+どこからをコードで確かめるかは、アプリを作る人が決める
 
 ---
 

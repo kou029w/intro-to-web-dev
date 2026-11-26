@@ -75,8 +75,7 @@ Web Serial API で M5Stack Core2 をつなぎ、測って、判断して、動�
 ### **サーボまわり**
 
 - マイクロサーボ1個
-- ブレッドボード（配線済み）
-- サーボ用の5V電源
+- HY2.0-4P → 2.54mm 変換ケーブル
 
 どれも1人1組。全員が自分の Core2 とサーボで演習する
 
@@ -92,7 +91,7 @@ PART 1
 
 # Web から現実の機器へ
 
-## 背景と Web Serial API
+## 背景
 
 ---
 
@@ -212,11 +211,9 @@ PART 2
 
 # 配線を確かめる
 
-![w:1120 Core2 とサーボの配線。信号線は330Ωを挟み、GND は共通、サーボの電源は別の5V電源](assets/diagrams/wiring.svg)
+![w:1040 Core2 の配線の全体。左の ENV Ⅲ は Port A に Grove ケーブルで、右のマイクロサーボは Port B に変換ケーブルで直接つなぐ](assets/diagrams/wiring.svg)
 
-信号線は 330Ω の抵抗を挟んで GPIO へ。配線を誤ったときに流れる電流を抑える
-
-> 信号線は Port B へ。Port B は底面ユニットの側面にある
+> サーボは Port B（黒）へ直結。抵抗やコンデンサーは外付けしない（マイクロサーボが内蔵）
 
 ---
 
@@ -224,7 +221,7 @@ PART 2
 
 # 電源を入れる前の3点
 
-![w:1120 電源を入れる前の3点：変換ケーブルの赤い線、電解コンデンサーの向き、サーボの電源](assets/diagrams/power-cards.svg)
+![w:1120 電源を入れる前の3点：茶色の線の位置、挿す端子の色、ホーンの周り](assets/diagrams/check-cards.svg)
 
 ---
 
@@ -280,9 +277,83 @@ ENV Ⅲ が Port A に挿してあるか
 
 PART 3
 
+# Web Serial API の基礎
+
+## 受け取る、送る
+
+---
+
+<!-- _class: port -->
+
+# ポートは利用者が選ぶ
+
+```js
+button.addEventListener("click", async () => {
+  const port =
+    await navigator.serial.requestPort();
+  await port.open({ baudRate: 115200 });
+});
+```
+
+* 選択画面はクリックなどの操作からしか開けない
+* 許可したポートは、次から `getPorts()` で取れる
+* `https://` か `http://localhost` のページで使う
+
+1. **接続するシリアルポートを選択**
+1. USB Serial (COM3)
+1. Bluetooth 接続ポート (COM5)
+1. `接続`
+
+---
+
+<!-- _class: wire punch -->
+
+# 届くのは「断片」であって「行」ではない
+
+- {"type":"sensor","acc
+- el":[0.01,-0.02,0.99]}**\n**{"type":"but
+- ton","name":"A"}**\n**
+
+```js
+buffer += decoder.decode(value, { stream: true });
+const lines = buffer.split("\n");
+buffer = lines.pop(); // 改行がまだ届いていない残り
+for (const line of lines) handleLine(line);
+```
+
+改行までためてから、1行として扱う
+
+---
+
+<!-- _class: servo punch -->
+
+# 送るときは、改行まで
+
+```js
+await writer.write(new TextEncoder().encode("servo 0 90\n"));
+```
+
+**servo 0 90**\n
+
+チャンネル0のサーボを90度に
+
+改行がないと、Core2 はコマンドの続きを待ち続ける
+
+---
+
+<!-- _class: part -->
+
+PART 4
+
 # センサー値を読む
 
 ## モニターと Prompt API
+
+---
+
+# 加速度の3軸
+
+![w:1040 M5Stack Core2 の加速度センサーの3軸。X+ は右の側面、Y+ は画面の上端、Z+ は画面の表の向き](assets/diagrams/core2-axes.svg)
 
 ---
 
@@ -321,7 +392,7 @@ PART 3
 <!-- _backgroundPosition: right 60px bottom 36px -->
 <!-- _backgroundRepeat: no-repeat -->
 
-PART 4
+PART 5
 
 # サーボを動かす
 
@@ -341,6 +412,48 @@ PART 4
 文字や声で指示しても、記録した範囲の外へはコードが動かさない
 
 「ジー」と鳴ったら、そこから5〜10度戻した値を記録する
+
+---
+
+<!-- _class: late -->
+
+# 言葉の指示がサーボに届くまで
+
+![w:1120 声から、Speech Recognition API、Prompt API、コードでの計算、Web Serial API を経て、サーボに届くまでの流れ](assets/diagrams/pipeline.svg)
+
+モデルが返す JSON の `actions` の1要素
+
+```json
+{ "change": "add", "value": -15 }
+```
+
+---
+
+<!-- _class: cols seq late -->
+
+# 言葉はモデルに、計算はコードに
+
+### **モデル**：言葉を解釈する
+
+「もう少し右に」→ 右に15度
+「正面に戻して」→ 90度にする
+
+### **コード**：角度を計算する
+
+現在90度 − 15 = 75度
+現在の角度はコードが持ち、毎回プロンプトに書き込む
+
+「75度」と直接答えさせると、小型モデルは*引き算を間違える*ことがある。
+
+---
+
+<!-- _class: layers punch -->
+
+# 機器に送る前に、もう一度確かめる
+
+![w:1120 モデルの誤った出力が、スキーマ、ブラウザーのコード、Core2 側の順に止められる図](assets/diagrams/layers.svg)
+
+どれか1か所に誤りがあっても、ほかの制限がサーボを守る
 
 ---
 
@@ -384,6 +497,21 @@ await SpeechRecognition.available(
 
 ---
 
+<!-- _class: where late -->
+
+# どこまでが PC の中で動くか
+
+| 処理 | どこで動くか |
+| --- | --- |
+| 音声の認識 | 日本語の言語パックがあれば PC 内、なければサーバー |
+| 指示の解釈 | PC 内（Gemini Nano） |
+| 検証と計算 | PC 内（JavaScript） |
+| Core2 との通信 | PC 内（USB シリアル） |
+
+文字入力と PC 内で認識した声なら、指示を *AI プロバイダーに渡さずに* サーボを動かせる
+
+---
+
 
 <!-- _class: part -->
 <!-- _backgroundImage: url('assets/avatar-point-left.jxl') -->
@@ -391,7 +519,7 @@ await SpeechRecognition.available(
 <!-- _backgroundPosition: right 60px bottom 36px -->
 <!-- _backgroundRepeat: no-repeat -->
 
-PART 5
+PART 6
 
 # センサーと音声をつなぐ
 
@@ -506,8 +634,8 @@ npm start
 | --- | --- |
 | 選択画面に Core2 が出ない | ドライバー、抜き差しで消えるポート |
 | 「接続できませんでした」 | UIFlow2 や別のタブがポートを開いたまま |
-| サーボが動かない | 5V電源、GND の共通、信号線が Port B か |
-| 動いた瞬間に Core2 が再起動 | サーボの電源を Core2 から取っていないか |
+| サーボが動かない | Port B に挿したか、黒が茶の側か |
+| 動いた瞬間に Core2 が再起動 | ホーンが当たっていないか、USB をつないだか |
 
 > ほかの症状：kou029w.github.io/intro-to-web-dev/web-ai/troubleshooting.html
 
