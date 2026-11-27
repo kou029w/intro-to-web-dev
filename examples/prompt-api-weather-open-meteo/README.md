@@ -1,7 +1,8 @@
 # 気象データの説明（Open-Meteo）
 
+[![Demo](https://img.shields.io/badge/Demo-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-weather-open-meteo/)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo?file=script.js&view=preview)
-[![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-weather-open-meteo)
 
 APIキー不要の[Open-Meteo](https://open-meteo.com/)から、入力した地名の現在の気象データを取得し、Prompt API（`LanguageModel`）で自然な日本語の説明に変換するサンプルです。
 [chrome.devのWeather Demo](https://chrome.dev/web-ai-demos/)はOpenWeatherMap（要APIキー）を使っていますが、このサンプルはAPIキーなしで動かせるOpen-Meteoに置き換えています。

@@ -18,6 +18,7 @@
     - [M5Stack Core2の準備](web-ai/hardware/m5stack-setup.md)
     - [Web Serial API](web-ai/hardware/web-serial.md)
     - [センサー値を表示する](web-ai/hardware/sensor-monitor.md)
+    - [温湿度センサーをつなぐ](web-ai/hardware/env-sensor.md)
     - [センサー値をPrompt APIで解説させる](web-ai/hardware/sensor-ai.md)
     - [サーボモーターを動かす](web-ai/hardware/servo.md)
     - [テキストでサーボモーターを動かす](web-ai/hardware/text-servo.md)

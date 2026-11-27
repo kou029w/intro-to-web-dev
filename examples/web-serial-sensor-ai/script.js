@@ -65,6 +65,21 @@ function describeTilt(degrees) {
   return "裏返し";
 }
 
+function describeHumidity(humidity) {
+  if (humidity < 40) return "乾燥";
+  if (humidity < 70) return "ふつう";
+  return "多湿";
+}
+
+// ENV Ⅲをつないでいないときや読めなかったときは、envがnullになる
+function describeEnv(env) {
+  if (!env) return "- 温度と湿度: ENV Ⅲが未接続のため不明";
+  return [
+    `- 温度: ${env.temperature.toFixed(1)}℃`,
+    `- 湿度: ${env.humidity.toFixed(0)}%（${describeHumidity(env.humidity)}）`,
+  ].join("\n");
+}
+
 function describeShake(deviation) {
   if (deviation < 0.02) return "静止";
   if (deviation < 0.1) return "小さな揺れ";
@@ -96,6 +111,7 @@ function summarize() {
     `- 揺れ: 標準偏差${deviation.toFixed(3)}G（${describeShake(deviation)}）`,
     `- 回転: 最大${gyroMax.toFixed(0)}度/秒`,
     `- 自由落下に近い瞬間: ${freeFall ? "あり" : "なし"}`,
+    describeEnv(latest.env),
     `- バッテリー: ${latest.battery}%（${
       latest.charging ? "充電中" : "充電していない"
     }）`,

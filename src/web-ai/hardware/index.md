@@ -14,8 +14,9 @@
 ## 全体像
 
 ハンズオンでは、データの流れを2つの向きで扱います。
-前半は、Core2の内蔵センサーの値をブラウザで受け取り、Prompt APIに状態を判断させます。
+前半は、Core2の内蔵センサーと温湿度センサー（ENV Ⅲ）の値をブラウザで受け取り、Prompt APIに状態を判断させます。
 後半は逆向きに、声で出した指示をPrompt APIでコマンドに変換し、Core2に送ってサーボモーターを動かします。
+最後に、センサーの値からの判断とサーボモーターの動きを1つのサンプルでつなぎます。
 
 ```mermaid
 flowchart LR
@@ -25,6 +26,7 @@ flowchart LR
     WS <-- USBシリアル --> FW[Core2のブリッジ]
     FW --> Servo((サーボモーター))
     IMU((内蔵センサー)) --> FW
+    ENV((温湿度センサー)) --> FW
 ```
 
 Core2には、USBシリアルとセンサーやサーボモーターのあいだを取り次ぐ小さなプログラム（以下、**ブリッジ**）を書き込んでおきます。
@@ -33,17 +35,18 @@ Core2には、USBシリアルとセンサーやサーボモーターのあいだ
 ## 進め方
 
 配布するCore2には、UIFlow2とブリッジを書き込んであります。
-当日は[M5Stack Core2の準備](m5stack-setup.md#温湿度センサーを配線する)の配線から始めます。
+当日は[M5Stack Core2の準備](m5stack-setup.md#動作を確かめる)の動作確認から始めます。
 当日の時間配分は[Day2](../day2.md)に従います。
 
 1. [Web Serial API](web-serial.md)
 2. [センサー値を表示する](sensor-monitor.md)
-3. [センサー値をPrompt APIで解説させる](sensor-ai.md)
-4. [サーボモーターを動かす](servo.md)
-5. [テキストでサーボモーターを動かす](text-servo.md)
-6. [Speech Recognition API](speech-recognition.md)
-7. [声でサーボモーターを動かす](voice-servo.md)
-8. [センサーと音声をPrompt APIでつなぐ](sensor-assistant.md)
+3. [温湿度センサーをつなぐ](env-sensor.md)
+4. [センサー値をPrompt APIで解説させる](sensor-ai.md)
+5. [サーボモーターを動かす](servo.md)
+6. [テキストでサーボモーターを動かす](text-servo.md)
+7. [Speech Recognition API](speech-recognition.md)
+8. [声でサーボモーターを動かす](voice-servo.md)
+9. [センサーと音声をPrompt APIでつなぐ](sensor-assistant.md)
 
 最後の演習では、揺れへの警告、計測条件の変更、状態への質問をつなぎます。
 判断と機器の応答は、[File System Access APIとOPFS](../file-system.md)で保存します。
@@ -51,7 +54,7 @@ Core2には、USBシリアルとセンサーやサーボモーターのあいだ
 ## 必要なもの
 
 - M5Stack Core2 for AWS（UIFlow2とブリッジを書き込み済みのもの）と、データ通信に対応したUSB-Cケーブル
-- 温湿度センサーのENV Ⅲ（なくても動きます）
+- 温湿度センサーのENV Ⅲ（なくても動きます。[配線](env-sensor.md#温湿度センサーを配線する)を参照）
 - マイクロサーボ（SG90など）1個と、HY2.0-4Pコネクタ 2.54mmオス・コネクタ、メス・コネクタ変換ケーブル（[配線](servo.md#サーボモーターを配線する)を参照）
 - Chrome 148以降が動くPC（[環境の確認](../prompt-api/setup.md)でPrompt APIの動作を確認済みのもの）
 - マイク（PC内蔵のものでよい）

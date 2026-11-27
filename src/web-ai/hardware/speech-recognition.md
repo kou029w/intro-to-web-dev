@@ -137,6 +137,7 @@ event.results             … 発話の区切りごとの結果のリスト
 「端末内で処理する」にチェックを入れて開始すると、言語パックが未ダウンロードの場合はダウンロードから始まります。
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/speech-recognition-basic)
+[![Demo](https://img.shields.io/badge/Demo-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/speech-recognition-basic/)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/speech-recognition-basic)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/speech-recognition-basic?file=script.js&view=preview)
 

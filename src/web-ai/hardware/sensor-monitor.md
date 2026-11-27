@@ -9,6 +9,7 @@
 ## サンプル
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/web-serial-monitor)
+[![Demo](https://img.shields.io/badge/Demo-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/web-serial-monitor/)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/web-serial-monitor)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/web-serial-monitor?file=script.js&view=preview)
 
@@ -28,6 +29,8 @@ Core2を傾けると、この約1Gがほかの軸にも分かれて現れ、傾�
 ![机に置いたままのときはZ軸だけが約1.0GでX軸とY軸は0G、傾けたときはX軸とZ軸がそれぞれ約0.7Gになる（イメージ）](../assets/diagrams/sensor-bars.svg)
 
 ![M5Stack Core2の加速度センサーの3軸。X+は右の側面、Y+は画面の上端（タッチボタンと反対）、Z+は画面の表の向き](../assets/diagrams/core2-axes.svg)
+
+「温度（ENV Ⅲ）」と「湿度（ENV Ⅲ）」の欄は、次の[温湿度センサーをつなぐ](env-sensor.md)でENV Ⅲをつなぐまで「未接続」と表示されます。
 
 画面下のボタン（A、B、C）を押すと、「最後に押されたボタン」の表示とログが更新されます。
 「コマンドを送る」の欄から`sensor 500`を送ると、センサー値の送信間隔が0.5秒に変わり、グラフの伸びが遅くなります。

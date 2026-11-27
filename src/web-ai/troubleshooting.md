@@ -106,7 +106,7 @@
 ### `"env": false`が返る、Core2の画面が「ENV: -」のまま
 
 - **確かめること**：ENV ⅢをPort A（赤いGrove端子）に挿しているか。`ping`の応答が`"board": "unknown"`になっていないか。
-- **対処**：Port Aに挿し直します。`"board": "unknown"`の場合は、ブリッジの`BOARD`を指定して書き込み直します（[動作を確かめる](hardware/m5stack-setup.md#動作を確かめる)）。ENV Ⅲは必須ではなく、つないでいなくてもブリッジは動き続けます（[温湿度センサーを配線する](hardware/m5stack-setup.md#温湿度センサーを配線する)）。
+- **対処**：Port Aに挿し直します。`"board": "unknown"`の場合は、ブリッジの`BOARD`を指定して書き込み直します（[動作を確かめる](hardware/m5stack-setup.md#動作を確かめる)）。ENV Ⅲは必須ではなく、つないでいなくてもブリッジは動き続けます（[値がnullの場合に備える](hardware/env-sensor.md#値がnullの場合に備える)）。
 
 ## 音声認識
 

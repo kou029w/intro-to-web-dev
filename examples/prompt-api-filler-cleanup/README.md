@@ -1,7 +1,8 @@
 # 書き起こしのフィラー除去
 
+[![Demo](https://img.shields.io/badge/Demo-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-filler-cleanup/)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup?file=script.js&view=preview)
-[![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-filler-cleanup)
 
 音声を書き起こしたテキストから、「えーと」「あの」「まあ」のようなフィラー（言い淀み）だけをPrompt API（`LanguageModel`）に取り除かせるサンプルです。
 

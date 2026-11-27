@@ -1,7 +1,8 @@
 # コンテキスト使用量の管理
 
+[![Demo](https://img.shields.io/badge/Demo-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-context-window/)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window?file=script.js&view=preview)
-[![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-context-window)
 
 チャットを続けるうちに`session.contextUsage`と`session.contextWindow`がどう増えていくかを確認できるサンプルです。
 [chrome.devのprompt-api-session-compacting](https://chrome.dev/web-ai-demos/)を参考にしていますが、元のデモがSummarizer APIとLanguageDetector APIを組み合わせているのに対して、このサンプルはPrompt API単体で完結するように単純化しています。

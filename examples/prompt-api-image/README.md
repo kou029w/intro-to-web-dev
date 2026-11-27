@@ -1,7 +1,8 @@
 # 画像を説明してもらう
 
+[![Demo](https://img.shields.io/badge/Demo-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/prompt-api-image/)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image?file=script.js&view=preview)
-[![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/prompt-api-image)
 
 選択した画像ファイルをPrompt API（`LanguageModel`）に渡し、内容を日本語で説明させるサンプルです。
 [chrome.devのcanvas-image-prompt](https://chrome.dev/web-ai-demos/)（キャンバスに描いた絵を参照画像と見比べる作例）を、より汎用的な「画像ファイルを選んで質問する」形に単純化しています。

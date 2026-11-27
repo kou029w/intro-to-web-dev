@@ -8,7 +8,7 @@ import * as core from "./core.js";
 const source = (await readFile(new URL("./script.js", import.meta.url), "utf8"))
   .replace(/^import .*\n/, "");
 
-async function setup() {
+async function setup({ accel = (i) => [0, 0, i % 2 ? 1.2 : 0.8], env = null } = {}) {
   const elements = new Map();
   const element = (id) => {
     if (!elements.has(id)) elements.set(id, {
@@ -40,7 +40,7 @@ async function setup() {
   vm.runInContext("writer = fakeWriter; interval = 100;", context);
   for (let i = 0; i < 30; i++) {
     now = i * 100;
-    context.sensorLine = JSON.stringify({ type: "sensor", accel: [0, 0, i % 2 ? 1.2 : 0.8], battery: 87 });
+    context.sensorLine = JSON.stringify({ type: "sensor", accel: accel(i), env, battery: 87 });
     vm.runInContext("handleLine(sensorLine)", context);
   }
   return { context, element, sent, replies, destroyed: () => destroyed };
@@ -75,6 +75,23 @@ test("揺れから警告角度を送り、警告済みなら繰り返さない",
   await vm.runInContext("judge()", app.context);
   await vm.runInContext("judge()", app.context);
   assert.deepEqual(app.sent, ["servo 0 120\n"]);
+});
+
+test("静止していても多湿なら、湿度の判断から警告角度を送る", async () => {
+  const app = await setup({ accel: () => [0, 0, 1], env: { temperature: 26, humidity: 85 } });
+  app.element("armed").checked = true;
+  app.replies.push({ comment: "湿度が高い状態です", level: "alert" });
+  await vm.runInContext("judge()", app.context);
+  assert.deepEqual(app.sent, ["servo 0 120\n"]);
+  assert.equal(vm.runInContext("records.find((r) => r.type === \"judgment\").data.reason", app.context), "湿度");
+});
+
+test("静止していてふつうの湿度なら、モデルを呼ばない", async () => {
+  const app = await setup({ accel: () => [0, 0, 1], env: { temperature: 26, humidity: 50 } });
+  app.element("armed").checked = true;
+  await vm.runInContext("judge()", app.context);
+  assert.deepEqual(app.sent, []);
+  assert.equal(app.destroyed(), 0);
 });
 
 test("推論中に解除して再有効化した場合も、以前の判断で警告しない", async () => {

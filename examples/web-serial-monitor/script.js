@@ -94,6 +94,13 @@ function handleMessage(message) {
       document.querySelector("#ay").value = ay.toFixed(2);
       document.querySelector("#az").value = az.toFixed(2);
       document.querySelector("#gyro").value = message.gyro.join(", ");
+      // ENV Ⅲをつないでいないときや読めなかったときは、envがnullになる
+      document.querySelector("#temperature").value = message.env
+        ? `${message.env.temperature.toFixed(1)} ℃`
+        : "未接続";
+      document.querySelector("#humidity").value = message.env
+        ? `${message.env.humidity.toFixed(1)} %`
+        : "未接続";
       document.querySelector("#battery").value = `${message.battery}%${
         message.charging ? "（充電中）" : ""
       }`;

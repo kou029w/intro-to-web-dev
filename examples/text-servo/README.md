@@ -1,7 +1,8 @@
 # テキストでサーボモーターを動かす
 
+[![Demo](https://img.shields.io/badge/Demo-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/text-servo/)
+[![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/text-servo)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/text-servo?file=script.js&view=preview)
-[![Open in LiveCodes](https://img.shields.io/badge/Open%20in-LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/text-servo)
 
 文字で入力した指示を、Prompt APIで角度の変え方（JSON）に変換し、Web Serial APIでCore2に送るサンプルです。
 Core2を接続しなくても、画面上の角度の変化で動作を確かめられます。

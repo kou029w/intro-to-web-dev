@@ -3,12 +3,13 @@
 > **Note**\
 > このページは2026年12月の研修に向けて編集中です。内容は変更されることがあります。
 
-[センサー値を表示する](sensor-monitor.md)で受け取ったセンサー値を、今度はPrompt APIに渡して装置の状態を判断させます。
+[センサー値を表示する](sensor-monitor.md)と[温湿度センサーをつなぐ](env-sensor.md)で受け取ったセンサー値を、今度はPrompt APIに渡して装置の状態を判断させます。
 Core2のボタンを押すと、ブラウザの中の言語モデルが「揺れが続いているので固定を確認してください」のようなコメントを返す仕組みを作ります。
 
 ## サンプル
 
 [![View on GitHub](https://img.shields.io/badge/GitHub-181717?logo=github&logoColor=white)](https://github.com/kou029w/intro-to-web-dev/tree/main/examples/web-serial-sensor-ai)
+[![Demo](https://img.shields.io/badge/Demo-0969da)](https://kou029w.github.io/intro-to-web-dev/examples/web-serial-sensor-ai/)
 [![Open in LiveCodes](https://img.shields.io/badge/Open%20in%20LiveCodes-575757)](https://livecodes.io/?x=https://github.com/kou029w/intro-to-web-dev/tree/main/examples/web-serial-sensor-ai)
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/web-serial-sensor-ai?file=script.js&view=preview)
 
@@ -21,7 +22,7 @@ Core2のボタンを押すと、ブラウザの中の言語モデルが「揺れ
 
 続けて、Core2を手に持って揺らしながら、画面下の左ボタン（A）を押してみます。
 ブラウザのボタンを押さなくても判断が始まり、揺れについてのコメントが返ってきます。
-Core2を裏返して置いた場合も試してみましょう。
+Core2を裏返して置いた場合や、ENV Ⅲに息を吹きかけて湿度を上げた場合も試してみましょう。
 
 ## 数値をそのまま渡さない
 
@@ -32,6 +33,7 @@ Gemini Nanoは端末上で動く小型のモデルで、「加速度の標準偏
 ![気象APIの天気コード61を、コードで「雨」というラベルに変換してからPrompt APIに渡し、やさしい説明文を得る流れ](../assets/slides/day1-labels.webp)
 
 サンプルの`summarize()`は、直近30件のセンサー値から次の値を計算し、ラベルを付けます。
+温度と湿度は1秒に1回しか変わらないので、集計せずに最新の値を使います。
 
 | 項目 | 計算方法                                         | ラベルの例                       |
 | ---- | ------------------------------------------------ | -------------------------------- |
@@ -39,6 +41,8 @@ Gemini Nanoは端末上で動く小型のモデルで、「加速度の標準偏
 | 揺れ | 加速度の大きさの標準偏差                         | 静止、小さな揺れ、大きな揺れ     |
 | 回転 | 角速度の大きさの最大値                           | （数値のみ）                     |
 | 落下 | 加速度の大きさが0.3Gを下回った瞬間があるか       | あり、なし                       |
+| 温度 | ENV Ⅲの最新の値                                  | （数値のみ）                     |
+| 湿度 | ENV Ⅲの最新の値                                  | 乾燥、ふつう、多湿               |
 
 その結果、モデルには次のような文が渡ります。
 
@@ -48,10 +52,15 @@ Gemini Nanoは端末上で動く小型のモデルで、「加速度の標準偏
 - 揺れ: 標準偏差0.044G（小さな揺れ）
 - 回転: 最大151度/秒
 - 自由落下に近い瞬間: なし
+- 温度: 25.3℃
+- 湿度: 48%（ふつう）
 - バッテリー: 87%（充電していない）
 ```
 
-ラベルの境目（揺れなら0.02Gと0.1G）は、目安として置いた値です。
+ENV Ⅲをつないでいないときは、温度と湿度の2行を「温度と湿度: ENV Ⅲが未接続のため不明」の1行に置き換えます。
+`env`が`null`のまま`toFixed()`を呼ぶと例外になるので、[温湿度センサーをつなぐ](env-sensor.md#値がnullの場合に備える)と同じく、先に`null`でないことを確かめます。
+
+ラベルの境目（揺れなら0.02Gと0.1G、湿度なら40%と70%）は、目安として置いた値です。
 [モニターのサンプル](sensor-monitor.md)で、Core2を置いたときと揺らしたときの値を見比べて調整してください。
 取り付ける場所や用途が変われば、適切な境目も変わります。
 

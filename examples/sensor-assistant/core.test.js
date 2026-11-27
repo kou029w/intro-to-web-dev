@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { intervalCommand, servoCommand, summarize, shouldWarn } from "./core.js";
+import { intervalCommand, servoCommand, summarize, shouldWarn, warningReason } from "./core.js";
 
 function measurements(values, start = 0, step = 100) {
   return values.map((z, i) => ({ accel: [0, 0, z], battery: 87, receivedAt: start + i * step }));
@@ -38,7 +38,7 @@ test("角度の範囲外と非数値を機器に送らない", () => {
 });
 
 test("alertでも未有効、警告済み、時間不足、揺れ不足ならサーボモーターを動かさない", () => {
-  const summary = { durationMs: 2900, deviationG: 0.18 };
+  const summary = { durationMs: 2900, deviationG: 0.18, humidityPercent: null };
   const result = { level: "alert" };
   assert.equal(shouldWarn(summary, result, true, false), true);
   assert.equal(shouldWarn(summary, result, false, false), false);
@@ -46,4 +46,28 @@ test("alertでも未有効、警告済み、時間不足、揺れ不足ならサ
   assert.equal(shouldWarn(summary, { level: "warning" }, true, false), false);
   assert.equal(shouldWarn({ ...summary, durationMs: 1900 }, result, true, false), false);
   assert.equal(shouldWarn({ ...summary, deviationG: 0.0996 }, result, true, false), false);
+});
+
+test("最新の温湿度を集計に含め、ENV Ⅲが無ければnullにする", () => {
+  const values = measurements(Array(30).fill(1));
+  values.at(-1).env = { temperature: 25.3, humidity: 82.4 };
+  const humid = summarize(values, 2900, 100);
+  assert.equal(humid.temperatureC, 25.3);
+  assert.equal(humid.humidityPercent, 82.4);
+  assert.equal(humid.humid, "多湿");
+  const none = summarize(measurements(Array(30).fill(1)), 2900, 100);
+  assert.equal(none.temperatureC, null);
+  assert.equal(none.humidityPercent, null);
+  assert.equal(none.humid, "不明");
+});
+
+test("揺れか多湿のどちらかで警告の条件を満たす", () => {
+  const still = { durationMs: 2900, deviationG: 0, humidityPercent: 50 };
+  assert.equal(warningReason(still), null);
+  assert.equal(warningReason({ ...still, deviationG: 0.18 }), "揺れ");
+  assert.equal(warningReason({ ...still, humidityPercent: 70 }), "湿度");
+  assert.equal(warningReason({ ...still, humidityPercent: 69.9 }), null);
+  assert.equal(warningReason({ ...still, humidityPercent: null }), null);
+  assert.equal(shouldWarn({ ...still, humidityPercent: 82 }, { level: "alert" }, true, false), true);
+  assert.equal(shouldWarn({ ...still, humidityPercent: 82 }, { level: "normal" }, true, false), false);
 });
