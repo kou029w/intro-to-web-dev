@@ -4,6 +4,7 @@ const explainEl = document.querySelector("#explain");
 const promptEl = document.querySelector("#prompt");
 const levelEl = document.querySelector("#level");
 const commentEl = document.querySelector("#comment");
+const speakEl = document.querySelector("#speak");
 
 const WINDOW_SIZE = 30; // 100ms間隔で約3秒分
 const samples = [];
@@ -118,6 +119,15 @@ function summarize() {
   ].join("\n");
 }
 
+// 判断の結果を声で読み上げる
+function speak(text) {
+  if (!speakEl.checked || !("speechSynthesis" in self)) return;
+  speechSynthesis.cancel(); // 前の判断の読み上げが残っていれば止める
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "ja-JP";
+  speechSynthesis.speak(utterance);
+}
+
 let busy = false;
 
 async function explain() {
@@ -140,6 +150,7 @@ async function explain() {
     levelEl.className = result.level;
     levelEl.textContent = LEVEL_LABELS[result.level];
     commentEl.textContent = result.comment;
+    speak(`${LEVEL_LABELS[result.level]}。${result.comment}`);
     statusEl.textContent = "完了しました。";
   } catch (error) {
     statusEl.textContent = `エラーが発生しました: ${error.message}`;

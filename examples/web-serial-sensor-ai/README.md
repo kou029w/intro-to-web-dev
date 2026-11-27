@@ -5,7 +5,7 @@
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/kou029w/intro-to-web-dev/tree/main/examples/web-serial-sensor-ai?file=script.js&view=preview)
 
 Core2から受信したセンサー値を集計し、Prompt APIに装置の状態を判断させるサンプルです。
-画面のボタンのほか、Core2の左ボタン（A）でも判断を始められます。
+画面のボタンのほか、Core2の左ボタン（A）でも判断を始められ、判断の結果は音声でも読み上げます。
 
 ## 動かし方
 
