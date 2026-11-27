@@ -6,13 +6,7 @@
 [テキストでサーボモーターを動かす](text-servo.md)の入力欄を声に置き換え、「もう少し右に」「正面に戻して」と話しかけるだけでサーボモーターが動く仕組みを作ります。
 音声をSpeech Recognition APIで文字列にし、その文字列をテキストのときと同じ処理に渡します。
 
-```mermaid
-flowchart LR
-    A((声)) -- Speech Recognition API --> B["「もう少し右に」"]
-    B -- Prompt API --> C["{change: add, value: -15}"]
-    C -- 検証と換算 --> D["servo 0 75"]
-    D -- Web Serial API --> E((サーボモーター))
-```
+![声から、Speech Recognition APIで「もう少し右に」という文字に、Prompt APIで`add -15`に、コードで90 - 15 = 75を計算して`servo 0 75`に変換し、Web Serial APIでサーボを75度に動かす流れ](../assets/diagrams/pipeline.svg)
 
 Prompt APIによる変換、出力の検証、指示を順番に処理する仕組みは、テキストのサンプルと同じコードです。
 このページでは、そこに音声認識をつなぐ部分を扱います。

@@ -27,6 +27,8 @@ Firefoxは2026年5月のFirefox 151でデスクトップ版に実装しました
 Firefoxでは、Web Serial APIを使うサイトごとに、ブラウザが自動生成するサイト権限アドオンをインストールする必要があります[^firefox]。
 Safariは対応していません。
 
+![Web Serial APIの対応状況。Chrome、Edgeはデスクトップ版89以降で追加の設定は不要、Firefoxは151以降でサイト権限アドオンを使って許可する、Safariは非対応](../assets/slides/day2-browsers.webp)
+
 このハンズオンではPrompt APIも使うため、受講環境はChrome 148以降に揃えています。
 
 [^firefox]: WebMIDIと同じ仕組みで、アドオンのインストールが利用者の明示的な許可の役割を果たします。詳しくは [Firefox 151 for developers](https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/151) を参照してください。
@@ -51,6 +53,8 @@ connectButton.addEventListener("click", async () => {
 ページを開いただけで選択画面が出ることはなく、利用者がボタンを押したときにだけ許可を求められます。
 いったん許可したポートは、次回以降`navigator.serial.getPorts()`で選択画面なしに取得できます。
 
+![ボタンのクリックで`requestPort()`を呼ぶと、ブラウザが「接続するシリアルポートを選択」の画面を出し、利用者がポートを選んで接続する](../assets/slides/day2-port.webp)
+
 選んだポートは、`port.open()`で開いてから使います。
 `baudRate`は必須で、機器側と同じ値を指定します。
 
@@ -58,6 +62,10 @@ connectButton.addEventListener("click", async () => {
 
 開いたポートの`port.readable`は、受信したデータを`Uint8Array`の断片として順に流す**ReadableStream**です。
 `getReader()`で読み取り用のオブジェクトを取り出し、`read()`を繰り返し呼び出して断片を受け取ります。
+
+Prompt APIの`promptStreaming()`が返す値も同じReadableStreamで、届いた分から順に処理する書き方はどちらにも共通です。
+
+![Prompt APIの`promptStreaming()`とWeb Serial APIの`port.readable`は、どちらもReadableStreamで、届いた分から順に処理する](../assets/slides/day1-stream.webp)
 
 ```js
 const reader = port.readable.getReader();
@@ -91,6 +99,8 @@ reader.releaseLock();
 `split("\n")`で得た配列の最後の要素は、まだ改行が届いていない途中の行なので、`pop()`で取り出して`buffer`に戻します。
 それより前の要素だけが、完全な1行として扱えます。
 
+![1行のJSONが3つの断片に分かれて届く様子と、改行までを`buffer`にためてから1行として扱うコード](../assets/slides/day2-fragments.webp)
+
 バイト列から文字列への変換にも、同じ注意が要ります。
 UTF-8では日本語の1文字が3バイトで表されるため、1文字の途中で断片が切れることがあります。
 `TextDecoder`の`decode()`に`{ stream: true }`を指定すると、途中で切れたバイトを次の呼び出しまで持ち越し、文字化けを防げます。
@@ -109,6 +119,8 @@ await writer.write(encoder.encode("servo 0 90\n"));
 
 `TextEncoder`で文字列をUTF-8のバイト列に変換してから渡します。
 行の終わりを示す改行を付け忘れると、ブリッジはコマンドの続きを待ち続け、何も実行しません。
+
+![`servo 0 90\n`を送ると、チャンネル0のサーボが90度に動く。改行がないと、Core2はコマンドの続きを待ち続ける](../assets/slides/day2-newline.webp)
 
 ## ポートを閉じる
 
@@ -139,6 +151,8 @@ Web Serial APIは、**安全なコンテキスト**（通信の途中で書き�
 `http://`の通信は暗号化されていないため、途中のネットワークでページのスクリプトを書き換えられるおそれがあります。
 書き換えられたスクリプトがシリアル機器を操作できれば、利用者が許可したポートを、第三者が作ったコードが使うことになります。
 そのため、シリアル機器、ファイル、マイクのような利用者の環境に触れるAPIは、安全なコンテキストに限って提供されています。
+
+![機器に触れるAPIを呼べる2つの条件。ボタンのクリックなどユーザー操作の中で呼ぶこと（ページの読み込み時に呼ぶとブロックされる）と、`https://`か`http://localhost`の安全なコンテキストで開くこと（`file://`ではどのサンプルも動かない）](../assets/diagrams/gate.svg)
 
 ただし、`http://localhost`や`http://127.0.0.1`で開いたページは、HTTPSでなくても安全なコンテキストとして扱われます。
 これらへの通信はPCの外のネットワークを通らないため、途中で書き換えられる心配がないからです。

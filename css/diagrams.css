@@ -1,0 +1,6 @@
+/* 図（SVG）とスライドの画像は明るい背景を前提に描いているため、暗いテーマでも明るい下地に載せる */
+.content img[src*="/assets/diagrams/"],
+.content img[src*="/assets/slides/"] {
+  background: #fbf8f2;
+  border-radius: 8px;
+}

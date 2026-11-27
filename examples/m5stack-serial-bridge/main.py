@@ -13,6 +13,9 @@
 #   sensor on|off        センサー値の送信を開始・停止する
 #   sensor <ms>          センサー値の送信間隔をミリ秒で指定する
 #   help                 コマンド一覧を返す
+#   menu                 UIFlow2 の起動メニューを表示するように戻して再起動する
+#
+# 起動直後（画面に「Tap A」と出ている2秒間）にボタンAをタップしても、起動メニューに戻る
 #
 # 送信メッセージ（1行1JSON）:
 #   {"type": "ready", ...}   起動完了
@@ -55,6 +58,7 @@ ENV_RETRY_MS = 2000      # 見つからないときに探し直す間隔
 
 SENSOR_INTERVAL_MS = 100
 DRAW_INTERVAL_MS = 200
+MENU_WINDOW_MS = 2000    # 起動直後にボタンAを受け付ける時間
 
 
 def send(message):
@@ -85,15 +89,34 @@ class Servo:
         self.pwm = None
 
     def write_us(self, us):
-        # 起動直後にサーボが跳ねないよう、最初に角度を指定されるまでPWMを作らない
-        if self.pwm is None:
-            self.pwm = PWM(Pin(self.pin), freq=SERVO_FREQ, duty_ns=0)
         # duty() は分解能が粗く、動きがカクつくため、パルス幅をナノ秒で指定する
-        self.pwm.duty_ns(int(us * 1000))
+        ns = int(us * 1000)
+        if self.pwm is not None:
+            try:
+                self.pwm.duty_ns(ns)
+                return
+            except ValueError:
+                # ファームウェアによっては、PWMが無効（PWM is inactive）になっていることがある。
+                # そのときは作り直す
+                self._deinit()
+        # 起動直後にサーボが跳ねないよう、最初に角度を指定されるまでPWMを作らない。
+        # MicroPython 1.27 では、PWM() に duty_ns を渡すと PWM is inactive になる。
+        # 省略すると duty 50% で出力が始まってしまうため、duty_u16=0 で作ってから
+        # パルス幅を設定する
+        self.pwm = PWM(Pin(self.pin), freq=SERVO_FREQ, duty_u16=0)
+        self.pwm.duty_ns(ns)
 
     def release(self):
+        # duty を0にするのではなく、PWMを止めて信号線をただのピンに戻す
+        self._deinit()
+
+    def _deinit(self):
         if self.pwm is not None:
-            self.pwm.duty_ns(0)
+            try:
+                self.pwm.deinit()
+            except Exception:
+                pass
+            self.pwm = None
 
 
 class Env:
@@ -178,8 +201,34 @@ def angle_to_us(angle):
     return SERVO_MIN_US + (SERVO_MAX_US - SERVO_MIN_US) * angle / 180
 
 
+def open_menu():
+    # 「RUN (ALWAYS)」で 2 になった起動設定を、UIFlow2 の初期値（1: 起動メニューを表示）に戻して再起動する
+    import esp32
+    import machine
+    nvs = esp32.NVS("uiflow")
+    nvs.set_u8("boot_option", 1)
+    nvs.commit()
+    machine.reset()
+
+
+def menu_requested():
+    # 起動直後にボタンAがタップされたら、UIFlow2 の起動メニューに戻る
+    # Core2 のボタンはタッチパネルの一部で、電源を入れる前から触れていた指は押下として検出されないため、
+    # 押し続けるのではなく、表示が出てからタップしてもらう
+    M5.Lcd.print("Tap A: UIFlow menu\n")
+    start = time.ticks_ms()
+    while time.ticks_diff(time.ticks_ms(), start) < MENU_WINDOW_MS:
+        M5.update()
+        if M5.BtnA.isPressed():
+            return True
+        time.sleep_ms(10)
+    return False
+
+
 M5.begin()
 M5.Lcd.setTextSize(2)
+if menu_requested():
+    open_menu()
 
 board = detect_board()
 env = None
@@ -284,6 +333,16 @@ COMMANDS = {
     "sensor": command_sensor,
     "help": lambda args: {"commands": sorted(COMMANDS)},
 }
+
+
+def command_menu(args):
+    # 応答を返してから再起動する
+    send({"type": "ok", "command": "menu"})
+    time.sleep_ms(100)
+    open_menu()
+
+
+COMMANDS["menu"] = command_menu
 
 
 def handle(line):

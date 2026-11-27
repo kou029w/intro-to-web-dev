@@ -1,67 +1,63 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 490" width="1120" height="490" role="img"><title>Core2 の Port B とマイクロサーボの配線。黒を茶（GND）、赤を赤（5V）、黄を橙（信号、G26）につなぎ、白（G36）は使わない</title>
-<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#353c48"/></marker><marker id="ax" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d62f2f"/></marker><marker id="ay" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1f9d55"/></marker><marker id="az" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1d7fd1"/></marker></defs>
-<rect x="0" y="0" width="1120" height="490" rx="16" fill="#fbf8f2"/>
-<rect x="64" y="66" width="280" height="280" rx="31.11111111111111" fill="#4a4f57"/>
-<rect x="60" y="60" width="280" height="280" rx="31.11111111111111" fill="#f2a31b" stroke="#d8890a" stroke-width="2"/>
-<rect x="75.55555555555556" y="75.55555555555556" width="248.88888888888889" height="248.88888888888889" rx="20.74074074074074" fill="#15171a"/>
-<rect x="96.2962962962963" y="91.11111111111111" width="207.4074074074074" height="155.55555555555554" rx="5.185185185185185" fill="#eef2f6"/>
-<text x="200.0" y="179.25925925925924" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="36" font-weight="700" fill="#353c48" text-anchor="middle">Core2</text>
-<circle cx="130.0" cy="285.55555555555554" r="8.296296296296296" fill="none" stroke="#c0392b" stroke-width="1.5"/>
-<circle cx="200.0" cy="285.55555555555554" r="8.296296296296296" fill="none" stroke="#c0392b" stroke-width="1.5"/>
-<circle cx="270.0" cy="285.55555555555554" r="8.296296296296296" fill="none" stroke="#c0392b" stroke-width="1.5"/>
-<rect x="338.81481481481484" y="257.03703703703707" width="20.74074074074074" height="46.666666666666664" rx="2" fill="#1f2328" stroke="#000" stroke-width="1.5"/>
-<rect x="365.55555555555554" y="254.37037037037038" width="26" height="52" rx="3" fill="#f4f4f2" stroke="#9aa0a6" stroke-width="2"/><rect x="369.55555555555554" y="258.3703703703704" width="4" height="44" fill="#c9cbcf"/>
-<path d="M391.55555555555554,262.3703703703704 C511.77777777777777,262.3703703703704 511.77777777777777,258.3703703703704 632,258.3703703703704" fill="none" stroke="#00000055" stroke-width="9" stroke-linecap="round"/>
-<path d="M391.55555555555554,262.3703703703704 C511.77777777777777,262.3703703703704 511.77777777777777,258.3703703703704 632,258.3703703703704" fill="none" stroke="#1f2328" stroke-width="7" stroke-linecap="round"/>
-<path d="M391.55555555555554,274.3703703703704 C511.77777777777777,274.3703703703704 511.77777777777777,280.3703703703704 632,280.3703703703704" fill="none" stroke="#00000055" stroke-width="9" stroke-linecap="round"/>
-<path d="M391.55555555555554,274.3703703703704 C511.77777777777777,274.3703703703704 511.77777777777777,280.3703703703704 632,280.3703703703704" fill="none" stroke="#d62f2f" stroke-width="7" stroke-linecap="round"/>
-<path d="M391.55555555555554,286.3703703703704 C511.77777777777777,286.3703703703704 511.77777777777777,302.3703703703704 632,302.3703703703704" fill="none" stroke="#00000055" stroke-width="9" stroke-linecap="round"/>
-<path d="M391.55555555555554,286.3703703703704 C511.77777777777777,286.3703703703704 511.77777777777777,302.3703703703704 632,302.3703703703704" fill="none" stroke="#f2c40f" stroke-width="7" stroke-linecap="round"/>
-<path d="M391.55555555555554,298.3703703703704 C448.6666666666667,298.3703703703704 448.6666666666667,344.3703703703704 505.7777777777778,344.3703703703704" fill="none" stroke="#9aa0a6" stroke-width="9" stroke-linecap="round"/>
-<path d="M391.55555555555554,298.3703703703704 C448.6666666666667,298.3703703703704 448.6666666666667,344.3703703703704 505.7777777777778,344.3703703703704" fill="none" stroke="#e9ecef" stroke-width="7" stroke-linecap="round"/>
-<rect x="503.7777777777778" y="336.3703703703704" width="28" height="16" rx="5" fill="#5f6670"/>
-<rect x="640" y="244.37037037037038" width="34" height="72" rx="3" fill="#2a2d31" stroke="#000" stroke-width="1.5"/>
-<rect x="630" y="255.37037037037038" width="14" height="6" fill="#c9a227"/>
-<rect x="630" y="277.3703703703704" width="14" height="6" fill="#c9a227"/>
-<rect x="630" y="299.3703703703704" width="14" height="6" fill="#c9a227"/>
-<path d="M674,258.3703703703704 C758.0,258.3703703703704 758.0,268.3703703703704 842,268.3703703703704" fill="none" stroke="#00000055" stroke-width="8" stroke-linecap="round"/>
-<path d="M674,258.3703703703704 C758.0,258.3703703703704 758.0,268.3703703703704 842,268.3703703703704" fill="none" stroke="#7a4a22" stroke-width="6" stroke-linecap="round"/>
-<path d="M674,280.3703703703704 C758.0,280.3703703703704 758.0,280.3703703703704 842,280.3703703703704" fill="none" stroke="#00000055" stroke-width="8" stroke-linecap="round"/>
-<path d="M674,280.3703703703704 C758.0,280.3703703703704 758.0,280.3703703703704 842,280.3703703703704" fill="none" stroke="#d62f2f" stroke-width="6" stroke-linecap="round"/>
-<path d="M674,302.3703703703704 C758.0,302.3703703703704 758.0,292.3703703703704 842,292.3703703703704" fill="none" stroke="#00000055" stroke-width="8" stroke-linecap="round"/>
-<path d="M674,302.3703703703704 C758.0,302.3703703703704 758.0,292.3703703703704 842,292.3703703703704" fill="none" stroke="#f08a1c" stroke-width="6" stroke-linecap="round"/>
-<rect x="818" y="265.3703703703704" width="224" height="30" rx="4" fill="#2c6db5" stroke="#1d4f86" stroke-width="2"/>
-<circle cx="828" cy="280.3703703703704" r="5" fill="#f4f4f2"/>
-<circle cx="1032" cy="280.3703703703704" r="5" fill="#f4f4f2"/>
-<rect x="840" y="235.37037037037038" width="180" height="90" rx="6" fill="#3a83d4" stroke="#1d4f86" stroke-width="2"/>
-<circle cx="970" cy="280.3703703703704" r="30" fill="#2c6db5" stroke="#1d4f86" stroke-width="2"/>
-<path d="M970,266.3703703703704 L1032,274.3703703703704 A6,6 0 0 1 1032,286.3703703703704 L970,294.3703703703704 A14,14 0 0 1 970,266.3703703703704 z" fill="#fbfbf8" stroke="#9aa0a6" stroke-width="2"/>
-<circle cx="970" cy="280.3703703703704" r="6" fill="#c9cbcf"/>
-<text x="892" y="287.3703703703704" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">SG90</text>
-<text x="200.0" y="38" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="700" fill="#353c48" text-anchor="middle">M5Stack Core2（真上から）</text>
-<path d="M389.55555555555554,350.3703703703704 L367.55555555555554,314.3703703703704" stroke="#353c48" stroke-width="2" marker-end="url(#ah)"/>
-<text x="389.55555555555554" y="372.3703703703704" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">Port B（黒い端子）</text>
-<text x="389.55555555555554" y="396.3703703703704" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">底面ユニットの側面</text>
-<text x="560" y="210.37037037037038" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="18" font-weight="400" fill="#6b7280" text-anchor="middle">HY2.0-4P → 2.54mm オス変換ケーブル</text>
-<text x="940" y="210.37037037037038" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="700" fill="#353c48" text-anchor="middle">マイクロサーボ</text>
-<text x="657" y="344.3703703703704" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">サーボの</text>
-<text x="657" y="364.3703703703704" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">コネクター</text>
-<rect x="80" y="426" width="26" height="12" rx="3" fill="#1f2328" stroke="#9aa0a6" stroke-width="1"/>
-<path d="M112,432 L130,432" stroke="#353c48" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="136" y="426" width="26" height="12" rx="3" fill="#7a4a22" stroke="#9aa0a6" stroke-width="1"/>
-<text x="170" y="440" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">GND</text>
-<text x="80" y="466" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">黒 → 茶</text>
-<rect x="330" y="426" width="26" height="12" rx="3" fill="#d62f2f" stroke="#9aa0a6" stroke-width="1"/>
-<path d="M362,432 L380,432" stroke="#353c48" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="386" y="426" width="26" height="12" rx="3" fill="#d62f2f" stroke="#9aa0a6" stroke-width="1"/>
-<text x="420" y="440" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">5V</text>
-<text x="330" y="466" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">赤 → 赤</text>
-<rect x="580" y="426" width="26" height="12" rx="3" fill="#f2c40f" stroke="#9aa0a6" stroke-width="1"/>
-<path d="M612,432 L630,432" stroke="#353c48" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="636" y="426" width="26" height="12" rx="3" fill="#f08a1c" stroke="#9aa0a6" stroke-width="1"/>
-<text x="670" y="440" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">G26</text>
-<text x="580" y="466" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">黄 → 橙（信号）</text>
-<rect x="830" y="426" width="26" height="12" rx="3" fill="#e9ecef" stroke="#9aa0a6" stroke-width="1"/>
-<text x="864" y="440" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">G36</text>
-<text x="830" y="466" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">白：使わない</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 580" width="1120" height="580" role="img"><title>Core2 の Port B とマイクロサーボの配線。Port B は底面ユニットの上側面の左寄りにある。変換ケーブルの黒を茶（GND）、赤を赤（5V）、白を橙（信号、G26）につなぎ、黄（G36）は使わない</title>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#353c48"/></marker></defs>
+<rect x="0" y="0" width="1120" height="580" rx="16" fill="#fbf8f2"/>
+<rect x="64" y="196" width="280" height="280" rx="31.1" fill="#4a4f57"/>
+<rect x="60" y="190" width="280" height="280" rx="31.1" fill="#f2a31b" stroke="#d8890a" stroke-width="2"/>
+<rect x="75.6" y="205.6" width="248.9" height="248.9" rx="20.7" fill="#15171a"/>
+<rect x="96.3" y="221.1" width="207.4" height="155.6" rx="5" fill="#eef2f6"/>
+<text x="200.0" y="309.0" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="36" font-weight="700" fill="#353c48" text-anchor="middle">Core2</text>
+<circle cx="130.0" cy="415.4" r="8.3" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+<circle cx="200.0" cy="415.4" r="8.3" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+<circle cx="270.0" cy="415.4" r="8.3" fill="none" stroke="#c0392b" stroke-width="1.5"/>
+<rect x="92" y="176" width="48" height="14" rx="2" fill="#1f2328" stroke="#000" stroke-width="1.5"/>
+<rect x="162" y="176" width="48" height="14" rx="2" fill="#2c6db5" stroke="#1d4f86" stroke-width="1.5"/>
+<rect x="91" y="136" width="50" height="40" rx="3" fill="#f4f4f2" stroke="#9aa0a6" stroke-width="2"/>
+<rect x="95" y="168" width="42" height="4" fill="#c9cbcf"/>
+<path d="M100,136 L100,88 Q100,64 124,64 L580,64 C640.0,64 640.0,76 692,76" fill="none" stroke="#00000055" stroke-width="9" stroke-linecap="round"/><path d="M100,136 L100,88 Q100,64 124,64 L580,64 C640.0,64 640.0,76 692,76" fill="none" stroke="#1f2328" stroke-width="7" stroke-linecap="round"/>
+<path d="M111,136 L111,100 Q111,76 135,76 L580,76 C640.0,76 640.0,98 692,98" fill="none" stroke="#00000055" stroke-width="9" stroke-linecap="round"/><path d="M111,136 L111,100 Q111,76 135,76 L580,76 C640.0,76 640.0,98 692,98" fill="none" stroke="#d62f2f" stroke-width="7" stroke-linecap="round"/>
+<path d="M122,136 L122,112 Q122,88 146,88 L580,88 C640.0,88 640.0,120 692,120" fill="none" stroke="#9aa0a6" stroke-width="9" stroke-linecap="round"/><path d="M122,136 L122,112 Q122,88 146,88 L580,88 C640.0,88 640.0,120 692,120" fill="none" stroke="#e9ecef" stroke-width="7" stroke-linecap="round"/>
+<path d="M133,136 L133,124 Q133,100 157,100 L330,100" fill="none" stroke="#00000055" stroke-width="9" stroke-linecap="round"/><path d="M133,136 L133,124 Q133,100 157,100 L330,100" fill="none" stroke="#f2c40f" stroke-width="7" stroke-linecap="round"/>
+<rect x="328" y="92" width="28" height="16" rx="5" fill="#5f6670"/>
+<rect x="700" y="62" width="34" height="72" rx="3" fill="#2a2d31" stroke="#000" stroke-width="1.5"/>
+<rect x="690" y="73" width="14" height="6" fill="#c9a227"/>
+<rect x="690" y="95" width="14" height="6" fill="#c9a227"/>
+<rect x="690" y="117" width="14" height="6" fill="#c9a227"/>
+<path d="M734,76 C806.0,76 806.0,86 878,86" fill="none" stroke="#00000055" stroke-width="8" stroke-linecap="round"/><path d="M734,76 C806.0,76 806.0,86 878,86" fill="none" stroke="#7a4a22" stroke-width="6" stroke-linecap="round"/>
+<path d="M734,98 C806.0,98 806.0,98 878,98" fill="none" stroke="#00000055" stroke-width="8" stroke-linecap="round"/><path d="M734,98 C806.0,98 806.0,98 878,98" fill="none" stroke="#d62f2f" stroke-width="6" stroke-linecap="round"/>
+<path d="M734,120 C806.0,120 806.0,110 878,110" fill="none" stroke="#00000055" stroke-width="8" stroke-linecap="round"/><path d="M734,120 C806.0,120 806.0,110 878,110" fill="none" stroke="#f08a1c" stroke-width="6" stroke-linecap="round"/>
+<rect x="844" y="83" width="224" height="30" rx="4" fill="#2c6db5" stroke="#1d4f86" stroke-width="2"/>
+<circle cx="854" cy="98" r="5" fill="#f4f4f2"/>
+<circle cx="1058" cy="98" r="5" fill="#f4f4f2"/>
+<rect x="866" y="53" width="180" height="90" rx="6" fill="#3a83d4" stroke="#1d4f86" stroke-width="2"/>
+<circle cx="996" cy="98" r="30" fill="#2c6db5" stroke="#1d4f86" stroke-width="2"/>
+<path d="M996,84 L1058,92 A6,6 0 0 1 1058,104 L996,112 A14,14 0 0 1 996,84 z" fill="#fbfbf8" stroke="#9aa0a6" stroke-width="2"/>
+<circle cx="996" cy="98" r="6" fill="#c9cbcf"/>
+<text x="918" y="105" font-family="'Source Code Pro', 'Noto Sans Mono CJK JP', monospace" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">SG90</text>
+<text x="200" y="38" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="700" fill="#353c48" text-anchor="middle">M5Stack Core2（画面側から）</text>
+<path d="M376,226 L150,152" stroke="#353c48" stroke-width="2" marker-end="url(#ah)"/>
+<text x="380" y="236" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">Port B（黒い端子）</text>
+<text x="380" y="260" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">底面ユニットの上側面の左寄り</text>
+<text x="380" y="284" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">右隣の青い端子は Port C</text>
+<text x="470" y="150" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="18" font-weight="400" fill="#6b7280" text-anchor="middle">HY2.0-4P → 2.54mm オス変換ケーブル</text>
+<text x="717" y="168" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">サーボの</text>
+<text x="717" y="188" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="middle">コネクター</text>
+<text x="966" y="172" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="20" font-weight="700" fill="#353c48" text-anchor="middle">マイクロサーボ</text>
+<rect x="80" y="516" width="26" height="12" rx="3" fill="#1f2328" stroke="#9aa0a6" stroke-width="1"/>
+<path d="M112,522 L130,522" stroke="#353c48" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="136" y="516" width="26" height="12" rx="3" fill="#7a4a22" stroke="#9aa0a6" stroke-width="1"/>
+<text x="170" y="530" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">GND</text>
+<text x="80" y="556" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">黒 → 茶</text>
+<rect x="330" y="516" width="26" height="12" rx="3" fill="#d62f2f" stroke="#9aa0a6" stroke-width="1"/>
+<path d="M362,522 L380,522" stroke="#353c48" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="386" y="516" width="26" height="12" rx="3" fill="#d62f2f" stroke="#9aa0a6" stroke-width="1"/>
+<text x="420" y="530" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">5V</text>
+<text x="330" y="556" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">赤 → 赤</text>
+<rect x="580" y="516" width="26" height="12" rx="3" fill="#e9ecef" stroke="#9aa0a6" stroke-width="1"/>
+<path d="M612,522 L630,522" stroke="#353c48" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="636" y="516" width="26" height="12" rx="3" fill="#f08a1c" stroke="#9aa0a6" stroke-width="1"/>
+<text x="670" y="530" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">G26</text>
+<text x="580" y="556" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">白 → 橙（信号）</text>
+<rect x="830" y="516" width="26" height="12" rx="3" fill="#f2c40f" stroke="#9aa0a6" stroke-width="1"/>
+<text x="864" y="530" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="19" font-weight="700" fill="#353c48" text-anchor="start">G36</text>
+<text x="830" y="556" font-family="'Noto Sans JP', 'Noto Sans CJK JP', 'Source Han Sans JP', sans-serif" font-size="16" font-weight="400" fill="#6b7280" text-anchor="start">黄：使わない</text>
 </svg>

@@ -32,6 +32,8 @@ Chrome 139では、端末内で音声を認識する`processLocally`が加わり
 `processLocally`を`true`にすると、音声は端末の外に出ず、オフラインでも認識できます。
 ただし、端末内での認識には、言語ごとの**言語パック**をあらかじめ端末にダウンロードしておく必要があります。
 
+![既定ではGoogleのサーバーで認識し、ネットワーク接続が必要。`processLocally: true`ならPC内で認識し、日本語の言語パックが必要](../assets/slides/day2-speech.webp)
+
 言語パックの状態は、`SpeechRecognition.available()`で確認できます。
 
 ```js runnable

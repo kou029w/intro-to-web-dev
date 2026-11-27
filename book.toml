@@ -7,6 +7,7 @@ title = "Web開発をはじめよう"
 edit-url-template = "https://github.com/kou029w/intro-to-web-dev/edit/main/{path}"
 git-repository-url = "https://github.com/kou029w/intro-to-web-dev"
 site-url = "/intro-to-web-dev/"
+additional-css = ["css/diagrams.css"]
 additional-js = [
   "js/external-links.js",
   "js/regexp-search.js",
