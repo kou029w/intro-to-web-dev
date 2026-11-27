@@ -1,3 +1,7 @@
+html {
+  font-size: 100%;
+}
+
 canvas {
   width: 100%;
   max-width: 600px;
@@ -34,4 +38,33 @@ output {
   white-space: pre-wrap;
   max-height: 16rem;
   overflow-y: auto;
+}
+
+table {
+  table-layout: fixed;
+}
+
+/* 符号や桁が変わっても凡例の位置が動かないように幅をそろえる */
+.legend output {
+  display: inline-block;
+  min-inline-size: 6ch;
+  text-align: end;
+}
+
+/* スパークラインは値の横に小さく並べる */
+.spark {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spark output {
+  min-inline-size: 7ch;
+  text-align: end;
+}
+
+.spark canvas {
+  width: 150px;
+  height: 20px;
+  border: none;
 }

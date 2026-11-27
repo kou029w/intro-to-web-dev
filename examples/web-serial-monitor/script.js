@@ -85,6 +85,24 @@ function drawChart() {
   }
 }
 
+const envHistory = { temperature: [], humidity: [] };
+
+function drawSparkline(canvas, values) {
+  const context = canvas.getContext("2d");
+  const { width, height } = canvas;
+  const min = Math.min(...values);
+  const range = Math.max(...values) - min || 1;
+  context.clearRect(0, 0, width, height);
+  context.beginPath();
+  values.forEach((value, index) => {
+    context.lineTo(
+      (index / 150) * width,
+      height - ((value - min) / range) * height,
+    );
+  });
+  context.stroke();
+}
+
 function handleMessage(message) {
   switch (message?.type) {
     case "sensor": {
@@ -95,12 +113,20 @@ function handleMessage(message) {
       document.querySelector("#az").value = az.toFixed(2);
       document.querySelector("#gyro").value = message.gyro.join(", ");
       // ENV Ⅲをつないでいないときや読めなかったときは、envがnullになる
-      document.querySelector("#temperature").value = message.env
-        ? `${message.env.temperature.toFixed(1)} ℃`
-        : "未接続";
-      document.querySelector("#humidity").value = message.env
-        ? `${message.env.humidity.toFixed(1)} %`
-        : "未接続";
+      document.querySelector("#env").hidden = !message.env;
+      if (message.env) {
+        for (const [key, unit] of [
+          ["temperature", "℃"],
+          ["humidity", "%"],
+        ]) {
+          const values = envHistory[key];
+          values.push(message.env[key]);
+          if (values.length > 150) values.shift();
+          document.querySelector(`#${key}`).value =
+            `${message.env[key].toFixed(1)} ${unit}`;
+          drawSparkline(document.querySelector(`#${key}-chart`), values);
+        }
+      }
       document.querySelector("#battery").value = `${message.battery}%${
         message.charging ? "（充電中）" : ""
       }`;

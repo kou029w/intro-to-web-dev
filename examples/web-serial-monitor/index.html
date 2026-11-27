@@ -23,20 +23,25 @@
         <span class="z">z: <output id="az">-</output></span>
       </p>
 
+      <!-- ENV Ⅲの値が届いているときだけ表示する -->
+      <section id="env" hidden>
+        <h2>温度・湿度（ENV Ⅲ）</h2>
+        <p class="spark">
+          温度 <output id="temperature">-</output>
+          <canvas id="temperature-chart" width="300" height="40"></canvas>
+        </p>
+        <p class="spark">
+          湿度 <output id="humidity">-</output>
+          <canvas id="humidity-chart" width="300" height="40"></canvas>
+        </p>
+      </section>
+
       <h2>そのほかの値</h2>
       <table>
         <tbody>
           <tr>
             <th>角速度（度/秒）</th>
             <td><output id="gyro">-</output></td>
-          </tr>
-          <tr>
-            <th>温度（ENV Ⅲ）</th>
-            <td><output id="temperature">-</output></td>
-          </tr>
-          <tr>
-            <th>湿度（ENV Ⅲ）</th>
-            <td><output id="humidity">-</output></td>
           </tr>
           <tr>
             <th>バッテリー</th>

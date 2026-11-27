@@ -1,3 +1,7 @@
+html {
+  font-size: 100%;
+}
+
 #usage {
   font-size: 0.9rem;
   color: #555;
