@@ -51,20 +51,10 @@ table {
   text-align: end;
 }
 
-/* スパークラインは値の横に小さく並べる */
-.spark {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.legend .temperature {
+  color: #fb8c00;
 }
 
-.spark output {
-  min-inline-size: 7ch;
-  text-align: end;
-}
-
-.spark canvas {
-  width: 150px;
-  height: 20px;
-  border: none;
+.legend .humidity {
+  color: #00acc1;
 }

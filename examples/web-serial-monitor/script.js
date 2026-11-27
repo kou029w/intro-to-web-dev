@@ -2,6 +2,7 @@ const statusEl = document.querySelector("#status");
 const connectEl = document.querySelector("#connect");
 const disconnectEl = document.querySelector("#disconnect");
 const chartEl = document.querySelector("#chart");
+const envChartEl = document.querySelector("#env-chart");
 const commandFormEl = document.querySelector("#command-form");
 const commandEl = document.querySelector("#command");
 const logEl = document.querySelector("#log");
@@ -85,22 +86,27 @@ function drawChart() {
   }
 }
 
-const envHistory = { temperature: [], humidity: [] };
+const envHistory = [];
+const envColors = { temperature: "#fb8c00", humidity: "#00acc1" };
 
-function drawSparkline(canvas, values) {
-  const context = canvas.getContext("2d");
-  const { width, height } = canvas;
-  const min = Math.min(...values);
-  const range = Math.max(...values) - min || 1;
+// 温度と湿度は単位が違うので、それぞれ直近の最小〜最大を縦いっぱいに描く
+function drawEnvChart() {
+  const context = envChartEl.getContext("2d");
+  const { width, height } = envChartEl;
   context.clearRect(0, 0, width, height);
-  context.beginPath();
-  values.forEach((value, index) => {
-    context.lineTo(
-      (index / 150) * width,
-      height - ((value - min) / range) * height,
-    );
-  });
-  context.stroke();
+  for (const [key, color] of Object.entries(envColors)) {
+    const values = envHistory.map((env) => env[key]);
+    const min = Math.min(...values);
+    const range = Math.max(...values) - min || 1;
+    context.strokeStyle = color;
+    context.beginPath();
+    values.forEach((value, index) => {
+      const x = (index / 150) * width;
+      const y = height * (0.9 - ((value - min) / range) * 0.8);
+      context.lineTo(x, y);
+    });
+    context.stroke();
+  }
 }
 
 function handleMessage(message) {
@@ -115,17 +121,13 @@ function handleMessage(message) {
       // ENV Ⅲをつないでいないときや読めなかったときは、envがnullになる
       document.querySelector("#env").hidden = !message.env;
       if (message.env) {
-        for (const [key, unit] of [
-          ["temperature", "℃"],
-          ["humidity", "%"],
-        ]) {
-          const values = envHistory[key];
-          values.push(message.env[key]);
-          if (values.length > 150) values.shift();
-          document.querySelector(`#${key}`).value =
-            `${message.env[key].toFixed(1)} ${unit}`;
-          drawSparkline(document.querySelector(`#${key}-chart`), values);
-        }
+        const { temperature, humidity } = message.env;
+        document.querySelector("#temperature").value =
+          `${temperature.toFixed(1)} ℃`;
+        document.querySelector("#humidity").value = `${humidity.toFixed(1)} %`;
+        envHistory.push(message.env);
+        if (envHistory.length > 150) envHistory.shift();
+        drawEnvChart();
       }
       document.querySelector("#battery").value = `${message.battery}%${
         message.charging ? "（充電中）" : ""
