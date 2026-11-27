@@ -46,7 +46,7 @@ Web Serial API で M5Stack Core2 をつなぎ、測って、判断して、動�
 | 時刻 | 内容 |
 | --- | --- |
 | 13:05 | センサー値を Prompt API で解説させる |
-| 13:35 | サーボの可動範囲を記録する |
+| 13:35 | サーボを配線し、可動範囲を記録する |
 | 14:05 | テキストでサーボを動かす |
 | 14:30 | Speech Recognition API の基礎 |
 | 15:00 | 声でサーボを動かす |
@@ -209,19 +209,11 @@ PART 2
 
 ---
 
-# 配線を確かめる
+# ENV Ⅲ を配線する
 
-![w:1040 Core2 の配線の全体。左の ENV Ⅲ は Port A に Grove ケーブルで、右のマイクロサーボは Port B に変換ケーブルで直接つなぐ](assets/diagrams/wiring.svg)
+![w:1040 ENV Ⅲ と Core2 の Port A を付属の Grove ケーブルでつなぐ配線。黒 GND、赤 5V、黄 G32（SDA）、白 G33（SCL）](assets/diagrams/wiring-env.svg)
 
-> サーボは Port B（黒）へ直結。抵抗やコンデンサーは外付けしない（マイクロサーボが内蔵）
-
----
-
-<!-- _class: seq -->
-
-# 電源を入れる前の3点
-
-![w:1120 電源を入れる前の3点：茶色の線の位置、挿す端子の色、ホーンの周り](assets/diagrams/check-cards.svg)
+> ENV Ⅲ は Port A（赤）へ。サーボは午後、使う直前につなぐ
 
 ---
 
@@ -397,6 +389,22 @@ PART 5
 # サーボを動かす
 
 ## サーボと音声
+
+---
+
+# サーボを配線する
+
+![w:1040 Core2 の配線の全体。左の ENV Ⅲ は Port A に Grove ケーブルで、右のマイクロサーボは Port B に変換ケーブルで直接つなぐ](assets/diagrams/wiring.svg)
+
+> サーボは Port B（黒）へ直結。抵抗やコンデンサーは外付けしない（マイクロサーボが内蔵）
+
+---
+
+<!-- _class: seq -->
+
+# 電源を入れる前の3点
+
+![w:1120 電源を入れる前の3点：茶色の線の位置、挿す端子の色、ホーンの周り](assets/diagrams/check-cards.svg)
 
 ---
 

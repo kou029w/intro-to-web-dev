@@ -13,7 +13,7 @@ Day1と同じPCで、[環境の確認](prompt-api/setup.md)のPrompt APIが動�
 Core2のUSBシリアル変換チップ用のドライバー（CP210xまたはCH9102）も、[M5Stack Core2の準備](hardware/m5stack-setup.md#uiflow2を書き込む)の手順1に従ってインストールしておきます。
 会社のPCでは管理者権限が必要な場合があるので、当日までに済ませてください。
 Core2は、UIFlow2とブリッジを書き込んだ状態で配布します。
-当日は、[M5Stack Core2の準備](hardware/m5stack-setup.md#サーボモーターを配線する)のうち配線と接続の確認から始めます。
+当日は、[M5Stack Core2の準備](hardware/m5stack-setup.md#温湿度センサーを配線する)のうち配線と接続の確認から始めます。
 ポートが見つからない、サーボモーターが動かないなど、当日に起きやすい症状の対処は[困ったときは](troubleshooting.md)にまとめています。
 
 ## 機材
@@ -27,7 +27,7 @@ Core2は、UIFlow2とブリッジを書き込んだ状態で配布します。
 | マイクロサーボ（SG90など、サーボホーンを取り付けたもの） | 1人1個 | 15 |
 | HY2.0-4Pコネクタ 2.54mmオス・コネクタ、メス・コネクタ変換ケーブル | 1人1本 | 15 |
 
-当日の配線では、ENV ⅢをCore2のPort Aに、マイクロサーボを変換ケーブルでPort Bにつなぎます（[サーボモーターを配線する](hardware/m5stack-setup.md#サーボモーターを配線する)）。
+当日は、午前にENV ⅢをCore2のPort Aにつなぎ（[温湿度センサーを配線する](hardware/m5stack-setup.md#温湿度センサーを配線する)）、午後にマイクロサーボを変換ケーブルでPort Bにつなぎます（[サーボモーターを配線する](hardware/servo.md#サーボモーターを配線する)）。
 
 ![Core2の配線の全体。左のENV ⅢはPort AにGroveケーブルで、右のマイクロサーボはPort Bに変換ケーブルで直接つなぐ](assets/diagrams/wiring.svg)
 
@@ -40,13 +40,13 @@ Core2は、UIFlow2とブリッジを書き込んだ状態で配布します。
 | 時刻 | 分数 | 教材 | 確認すること |
 | --- | ---: | --- | --- |
 | 10:00〜10:15 | 15 | Day1の振り返り、機材の配布 | 機材がそろっていること |
-| 10:15〜10:45 | 30 | [M5Stack Core2の準備](hardware/m5stack-setup.md) | 配線、ブリッジの応答 |
+| 10:15〜10:45 | 30 | [M5Stack Core2の準備](hardware/m5stack-setup.md) | ENV Ⅲの配線、ブリッジの応答 |
 | 10:45〜11:15 | 30 | [ハードウェアを動かす](hardware/index.md)、[Web Serial API](hardware/web-serial.md) | 接続、改行区切りの送受信 |
 | 11:15〜11:25 | 10 | 休憩 | |
 | 11:25〜12:05 | 40 | [センサー値を表示する](hardware/sensor-monitor.md) | 静止時と揺れたときの値 |
 | 12:05〜13:05 | 60 | 昼休み | |
 | 13:05〜13:35 | 30 | [センサー値をPrompt APIで解説させる](hardware/sensor-ai.md) | 数値の集計とモデルの判断 |
-| 13:35〜14:05 | 30 | [サーボモーターを動かす](hardware/servo.md) | 警告に使うサーボモーターの可動範囲 |
+| 13:35〜14:05 | 30 | [サーボモーターを動かす](hardware/servo.md) | サーボモーターの配線、警告に使う可動範囲 |
 | 14:05〜14:30 | 25 | [テキストでサーボモーターを動かす](hardware/text-servo.md) | 指示からコマンドへの変換と検証 |
 | 14:30〜14:50 | 20 | [Speech Recognition API](hardware/speech-recognition.md) | 音声の文字列への変換 |
 | 14:50〜15:00 | 10 | 休憩 | |
